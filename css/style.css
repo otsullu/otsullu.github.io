@@ -336,6 +336,80 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 
 .btn-primary:active { transform: scale(0.98); box-shadow: none; }
 
+/* ── POSITION SURVEILLANCE ──────────────────────────────────────── */
+.section-surveillance {
+  background: var(--bg-alt);
+  transition: background var(--t-theme) var(--ease-out);
+}
+
+.surveillance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 48px 0 40px;
+  transition: border-color var(--t-theme) var(--ease-out);
+}
+
+.surv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 36px 32px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition:
+    background var(--t-theme) var(--ease-out),
+    border-color var(--t-theme) var(--ease-out);
+}
+
+.surv-stat:nth-child(3n) { border-right: none; }
+.surv-stat:nth-child(n+4) { border-bottom: none; }
+
+.surv-num {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.surv-label {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--fg-secondary);
+  transition: color var(--t-theme) var(--ease-out);
+}
+
+.surv-scale-note {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--fg-secondary);
+  letter-spacing: -0.01em;
+  font-style: italic;
+  text-align: center;
+  transition: color var(--t-theme) var(--ease-out);
+}
+
+@media (max-width: 768px) {
+  .surveillance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .surv-stat:nth-child(3n) { border-right: 1px solid var(--border); }
+  .surv-stat:nth-child(2n) { border-right: none; }
+  .surv-stat:nth-child(n+5) { border-bottom: none; }
+}
+
+@media (max-width: 480px) {
+  .surveillance-grid { grid-template-columns: 1fr; }
+  .surv-stat { border-right: none; }
+  .surv-stat:last-child { border-bottom: none; }
+}
+
 /* ── SYSTEM INTELLIGENCE SECTION ───────────────────────────────── */
 .section-intelligence {
   background: var(--bg);
