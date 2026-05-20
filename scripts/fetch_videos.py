@@ -52,7 +52,7 @@ def fetch_all_videos() -> list[dict]:
         params = {
             'key':        API_KEY,
             'channelId':  CHANNEL_ID,
-            'part':       'snippet,contentDetails',
+            'part':       'snippet',
             'order':      'date',
             'maxResults': 50,
             'type':       'video',
