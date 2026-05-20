@@ -26,14 +26,11 @@ except ImportError:
     sys.exit(1)
 
 # ── CONNECTION CONFIG ────────────────────────────────────────────────
-DB_SERVER   = r"localhost\SQLEXPRESS"   # change if needed
-DB_NAME     = "UlluMVP1DB"             # change to your actual DB name
-DB_DRIVER   = "ODBC Driver 17 for SQL Server"
-DB_TRUSTED  = True                     # True = Windows Auth; False = SQL Auth
-
-# Only needed if DB_TRUSTED = False
-DB_USER     = ""
-DB_PASSWORD = ""
+# Matches D:\Work\OTSUllu\MVP1\.env.prd
+DB_SERVER   = r"localhost\SQLEXPRESS"
+DB_NAME     = "UlluMVP1DB"
+DB_DRIVER   = "ODBC Driver 18 for SQL Server"
+DB_TRUSTED  = True                     # Windows Auth — no username/password needed
 
 # ── PATHS ────────────────────────────────────────────────────────────
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
@@ -42,9 +39,13 @@ OUTPUT_FILE = os.path.join(REPO_ROOT, "data", "stats.json")
 
 
 def get_connection_string():
-    if DB_TRUSTED:
-        return f"DRIVER={{{DB_DRIVER}}};SERVER={DB_SERVER};DATABASE={DB_NAME};Trusted_Connection=yes;"
-    return f"DRIVER={{{DB_DRIVER}}};SERVER={DB_SERVER};DATABASE={DB_NAME};UID={DB_USER};PWD={DB_PASSWORD};"
+    return (
+        f"DRIVER={{{DB_DRIVER}}};"
+        f"SERVER={DB_SERVER};"
+        f"DATABASE={DB_NAME};"
+        f"Trusted_Connection=yes;"
+        f"TrustServerCertificate=yes;"
+    )
 
 
 def fetch_stats():
