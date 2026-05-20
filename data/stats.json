@@ -1,7 +1,7 @@
 {
   "trade": {
     "underlyings": 26,
-    "tradingDays": 233,
+    "tradingDays": 172,
     "topTickers": [
       {
         "sym": "TSLA"
@@ -46,7 +46,7 @@
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-05-20T00:00:00Z",
-    "source": "baseline-hardcoded"
+    "generatedAt": "2026-05-20T22:49:46.403Z",
+    "source": "usp_q_WebsiteStats"
   }
 }
