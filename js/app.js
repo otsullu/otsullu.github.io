@@ -1,684 +1,475 @@
-/* OTS Ullu — Main App JS
-   Handles: data loading, geo-detection, video grid, search, filters, modal,
-            autoplay strip, featured-today section, playlist cards
-*/
+/* ═══════════════════════════════════════════════════════════════════
+   OTS Ullu — Production App Script
+   Modules: Theme · Nav · Reveal · Timeline · Videos · Resources · Dispatches
+   ═══════════════════════════════════════════════════════════════════ */
 
-const CHANNEL_URL = 'https://www.youtube.com/@otsullu';
-const PAGE_SIZE = 12;
+'use strict';
 
-let allVideos    = [];
-let allPlaylists = [];
-let filteredVideos = [];
-const shownIds = new Set();   // global dedup — no video appears in two sections
-let displayedCount = 0;
-let activePlaylist = 'all';
-let isIndia = false;
+/* ── MOCK DATA ──────────────────────────────────────────────────── */
 
-// ── Bootstrap ──────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', async () => {
-  initNav();
-  initModal();
-  initSlideVideo();
-  initCarouselStatic();   // start carousel immediately with static slides
-  await loadData();        // then enrich with dynamic slides + data
-  detectGeo();
-  initSearch();
-  initFilters();
-  updateFooter();
-});
+const TIMELINE_DATA = [
+  {
+    date: 'Jun 25, 2025',
+    title: 'Reactivated — First Covered Call Placed',
+    desc: 'The origin trade that restarted a decades-long options journey and triggered the entire system build.',
+    live: false,
+  },
+  {
+    date: 'Jun – Dec 2025',
+    title: 'Manual Phase: Spreadsheet Engine',
+    desc: 'All trade data collected manually via file exports from eTrade and Fidelity. Core workflow established on spreadsheets.',
+    live: false,
+  },
+  {
+    date: 'Jan – Feb 2026',
+    title: 'Broker Feed Normalization',
+    desc: 'Resolved Fidelity feed gaps (missing transaction IDs, format inconsistencies, and rounding errors) via custom normalization logic.',
+    live: false,
+  },
+  {
+    date: 'Feb – Mar 2026',
+    title: 'Roll Chaining Algorithm — Solved',
+    desc: 'Split and batched order executions broke trade lineage. The chaining problem, which all available AI tools were unable to solve, was resolved through first-principles database engineering.',
+    live: false,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'POC "Equity Market" — Live',
+    desc: 'First operational system deployed. Running production workload — the core engine processing real trade data end-to-end.',
+    live: false,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'Pushover Notification Integration',
+    desc: 'Real-time push notifications integrated into the trade workflow. Alerts delivered at key trade events without manual monitoring.',
+    live: false,
+  },
+  {
+    date: 'May 2026',
+    title: 'Proprietary Charts, Graphs & Recommendation Engine',
+    desc: 'Bespoke visualisations and a proprietary analytics engine built with AI assistance. Recommendation engine launched covering MVP-1\'s two core strategies.',
+    live: false,
+  },
+  {
+    date: 'May 2026',
+    title: 'MVP-1 Live: Short Covered Call and Short Cash-Secured Put',
+    desc: 'Short Covered Call: retain the underlying stock and maximise premium income in minimum time. Short Cash-Secured Put: avoid assignment and collect maximum premium.',
+    live: true,
+  },
+  {
+    date: 'MVP-2 — Roadmap',
+    title: 'Next: Fine-Tune, Logarithmic Scale & Wheel',
+    desc: 'Refine recommendation engine with expanded parameters, replace linear with logarithmic scale, and begin Wheel Strategy integration.',
+    live: false,
+  },
+];
 
-// ── Data Loading ───────────────────────────────────────────────────────────
-async function loadData() {
-  try {
-    const res = await fetch('data/videos.json?v=' + Date.now());
-    const data = await res.json();
-    allVideos    = data.videos   || [];
-    allPlaylists = data.playlists || [];
-    filteredVideos = [...allVideos];
 
-    document.getElementById('stat-videos').textContent    = allVideos.length + '+';
-    document.getElementById('stat-playlists').textContent = allPlaylists.length;
+const TICKER_DATA = [
+  { sym: 'TSLA',  contracts: 3311 },
+  { sym: 'NVDA',  contracts: 1068 },
+  { sym: 'COIN',  contracts:  872 },
+  { sym: 'PLTR',  contracts:  703 },
+  { sym: 'META',  contracts:  511 },
+  { sym: 'AMZN',  contracts:  495 },
+  { sym: 'GOOGL', contracts:  430 },
+  { sym: 'MSFT',  contracts:  417 },
+  { sym: 'QQQ',   contracts:  196 },
+  { sym: 'AAPL',  contracts:  137 },
+  { sym: 'Others', contracts:  613 },
+];
 
-    if (data.channel?.updated) {
-      const d = new Date(data.channel.updated);
-      document.getElementById('stat-updated').textContent =
-        d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    }
+const VIDEO_DATA = [
+  { id: 'o-1VRq2GCmo', lang: 'Bengali',   title: 'Indian Stock Market Basics — Bengali' },
+  { id: 'sR4cDLvJIhc', lang: 'English',   title: 'Indian Stock Market Basics — English' },
+  { id: '0kDb7Qnjx9E', lang: 'Gujarati',  title: 'Indian Stock Market Basics — Gujarati' },
+  { id: 'NbVIdEArUDM', lang: 'Hindi',     title: 'Indian Stock Market Basics — Hindi' },
+  { id: 'LGLo30W4-MA', lang: 'Kannada',   title: 'Indian Stock Market Basics — Kannada' },
+  { id: 'S0eSn_aS0P0', lang: 'Malayalam', title: 'Indian Stock Market Basics — Malayalam' },
+  { id: '1WX3uf99VH4', lang: 'Marathi',   title: 'Indian Stock Market Basics — Marathi' },
+  { id: 'vwz0cZ4KmOI', lang: 'Odia',      title: 'Indian Stock Market Basics — Odia' },
+  { id: 'gcKGy-36_qQ', lang: 'Punjabi',   title: 'Indian Stock Market Basics — Punjabi' },
+  { id: 'jrDLWNBTyqQ', lang: 'Tamil',     title: 'Indian Stock Market Basics — Tamil' },
+  { id: 'NKA6Jtmu11g', lang: 'Telugu',    title: 'Indian Stock Market Basics — Telugu' },
+  { id: 'uiLuxb33jZ0', lang: 'Urdu',      title: 'Indian Stock Market Basics — Urdu' },
+];
 
-    buildCarousel();
-    renderPlaylistCards();
-    renderFeaturedToday();
-    launchAutoplay();
-    prioritiseArchive();
-    setSmartDefaultFilter();
-    renderVideoGrid(true);
-  } catch (e) {
-    console.warn('Failed to load videos.json', e);
-    document.getElementById('videoGrid').innerHTML =
-      '<p style="color:var(--text-muted);text-align:center;padding:40px">Videos loading…</p>';
-  }
-}
+const RESOURCE_DATA = [
+  {
+    type: 'TOOL',
+    title: "Dhurandhar's Dilemma: Payoff vs. Invest",
+    desc: 'Compare mortgage prepayment against market investment with inflation-adjusted projections, real versus nominal returns, and live benchmark data. Runs entirely in your browser.',
+    readTime: 'Interactive',
+    url: 'https://fintech.samvishwas.com/Calculators/payoff-vs-invest.html',
+    contributor: 'Sam Vishwas, Founder',
+  },
+  {
+    type: 'PDF',
+    title: 'Magnificent 7: Economic Moats and Competitive Advantages',
+    readTime: '12 min read',
+    comingSoon: true,
+  },
+  {
+    type: 'PPT',
+    title: 'Covered Call Mechanics: Strike Selection Framework',
+    readTime: '8 min read',
+    comingSoon: true,
+  },
+  {
+    type: 'PDF',
+    title: 'Wheel Strategy Playbook: Entry, Management and Exit Rules',
+    readTime: '18 min read',
+    comingSoon: true,
+  },
+  {
+    type: 'XLS',
+    title: 'Options Premium Income Calculator: Monthly Yield Tracker',
+    readTime: 'Interactive',
+    comingSoon: true,
+  },
+  {
+    type: 'PDF',
+    title: 'Behavioural Finance: 12 Cognitive Biases Costing You Returns',
+    readTime: '15 min read',
+    comingSoon: true,
+  },
+  {
+    type: 'PPT',
+    title: 'Cash-Secured Put Strategy: IV Rank and Delta Entry Matrix',
+    readTime: '10 min read',
+    comingSoon: true,
+  },
+  {
+    type: 'SOON',
+    title: 'Position Canvas: Your Strategy in Two and Three Dimensions',
+    desc: 'Visualize every open position across two and three dimensions. Validate your strategy, feel the Greeks in motion, and explore outcomes using advanced charting and visualization techniques.',
+    readTime: 'Coming Soon',
+    comingSoon: true,
+  },
+];
 
-// ── Geo Detection ──────────────────────────────────────────────────────────
-async function detectGeo() {
-  try {
-    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
-    const geo = await res.json();
-    isIndia = (geo.country_code === 'IN');
-  } catch (_) {
-    // fallback: detect from browser language
-    const lang = navigator.language || navigator.userLanguage || '';
-    isIndia = lang.startsWith('hi') || lang.startsWith('ta') || lang.startsWith('te') ||
-              lang.startsWith('mr') || lang.startsWith('gu') || lang.startsWith('kn') ||
-              lang.startsWith('ml') || lang.startsWith('pa') || lang.startsWith('bn');
-  }
-  applyGeo();
-}
+const FOUNDER_QUOTES = [
+  'Compounding builds wealth; derivatives, when mastered, reveal the deeper rhythm of financial growth, where logic meets imagination.',
+  'Diversification matters, but early portfolios often grow faster when one strong equity, amplified smartly through derivatives, takes center stage instead of being spread too thin.',
+  'We\'re often so busy minting pennies that we forget to pause and explore the paths that could make us dollars.',
+  'Success has no map; it appears to those who walk the unknown with purpose.',
+];
 
-function applyGeo() {
-  const ctaHead   = document.getElementById('cta-headline');
-  const ctaSub    = document.getElementById('cta-sub');
-  const spotlight = document.getElementById('geo-spotlight');
+const DISPATCH_DATA = [
+  {
+    title: 'Why the Wheel Strategy Outperforms Buy-and-Hold in Sideways Markets',
+    excerpt: 'A quantitative examination of risk-adjusted returns across three market regimes, with a focus on theta decay harvesting and systematic roll logic.',
+  },
+  {
+    title: 'The IV Rank Illusion: What Most Options Traders Get Wrong',
+    excerpt: 'Implied volatility rank is widely misused. We unpack why raw IV percentile is more actionable than IV rank for premium-selling strategies.',
+  },
+  {
+    title: 'Covered Calls on ETFs vs. Individual Stocks: A Risk-Adjusted Analysis',
+    excerpt: 'Diversified underlying vs. concentrated single-stock exposure in covered call writing. The data reveals a counterintuitive result for income investors.',
+  },
+];
 
-  if (isIndia) {
-    if (ctaHead) ctaHead.textContent = 'Subscribe to Build Wisdom, Not Chase Tips';
-    if (ctaSub)  ctaSub.textContent  = 'Frameworks, principles & research-backed insights — Hindi, Marathi, Tamil, Telugu, Gujarati, Kannada and more.';
-    // Auto-advance carousel to Indian Radar slide (slide index 1)
-    setTimeout(() => goToSlide(1), 1200);
-    if (spotlight) spotlight.style.display = 'none';
-  } else {
-    if (ctaHead) ctaHead.textContent = 'Subscribe to Build Wisdom, Not Chase Tips';
-    if (ctaSub)  ctaSub.textContent  = 'Frameworks, principles, and research-backed guidance — so you can make your own confident decisions.';
-    if (spotlight) spotlight.style.display = 'none';
-  }
-}
+/* ── THEME ──────────────────────────────────────────────────────── */
+(function initTheme() {
+  const stored = localStorage.getItem('ots-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = stored || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
 
-// ── Search ─────────────────────────────────────────────────────────────────
-function initSearch() {
-  const input = document.getElementById('searchInput');
-  const clear = document.getElementById('searchClear');
-
-  input.addEventListener('input', () => {
-    clear.style.display = input.value ? 'block' : 'none';
-    applyFilters();
-  });
-  clear.addEventListener('click', () => {
-    input.value = '';
-    clear.style.display = 'none';
-    applyFilters();
-  });
-}
-
-// ── Filters ────────────────────────────────────────────────────────────────
-function initFilters() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setActiveFilter(btn.dataset.playlist);
-    });
-  });
-}
-
-function setActiveFilter(playlist) {
-  activePlaylist = playlist;
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.playlist === playlist);
-  });
-  applyFilters();
-}
-
-// Set default filter to whichever core playlist has the most recent video
-function setSmartDefaultFilter() {
-  const CORE = ['news-radar', 'knowledge-radar', 'wealth-academy', 'options-academy'];
-  let bestPlaylist = null, bestDate = '';
-
-  CORE.forEach(plId => {
-    const latest = allVideos
-      .filter(v => v.playlist === plId)
-      .sort((a, b) => (b.published || '').localeCompare(a.published || ''))[0];
-    if (latest && (latest.published || '') > bestDate) {
-      bestDate = latest.published;
-      bestPlaylist = plId;
-    }
-  });
-
-  if (!bestPlaylist) return;
-  activePlaylist = bestPlaylist;
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.playlist === bestPlaylist);
-  });
-  filteredVideos = allVideos.filter(v => v.playlist === bestPlaylist);
-}
-
-// Collect IDs already shown above the archive and sink them to the bottom
-function prioritiseArchive() {
-  const usedIds = new Set();
-
-  // Autoplay strip video
-  const autoplay = allVideos.find(v => v.featured) ||
-    [...allVideos].sort((a, b) => parseInt(b.views) - parseInt(a.views))[0];
-  if (autoplay) usedIds.add(autoplay.id);
-
-  // Most Popular + Most Recent (carousel slides 3 & 4)
-  const popular = [...allVideos].sort((a, b) => parseInt(b.views||0) - parseInt(a.views||0))[0];
-  const recent  = [...allVideos].sort((a, b) => (b.published||'').localeCompare(a.published||''))[0];
-  if (popular) usedIds.add(popular.id);
-  if (recent)  usedIds.add(recent.id);
-
-  // Featured Today — picks are random so we sink the top-viewed + featured-flagged ones
-  allVideos.filter(v => v.featured).forEach(v => usedIds.add(v.id));
-
-  // Indian Radar "Basics" series — already prominently shown in carousel
-  allVideos
-    .filter(v => v.india && /Indian Stock Market Basics in/i.test(v.title))
-    .forEach(v => usedIds.add(v.id));
-
-  // Re-sort: unseen first (by published date desc), seen last (by published date desc)
-  allVideos = [
-    ...allVideos.filter(v => !usedIds.has(v.id)),
-    ...allVideos.filter(v =>  usedIds.has(v.id)),
-  ];
-  filteredVideos = [...allVideos];
-}
-
-function applyFilters() {
-  const query = document.getElementById('searchInput').value.trim().toLowerCase();
-
-  filteredVideos = allVideos.filter(v => {
-    const matchPlaylist = activePlaylist === 'all' || v.playlist === activePlaylist;
-    const matchSearch   = !query ||
-      v.title.toLowerCase().includes(query) ||
-      (v.lang || '').toLowerCase().includes(query) ||
-      (v.playlist || '').toLowerCase().includes(query);
-    return matchPlaylist && matchSearch;
-  });
-
-  displayedCount = 0;
-  renderVideoGrid(true);
-}
-
-// ── Video Grid ─────────────────────────────────────────────────────────────
-function renderVideoGrid(reset = false) {
-  const grid    = document.getElementById('videoGrid');
-  const noRes   = document.getElementById('noResults');
-  const moreBtn = document.getElementById('loadMoreWrap');
-
-  if (reset) {
-    grid.innerHTML = '';
-    displayedCount = 0;
-  }
-
-  if (filteredVideos.length === 0) {
-    noRes.style.display   = 'block';
-    moreBtn.style.display = 'none';
-    return;
-  }
-  noRes.style.display = 'none';
-
-  const slice = filteredVideos.slice(displayedCount, displayedCount + PAGE_SIZE);
-  slice.forEach(v => grid.appendChild(buildVideoCard(v)));
-  displayedCount += slice.length;
-
-  moreBtn.style.display = displayedCount < filteredVideos.length ? 'block' : 'none';
-
-  if (!document.getElementById('loadMoreBtn')._bound) {
-    document.getElementById('loadMoreBtn').addEventListener('click', () => renderVideoGrid(false));
-    document.getElementById('loadMoreBtn')._bound = true;
-  }
-}
-
-function buildVideoCard(v) {
-  const card = document.createElement('div');
-  card.className = 'video-card';
-  card.setAttribute('role', 'button');
-  card.setAttribute('tabindex', '0');
-  card.setAttribute('aria-label', v.title);
-
-  const badgeClass = v.playlist === 'indian-radar' ? 'badge-india' :
-                     v.playlist === 'shorts'        ? 'badge-short' : '';
-  const badgeLabel = v.playlist === 'indian-radar' ? '🇮🇳 India' :
-                     v.playlist === 'shorts'        ? 'Short' :
-                     v.playlist === 'options-academy' ? 'Options Academy' :
-                     v.playlist === 'wealth-academy'  ? 'Wealth Academy' : '';
-
-  const langTag = v.india ?
-    `<div class="video-playlist-tag">🇮🇳 IndianRadar.AI</div>` :
-    v.playlist !== 'indian-radar' ? `<div class="video-playlist-tag">${labelFor(v.playlist)}</div>` : '';
-
-  card.innerHTML = `
-    <div class="video-thumb-wrap">
-      <img src="${v.thumb}" alt="${escHtml(v.title)}" loading="lazy" />
-      <div class="video-play-btn">
-        <svg viewBox="0 0 68 48" width="54" height="38">
-          <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56.1 0 34 0 34 0S11.9 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C11.9 48 34 48 34 48s22.1 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="#ff0000"/>
-          <path d="M45 24 27 14v20" fill="#fff"/>
-        </svg>
-      </div>
-      ${badgeLabel ? `<span class="video-badge ${badgeClass}">${badgeLabel}</span>` : ''}
-    </div>
-    <div class="video-info">
-      ${langTag}
-      <div class="video-title">${escHtml(v.title)}</div>
-      <div class="video-meta">
-        <span>${v.views} views</span>
-        <span>${v.published}</span>
-      </div>
-    </div>
-  `;
-
-  const open = () => openModal(v);
-  card.addEventListener('click', open);
-  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(); });
-
-  return card;
-}
-
-// ── Modal ──────────────────────────────────────────────────────────────────
-function initModal() {
-  const overlay = document.getElementById('modalOverlay');
-  const closeBtn = document.getElementById('modalClose');
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-}
-
-function openModal(v) {
-  const overlay = document.getElementById('modalOverlay');
-  const iframe  = document.getElementById('modalIframe');
-  const meta    = document.getElementById('modalMeta');
-
-  iframe.src = `https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`;
-  meta.innerHTML = `
-    <h3>${escHtml(v.title)}</h3>
-    <p>${v.views} views · ${v.published}${v.india ? ' · 🇮🇳 IndianRadar.AI' : ''}</p>
-  `;
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  const overlay = document.getElementById('modalOverlay');
-  const iframe  = document.getElementById('modalIframe');
-  overlay.classList.remove('open');
-  iframe.src = '';
-  document.body.style.overflow = '';
-}
-
-// ── Slide 1 inline video — plays once on click, stays on page ──────────────
-function initSlideVideo() {
-  const playBtn = document.getElementById('slideVideoPlay');
-  const thumb   = document.getElementById('slideVideoThumb');
-  const iframe  = document.getElementById('slideVideoIframe');
-  if (!playBtn) return;
-
-  playBtn.addEventListener('click', () => {
-    // Hide thumbnail + play button, show iframe
-    thumb.style.display   = 'none';
-    playBtn.style.display = 'none';
-    iframe.style.display  = 'block';
-    // autoplay=1, no loop (loop=0), no related videos
-    iframe.src = 'https://www.youtube.com/embed/8V2Z0tr-Nhk?autoplay=1&rel=0&loop=0&modestbranding=1';
-  });
-}
-
-// ── Nav (hamburger) ────────────────────────────────────────────────────────
-function initNav() {
-  const ham = document.getElementById('hamburger');
-  const nav = document.getElementById('mobileNav');
-  ham.addEventListener('click', () => nav.classList.toggle('open'));
-
-  // close mobile nav on link click
-  nav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => nav.classList.remove('open'));
-  });
-}
-
-// ── Footer ─────────────────────────────────────────────────────────────────
-function updateFooter() {
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-  document.getElementById('footer-updated').textContent =
-    'Data refreshed: ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-// ── Hero Carousel ──────────────────────────────────────────────────────────
-let carouselIndex       = 0;
-let carouselTotal       = 0;
-let carouselTimer       = null;
-let carouselUserStopped = false;   // once user manually navigates, stop auto-rotation
-const CAROUSEL_INTERVAL = 6000;
-
-// Called immediately on DOMContentLoaded — starts carousel with the 2 static HTML slides
-function initCarouselStatic() {
-  const track = document.getElementById('carouselTrack');
-  if (!track) return;
-  carouselTotal = track.querySelectorAll('.carousel-slide').length;
-  buildCarouselDots();
-
-  // Honor deep-link hash — #slide-indian-radar locks to that slide forever
-  const _hashEl  = document.querySelector(`.carousel-slide[id="${location.hash.slice(1)}"]`);
-  const _startIdx = _hashEl ? parseInt(_hashEl.dataset.index || 0) : 0;
-  if (_startIdx > 0) carouselUserStopped = true;
-  updateCarouselPosition(_startIdx);
-  if (!carouselUserStopped) startCarouselTimer();
-
-  document.getElementById('carouselPrev').addEventListener('click', () => { carouselUserStopped = true; stopCarouselTimer(); stepCarousel(-1); });
-  document.getElementById('carouselNext').addEventListener('click', () => { carouselUserStopped = true; stopCarouselTimer(); stepCarousel(1);  });
-  const carousel = document.getElementById('heroCarousel');
-  carousel.addEventListener('mouseenter', stopCarouselTimer);
-  carousel.addEventListener('mouseleave', () => { if (!carouselUserStopped) startCarouselTimer(); });
-}
-
-// Share-link buttons — copy deep-link URL to clipboard
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.btn-slide-share');
+function setupThemeToggle() {
+  const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  const slideId = btn.dataset.slide;
-  const url = `${location.origin}${location.pathname}#${slideId}`;
-  navigator.clipboard.writeText(url).then(() => {
-    const span = btn.querySelector('span');
-    btn.classList.add('copied');
-    span.textContent = 'Copied!';
-    setTimeout(() => { btn.classList.remove('copied'); span.textContent = 'Share'; }, 2200);
+
+  btn.addEventListener('click', () => {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('ots-theme', next);
   });
-});
+}
 
-// Called after data loads — populates india collage and appends dynamic slides
-function buildCarousel() {
-  const track = document.getElementById('carouselTrack');
-  if (!track || allVideos.length === 0) return;
+/* ── AUTO-HIDE NAV ──────────────────────────────────────────────── */
+function setupNav() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
 
-  // ── Slide 2: Indian Radar — only "Indian Stock Market Basics in [Language]" series ──
-  const indiaVideos = allVideos.filter(v => v.india === true && /Indian Stock Market Basics in/i.test(v.title));
-  window._indiaVideos = indiaVideos;  // keep for reshuffle on carousel visit
+  let lastY = 0;
+  let ticking = false;
 
-  function renderIndiaCollage() {
-    const collage = document.getElementById('indiaCollage');
-    if (!collage || !indiaVideos.length) return;
-    collage.scrollLeft = 0;
-    // Sort alphabetically by language extracted from title
-    const sorted = [...indiaVideos].sort((a, b) => {
-      const lang = v => { const m = v.title.match(/Basics in (\w+)/i); return m ? m[1] : 'ZZZ'; };
-      return lang(a).localeCompare(lang(b));
-    });
-    collage.innerHTML = sorted.map(v => `
-      <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"
-         title="${escHtml(v.title)}">
-        <img src="${v.thumb}" alt="${escHtml(v.title)}" loading="lazy" />
-      </a>
-    `).join('');
-  }
-  window.renderIndiaCollage = renderIndiaCollage;
-  renderIndiaCollage();
+  const update = () => {
+    const y = window.scrollY;
 
-  // ── Build dynamic slides and append DIRECTLY to track ──
-  // Slide 3: Most Popular · Slide 4: Most Recent — never pick India videos
-  const nonIndiaVideos = allVideos.filter(v => !v.india);
-  const popular = [...nonIndiaVideos].sort((a, b) => parseInt(b.views || 0) - parseInt(a.views || 0))[0];
-  const recent  = [...nonIndiaVideos]
-    .filter(v => !popular || v.id !== popular.id)
-    .sort((a, b) => (b.published || '').localeCompare(a.published || ''))[0];
+    if (y > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
 
-  // Register carousel picks so Featured Today and autoplay never repeat them
-  if (popular) shownIds.add(popular.id);
-  if (recent)  shownIds.add(recent.id);
+    if (y > lastY && y > 80) {
+      header.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+    }
 
-  const shareIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
+    lastY = y;
+    ticking = false;
+  };
 
-  [
-    { badge: '🔥 Most Popular',  bgColor: 'linear-gradient(135deg,#1a0a00,#2a1400)', v: popular },
-    { badge: '🆕 Most Recent',   bgColor: 'linear-gradient(135deg,#001a1a,#002a2a)', v: recent  },
-  ].forEach(item => {
-    if (!item.v) return;
-    const v     = item.v;
-    const safet = escHtml(v.title).replace(/'/g, '&#39;');
-    const ytUrl = `https://www.youtube.com/watch?v=${v.id}`;
-    const slide = document.createElement('div');
-    slide.className = 'carousel-slide slide-feature';
-    slide.style.background = item.bgColor;
-    slide.innerHTML = `
-      <button class="btn-slide-share" data-slide="slide-feature-${v.id}" title="Copy link">${shareIcon}</button>
-      <div class="container slide-inner">
-        <div class="slide-text">
-          <div class="slide-badge">${item.badge}</div>
-          <h2 style="font-size:clamp(18px,2.4vw,32px);font-weight:800;color:#fff;margin-bottom:14px;line-height:1.3">${safet}</h2>
-          <p class="slide-sub">${parseInt(v.views).toLocaleString()} views · ${v.published}</p>
-          <div class="slide-actions">
-            <a href="${ytUrl}" target="_blank" rel="noopener" class="btn-primary">▶ Watch on YouTube</a>
-          </div>
-        </div>
-        <div class="slide-visual">
-          <a href="${ytUrl}" target="_blank" rel="noopener" class="slide-feature-thumb">
-            <img src="${v.thumb}" alt="${safet}" />
-            <div class="slide-feature-play">▶</div>
-          </a>
-        </div>
-      </div>
-    `;
-    track.appendChild(slide);
-  });
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+}
 
-  // ── Slide 5: Quiz ──────────────────────────────────────────────────────────
-  const quizVideos = shuffle(allVideos.filter(v => /🦉\s*Quiz/i.test(v.title)));
-  if (quizVideos.length) {
-    const quizSlide = document.createElement('div');
-    quizSlide.className = 'carousel-slide slide-quiz';
-    quizSlide.id = 'slide-quiz';
-    quizSlide.innerHTML = `
-      <button class="btn-slide-share" data-slide="slide-quiz" title="Copy link">${shareIcon}</button>
-      <div class="container slide-inner">
-        <div class="slide-text">
-          <div class="slide-badge">🦉 Quick Quiz</div>
-          <h2 style="font-size:clamp(22px,2.8vw,38px);font-weight:800;color:#fff;margin-bottom:10px;line-height:1.2">Test Your<br/><span style="color:var(--gold)">Market Knowledge</span></h2>
-          <p class="slide-sub">Short quizzes — can you answer before time runs out?</p>
-          <div class="quiz-thumb-strip" id="quizThumbStrip">
-            ${quizVideos.map((v, i) => `
-              <button class="quiz-thumb-btn ${i === 0 ? 'active' : ''}" data-qid="${v.id}" title="${escHtml(v.title)}">
-                <img src="${v.thumb}" alt="${escHtml(v.title)}" loading="lazy"/>
-              </button>
-            `).join('')}
-          </div>
-        </div>
-        <div class="slide-visual">
-          <div class="quiz-player-box">
-            <iframe id="quizIframe" src="https://www.youtube.com/embed/${quizVideos[0].id}?autoplay=1&mute=1&rel=0&loop=0&modestbranding=1"
-              frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    `;
+/* ── INTERSECTION REVEAL ────────────────────────────────────────── */
+function setupReveal() {
+  const els = document.querySelectorAll('.reveal-up');
+  if (!els.length) return;
 
-    // Thumbnail strip — click to switch video
-    quizSlide.querySelectorAll('.quiz-thumb-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        quizSlide.querySelectorAll('.quiz-thumb-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const iframe = quizSlide.querySelector('#quizIframe');
-        iframe.src = `https://www.youtube.com/embed/${btn.dataset.qid}?autoplay=1&rel=0&loop=0&modestbranding=1`;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          observer.unobserve(e.target);
+        }
       });
-    });
-
-    track.appendChild(quizSlide);
-  }
-
-  // Rebuild dots now that dynamic slides are added
-  stopCarouselTimer();
-  carouselTotal = track.querySelectorAll('.carousel-slide').length;
-  buildCarouselDots();
-  updateCarouselPosition(0);
-  startCarouselTimer();
-}
-
-function buildCarouselDots() {
-  const dots = document.getElementById('carouselDots');
-  dots.innerHTML = '';
-  for (let i = 0; i < carouselTotal; i++) {
-    const btn = document.createElement('button');
-    btn.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    btn.setAttribute('aria-label', `Slide ${i + 1}`);
-    btn.addEventListener('click', () => { carouselUserStopped = true; stopCarouselTimer(); goToSlide(i); });
-    dots.appendChild(btn);
-  }
-}
-
-function updateCarouselPosition(idx) {
-  carouselIndex = idx;
-  const track = document.getElementById('carouselTrack');
-  track.querySelectorAll('.carousel-slide').forEach((s, i) =>
-    s.classList.toggle('active', i === idx)
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
-  document.querySelectorAll('.carousel-dot').forEach((d, i) =>
-    d.classList.toggle('active', i === idx)
-  );
+
+  els.forEach((el) => observer.observe(el));
 }
 
-function stepCarousel(dir) {
-  goToSlide((carouselIndex + dir + carouselTotal) % carouselTotal);
-}
+/* ── ENGINEERING TIMELINE ───────────────────────────────────────── */
+function renderTimeline() {
+  const container = document.getElementById('engineeringTimeline');
+  if (!container) return;
 
-function goToSlide(idx) {
-  stopCarouselTimer();
-  updateCarouselPosition(idx);
-  if (!carouselUserStopped) startCarouselTimer();
-}
-
-function startCarouselTimer() {
-  stopCarouselTimer();
-  carouselTimer = setInterval(() => stepCarousel(1), CAROUSEL_INTERVAL);
-}
-function stopCarouselTimer() {
-  if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
-}
-
-// ── Playlist Cards ─────────────────────────────────────────────────────────
-const PLAYLIST_META = {
-  'news-radar':      { emoji: '📡', bg: 'linear-gradient(135deg,#1a0a0a,#2a1010)', title: 'Breaking Market Intelligence' },
-  'knowledge-radar': { emoji: '🧠', bg: 'linear-gradient(135deg,#0a1a1a,#102a2a)', title: 'Research-Backed Wisdom' },
-  'wealth-academy':  { emoji: '💰', bg: 'linear-gradient(135deg,#1a1a0a,#2a2a10)', title: 'Long-Term Wealth Building' },
-  'options-academy': { emoji: '📊', bg: 'linear-gradient(135deg,#0a1a0a,#102a10)', title: 'Options Income Strategies' },
-  'indian-radar':    { emoji: '🇮🇳', bg: 'linear-gradient(135deg,#1a0a00,#2a1500)', title: 'भारतीय निवेशकों के लिए' },
-  'infomercials':    { emoji: '🎬', bg: 'linear-gradient(135deg,#0a0a1a,#10102a)', title: 'Platform & Announcements' },
-};
-
-function renderPlaylistCards() {
-  const grid = document.getElementById('playlistGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  allPlaylists.forEach((pl, i) => {
-    const meta  = PLAYLIST_META[pl.id] || { emoji: '▶', bg: 'var(--bg-card)', title: pl.label };
-    const count = allVideos.filter(v => v.playlist === pl.id).length;
-    const card  = document.createElement('div');
-    card.className  = 'playlist-card' + (i === 0 ? ' playlist-card-top' : '');
-    const thumbStyle = pl.thumb
-      ? `background-image:url(${pl.thumb});background-size:cover;background-position:center`
-      : `background:${meta.bg}`;
-
-    card.innerHTML  = `
-      <div class="playlist-thumb" style="${thumbStyle}">
-        <div class="playlist-thumb-overlay"></div>
-        <div class="playlist-rank">#${i + 1}</div>
-      </div>
-      <div class="playlist-info">
-        <span class="playlist-tag" style="color:${pl.color}">${pl.label}</span>
-        <h3>${meta.title}</h3>
-        <div class="playlist-footer">
-          <span class="playlist-count">${count} video${count !== 1 ? 's' : ''}</span>
-          <a class="playlist-cta" href="https://www.youtube.com/playlist?list=${pl.ytId}" target="_blank" rel="noopener">View Playlist →</a>
-        </div>
+  const html = TIMELINE_DATA.map((item, i) => {
+    const isLive = item.live;
+    return `
+      <div class="timeline-item${isLive ? ' is-live' : ''}">
+        <div class="timeline-date">${item.date}</div>
+        <div class="timeline-title">${item.title}</div>
+        <div class="timeline-desc">${item.desc}</div>
+        ${isLive ? `
+          <div class="timeline-live-panel">
+            <span class="live-dot"></span>
+            Now Building
+          </div>
+        ` : ''}
       </div>
     `;
-    grid.appendChild(card);
-  });
+  }).join('');
+
+  container.innerHTML = html;
 }
 
-// ── Featured Today (changes every page load) ────────────────────────────────
-function renderFeaturedToday() {
-  const wrap = document.getElementById('featuredLayout');
-  if (!wrap || allVideos.length === 0) return;
+/* ── TICKER SHELF ───────────────────────────────────────────────── */
+function renderTickers() {
+  const list = document.getElementById('tickerList');
+  if (!list) return;
 
-  // Pick 3 unique videos not already shown in carousel or autoplay
-  const avail    = shuffle(allVideos.filter(v => !shownIds.has(v.id)));
-  const nonIndia = avail.filter(v => !v.india);
-  const india    = avail.filter(v => v.india);
-  const picks = [];
-  if (nonIndia[0]) picks.push(nonIndia[0]);
-  if (india[0])    picks.push(india[0]);
-  // third: any unseen not already in picks
-  const third = avail.find(v => !picks.some(p => p.id === v.id));
-  if (third) picks.push(third);
-  picks.forEach(v => shownIds.add(v.id));
+  list.innerHTML = TICKER_DATA.map((t) => {
+    const isOther = t.sym === 'Others';
+    const inner = `
+      <span class="ticker-sym">${t.sym}</span>
+      <span class="ticker-contracts">${t.contracts.toLocaleString()} contracts</span>
+    `;
+    if (isOther) {
+      return `<div class="ticker-chip ticker-chip-other">${inner}</div>`;
+    }
+    return `<a
+      class="ticker-chip ticker-chip-link"
+      href="https://finance.yahoo.com/quote/${t.sym}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="${t.sym} on Yahoo Finance"
+    >${inner}</a>`;
+  }).join('');
+}
 
-  wrap.innerHTML = picks.map((v, i) => `
-    <div class="featured-card ${i === 0 ? 'featured-card-main' : ''}"
-         role="button" tabindex="0"
-         onclick="openModalById('${v.id}','${escHtml(v.title).replace(/'/g,"\\'")}','${v.views}','${v.published}','${v.lang||''}')">
-      <div class="featured-thumb-wrap">
-        <img src="${v.thumb}" alt="${escHtml(v.title)}" loading="lazy" />
-        <div class="featured-play">
-          <svg viewBox="0 0 68 48" width="44" height="30">
-            <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56.1 0 34 0 34 0S11.9 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C11.9 48 34 48 34 48s22.1 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="#ff0000"/>
-            <path d="M45 24 27 14v20" fill="#fff"/>
+
+/* ── INDIAN RADAR CAROUSEL ──────────────────────────────────────── */
+function renderVideoCarousel(filter = 'all') {
+  const carousel = document.getElementById('videoCarousel');
+  if (!carousel) return;
+
+  const filtered = filter === 'all'
+    ? VIDEO_DATA
+    : VIDEO_DATA.filter((v) => v.lang === filter);
+
+  const html = filtered.map((v) => `
+    <a
+      href="https://www.youtube.com/watch?v=${v.id}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="video-card"
+      aria-label="Watch ${v.title} on YouTube"
+    >
+      <img
+        src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg"
+        alt="${v.title}"
+        loading="lazy"
+        width="480"
+        height="360"
+      />
+      <div class="video-card-overlay">
+        <div class="video-lang-badge">${v.lang}</div>
+        <div class="video-play-btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
           </svg>
         </div>
-        <span class="featured-playlist-tag">${labelFor(v.playlist)}</span>
+        <p class="video-card-title">${v.title}</p>
       </div>
-      <div class="featured-info">
-        <div class="featured-title">${escHtml(v.title)}</div>
-        <div class="video-meta"><span>${v.views} views</span><span>${v.published}</span></div>
-      </div>
-    </div>
+    </a>
   `).join('');
 
-  document.getElementById('featured-sub').textContent =
-    'Refreshed on every visit — ' + new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+  carousel.innerHTML = html || '<p style="color:var(--fg-meta);padding:20px 0;">No videos for this filter.</p>';
 }
 
-function labelFor(playlistId) {
-  const pl = allPlaylists.find(p => p.id === playlistId);
-  return pl ? pl.label : playlistId;
+function setupLangFilter() {
+  const filter = document.getElementById('langFilter');
+  if (!filter) return;
+
+  filter.addEventListener('click', (e) => {
+    const pill = e.target.closest('.lang-pill');
+    if (!pill) return;
+
+    filter.querySelectorAll('.lang-pill').forEach((p) => {
+      p.classList.remove('active');
+      p.setAttribute('aria-selected', 'false');
+    });
+
+    pill.classList.add('active');
+    pill.setAttribute('aria-selected', 'true');
+    renderVideoCarousel(pill.dataset.lang);
+  });
 }
 
-function openModalById(id, title, views, published, lang) {
-  openModal({ id, title, views, published, lang });
+/* ── INSIGHT SHELF ──────────────────────────────────────────────── */
+function renderResources() {
+  const grid = document.getElementById('resourceGrid');
+  if (!grid) return;
+
+  const html = RESOURCE_DATA.map((r) => {
+    if (r.comingSoon) {
+      const badgeLabel = r.type === 'SOON' ? 'SOON' : 'PLACEHOLDER';
+      return `
+        <div class="resource-card resource-card-soon reveal-up" onclick="showResourceNotice(this)" role="button" tabindex="0" aria-label="${r.title} — Coming Soon">
+          <div class="resource-card-soon-header">
+            <span class="resource-type-badge badge-${r.type.toLowerCase()}">${r.type}</span>
+            <span class="resource-placeholder-label">${badgeLabel}</span>
+          </div>
+          <p class="resource-title">${r.title}</p>
+          ${r.desc ? `<p class="resource-desc">${r.desc}</p>` : ''}
+          <div class="resource-meta">
+            <span class="resource-dot"></span>
+            ${r.readTime}
+          </div>
+        </div>
+      `;
+    }
+    const isExternal = r.url && r.url !== '#';
+    const attrs = isExternal ? `target="_blank" rel="noopener noreferrer"` : '';
+    return `
+      <a href="${r.url}" class="resource-card${r.contributor ? ' resource-card-contributed' : ''} reveal-up" ${attrs} aria-label="${r.title}">
+        <span class="resource-type-badge badge-${r.type.toLowerCase()}">${r.type}</span>
+        <p class="resource-title">${r.title}</p>
+        ${r.desc ? `<p class="resource-desc">${r.desc}</p>` : ''}
+        <div class="resource-meta">
+          <span class="resource-dot"></span>
+          ${r.readTime}
+        </div>
+        ${r.contributor ? `<div class="resource-contributor">Contributed by ${r.contributor}</div>` : ''}
+      </a>
+    `;
+  }).join('');
+
+  grid.innerHTML = html;
 }
 
-// ── Autoplay Strip ──────────────────────────────────────────────────────────
-function launchAutoplay() {
-  // Pick featured-flagged video; if already shown elsewhere, pick next most-viewed unseen
-  const featured = allVideos.find(v => v.featured && !shownIds.has(v.id)) ||
-                   [...allVideos].filter(v => !shownIds.has(v.id))
-                     .sort((a, b) => parseInt(b.views) - parseInt(a.views))[0];
-  if (!featured) return;
-  shownIds.add(featured.id);
-
-  const strip   = document.getElementById('autoplayStrip');
-  const iframe  = document.getElementById('autoplayIframe');
-  const titleEl = document.getElementById('autoplayTitle');
-  const metaEl  = document.getElementById('autoplayMeta');
-  const ytLink  = document.getElementById('autoplayYT');
-
-  iframe.src = `https://www.youtube.com/embed/${featured.id}?autoplay=1&mute=1&rel=0&modestbranding=1`;
-  titleEl.textContent = featured.title;
-  metaEl.textContent  = `${featured.views} views · ${featured.published}${featured.lang ? ' · ' + featured.lang : ''}`;
-  ytLink.href = `https://www.youtube.com/watch?v=${featured.id}`;
-  strip.style.display = 'block';
+function showResourceNotice(el) {
+  if (el.dataset.active) return;
+  el.dataset.active = 'true';
+  const meta = el.querySelector('.resource-meta');
+  const original = meta.innerHTML;
+  meta.innerHTML = '<span style="color:var(--accent)">We are building this. Thank you for your interest.</span>';
+  setTimeout(() => {
+    meta.innerHTML = original;
+    delete el.dataset.active;
+  }, 3000);
 }
 
+/* ── ANALYTICAL DISPATCHES ──────────────────────────────────────── */
+function renderDispatches() {
+  const feed = document.getElementById('dispatchFeed');
+  if (!feed) return;
 
-// ── Utilities ──────────────────────────────────────────────────────────────
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+  const html = DISPATCH_DATA.map((d) => `
+    <article class="dispatch-card reveal-up">
+      <div class="dispatch-left">
+        <h3 class="dispatch-title">${d.title}</h3>
+        <p class="dispatch-excerpt">${d.excerpt}</p>
+      </div>
+      <div class="dispatch-right">
+        <button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">
+          Coming Soon
+        </button>
+      </div>
+    </article>
+  `).join('');
+
+  feed.innerHTML = html;
 }
 
-function escHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+function showDispatchNotice(btn) {
+  if (btn.dataset.active) return;
+  btn.dataset.active = 'true';
+  const original = btn.textContent;
+  btn.textContent = 'We are working on this. Thank you for your interest.';
+  btn.classList.add('dispatch-notice-active');
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.classList.remove('dispatch-notice-active');
+    delete btn.dataset.active;
+  }, 3000);
 }
+
+/* ── FOUNDER QUOTE STRIP ────────────────────────────────────────── */
+function renderFounderQuote() {
+  const el = document.getElementById('founderQuote');
+  if (!el) return;
+  const quote = FOUNDER_QUOTES[Math.floor(Math.random() * FOUNDER_QUOTES.length)];
+  el.querySelector('.fq-text').textContent = '“' + quote + '”';
+}
+
+/* ── FOOTER YEAR ────────────────────────────────────────────────── */
+function setFooterYear() {
+  const el = document.getElementById('footerYear');
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+/* ── INIT ───────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  setupThemeToggle();
+  setupNav();
+  setupReveal();
+  renderTimeline();
+  renderTickers();
+  renderVideoCarousel();
+  setupLangFilter();
+  renderResources();
+  renderDispatches();
+  renderFounderQuote();
+  setFooterYear();
+
+  // Re-run reveal after dynamic content is injected
+  requestAnimationFrame(() => setupReveal());
+});
