@@ -5,7 +5,7 @@
     "handle": "@otsullu",
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
-    "updated": "2026-05-19T00:00:00Z"
+    "updated": "2026-05-20T11:08:30.020959+00:00"
   },
   "playlists": [
     {
@@ -13,440 +13,740 @@
       "label": "NewsRadar.AI",
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
-      "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors."
+      "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
+      "thumb": "https://i.ytimg.com/vi/0iZ35_0pkzM/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
       "label": "KnowledgeRadar.AI",
       "ytId": "PLZEDE8n1EZ0QbpBD3ZaqYWVDu9wEpvHxZ",
       "color": "#c9a84c",
-      "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles."
+      "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles.",
+      "thumb": "https://i.ytimg.com/vi/ToY1Y6sO3Nk/maxresdefault.jpg"
     },
     {
       "id": "wealth-academy",
       "label": "WealthAcademy.AI",
       "ytId": "PLZEDE8n1EZ0QYxsDHtj-kb2xX10OLAttN",
       "color": "#c9a84c",
-      "desc": "Long-term wealth building strategies — compounding, valuation, portfolio construction, zero hype."
+      "desc": "Long-term wealth building strategies — compounding, valuation, portfolio construction, zero hype.",
+      "thumb": "https://i.ytimg.com/vi/EWUHSH-3j7Q/maxresdefault.jpg"
     },
     {
       "id": "options-academy",
       "label": "OptionsAcademy.AI",
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
-      "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor."
+      "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
+      "thumb": "https://i.ytimg.com/vi/2nsnR8QgYgE/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
       "label": "IndianRadar.AI",
       "ytId": "PLZEDE8n1EZ0QFan242PpKNi7PodQX55ot",
       "color": "#ff9933",
-      "desc": "Indian market intelligence in 10+ languages — Hindi, Tamil, Telugu, Marathi, Gujarati and more."
+      "desc": "Indian market intelligence in 10+ languages — Hindi, Tamil, Telugu, Marathi, Gujarati and more.",
+      "thumb": "https://i.ytimg.com/vi/sR4cDLvJIhc/maxresdefault.jpg"
     },
     {
       "id": "infomercials",
       "label": "Infomercials",
       "ytId": "PLZEDE8n1EZ0SLtrPqYRrEtSL92aprflh9",
       "color": "#8b5cf6",
-      "desc": "Short motivational videos and platform announcements from OTS Ullu."
+      "desc": "Short motivational videos and platform announcements from OTS Ullu.",
+      "thumb": "https://i.ytimg.com/vi/8V2Z0tr-Nhk/maxresdefault.jpg"
     }
   ],
   "videos": [
     {
-      "id": "w4elsYEoIhI",
-      "title": "🦉 Quiz – Stock Market Short 1",
-      "thumb": "https://i.ytimg.com/vi/w4elsYEoIhI/hqdefault.jpg",
-      "playlist": "infomercials",
-      "lang": "English",
-      "views": "0",
-      "published": "2026-05-20",
-      "india": false,
-      "featured": false
-    },
-    {
-      "id": "rar9Pxk0HCA",
-      "title": "🦉 Quiz – Stock Market Short 2",
-      "thumb": "https://i.ytimg.com/vi/rar9Pxk0HCA/hqdefault.jpg",
-      "playlist": "infomercials",
-      "lang": "English",
-      "views": "0",
-      "published": "2026-05-20",
-      "india": false,
-      "featured": false
-    },
-    {
-      "id": "-QD_V31gna4",
-      "title": "🦉 Quiz – Stock Market Short 3",
-      "thumb": "https://i.ytimg.com/vi/-QD_V31gna4/hqdefault.jpg",
-      "playlist": "infomercials",
-      "lang": "English",
-      "views": "0",
-      "published": "2026-05-20",
-      "india": false,
-      "featured": false
-    },
-    {
-      "id": "NG6Gd-Qy_08",
-      "title": "🦉 Quiz – Stock Market Short 4",
-      "thumb": "https://i.ytimg.com/vi/NG6Gd-Qy_08/hqdefault.jpg",
-      "playlist": "infomercials",
-      "lang": "English",
-      "views": "0",
-      "published": "2026-05-20",
-      "india": false,
-      "featured": false
-    },
-    {
       "id": "sR4cDLvJIhc",
-      "title": "📊 What is the Stock Market? | Indian Stock Market Basics in English 🚀",
-      "thumb": "https://i.ytimg.com/vi/sR4cDLvJIhc/hqdefault.jpg",
+      "title": "📊 What is the Stock Market? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 🚀",
+      "thumb": "https://i.ytimg.com/vi/sR4cDLvJIhc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "0",
+      "views": "2",
       "published": "2026-05-20",
-      "india": true,
-      "featured": false
+      "india": true
     },
     {
       "id": "vwz0cZ4KmOI",
-      "title": "📊 Indian Stock Market Basics in Odia 🚀",
-      "thumb": "https://i.ytimg.com/vi/vwz0cZ4KmOI/hqdefault.jpg",
+      "title": "📊 ସେୟାର ବଜାର ପ୍ରକୃତରେ କଣ? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗢𝗱𝗶𝗮 🚀",
+      "thumb": "https://i.ytimg.com/vi/vwz0cZ4KmOI/maxresdefault.jpg",
       "playlist": "indian-radar",
-      "lang": "Odia",
+      "lang": "Oriya",
       "views": "0",
       "published": "2026-05-20",
-      "india": true,
-      "featured": false
+      "india": true
     },
     {
       "id": "S0eSn_aS0P0",
-      "title": "📊 സ്റ്റോക്ക് മാർക്കറ്റ് എന്നാൽ എന്താണ്? | Indian Stock Market Basics in Malayalam 🚀",
-      "thumb": "https://i.ytimg.com/vi/S0eSn_aS0P0/hqdefault.jpg",
+      "title": "📊 സ്റ്റോക്ക് മാർക്കറ്റ് എന്നാൽ എന്താണ്? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗠𝗮𝗹𝗮𝘆𝗮𝗹𝗮𝗺 🚀",
+      "thumb": "https://i.ytimg.com/vi/S0eSn_aS0P0/maxresdefault.jpg",
       "playlist": "indian-radar",
-      "featured": false,
       "lang": "Malayalam",
-      "views": "1",
-      "published": "4 hours ago",
+      "views": "9",
+      "published": "2026-05-19",
       "india": true
     },
     {
       "id": "jrDLWNBTyqQ",
-      "title": "📊 பங்குச்சந்தை என்றால் என்ன? | Indian Stock Market Basics in Tamil 🚀",
-      "thumb": "https://i.ytimg.com/vi/jrDLWNBTyqQ/hqdefault.jpg",
+      "title": "📊 பங்குச்சந்தை என்றால் என்ன? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗧𝗮𝗺𝗶𝗹 🚀",
+      "thumb": "https://i.ytimg.com/vi/jrDLWNBTyqQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Tamil",
-      "views": "2",
-      "published": "6 hours ago",
-      "india": true,
-      "featured": false
+      "views": "5",
+      "published": "2026-05-19",
+      "india": true
     },
     {
       "id": "uiLuxb33jZ0",
-      "title": "📊 اسٹاک مارکیٹ کیا ہے؟ | Indian Stock Market Basics in Urdu 🚀",
-      "thumb": "https://i.ytimg.com/vi/uiLuxb33jZ0/hqdefault.jpg",
+      "title": "📊 اسٹاک مارکیٹ کیا ہے؟ | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗨𝗿𝗱𝘂 🚀",
+      "thumb": "https://i.ytimg.com/vi/uiLuxb33jZ0/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Urdu",
       "views": "10",
-      "published": "20 hours ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-19",
+      "india": true
     },
     {
       "id": "0kDb7Qnjx9E",
-      "title": "📊 શેર બજાર શું છે? | Indian Stock Market Basics in Gujarati 🚀",
-      "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/hqdefault.jpg",
+      "title": "📊 શેર બજાર શું છે? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗚𝘂𝗷𝗮𝗿𝗮𝘁𝗶 🚀",
+      "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Gujarati",
-      "views": "10",
-      "published": "21 hours ago",
-      "india": true,
-      "featured": false
+      "views": "13",
+      "published": "2026-05-19",
+      "india": true
     },
     {
       "id": "gcKGy-36_qQ",
-      "title": "📊 ਸ਼ੇਅਰ ਮਾਰਕੀਟ ਕੀ ਹੈ? | Indian Stock Market Basics in Punjabi 🚀",
-      "thumb": "https://i.ytimg.com/vi/gcKGy-36_qQ/hqdefault.jpg",
+      "title": "📊 ਸ਼ੇਅਰ ਮਾਰਕੀਟ ਕੀ ਹੈ? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗣𝘂𝗻𝗷𝗮𝗯𝗶 🚀",
+      "thumb": "https://i.ytimg.com/vi/gcKGy-36_qQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Punjabi",
-      "views": "19",
-      "published": "21 hours ago",
-      "india": true,
-      "featured": false
+      "views": "20",
+      "published": "2026-05-19",
+      "india": true
     },
     {
       "id": "o-1VRq2GCmo",
-      "title": "📊 শেয়ার বাজার আসলে কী? | Indian Stock Market Basics in Bengali 🚀",
-      "thumb": "https://i.ytimg.com/vi/o-1VRq2GCmo/hqdefault.jpg",
+      "title": "📊 শেয়ার বাজার আসলে কী? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗕𝗲𝗻𝗴𝗮𝗹𝗶 🚀",
+      "thumb": "https://i.ytimg.com/vi/o-1VRq2GCmo/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Bengali",
-      "views": "4",
-      "published": "21 hours ago",
-      "india": true,
-      "featured": false
+      "views": "6",
+      "published": "2026-05-19",
+      "india": true
     },
     {
       "id": "NbVIdEArUDM",
-      "title": "📊 शेयर बाज़ार क्या है? | Indian Stock Market Basics in Hindi 🚀",
-      "thumb": "https://i.ytimg.com/vi/NbVIdEArUDM/hqdefault.jpg",
+      "title": "📊 शेयर बाज़ार क्या है? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗛𝗶𝗻𝗱𝗶 🚀",
+      "thumb": "https://i.ytimg.com/vi/NbVIdEArUDM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "14",
-      "published": "1 day ago",
-      "india": true,
-      "featured": false
+      "views": "16",
+      "published": "2026-05-18",
+      "india": true
     },
     {
       "id": "NKA6Jtmu11g",
-      "title": "📊 షేర్ మార్కెట్ అంటే ఏమిటి? | Indian Stock Market Basics in Telugu 🚀",
-      "thumb": "https://i.ytimg.com/vi/NKA6Jtmu11g/hqdefault.jpg",
+      "title": "📊 షేర్ మార్కెట్ అంటే ఏమిటి? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗧𝗲𝗹𝘂𝗴𝘂 🚀",
+      "thumb": "https://i.ytimg.com/vi/NKA6Jtmu11g/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Telugu",
       "views": "26",
-      "published": "1 day ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-18",
+      "india": true
     },
     {
       "id": "LGLo30W4-MA",
-      "title": "📊 ಷೇರು ಮಾರುಕಟ್ಟೆ ಅಂದರೆ ನಕ್ಕೀ ಏನು? | Indian Stock Market Basics in Kannada 🚀",
-      "thumb": "https://i.ytimg.com/vi/LGLo30W4-MA/hqdefault.jpg",
+      "title": "📊 ಷೇರು ಮಾರುಕಟ್ಟೆ ಅಂದರೆ नक्की ಏನು? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗞𝗮𝗻𝗻𝗮𝗱𝗮 🚀",
+      "thumb": "https://i.ytimg.com/vi/LGLo30W4-MA/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Kannada",
-      "views": "26",
-      "published": "1 day ago",
-      "india": true,
-      "featured": false
+      "views": "27",
+      "published": "2026-05-18",
+      "india": true
     },
     {
       "id": "1WX3uf99VH4",
-      "title": "📊 शेअर मार्केट म्हणजे नक्की काय? | Indian Stock Market Basics in Marathi 🚀",
-      "thumb": "https://i.ytimg.com/vi/1WX3uf99VH4/hqdefault.jpg",
+      "title": "📊 शेअर मार्केट म्हणजे नक्की काय? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗠𝗮𝗿𝗮𝘁𝗵𝗶 🚀",
+      "thumb": "https://i.ytimg.com/vi/1WX3uf99VH4/maxresdefault.jpg",
       "playlist": "indian-radar",
-      "lang": "Marathi",
-      "views": "78",
-      "published": "2 days ago",
-      "india": true,
-      "featured": false
+      "lang": "Hindi",
+      "views": "79",
+      "published": "2026-05-17",
+      "india": true
     },
     {
       "id": "EWUHSH-3j7Q",
-      "title": "The Architecture of Power - Moat: Why the Magnificent Seven Dominate 🏰📈",
-      "thumb": "https://i.ytimg.com/vi/EWUHSH-3j7Q/hqdefault.jpg",
-      "playlist": "knowledge-radar",
+      "title": "𝗧𝗵𝗲 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗣𝗼𝘄𝗲𝗿 - 𝗠𝗼𝗮𝘁: 𝗪𝗵𝘆 𝘁𝗵𝗲 𝗠𝗮𝗴𝗻𝗶𝗳𝗶𝗰𝗲𝗻𝘁 𝗦𝗲𝘃𝗲𝗻 𝗗𝗼𝗺𝗶𝗻𝗮𝘁𝗲 🏰📈",
+      "thumb": "https://i.ytimg.com/vi/EWUHSH-3j7Q/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "8",
-      "published": "3 days ago",
-      "india": false,
-      "featured": false
+      "views": "9",
+      "published": "2026-05-17",
+      "india": true
     },
     {
       "id": "8V2Z0tr-Nhk",
       "title": "🦉 Knowledge is One of the Best Investments You Can Make",
-      "thumb": "https://i.ytimg.com/vi/8V2Z0tr-Nhk/hqdefault.jpg",
-      "playlist": "infomercials",
+      "thumb": "https://i.ytimg.com/vi/8V2Z0tr-Nhk/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "6",
-      "published": "4 days ago",
-      "india": false,
-      "featured": false
+      "views": "8",
+      "published": "2026-05-16",
+      "india": true
+    },
+    {
+      "id": "w4elsYEoIhI",
+      "title": "🦉 𝐐𝐮𝐢𝐳 – 𝐌𝐚𝐠𝐧𝐢𝐟𝐢𝐜𝐞𝐧𝐭 𝟕 𝐌𝐚𝐫𝐤𝐞𝐭 𝐂𝐚𝐩 📊💰",
+      "thumb": "https://i.ytimg.com/vi/w4elsYEoIhI/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "81",
+      "published": "2026-05-16",
+      "india": true
     },
     {
       "id": "2EiAl9UDrgI",
-      "title": "🚨 TCS Stock Crash or Opportunity? 📉 | Q1 FY2025 Results, AI Growth & Bull vs Bear Analysis",
-      "thumb": "https://i.ytimg.com/vi/2EiAl9UDrgI/hqdefault.jpg",
-      "playlist": "news-radar",
-      "lang": "English",
+      "title": "🚨 𝗧𝗖𝗦 Stock Crash या Opportunity? 📉 | 𝗤𝟰 𝗙𝗬𝟮𝟲 Results, AI Growth & Bull vs Bear Analysis",
+      "thumb": "https://i.ytimg.com/vi/2EiAl9UDrgI/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "Hindi",
       "views": "46",
-      "published": "4 days ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-15",
+      "india": true
     },
     {
       "id": "2nsnR8QgYgE",
-      "title": "⏰ The Timing Options Clock: Master Theta & Time Decay Explained 📉",
-      "thumb": "https://i.ytimg.com/vi/2nsnR8QgYgE/hqdefault.jpg",
-      "playlist": "options-academy",
+      "title": "⏰ 𝗧𝗵𝗲 𝗧𝗶𝗰𝗸𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗖𝗹𝗼𝗰𝗸: 𝗠𝗮𝘀𝘁𝗲𝗿 𝗧𝗵𝗲𝘁𝗮 & 𝗧𝗶𝗺𝗲 𝗗𝗲𝗰𝗮𝘆 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱 📉",
+      "thumb": "https://i.ytimg.com/vi/2nsnR8QgYgE/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "5",
-      "published": "5 days ago",
-      "india": false,
-      "featured": false
+      "views": "6",
+      "published": "2026-05-15",
+      "india": true
     },
     {
       "id": "0iZ35_0pkzM",
-      "title": "🚨 Cisco Q1 FY2025 Earnings: $1.9B AI Surge & Massive Revenue Beat! 🚀",
-      "thumb": "https://i.ytimg.com/vi/0iZ35_0pkzM/hqdefault.jpg",
-      "playlist": "news-radar",
+      "title": "🚨 𝗖𝗶𝘀𝗰𝗼 𝗤𝟭 𝗙𝗬𝟮𝟬𝟮𝟲 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: $𝟭.𝟯𝗕 𝗔𝗜 𝗦𝘂𝗿𝗴𝗲 & 𝗠𝗮𝘀𝘀𝗶𝘃𝗲 𝗥𝗲𝘃𝗲𝗻𝘂𝗲 𝗕𝗲𝗮𝘁! 🚀",
+      "thumb": "https://i.ytimg.com/vi/0iZ35_0pkzM/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "13",
-      "published": "6 days ago",
-      "india": false,
-      "featured": false
+      "views": "14",
+      "published": "2026-05-13",
+      "india": true
     },
     {
       "id": "Y8ARcot9Ve4",
       "title": "रिलायंस शेयर की सही कीमत कैसे निकालें? 📈",
-      "thumb": "https://i.ytimg.com/vi/Y8ARcot9Ve4/hqdefault.jpg",
+      "thumb": "https://i.ytimg.com/vi/Y8ARcot9Ve4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
       "views": "30",
-      "published": "6 days ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-13",
+      "india": true
     },
     {
       "id": "B8Fkw-uhN6I",
-      "title": "Options Combinations: Mastering Cash-Secured Puts & Covered Calls 🔄📈",
-      "thumb": "https://i.ytimg.com/vi/B8Fkw-uhN6I/hqdefault.jpg",
-      "playlist": "options-academy",
+      "title": "𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗖𝗼𝗺𝗯𝗶𝗻𝗮𝘁𝗶𝗼𝗻𝘀: Mastering 𝗖𝗮𝘀𝗵-𝗦𝗲𝗰𝘂𝗿𝗲𝗱 𝗣𝘂𝘁𝘀 & 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹𝘀 🔄📈",
+      "thumb": "https://i.ytimg.com/vi/B8Fkw-uhN6I/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "8",
-      "published": "6 days ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-13",
+      "india": true
     },
     {
       "id": "lupz2oDPn1A",
-      "title": "Head vs. Heart: The Ultimate Lump-Sum vs. DCA Investing Showdown 📈⚖️",
-      "thumb": "https://i.ytimg.com/vi/lupz2oDPn1A/hqdefault.jpg",
-      "playlist": "knowledge-radar",
+      "title": "𝗛𝗲𝗮𝗱 𝘃𝘀. 𝗛𝗲𝗮𝗿𝘁: The Ultimate 𝗟𝘂𝗺𝗽-𝗦𝘂𝗺 vs. 𝗗𝗖𝗔 Investing Showdown 📈⚖️",
+      "thumb": "https://i.ytimg.com/vi/lupz2oDPn1A/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "82",
-      "published": "8 days ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-12",
+      "india": true
     },
     {
       "id": "8xCXUzU2uNc",
-      "title": "⚡ CBDC: पैसे का भविष्य | क्या e-Rupee बदलेगा भारत की अर्थव्यवस्था?",
-      "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/hqdefault.jpg",
+      "title": "⚡ 𝗖𝗕𝗗𝗖: पैसे का भविष्य | क्या 𝗲-𝗥𝘂𝗽𝗲𝗲 बदलेगा भारत की अर्थव्यवस्था?",
+      "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
       "views": "37",
-      "published": "9 days ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-10",
+      "india": true
     },
     {
       "id": "YAU4Jplof3A",
-      "title": "🚨 The Invisible Thief: The Real Truth About Inflation in India 💸",
-      "thumb": "https://i.ytimg.com/vi/YAU4Jplof3A/hqdefault.jpg",
+      "title": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
+      "thumb": "https://i.ytimg.com/vi/YAU4Jplof3A/maxresdefault.jpg",
       "playlist": "indian-radar",
-      "lang": "English",
-      "views": "126",
-      "published": "9 days ago",
-      "india": true,
-      "featured": false
+      "lang": "Hindi",
+      "views": "196",
+      "published": "2026-05-10",
+      "india": true
     },
     {
       "id": "ToY1Y6sO3Nk",
-      "title": "⚡ Engineering Atomic Settlement: Cross-Ledger Orchestration in U.S. Capital Markets 🏦",
-      "thumb": "https://i.ytimg.com/vi/ToY1Y6sO3Nk/hqdefault.jpg",
-      "playlist": "knowledge-radar",
+      "title": "⚡ 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 𝗔𝘁𝗼𝗺𝗶𝗰 𝗦𝗲𝘁𝘁𝗹𝗲𝗺𝗲𝗻𝘁: 𝗖𝗿𝗼𝘀𝘀-𝗟𝗲𝗱𝗴𝗲𝗿 𝗢𝗿𝗰𝗵𝗲𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗶𝗻 𝗨.𝗦. 𝗖𝗮𝗽𝗶𝘁𝗮𝗹 𝗠𝗮𝗿𝗸𝗲𝘁𝘀 🏦",
+      "thumb": "https://i.ytimg.com/vi/ToY1Y6sO3Nk/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "93",
-      "published": "9 days ago",
-      "india": false,
-      "featured": false
+      "views": "106",
+      "published": "2026-05-10",
+      "india": true
     },
     {
       "id": "SHyv2kzmcG4",
-      "title": "द डोमिनोज़ इफ़ेक्ट 2026 — Episode 001",
-      "thumb": "https://i.ytimg.com/vi/SHyv2kzmcG4/hqdefault.jpg",
+      "title": "द डोमिनोज़ इफ़ेक्ट 2026 001",
+      "thumb": "https://i.ytimg.com/vi/SHyv2kzmcG4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "99",
-      "published": "10 days ago",
-      "india": true,
-      "featured": false
+      "views": "103",
+      "published": "2026-05-09",
+      "india": true
     },
     {
       "id": "K3xTPbAT5Ag",
-      "title": "🚨 Invisible Wealth Thief: The Real Cost of Inflation on Your Daily Life 💸",
-      "thumb": "https://i.ytimg.com/vi/K3xTPbAT5Ag/hqdefault.jpg",
-      "playlist": "wealth-academy",
+      "title": "🚨 𝗜𝗻𝘃𝗶𝘀𝗶𝗯𝗹𝗲 𝗪𝗲𝗮𝗹𝘁𝗵 𝗧𝗵𝗶𝗲𝗳: The Real Cost of Inflation on Your Daily Life 💸",
+      "thumb": "https://i.ytimg.com/vi/K3xTPbAT5Ag/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "68",
-      "published": "11 days ago",
-      "india": false,
-      "featured": false
+      "views": "71",
+      "published": "2026-05-09",
+      "india": true
     },
     {
       "id": "KRlVBbBKb3w",
-      "title": "Would You Take $10 Million or the Magic Penny? 🤯 (The Power of Compounding)",
-      "thumb": "https://i.ytimg.com/vi/KRlVBbBKb3w/hqdefault.jpg",
-      "playlist": "wealth-academy",
+      "title": "𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗮𝗸𝗲 $𝟭𝟬 𝗠𝗶𝗹𝗹𝗶𝗼𝗻 𝗼𝗿 𝘁𝗵𝗲 𝗠𝗮𝗴𝗶𝗰 𝗣𝗲𝗻𝗻𝘆? 🤯 (𝗧𝗵𝗲 𝗣𝗼𝘄𝗲𝗿 𝗼𝗳 𝗖𝗼𝗺𝗽𝗼𝘂𝗻𝗱𝗶𝗻𝗴)",
+      "thumb": "https://i.ytimg.com/vi/KRlVBbBKb3w/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
-      "views": "34",
-      "published": "12 days ago",
-      "india": false,
-      "featured": false
+      "views": "35",
+      "published": "2026-05-08",
+      "india": true
     },
     {
       "id": "pL2Q_aXRjBc",
-      "title": "2025 Magnificent Seven: The Stocks Powering The Indian Century 🇮🇳📈",
-      "thumb": "https://i.ytimg.com/vi/pL2Q_aXRjBc/hqdefault.jpg",
+      "title": "𝟮𝟬𝟮𝟲 𝗠𝗮𝗴𝗻𝗶𝗳𝗶𝗰𝗲𝗻𝘁 𝗦𝗲𝘃𝗲𝗻: 𝗧𝗵𝗲 𝗦𝘁𝗼𝗰𝗸𝘀 𝗣𝗼𝘄𝗲𝗿𝗶𝗻𝗴 𝗧𝗵𝗲 𝗜𝗻𝗱𝗶𝗮𝗻 𝗖𝗲𝗻𝘁𝘂𝗿𝘆 🇮🇳📈",
+      "thumb": "https://i.ytimg.com/vi/pL2Q_aXRjBc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
       "views": "181",
-      "published": "12 days ago",
-      "india": true,
-      "featured": false
+      "published": "2026-05-07",
+      "india": true
     },
     {
       "id": "2T-TAJhQgpQ",
-      "title": "🚨 Announcing IndianRadar.AI: Institutional Options Coverage for the Indian Market 🇮🇳📈",
-      "thumb": "https://i.ytimg.com/vi/2T-TAJhQgpQ/hqdefault.jpg",
+      "title": "🚨 𝗔𝗻𝗻𝗼𝘂𝗻𝗰𝗶𝗻𝗴 𝗜𝗻𝗱𝗶𝗮𝗻𝗥𝗮𝗱𝗮𝗿.𝗔𝗜: Institutional Options Coverage for the 𝗜𝗻𝗱𝗶𝗮𝗻 𝗠𝗮𝗿𝗸𝗲𝘁 🇮🇳📈",
+      "thumb": "https://i.ytimg.com/vi/2T-TAJhQgpQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "89",
-      "published": "12 days ago",
-      "india": true,
-      "featured": true
+      "views": "90",
+      "published": "2026-05-07",
+      "india": true
     },
     {
       "id": "FQ3DcB3UgNw",
-      "title": "Crypto to Wall Street: The 2025 Institutional Digital Asset Boom 🚀",
-      "thumb": "https://i.ytimg.com/vi/FQ3DcB3UgNw/hqdefault.jpg",
-      "playlist": "news-radar",
+      "title": "𝗖𝗿𝘆𝗽𝘁𝗼 𝘁𝗼 𝗪𝗮𝗹𝗹 𝗦𝘁𝗿𝗲𝗲𝘁: 𝗧𝗵𝗲 𝟮𝟬𝟮𝟲 𝗜𝗻𝘀𝘁𝗶𝘁𝘂𝘁𝗶𝗼𝗻𝗮𝗹 𝗗𝗶𝗴𝗶𝘁𝗮𝗹 𝗔𝘀𝘀𝗲𝘁 𝗕𝗼𝗼𝗺 🚀",
+      "thumb": "https://i.ytimg.com/vi/FQ3DcB3UgNw/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "63",
-      "published": "12 days ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-07",
+      "india": true
     },
     {
       "id": "TSmrfxfIJQI",
-      "title": "The AI Industrial Revolution: Big Tech's $700B Bet in 2026 🤯 | Q1 Earnings Breakdown",
-      "thumb": "https://i.ytimg.com/vi/TSmrfxfIJQI/hqdefault.jpg",
-      "playlist": "news-radar",
+      "title": "The 𝗔𝗜 𝗜𝗻𝗱𝘂𝘀𝘁𝗿𝗶𝗮𝗹 𝗥𝗲𝘃𝗼𝗹𝘂𝘁𝗶𝗼𝗻: 𝗕𝗶𝗴 𝗧𝗲𝗰𝗵’s $700B Bet in 2026 🤯 | Q1 Earnings Breakdown",
+      "thumb": "https://i.ytimg.com/vi/TSmrfxfIJQI/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "19",
-      "published": "13 days ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-06",
+      "india": true
     },
     {
       "id": "aoz8SwyFzd4",
-      "title": "AMD Q1 2025 Earnings: Massive $10.3B Revenue Beat & AI Infrastructure Surge Explained 💥",
-      "thumb": "https://i.ytimg.com/vi/aoz8SwyFzd4/hqdefault.jpg",
-      "playlist": "news-radar",
+      "title": "𝗔𝗠𝗗 𝗤𝟭 𝟮𝟬𝟮𝟲 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: Massive $10.3B Revenue Beat & 𝗔𝗜 𝗜𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 Surge Explained 💥",
+      "thumb": "https://i.ytimg.com/vi/aoz8SwyFzd4/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "21",
-      "published": "13 days ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-06",
+      "india": true
     },
     {
       "id": "JqDL9ERM_QE",
-      "title": "Decoding Porter's Value Chain: The Ultimate Investor's Toolkit For Wealth Building 📊💼",
-      "thumb": "https://i.ytimg.com/vi/JqDL9ERM_QE/hqdefault.jpg",
-      "playlist": "knowledge-radar",
+      "title": "𝗗𝗲𝗰𝗼𝗱𝗶𝗻𝗴 𝗣𝗼𝗿𝘁𝗲𝗿'𝘀 𝗩𝗮𝗹𝘂𝗲 𝗖𝗵𝗮𝗶𝗻: 𝗧𝗵𝗲 𝗨𝗹𝘁𝗶𝗺𝗮𝘁𝗲 𝗜𝗻𝘃𝗲𝘀𝘁𝗼𝗿'𝘀 𝗧𝗼𝗼𝗹𝗸𝗶𝘁 𝗙𝗼𝗿 𝗪𝗲𝗮𝗹𝘁𝗵 𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 📊💼",
+      "thumb": "https://i.ytimg.com/vi/JqDL9ERM_QE/maxresdefault.jpg",
+      "playlist": "indian-radar",
       "lang": "English",
       "views": "20",
-      "published": "2 weeks ago",
-      "india": false,
-      "featured": false
+      "published": "2026-05-04",
+      "india": true
+    },
+    {
+      "id": "rar9Pxk0HCA",
+      "title": "🦉 𝐐𝐮𝐢𝐳 – 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 𝐆𝐫𝐞𝐞𝐤𝐬 #𝟑",
+      "thumb": "https://i.ytimg.com/vi/rar9Pxk0HCA/hqdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "24",
+      "published": "2026-05-04",
+      "india": true
+    },
+    {
+      "id": "thSMzI22wyY",
+      "title": "🚨 𝗔𝗹𝗽𝗵𝗮𝗯𝗲𝘁 𝗤𝟭 𝟮𝟬𝟮𝟲 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: 𝗔𝗜 Bets Pay Off Big Time! 🚀",
+      "thumb": "https://i.ytimg.com/vi/thSMzI22wyY/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "14",
+      "published": "2026-05-04",
+      "india": true
+    },
+    {
+      "id": "_fvH-CzyDpU",
+      "title": "🚨 𝗔𝗺𝗮𝘇𝗼𝗻 𝟮𝟬𝟮𝟲-𝗤𝟭: 𝗠𝗶𝘀𝘀𝗶𝗻𝗴 𝗖𝗮𝘀𝗵 📉 (The $200B AI Master-plan Explained)",
+      "thumb": "https://i.ytimg.com/vi/_fvH-CzyDpU/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "4",
+      "published": "2026-05-03",
+      "india": true
+    },
+    {
+      "id": "Vdm7FEPv7PM",
+      "title": "🚨 𝗔𝗽𝗽𝗹𝗲 𝗤𝟭 𝟮𝟬𝟮𝟲: 𝗛𝗶𝘀𝘁𝗼𝗿𝗶𝗰 𝗣𝗶𝘃𝗼𝘁 | 𝗥𝗲𝗰𝗼𝗿𝗱 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀, $𝟮𝗕 𝗔𝗜 𝗕𝘂𝘆𝗼𝘂𝘁 & 𝗖𝗘𝗢 𝗦𝗵𝗮𝗸𝗲𝘂𝗽! 🍏📈",
+      "thumb": "https://i.ytimg.com/vi/Vdm7FEPv7PM/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "8",
+      "published": "2026-05-03",
+      "india": true
+    },
+    {
+      "id": "NFBvKtLY4zs",
+      "title": "𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁’𝘀 𝗤𝟭 𝟮𝟬𝟮𝟲 — 𝗦𝗵𝗮𝘁𝘁𝗲𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 “𝗔𝗜 𝗕𝘂𝗯𝗯𝗹𝗲” 𝗠𝘆𝘁𝗵 💥",
+      "thumb": "https://i.ytimg.com/vi/NFBvKtLY4zs/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "39",
+      "published": "2026-05-01",
+      "india": true
+    },
+    {
+      "id": "oOhZ83Lx5D4",
+      "title": "𝐈𝐬 𝐀𝐈 𝐭𝐡𝐞 𝐟𝐮𝐭𝐮𝐫𝐞… 𝐨𝐫 𝐭𝐡𝐞 𝐧𝐞𝐱𝐭 𝐛𝐢𝐠 𝐛𝐮𝐛𝐛𝐥𝐞? 🤔💸",
+      "thumb": "https://i.ytimg.com/vi/oOhZ83Lx5D4/hqdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "32",
+      "published": "2026-05-01",
+      "india": true
+    },
+    {
+      "id": "LYd3fgisXnk",
+      "title": "𝐌𝐞𝐭𝐚'𝐬 𝐐𝟏 𝟐𝟎𝟐𝟔 𝐂𝐚𝐩𝐢𝐭𝐚𝐥 𝐀𝐥𝐥𝐨𝐜𝐚𝐭𝐢𝐨𝐧: 𝐅𝐮𝐧𝐝𝐢𝐧𝐠 𝐭𝐡𝐞 𝐀𝐈 𝐒𝐮𝐩𝐞𝐫𝐜𝐲𝐜𝐥𝐞 🤖💸📈",
+      "thumb": "https://i.ytimg.com/vi/LYd3fgisXnk/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "10",
+      "published": "2026-05-01",
+      "india": true
+    },
+    {
+      "id": "xep2NssZW38",
+      "title": "🎬 𝐕𝐚𝐥𝐮𝐞 𝐯𝐬. 𝐆𝐫𝐨𝐰𝐭𝐡 𝐈𝐧𝐯𝐞𝐬𝐭𝐢𝐧𝐠: 𝐓𝐡𝐞 𝐔𝐥𝐭𝐢𝐦𝐚𝐭𝐞 𝐓𝐢𝐦𝐞𝐥𝐞𝐬𝐬 𝐆𝐮𝐢𝐝𝐞 𝐭𝐨 𝐒𝐭𝐨𝐜𝐤𝐬 & 𝐄𝐓𝐅𝐬 📈",
+      "thumb": "https://i.ytimg.com/vi/xep2NssZW38/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "16",
+      "published": "2026-04-30",
+      "india": true
+    },
+    {
+      "id": "-QD_V31gna4",
+      "title": "🦉 𝐐𝐮𝐢𝐳 – 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 𝐆𝐫𝐞𝐞𝐤𝐬 #𝟐 📈⚡",
+      "thumb": "https://i.ytimg.com/vi/-QD_V31gna4/hqdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "155",
+      "published": "2026-04-29",
+      "india": true
+    },
+    {
+      "id": "_2NY4ljjXWc",
+      "title": "🎬 𝐌𝐚𝐬𝐭𝐞𝐫𝐢𝐧𝐠 𝐭𝐡𝐞 𝐌𝐚𝐫𝐤𝐞𝐭𝐬: 𝟒 𝐖𝐨𝐦𝐞𝐧 𝐖𝐡𝐨 𝐑𝐞𝐝𝐞𝐟𝐢𝐧𝐞𝐝 𝐆𝐥𝐨𝐛𝐚𝐥 𝐓𝐫𝐚𝐝𝐢𝐧𝐠 📈",
+      "thumb": "https://i.ytimg.com/vi/_2NY4ljjXWc/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "10",
+      "published": "2026-04-28",
+      "india": true
+    },
+    {
+      "id": "dApTepJzC8w",
+      "title": "🏛️ Wealth Management 2026: The Architecture of Execution & Intelligence 📈",
+      "thumb": "https://i.ytimg.com/vi/dApTepJzC8w/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "31",
+      "published": "2026-04-28",
+      "india": true
+    },
+    {
+      "id": "zuyP-M90Ejo",
+      "title": "Watch a summary of WealthTech 2026 on @OTSUllu YouTube",
+      "thumb": "https://i.ytimg.com/vi/zuyP-M90Ejo/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "21",
+      "published": "2026-04-28",
+      "india": false
+    },
+    {
+      "id": "ERowvMnzrk8",
+      "title": "𝗧𝗲𝘀𝗹𝗮’𝘀 𝗤𝟭 𝟮𝟬𝟮𝟲 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: 𝗔𝗜, 𝗥𝗼𝗯𝗼𝘁𝗮𝘅𝗶𝘀 & 𝗙𝗶𝗻𝗮𝗻𝗰𝗶𝗮𝗹 𝗕𝗿𝗲𝗮𝗸𝗱𝗼𝘄𝗻 📊",
+      "thumb": "https://i.ytimg.com/vi/ERowvMnzrk8/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "22",
+      "published": "2026-04-27",
+      "india": true
+    },
+    {
+      "id": "NG6Gd-Qy_08",
+      "title": "🦉 𝐐𝐮𝐢𝐳 – 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 𝐆𝐫𝐞𝐞𝐤𝐬 #𝟏 📈⚡",
+      "thumb": "https://i.ytimg.com/vi/NG6Gd-Qy_08/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "398",
+      "published": "2026-04-27",
+      "india": true
+    },
+    {
+      "id": "NGrhnVPhLXA",
+      "title": "𝗢𝗽𝘁𝗶𝗼𝗻𝘀: 𝗜𝗻𝘃𝗲𝘀𝘁𝗼𝗿'𝘀 𝗧𝗼𝗼𝗹𝗯𝗼𝘄 🧰 | 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 𝗦𝘁𝗿𝗮𝘁𝗲𝗴𝗶𝗲𝘀 📈",
+      "thumb": "https://i.ytimg.com/vi/NGrhnVPhLXA/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "16",
+      "published": "2026-04-26",
+      "india": true
+    },
+    {
+      "id": "LGok3HuxhK8",
+      "title": "𝗧𝗵𝗲 𝗠𝗶𝗰𝗿𝗼𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗔𝘀𝘆𝗺𝗺𝗲𝘁𝗿𝘆: 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 & 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 📈",
+      "thumb": "https://i.ytimg.com/vi/LGok3HuxhK8/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "41",
+      "published": "2026-04-26",
+      "india": true
+    },
+    {
+      "id": "2HdZfW2ZOsE",
+      "title": "𝐃𝐞𝐜𝐨𝐧𝐬𝐭𝐫𝐮𝐜𝐭𝐢𝐧𝐠 𝐃𝐞𝐫𝐢𝐯𝐚𝐭𝐢𝐯𝐞 𝐑𝐢𝐬𝐤: 𝐓𝐡𝐞 𝐌𝐞𝐜𝐡𝐚𝐧𝐢𝐜𝐬 𝐨𝐟 𝐭𝐡𝐞 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 𝐆𝐫𝐞𝐞𝐤𝐬 📈",
+      "thumb": "https://i.ytimg.com/vi/2HdZfW2ZOsE/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "52",
+      "published": "2026-04-25",
+      "india": true
+    },
+    {
+      "id": "LQjZ1bDrIfU",
+      "title": "📊 𝗢𝗖𝗖 – 𝗧𝗵𝗲 𝗜𝗻𝘃𝗶𝘀𝗶𝗯𝗹𝗲 𝗚𝘂𝗮𝗿𝗱𝗶𝗮𝗻 𝗼𝗳 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 🛡️",
+      "thumb": "https://i.ytimg.com/vi/LQjZ1bDrIfU/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "13",
+      "published": "2026-04-24",
+      "india": true
+    },
+    {
+      "id": "2nNyUeKuuXw",
+      "title": "📈 𝗦𝘆𝗻𝘁𝗵𝗲𝘀𝗶𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗥𝗶𝘀𝗸-𝗙𝗿𝗲𝗲 𝗥𝗮𝘁𝗲: 𝗧𝗵𝗲 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝗰𝘀 𝗼𝗳 𝗕𝗼𝘅 𝗦𝗽𝗿𝗲𝗮𝗱𝘀 💼📊",
+      "thumb": "https://i.ytimg.com/vi/2nNyUeKuuXw/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "10",
+      "published": "2026-04-23",
+      "india": true
+    },
+    {
+      "id": "DLmP1fbBLwI",
+      "title": "💎 The Extremes of Perfection: Inside Rolls-Royce’s Diverging Empires 🚗✈️",
+      "thumb": "https://i.ytimg.com/vi/DLmP1fbBLwI/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "31",
+      "published": "2026-04-23",
+      "india": true
+    },
+    {
+      "id": "lH0nf-PKWFM",
+      "title": "🚗✈️ Rolls-Royce: One Name, Two Empires | Luxury Cars vs Aerospace Power ⚛️",
+      "thumb": "https://i.ytimg.com/vi/lH0nf-PKWFM/hqdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "6",
+      "published": "2026-04-23",
+      "india": true
+    },
+    {
+      "id": "wY4ldx5FKI4",
+      "title": "⚡ 𝗧𝗵𝗲 𝗠𝘆𝘁𝗵 𝗼𝗳 𝗣𝗹𝘂𝗴-𝗮𝗻𝗱-𝗣𝗹𝗮𝘆 𝗗𝗶𝘀𝗿𝘂𝗽𝘁𝗶𝗼𝗻: 𝗪𝗵𝘆 𝗚𝗿𝗲𝗮𝘁 𝗧𝗲𝗰𝗵 𝗙𝗮𝗶𝗹𝘀 𝗗𝘂𝗲 𝘁𝗼 𝗘𝗰𝗼𝘀𝘆𝘀𝘁𝗲𝗺 𝗧𝗶𝗺𝗶𝗻𝗴 ⏳",
+      "thumb": "https://i.ytimg.com/vi/wY4ldx5FKI4/hqdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "18",
+      "published": "2026-04-22",
+      "india": true
+    },
+    {
+      "id": "TN8PKDA92kI",
+      "title": "📈 𝗙𝗶𝗻𝗮𝗹𝗶𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗧𝗿𝗮𝗱𝗲: 𝗧𝗵𝗲 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝗰𝘀 𝗼𝗳 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗼𝗻 & 𝗦𝗲𝘁𝘁𝗹𝗲𝗺𝗲𝗻𝘁 💳📈",
+      "thumb": "https://i.ytimg.com/vi/TN8PKDA92kI/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "7",
+      "published": "2026-04-22",
+      "india": true
+    },
+    {
+      "id": "4W6uGsqGBPo",
+      "title": "📈 𝗠𝗮𝗻𝗮𝗴𝗶𝗻𝗴 𝗦𝗵𝗼𝗿𝘁 𝗢𝗽𝘁𝗶𝗼𝗻𝘀: 𝗥𝗼𝗹𝗹𝗶𝗻𝗴, 𝗖𝗹𝗼𝘀𝗶𝗻𝗴, 𝗮𝗻𝗱 𝗘𝘅𝘁𝗿𝗲𝗺𝗲 𝗥𝗶𝘀𝗸𝘀 🔄📉",
+      "thumb": "https://i.ytimg.com/vi/4W6uGsqGBPo/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "3",
+      "published": "2026-04-21",
+      "india": true
+    },
+    {
+      "id": "jRZNu3frdpk",
+      "title": "📈 𝗕𝗲𝗴𝗶𝗻𝗻𝗲𝗿'𝘀 𝗚𝘂𝗶𝗱𝗲 𝘁𝗼 𝗢𝗽𝘁𝗶𝗼𝗻𝘀: 𝗪𝗿𝗶𝘁𝗶𝗻𝗴 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹𝘀 𝗳𝗼𝗿 𝗜𝗻𝗰𝗼𝗺𝗲",
+      "thumb": "https://i.ytimg.com/vi/jRZNu3frdpk/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "4",
+      "published": "2026-04-21",
+      "india": true
+    },
+    {
+      "id": "VJEv682bNTE",
+      "title": "No Matter Which Way You Look At It!",
+      "thumb": "https://i.ytimg.com/vi/VJEv682bNTE/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "39",
+      "published": "2026-04-20",
+      "india": false
+    },
+    {
+      "id": "Zl_N5o7VweE",
+      "title": "📈 𝗧𝗵𝗲 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹 𝗧𝗿𝗮𝗱𝗲-𝗢𝗳𝗳: 𝗨𝗻𝗱𝗲𝗿𝘀𝘁𝗮𝗻𝗱𝗶𝗻𝗴 𝘁𝗵𝗲 𝗥𝗶𝘀𝗸𝘀 𝗮𝗻𝗱 𝗥𝗲𝘄𝗮𝗿𝗱𝘀",
+      "thumb": "https://i.ytimg.com/vi/Zl_N5o7VweE/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "13",
+      "published": "2026-04-20",
+      "india": true
+    },
+    {
+      "id": "UQkgQ-0y9I8",
+      "title": "💰 𝐂𝐚𝐬𝐡-𝐒𝐞𝐜𝐮𝐫𝐞𝐝 𝐏𝐮𝐭: 𝐓𝐡𝐞 𝐓𝐫𝐚𝐝𝐞𝐨𝐟𝐟",
+      "thumb": "https://i.ytimg.com/vi/UQkgQ-0y9I8/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "28",
+      "published": "2026-04-19",
+      "india": true
+    },
+    {
+      "id": "XUwFaNYUapw",
+      "title": "𝐒𝐭𝐨𝐜𝐤 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 𝐯𝐬. 𝐈𝐧𝐝𝐞𝐱 𝐎𝐩𝐭𝐢𝐨𝐧𝐬: 𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝𝐢𝐧𝐠 𝐭𝐡𝐞 𝐊𝐞𝐲 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞𝐬",
+      "thumb": "https://i.ytimg.com/vi/XUwFaNYUapw/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "22",
+      "published": "2026-04-18",
+      "india": true
+    },
+    {
+      "id": "OsfYtGnc8VA",
+      "title": "𝐓𝐡𝐞 𝐌𝐮𝐥𝐭𝐢-𝐁𝐢𝐥𝐥𝐢𝐨𝐧 𝐃𝐨𝐥𝐥𝐚𝐫 𝐋𝐨𝐨𝐩𝐡𝐨𝐥𝐞: 𝐖𝐡𝐲 𝐀𝐆𝐈 𝐖𝐢𝐥𝐥 𝐍𝐞𝐯𝐞𝐫 𝐁𝐞 \"𝐎𝐟𝐟𝐢𝐜𝐢𝐚𝐥\"",
+      "thumb": "https://i.ytimg.com/vi/OsfYtGnc8VA/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "24",
+      "published": "2026-04-16",
+      "india": true
+    },
+    {
+      "id": "2ofTeTKsg8Q",
+      "title": "🚀 𝐀𝐑𝐊𝐕𝐗: 𝐓𝐡𝐞 𝐑𝐞𝐭𝐚𝐢𝐥 𝐁𝐚𝐜𝐤𝐝𝐨𝐨𝐫 𝐭𝐨 𝐒𝐩𝐚𝐜𝐞𝐗 & 𝐎𝐩𝐞𝐧𝐀𝐈 𝐏𝐫𝐞-𝐈𝐏𝐎 💰",
+      "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "196",
+      "published": "2026-04-15",
+      "india": true
+    },
+    {
+      "id": "KZj3kNeb7Ys",
+      "title": "𝐎𝐓𝐒 𝐔𝐥𝐥𝐮 𝐈𝐬 𝐂𝐨𝐦𝐢𝐧𝐠 𝐒𝐨𝐨𝐧 🔥 𝟓𝟎.𝟗𝟐% 𝟏-𝐘𝐞𝐚𝐫 𝐑𝐞𝐭𝐮𝐫𝐧𝐬 | 𝐎𝐓𝐒 𝐔𝐥𝐥𝐮",
+      "thumb": "https://i.ytimg.com/vi/KZj3kNeb7Ys/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "24",
+      "published": "2026-04-13",
+      "india": true
+    },
+    {
+      "id": "sxmLg3pc5oA",
+      "title": "From Ancient Greece to Black-Scholes: The History of Options Trading",
+      "thumb": "https://i.ytimg.com/vi/sxmLg3pc5oA/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "10",
+      "published": "2026-04-10",
+      "india": false
+    },
+    {
+      "id": "R-75m05ukGM",
+      "title": "🎉 Welcome to the future of smart investing!",
+      "thumb": "https://i.ytimg.com/vi/R-75m05ukGM/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "13",
+      "published": "2026-04-09",
+      "india": true
+    },
+    {
+      "id": "TGpbCKqJ6qg",
+      "title": "American vs. European Options: The Surprising History",
+      "thumb": "https://i.ytimg.com/vi/TGpbCKqJ6qg/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "13",
+      "published": "2026-04-09",
+      "india": false
+    },
+    {
+      "id": "1QMRglIYn-E",
+      "title": "Patching the Market: How Merchants Engineered the Modern Options",
+      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "33",
+      "published": "2026-04-08",
+      "india": false
     }
   ]
 }
