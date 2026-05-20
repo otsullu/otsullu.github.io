@@ -1,0 +1,32 @@
+name: Fetch YouTube Videos
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour
+  workflow_dispatch:        # manual trigger
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: Fetch videos
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          CHANNEL_ID: UCBDisZXo_jR3PXOSBZesVSw
+        run: python scripts/fetch_videos.py
+
+      - name: Commit updated videos.json
+        run: |
+          git config user.name "OTS Ullu Bot"
+          git config user.email "otsullu.admin@gmail.com"
+          git add data/videos.json
+          git diff --cached --quiet || git commit -m "chore: refresh video data"
+          git push
