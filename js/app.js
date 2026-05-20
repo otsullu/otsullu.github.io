@@ -456,6 +456,61 @@ function setFooterYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
+/* ── STATS FROM JSON ────────────────────────────────────────────── */
+function applyStats(s) {
+  const t = s.trade;
+  const v = s.surveillance;
+
+  /* stat bar */
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  set('statContracts',    Number(t.contracts).toLocaleString());
+  set('statTransactions', Number(t.transactions).toLocaleString());
+  set('statUnderlyings',  t.underlyings);
+  set('statAccounts',     t.accounts);
+
+  /* strategy split */
+  const total = t.ccContracts + t.cspContracts;
+  const ccPct  = Math.round((t.ccContracts  / total) * 100);
+  const cspPct = 100 - ccPct;
+  const ccBar  = document.querySelector('.split-bar-cc');
+  const cspBar = document.querySelector('.split-bar-csp');
+  if (ccBar)  { ccBar.style.width  = ccPct  + '%'; ccBar.closest('.split-item').querySelector('.split-pct').textContent  = ccPct  + '%'; ccBar.closest('.split-item').querySelector('.split-sub').textContent  = Number(t.ccContracts).toLocaleString()  + ' contracts'; }
+  if (cspBar) { cspBar.style.width = cspPct + '%'; cspBar.closest('.split-item').querySelector('.split-pct').textContent = cspPct + '%'; cspBar.closest('.split-item').querySelector('.split-sub').textContent = Number(t.cspContracts).toLocaleString() + ' contracts'; }
+
+  /* velocity stats */
+  const velNums = document.querySelectorAll('.vel-num');
+  if (velNums.length >= 4) {
+    velNums[0].textContent = t.avgEventsPerDay + '+';
+    velNums[1].textContent = t.peakEventsPerDay;
+    velNums[2].textContent = t.tradingDays;
+  }
+
+  /* tickers */
+  const others = t.contracts - t.topTickers.reduce((a, x) => a + x.contracts, 0);
+  TICKER_DATA.length = 0;
+  t.topTickers.forEach(x => TICKER_DATA.push(x));
+  TICKER_DATA.push({ sym: 'Others', contracts: others });
+  renderTickers();
+
+  /* surveillance stats */
+  const survNums = document.querySelectorAll('.surv-num');
+  if (survNums.length >= 6) {
+    survNums[0].textContent = Number(v.rowsPerCycle).toLocaleString();
+    survNums[1].textContent = v.fieldsTracked;
+    survNums[2].textContent = Math.round(v.evaluationsPerCycle / 1000) + 'K';
+    survNums[3].textContent = Math.round(v.evaluationsPerDay / 1000000) + 'M';
+    survNums[4].textContent = v.cyclesPerDay;
+    survNums[5].textContent = v.dataStreams;
+  }
+}
+
+function loadStats() {
+  fetch('data/stats.json')
+    .then(r => r.json())
+    .then(applyStats)
+    .catch(() => { /* silently keep hardcoded fallback values */ });
+}
+
 /* ── INIT ───────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   setupThemeToggle();
@@ -469,6 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDispatches();
   renderFounderQuote();
   setFooterYear();
+  loadStats();
 
   // Re-run reveal after dynamic content is injected
   requestAnimationFrame(() => setupReveal());

@@ -1,0 +1,52 @@
+{
+  "trade": {
+    "underlyings": 26,
+    "tradingDays": 233,
+    "topTickers": [
+      {
+        "sym": "TSLA"
+      },
+      {
+        "sym": "NVDA"
+      },
+      {
+        "sym": "COIN"
+      },
+      {
+        "sym": "PLTR"
+      },
+      {
+        "sym": "META"
+      },
+      {
+        "sym": "AMZN"
+      },
+      {
+        "sym": "GOOGL"
+      },
+      {
+        "sym": "MSFT"
+      },
+      {
+        "sym": "QQQ"
+      },
+      {
+        "sym": "AAPL"
+      }
+    ],
+    "ccPct": 88,
+    "cspPct": 12
+  },
+  "surveillance": {
+    "rowsPerCycle": 29969,
+    "fieldsTracked": 78,
+    "evaluationsPerCycle": 809082,
+    "evaluationsPerDay": 21036132,
+    "cyclesPerDay": 26,
+    "dataStreams": 3
+  },
+  "meta": {
+    "generatedAt": "2026-05-20T00:00:00Z",
+    "source": "baseline-hardcoded"
+  }
+}
