@@ -76,7 +76,7 @@ const TICKER_DATA = [
   { sym: 'MSFT',  contracts:  417 },
   { sym: 'QQQ',   contracts:  196 },
   { sym: 'AAPL',  contracts:  137 },
-  { sym: 'Others', contracts:  613 },
+  { sym: 'Others', contracts:  621 },
 ];
 
 const VIDEO_DATA = [
