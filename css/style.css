@@ -301,9 +301,9 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 .hero-headline {
-  color: var(--fg);
+  color: var(--accent);
   margin-bottom: 24px;
-  transition: color var(--t-theme) var(--ease-out);
+  transition: color var(--t-theme) var(--ease-out), color var(--t-fast);
 }
 
 .hero-subline {
@@ -835,12 +835,12 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 .section-heading {
-  color: var(--fg);
+  color: var(--accent);
   margin-bottom: 56px;
-  transition: color var(--t-theme) var(--ease-out);
+  transition: color var(--t-theme) var(--ease-out), color var(--t-fast);
 }
 
-.section-product .section-heading { color: var(--product-fg); }
+.section-product .section-heading { color: var(--accent); }
 
 /* ── CAPABILITY CARDS ───────────────────────────────────────────── */
 .capability-grid {
@@ -924,9 +924,9 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--fg);
+  color: var(--accent);
   line-height: 1;
-  transition: color var(--t-theme) var(--ease-out);
+  transition: color var(--t-theme) var(--ease-out), color var(--t-fast);
 }
 
 .stat-label {
@@ -2206,9 +2206,9 @@ html[data-theme="light"][data-palette="amber"]   { --accent:#A8761F; --accent-di
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--fg);
+  color: var(--accent);
   margin-bottom: 1rem;
-  transition: color var(--t-theme) var(--ease-out);
+  transition: color var(--t-theme) var(--ease-out), color var(--t-fast);
 }
 .bridge-body {
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
