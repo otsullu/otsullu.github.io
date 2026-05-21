@@ -187,6 +187,88 @@
       color: #000;
     }
 
+    /* ── AUDIO TIP ────────────────────────────────────────────────── */
+    .audio-tip {
+      background: var(--accent-tint-06);
+      border: 1px solid var(--accent-tint-20);
+      border-radius: var(--r-lg);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .audio-tip-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--accent-tint-10);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+    .audio-tip-icon svg { width: 18px; height: 18px; }
+    .audio-tip-body { flex: 1; }
+    .audio-tip-heading {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 6px;
+      transition: color var(--t-theme) var(--ease-out);
+    }
+    .audio-tip-text {
+      font-size: 0.82rem;
+      color: var(--fg-secondary);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      transition: color var(--t-theme) var(--ease-out);
+    }
+    .audio-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .audio-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--fg-secondary);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 4px 12px;
+      white-space: nowrap;
+      transition: color var(--t-theme) var(--ease-out), background var(--t-theme) var(--ease-out), border-color var(--t-theme) var(--ease-out);
+    }
+    .audio-step-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-tint-10);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .audio-step-arrow {
+      color: var(--fg-meta);
+      font-size: 0.75rem;
+    }
+    @media (max-width: 600px) {
+      .audio-tip { flex-direction: column; gap: 12px; }
+      .audio-steps { gap: 6px; }
+      .audio-step-arrow { display: none; }
+    }
+
     /* ── VIDEO GRID ───────────────────────────────────────────────── */
     .video-grid {
       display: grid;
@@ -454,6 +536,26 @@
       <button class="filter-btn" data-lang="Tamil">Tamil</button>
       <button class="filter-btn" data-lang="Telugu">Telugu</button>
       <button class="filter-btn" data-lang="Urdu">Urdu</button>
+    </div>
+
+    <!-- Audio language tip -->
+    <div class="audio-tip reveal-up">
+      <div class="audio-tip-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
+      </div>
+      <div class="audio-tip-body">
+        <p class="audio-tip-heading">Don't see your language? YouTube may have already added it.</p>
+        <p class="audio-tip-text">YouTube automatically dubs many videos into additional languages. Once you open a video, check for your language using these steps:</p>
+        <div class="audio-steps">
+          <div class="audio-step"><span class="audio-step-num">1</span>Open any video on YouTube</div>
+          <span class="audio-step-arrow">→</span>
+          <div class="audio-step"><span class="audio-step-num">2</span>Click the ⚙️ gear icon (bottom-right of player)</div>
+          <span class="audio-step-arrow">→</span>
+          <div class="audio-step"><span class="audio-step-num">3</span>Select <strong>Audio track</strong></div>
+          <span class="audio-step-arrow">→</span>
+          <div class="audio-step"><span class="audio-step-num">4</span>Choose your preferred language</div>
+        </div>
+      </div>
     </div>
 
     <!-- Video grid -->
