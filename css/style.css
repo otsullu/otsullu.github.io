@@ -41,7 +41,7 @@
   --product-fg-dim:     var(--fg-secondary);
   --product-fg-muted:   var(--fg-meta);
   --product-border:     var(--border);
-  --product-card-bg:    var(--bg);
+  --product-card-bg:    #FFFFFF;
 
   /* Typography */
   --font-sans:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -1215,7 +1215,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 
 .ticker-contracts {
   font-size: 0.72rem;
-  color: var(--product-fg-muted);
+  color: var(--product-fg-dim);
   font-family: var(--font-mono);
   text-align: right;
 }
