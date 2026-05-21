@@ -301,10 +301,10 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 .hero-headline {
-  color: var(--accent);
   margin-bottom: 24px;
-  transition: color var(--t-theme) var(--ease-out), color var(--t-fast);
 }
+.hero-headline-plain  { color: var(--fg); transition: color var(--t-theme) var(--ease-out); }
+.hero-headline-accent { color: var(--accent); transition: color var(--t-theme) var(--ease-out), color var(--t-fast); }
 
 .hero-subline {
   font-size: clamp(1rem, 2vw, 1.2rem);
