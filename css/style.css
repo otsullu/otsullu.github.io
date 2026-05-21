@@ -6,7 +6,7 @@
 /* ── DESIGN TOKENS ──────────────────────────────────────────────── */
 :root {
   /* Brand constant — never overridden by palette or theme */
-  --brand-gold:    #C9A84C;
+  --brand-gold:    #FFD700;
 
   /* Accent */
   --accent:        #0DC9C9;
@@ -1980,7 +1980,7 @@ html[data-palette="teal"]                        { --accent:#0DC9C9; --accent-di
 html[data-theme="light"][data-palette="teal"]    { --accent:#08909A; --accent-dim:#066C75; --accent-glow:#08909A26; }
 
 /* Ullu Gold */
-html[data-palette="gold"]                        { --accent:#C9A84C; --accent-dim:#9E7F35; --accent-glow:#C9A84C26; }
+html[data-palette="gold"]                        { --accent:#FFD700; --accent-dim:#CCB000; --accent-glow:#FFD70026; }
 html[data-theme="light"][data-palette="gold"]    { --accent:#8F6B1A; --accent-dim:#6B5015; --accent-glow:#8F6B1A26; }
 
 /* Slate Blue */
@@ -2022,13 +2022,13 @@ html[data-theme="light"][data-palette="ots"]     { --accent:#0969DA; --accent-di
 /* Ullu — v1 signature: deep navy background + gold accent.
    Forces dark bg regardless of theme, so fg must also be forced light. */
 html[data-palette="ullu"] {
-  --accent:        #C9A84C;
-  --accent-dim:    #8A6E28;
-  --accent-glow:   #C9A84C26;
+  --accent:        #FFD700;
+  --accent-dim:    #CCB000;
+  --accent-glow:   #FFD70026;
   --bg:            #0B1E2D;
   --bg-alt:        #112233;
-  --border:        rgba(201,168,76,0.15);
-  --border-strong: rgba(201,168,76,0.28);
+  --border:        rgba(255,215,0,0.15);
+  --border-strong: rgba(255,215,0,0.28);
   /* Always dark bg → always need light fg */
   --fg:            #F0EDE8;
   --fg-secondary:  #A8A8B3;
@@ -2040,8 +2040,8 @@ html[data-palette="ullu"] {
   --product-fg:         #F0EDE8;
   --product-fg-dim:     rgba(240,237,232,0.55);
   --product-fg-muted:   rgba(240,237,232,0.35);
-  --product-border:     rgba(201,168,76,0.12);
-  --product-card-bg:    rgba(201,168,76,0.03);
+  --product-border:     rgba(255,215,0,0.12);
+  --product-card-bg:    rgba(255,215,0,0.03);
 }
 
 /* ── CONFIG TRIGGER ─────────────────────────────────────────────── */
@@ -2285,14 +2285,14 @@ html[data-palette="ullu"] {
 /* Ullu button — v1 signature: navy + gold */
 .sig-btn-ullu {
   background: #0B1E2D;
-  border: 1px solid rgba(201,168,76,0.35);
+  border: 1px solid rgba(255,215,0,0.35);
 }
-.sig-btn-ullu:hover          { border-color: #C9A84C; box-shadow: 0 0 0 1px rgba(201,168,76,0.25); }
-.sig-btn-ullu:focus-visible  { outline: 2px solid #C9A84C; }
-.sig-btn-ullu[aria-pressed="true"] { border-color: #C9A84C; box-shadow: 0 0 0 2px #0B1E2D, 0 0 0 4px #C9A84C; }
+.sig-btn-ullu:hover          { border-color: #FFD700; box-shadow: 0 0 0 1px rgba(255,215,0,0.25); }
+.sig-btn-ullu:focus-visible  { outline: 2px solid #FFD700; }
+.sig-btn-ullu[aria-pressed="true"] { border-color: #FFD700; box-shadow: 0 0 0 2px #0B1E2D, 0 0 0 4px #FFD700; }
 .sig-btn-ullu .sig-btn-wordmark { color: #e6edf3; }
-.sig-btn-ullu .sig-btn-gold     { color: #C9A84C; }
-.sig-btn-ullu .sig-btn-label    { color: rgba(201,168,76,0.6); }
+.sig-btn-ullu .sig-btn-gold     { color: #FFD700; }
+.sig-btn-ullu .sig-btn-label    { color: rgba(255,215,0,0.6); }
 
 .sig-btn-wordmark {
   font-size: 0.9rem;
