@@ -3,6 +3,45 @@
    Modules: Theme · Nav · Reveal · Timeline · Videos · Resources · Dispatches
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ── HERO ROTATION ──────────────────────────────────────────────── */
+const HERO_PAIRS = [
+  {
+    headline: '<span class="hero-headline-plain">Wealth is not a privilege.</span><br/><span class="hero-headline-accent">It is a discipline.</span>',
+    mission:  'Wealth is not a privilege granted to a few. It is a discipline — and the responsibility to build it is your own. OTS Ullu exists to help you meet that responsibility: we shape the mind first, then do the quiet work behind it — drawing from the world\'s universities, from behavioral finance, market science, geopolitics, and technology — and return it as clear, practical knowledge, freely given, teaching the whole structure rather than the instrument at its peak. This is wisdom earned from nothing and shared without price — offered not as charity, but as duty, so that others may build what was built before them.',
+    credit:   'Claude'
+  },
+  {
+    headline: '<span class="hero-headline-plain">Wealth is built through</span><br/><span class="hero-headline-accent">discipline, not privilege.</span>',
+    mission:  'Wealth is not a privilege bestowed upon a fortunate few. It is a discipline — and a responsibility each individual must learn to carry with clarity, patience, and reason. OTS Ullu exists to shape that discipline: distilling the academic, behavioral, economic, technological, and geopolitical forces that govern markets into practical knowledge that can be understood, applied, and lived. Because derivatives do not exist apart from the world around them; to understand markets is to understand business, society, science, politics, and human behavior itself. This was built from earned experience, offered freely so others may build with the same discipline, independence, and long-term conviction.',
+    credit:   'ChatGPT'
+  },
+  {
+    headline: '<span class="hero-headline-plain">Wealth is a discipline —</span><br/><span class="hero-headline-accent">your responsibility to build.</span>',
+    mission:  'Wealth is not a privilege bestowed by circumstance; it is a discipline, and each of us bears the responsibility to build it. OTS Ullu exists to support the fulfillment of that responsibility. We shape the investor\'s mindset first through unflinching academic and research rigor — drawing from the highest traditions of university scholarship, behavioral finance, market science, geopolitics, technology, and the broader currents of society — then distill this knowledge into clear, practical, and actionable understanding, offered freely to all. What was built from nothing is now shared as earned wisdom. This is not charity. It is duty.',
+    credit:   'Grok'
+  },
+  {
+    headline: '<span class="hero-headline-plain">Wealth is a discipline.</span><br/><span class="hero-headline-accent">We engineer the architecture.</span>',
+    mission:  'Wealth is not a privilege; it is a discipline and a deliberate responsibility. True mastery demands an understanding of the entire cascade — from the geopolitical and societal currents that shape business, down to the precise mechanics of equities and derivatives. We honor this reality by distilling complex global research into clear, open wisdom, forging the mindset required to navigate these forces. Once that foundation is set, we engineer the software tools that translate this understanding into systematic execution. Sharing this earned experience is not an act of charity, but a duty to equip those ready to build.',
+    credit:   'Gemini'
+  },
+  {
+    headline: '<span class="hero-headline-plain">Wealth is a discipline —</span><br/><span class="hero-headline-accent">and your responsibility to build.</span>',
+    mission:  'Wealth is not a privilege; it is a discipline — and a responsibility each person must claim for themselves. OTS Ullu exists to help you fulfill that responsibility with clarity and rigor. We shape the mind before the method, distilling the work of academia, behavioral finance, market science, geopolitics, technology, and culture into knowledge that is practical, precise, and freely given. Derivatives sit at the top of a long intellectual cascade — from equities to business, from business to society, from society to the forces that shape it — and we teach that full stack with honesty and depth. This platform was built from nothing, through earned experience, and that wisdom is shared not as charity, but as duty.',
+    credit:   'Copilot'
+  },
+];
+
+function setupHero() {
+  const pair = HERO_PAIRS[Math.floor(Math.random() * HERO_PAIRS.length)];
+  const h    = document.getElementById('heroHeadline');
+  const m    = document.getElementById('heroMission');
+  const a    = document.getElementById('heroAttribution');
+  if (h) h.innerHTML = pair.headline;
+  if (m) m.textContent = pair.mission;
+  if (a) a.textContent = 'inspired by ' + pair.credit;
+}
+
 'use strict';
 
 /* ── MOCK DATA ──────────────────────────────────────────────────── */
@@ -636,6 +675,7 @@ function loadStats() {
 
 /* ── INIT ───────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  setupHero();
   setupConfig();
   setupNav();
   setupReveal();
