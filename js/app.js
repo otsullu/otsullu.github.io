@@ -170,24 +170,131 @@ const DISPATCH_DATA = [
   },
 ];
 
-/* ── THEME ──────────────────────────────────────────────────────── */
-(function initTheme() {
-  const stored = localStorage.getItem('ots-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = stored || (prefersDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', theme);
-})();
+/* ── PALETTE + CONFIG ───────────────────────────────────────────── */
+const PALETTES = [
+  { id: 'teal',     name: 'Teal Ledger',    accent: '#0DC9C9' },
+  { id: 'gold',     name: 'Ullu Gold',      accent: '#C9A84C' },
+  { id: 'blue',     name: 'Slate Blue',     accent: '#5B8DD6' },
+  { id: 'indigo',   name: 'Ink Indigo',     accent: '#7C7CE0' },
+  { id: 'forest',   name: 'Forest Capital', accent: '#4FA86B' },
+  { id: 'copper',   name: 'Copper',         accent: '#C58A4E' },
+  { id: 'burgundy', name: 'Burgundy',       accent: '#C25A6B' },
+  { id: 'graphite', name: 'Graphite',       accent: '#9AA0A8' },
+  { id: 'cyan',     name: 'Steel Cyan',     accent: '#48B5C4' },
+  { id: 'amber',    name: 'Amber Signal',   accent: '#D49A3A' },
+];
+const VALID_PALETTE_IDS = PALETTES.map(p => p.id);
 
-function setupThemeToggle() {
-  const btn = document.getElementById('themeToggle');
-  if (!btn) return;
+function setupConfig() {
+  const trigger  = document.getElementById('configTrigger');
+  const panel    = document.getElementById('configPanel');
+  const scrim    = document.getElementById('configScrim');
+  const closeBtn = document.getElementById('configClose');
+  const grid     = document.getElementById('paletteGrid');
+  const nameEl   = document.getElementById('paletteActiveName');
+  if (!trigger || !panel) return;
 
-  btn.addEventListener('click', () => {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('ots-theme', next);
+  const html = document.documentElement;
+
+  /* Build palette swatches */
+  const activePalette = VALID_PALETTE_IDS.includes(html.getAttribute('data-palette'))
+    ? html.getAttribute('data-palette') : 'teal';
+
+  if (grid) {
+    grid.innerHTML = PALETTES.map(p => `
+      <button
+        class="palette-swatch"
+        data-palette-id="${p.id}"
+        style="background:${p.accent}"
+        aria-label="${p.name}"
+        aria-pressed="${p.id === activePalette ? 'true' : 'false'}"
+        title="${p.name}"
+      ></button>
+    `).join('');
+  }
+  if (nameEl) {
+    const active = PALETTES.find(p => p.id === activePalette);
+    nameEl.textContent = active ? active.name : '';
+  }
+
+  function syncThemeButtons() {
+    const theme = html.getAttribute('data-theme') || 'dark';
+    panel.querySelectorAll('.theme-seg-btn').forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.dataset.themeSet === theme ? 'true' : 'false');
+    });
+  }
+  syncThemeButtons();
+
+  /* Open / close */
+  function openPanel() {
+    panel.hidden = false;
+    if (scrim) scrim.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    syncThemeButtons();
+    const first = panel.querySelector('button:not([hidden])');
+    if (first) first.focus();
+  }
+
+  function closePanel() {
+    panel.hidden = true;
+    if (scrim) scrim.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.focus();
+  }
+
+  trigger.addEventListener('click', () => panel.hidden ? openPanel() : closePanel());
+  if (closeBtn) closeBtn.addEventListener('click', closePanel);
+  if (scrim)    scrim.addEventListener('click', closePanel);
+
+  document.addEventListener('pointerdown', (e) => {
+    if (panel.hidden) return;
+    if (panel.contains(e.target) || trigger.contains(e.target)) return;
+    closePanel();
   });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) closePanel();
+  });
+
+  /* Theme switching */
+  panel.addEventListener('click', (e) => {
+    const themeBtn = e.target.closest('[data-theme-set]');
+    if (themeBtn) {
+      const next = themeBtn.dataset.themeSet;
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('ots-theme', next);
+      syncThemeButtons();
+      return;
+    }
+
+    /* Palette switching */
+    const swatch = e.target.closest('[data-palette-id]');
+    if (swatch && grid) {
+      const id = swatch.dataset.paletteId;
+      html.setAttribute('data-palette', id);
+      localStorage.setItem('ots-palette', id);
+      grid.querySelectorAll('[data-palette-id]').forEach(b => {
+        b.setAttribute('aria-pressed', b.dataset.paletteId === id ? 'true' : 'false');
+      });
+      if (nameEl) {
+        const active = PALETTES.find(p => p.id === id);
+        nameEl.textContent = active ? active.name : '';
+      }
+    }
+  });
+
+  /* Roving tabindex on palette swatches */
+  if (grid) {
+    grid.addEventListener('keydown', (e) => {
+      const swatches = [...grid.querySelectorAll('.palette-swatch')];
+      const idx = swatches.indexOf(document.activeElement);
+      if (idx === -1) return;
+      let next = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % swatches.length;
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   next = (idx - 1 + swatches.length) % swatches.length;
+      if (next !== -1) { e.preventDefault(); swatches[next].focus(); }
+    });
+  }
 }
 
 /* ── AUTO-HIDE NAV ──────────────────────────────────────────────── */
@@ -513,7 +620,7 @@ function loadStats() {
 
 /* ── INIT ───────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  setupThemeToggle();
+  setupConfig();
   setupNav();
   setupReveal();
   renderTimeline();
