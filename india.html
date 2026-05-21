@@ -153,10 +153,17 @@
       padding-bottom: clamp(32px, 5vw, 56px);
     }
     .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: repeat(13, 1fr);
+      gap: 6px;
       margin-bottom: 36px;
+    }
+    @media (max-width: 700px) {
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
     }
     .filter-btn {
       font-size: 0.75rem;
@@ -168,7 +175,7 @@
       padding: 5px 11px;
       cursor: pointer;
       white-space: nowrap;
-      flex-shrink: 0;
+      text-align: center;
       transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast);
     }
     .filter-btn:hover {
