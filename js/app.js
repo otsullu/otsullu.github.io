@@ -182,6 +182,7 @@ const PALETTES = [
   { id: 'graphite', name: 'Graphite',       accent: '#9AA0A8' },
   { id: 'cyan',     name: 'Steel Cyan',     accent: '#48B5C4' },
   { id: 'amber',    name: 'Amber Signal',   accent: '#D49A3A' },
+  { id: 'ullu',     name: 'Ullu',           accent: '#58A6FF' },
 ];
 const VALID_PALETTE_IDS = PALETTES.map(p => p.id);
 
@@ -196,12 +197,13 @@ function setupConfig() {
 
   const html = document.documentElement;
 
-  /* Build palette swatches */
+  /* Build palette swatches (excludes the special Ullu button) */
   const activePalette = VALID_PALETTE_IDS.includes(html.getAttribute('data-palette'))
     ? html.getAttribute('data-palette') : 'teal';
 
+  const swatchPalettes = PALETTES.filter(p => p.id !== 'ullu');
   if (grid) {
-    grid.innerHTML = PALETTES.map(p => `
+    grid.innerHTML = swatchPalettes.map(p => `
       <button
         class="palette-swatch"
         data-palette-id="${p.id}"
@@ -215,6 +217,12 @@ function setupConfig() {
   if (nameEl) {
     const active = PALETTES.find(p => p.id === activePalette);
     nameEl.textContent = active ? active.name : '';
+  }
+
+  /* Ullu signature button */
+  const ulluBtn = document.getElementById('ulluPaletteBtn');
+  if (ulluBtn) {
+    ulluBtn.setAttribute('aria-pressed', activePalette === 'ullu' ? 'true' : 'false');
   }
 
   function syncThemeButtons() {
@@ -267,18 +275,25 @@ function setupConfig() {
       return;
     }
 
-    /* Palette switching */
+    /* Palette switching — swatches + Ullu button */
     const swatch = e.target.closest('[data-palette-id]');
-    if (swatch && grid) {
+    if (swatch) {
       const id = swatch.dataset.paletteId;
       html.setAttribute('data-palette', id);
       localStorage.setItem('ots-palette', id);
-      grid.querySelectorAll('[data-palette-id]').forEach(b => {
-        b.setAttribute('aria-pressed', b.dataset.paletteId === id ? 'true' : 'false');
-      });
+      /* Update all swatch buttons */
+      if (grid) {
+        grid.querySelectorAll('[data-palette-id]').forEach(b => {
+          b.setAttribute('aria-pressed', b.dataset.paletteId === id ? 'true' : 'false');
+        });
+      }
+      /* Update Ullu button */
+      const ulluBtn = document.getElementById('ulluPaletteBtn');
+      if (ulluBtn) ulluBtn.setAttribute('aria-pressed', id === 'ullu' ? 'true' : 'false');
+      /* Update active name */
       if (nameEl) {
         const active = PALETTES.find(p => p.id === id);
-        nameEl.textContent = active ? active.name : '';
+        nameEl.textContent = active ? (id === 'ullu' ? 'Ullu — Signature Scheme' : active.name) : '';
       }
     }
   });
