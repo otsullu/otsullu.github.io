@@ -300,7 +300,7 @@
     }
     .video-thumb {
       position: relative;
-      aspect-ratio: 16/9;
+      aspect-ratio: 4/3;
       overflow: hidden;
       background: var(--bg);
     }
@@ -371,6 +371,21 @@
       border-radius: 50%;
       background: currentColor;
       flex-shrink: 0;
+    }
+
+    /* ── VIDEO SECTIONS ───────────────────────────────────────────── */
+    .video-section { margin-bottom: 48px; }
+    .video-section[hidden] { display: none; }
+    .video-section-heading {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--accent-tint-20);
+      transition: color var(--t-theme) var(--ease-out), border-color var(--t-theme) var(--ease-out);
     }
 
     /* empty state */
@@ -461,7 +476,7 @@
       background: var(--bg-alt);
     }
     .skeleton-thumb {
-      aspect-ratio: 16/9;
+      aspect-ratio: 4/3;
       background: linear-gradient(90deg, var(--border) 25%, var(--accent-tint-04) 50%, var(--border) 75%);
       background-size: 200% 100%;
       animation: shimmer 1.4s infinite;
@@ -558,30 +573,19 @@
       </div>
     </div>
 
-    <!-- Video grid -->
-    <div class="video-grid" id="videoGrid" aria-live="polite">
-      <!-- Skeletons shown while loading -->
-      <div class="video-skeleton reveal-up">
-        <div class="skeleton-thumb"></div>
-        <div class="skeleton-body">
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line short"></div>
-        </div>
+    <!-- Section 1: Indian Stock Market Basics -->
+    <div class="video-section" id="sectionBasics">
+      <h3 class="video-section-heading">Indian Stock Market Basics — In Your Language</h3>
+      <div class="video-grid" id="gridBasics" aria-live="polite">
+        <div class="video-skeleton reveal-up"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+        <div class="video-skeleton reveal-up"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
       </div>
-      <div class="video-skeleton reveal-up">
-        <div class="skeleton-thumb"></div>
-        <div class="skeleton-body">
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line short"></div>
-        </div>
-      </div>
-      <div class="video-skeleton reveal-up">
-        <div class="skeleton-thumb"></div>
-        <div class="skeleton-body">
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line short"></div>
-        </div>
-      </div>
+    </div>
+
+    <!-- Section 2: More from IndianRadar -->
+    <div class="video-section" id="sectionMore">
+      <h3 class="video-section-heading">More from IndianRadar.AI</h3>
+      <div class="video-grid" id="gridMore" aria-live="polite"></div>
     </div>
 
   </div>
@@ -631,25 +635,36 @@ const INDIA_VIDEOS_FALLBACK = [
   { id: 'uiLuxb33jZ0', lang: 'Urdu',      title: 'Indian Stock Market Basics — Urdu',      views: '0', published: '' },
 ];
 
-let allVideos = [];
+let basicsVideos = [];  // "Indian Stock Market Basics in *"
+let moreVideos   = [];  // all other indian-radar videos
 let activeFilter = 'All';
 
+function isBasicsVideo(v) {
+  return /indian stock market basics in/i.test(v.title);
+}
+
+function extractLangFromTitle(v) {
+  const m = v.title.match(/indian stock market basics in\s+(\w+)/i);
+  return m ? m[1] : (v.lang || 'Unknown');
+}
+
 function videoCard(v) {
-  const thumb = v.thumb || `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
-  const views = parseInt(v.views || 0);
+  const thumb   = v.thumb || `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+  const views   = parseInt(v.views || 0);
   const viewStr = views > 0 ? Number(views).toLocaleString() + ' views' : '';
   const dateStr = v.published || '';
-  const meta = [viewStr, dateStr].filter(Boolean).join(' · ');
+  const meta    = [viewStr, dateStr].filter(Boolean).join(' · ');
+  const lang    = v.lang || 'Unknown';
 
   return `
     <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer"
-       class="video-card reveal-up" data-lang="${v.lang}" aria-label="${v.title}">
+       class="video-card reveal-up" data-lang="${lang}" aria-label="${v.title}">
       <div class="video-thumb">
         <img src="${thumb}" alt="${v.title}" loading="lazy" />
         <div class="video-play-overlay" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.5)"/><path d="M10 8l6 4-6 4V8z" fill="white"/></svg>
         </div>
-        <span class="video-lang-badge">${v.lang}</span>
+        <span class="video-lang-badge">${lang}</span>
       </div>
       <div class="video-body">
         <p class="video-title">${v.title}</p>
@@ -659,15 +674,28 @@ function videoCard(v) {
   `;
 }
 
-function renderGrid(lang) {
-  const grid = document.getElementById('videoGrid');
-  if (!grid) return;
-  const filtered = lang === 'All' ? allVideos : allVideos.filter(v => v.lang === lang);
-  if (!filtered.length) {
-    grid.innerHTML = `<p class="video-empty">No videos found for ${lang} yet. More coming soon.</p>`;
-    return;
-  }
-  grid.innerHTML = filtered.map(videoCard).join('');
+function renderSections(lang) {
+  const secBasics = document.getElementById('sectionBasics');
+  const secMore   = document.getElementById('sectionMore');
+  const gridB     = document.getElementById('gridBasics');
+  const gridM     = document.getElementById('gridMore');
+
+  const filterFn = v => lang === 'All' || v.lang === lang;
+
+  const filteredBasics = basicsVideos.filter(filterFn);
+  const filteredMore   = moreVideos.filter(filterFn);
+
+  if (gridB) gridB.innerHTML = filteredBasics.length
+    ? filteredBasics.map(videoCard).join('')
+    : `<p class="video-empty">No basics videos for ${lang} yet.</p>`;
+
+  if (gridM) gridM.innerHTML = filteredMore.length
+    ? filteredMore.map(videoCard).join('')
+    : '';
+
+  if (secBasics) secBasics.hidden = filteredBasics.length === 0;
+  if (secMore)   secMore.hidden   = filteredMore.length === 0;
+
   setupReveal();
 }
 
@@ -680,7 +708,7 @@ function setupFilter() {
     bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeFilter = btn.dataset.lang;
-    renderGrid(activeFilter);
+    renderSections(activeFilter);
   });
 }
 
@@ -688,16 +716,25 @@ function loadVideos() {
   fetch('data/videos.json')
     .then(r => r.json())
     .then(data => {
-      const videos = data.videos || [];
-      allVideos = videos
-        .filter(v => v.playlist === 'indian-radar')
+      const indianRadar = (data.videos || []).filter(v => v.playlist === 'indian-radar');
+
+      basicsVideos = indianRadar
+        .filter(isBasicsVideo)
+        .sort((a, b) => extractLangFromTitle(a).localeCompare(extractLangFromTitle(b)));
+
+      moreVideos = indianRadar
+        .filter(v => !isBasicsVideo(v))
         .sort((a, b) => (a.lang || '').localeCompare(b.lang || ''));
-      if (!allVideos.length) allVideos = INDIA_VIDEOS_FALLBACK;
-      renderGrid(activeFilter);
+
+      if (!basicsVideos.length && !moreVideos.length) {
+        basicsVideos = INDIA_VIDEOS_FALLBACK;
+      }
+      renderSections(activeFilter);
     })
     .catch(() => {
-      allVideos = INDIA_VIDEOS_FALLBACK;
-      renderGrid(activeFilter);
+      basicsVideos = INDIA_VIDEOS_FALLBACK;
+      moreVideos   = [];
+      renderSections(activeFilter);
     });
 }
 
@@ -723,6 +760,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFilter();
   setupReveal();
   loadVideos();
+  // re-observe after dynamic content loads
+  requestAnimationFrame(() => setupReveal());
 });
 </script>
 </body>
