@@ -1979,9 +1979,31 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 html[data-palette="teal"]                        { --accent:#0DC9C9; --accent-dim:#09A0A0; --accent-glow:#0DC9C926; }
 html[data-theme="light"][data-palette="teal"]    { --accent:#08909A; --accent-dim:#066C75; --accent-glow:#08909A26; }
 
-/* Ullu Gold */
-html[data-palette="gold"]                        { --accent:#FFD700; --accent-dim:#CCB000; --accent-glow:#FFD70026; }
-html[data-theme="light"][data-palette="gold"]    { --accent:#8F6B1A; --accent-dim:#6B5015; --accent-glow:#8F6B1A26; }
+/* Gold — v1 Ullu signature: deep navy + gold */
+html[data-palette="gold"] {
+  --accent:        #FFD700;
+  --accent-dim:    #CCB000;
+  --accent-glow:   #FFD70026;
+  --border:        rgba(255,215,0,0.15);
+  --border-strong: rgba(255,215,0,0.28);
+  --product-border:     rgba(255,215,0,0.12);
+  --product-card-bg:    rgba(255,215,0,0.03);
+}
+
+html[data-theme="dark"][data-palette="gold"] {
+  --bg:            #0B1E2D;
+  --bg-alt:        #112233;
+  --fg:            #F0EDE8;
+  --fg-secondary:  #A8A8B3;
+  --fg-meta:       #6B6B78;
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,0.5);
+  --product-bg:         #091828;
+  --product-fg:         #F0EDE8;
+  --product-fg-dim:     rgba(240,237,232,0.55);
+  --product-fg-muted:   rgba(240,237,232,0.35);
+}
 
 /* Slate Blue */
 html[data-palette="blue"]                        { --accent:#5B8DD6; --accent-dim:#446BA0; --accent-glow:#5B8DD626; }
@@ -2019,32 +2041,6 @@ html[data-theme="light"][data-palette="amber"]   { --accent:#A8761F; --accent-di
 html[data-palette="ots"]                         { --accent:#58A6FF; --accent-dim:#2878CC; --accent-glow:#58A6FF26; }
 html[data-theme="light"][data-palette="ots"]     { --accent:#0969DA; --accent-dim:#0550AE; --accent-glow:#0969DA26; }
 
-/* Ullu — v1 signature: gold accent in both modes */
-html[data-palette="ullu"] {
-  --accent:        #FFD700;
-  --accent-dim:    #CCB000;
-  --accent-glow:   #FFD70026;
-  --border:        rgba(255,215,0,0.15);
-  --border-strong: rgba(255,215,0,0.28);
-  --product-border:     rgba(255,215,0,0.12);
-  --product-card-bg:    rgba(255,215,0,0.03);
-}
-
-/* Ullu dark mode — adds the deep navy v1 background */
-html[data-theme="dark"][data-palette="ullu"] {
-  --bg:            #0B1E2D;
-  --bg-alt:        #112233;
-  --fg:            #F0EDE8;
-  --fg-secondary:  #A8A8B3;
-  --fg-meta:       #6B6B78;
-  --shadow-sm:     0 1px 3px rgba(0,0,0,0.3);
-  --shadow-md:     0 4px 16px rgba(0,0,0,0.4);
-  --shadow-lg:     0 12px 40px rgba(0,0,0,0.5);
-  --product-bg:         #091828;
-  --product-fg:         #F0EDE8;
-  --product-fg-dim:     rgba(240,237,232,0.55);
-  --product-fg-muted:   rgba(240,237,232,0.35);
-}
 
 /* ── CONFIG TRIGGER ─────────────────────────────────────────────── */
 .config-trigger {
