@@ -20,7 +20,8 @@
       var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
       var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
-      document.documentElement.setAttribute('data-palette', (p && valid.indexOf(p) !== -1) ? p : 'gold');
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
     } catch(e) {}
   })();
   </script>
