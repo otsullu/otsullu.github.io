@@ -1878,6 +1878,63 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   line-height: 1.5;
 }
 
+/* YouTube stats bar */
+.yt-stats-bar {
+  margin-bottom: 32px;
+}
+
+.yt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.yt-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 12px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.yt-stat-value {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.yt-stat-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+}
+
+.yt-stats-updated {
+  font-size: 0.7rem;
+  color: var(--fg-meta);
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .yt-stats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .yt-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Channel CTA */
 .library-cta {
   display: flex;
