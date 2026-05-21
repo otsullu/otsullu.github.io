@@ -154,10 +154,15 @@
     }
     .filter-bar {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 8px;
       margin-bottom: 36px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
     }
+    .filter-bar::-webkit-scrollbar { display: none; }
     .filter-btn {
       font-size: 0.82rem;
       font-weight: 600;
@@ -421,20 +426,6 @@
       OTS Ullu delivers a complete curriculum — market psychology, equity mechanics,
       probability, and investing fundamentals — free, across 12 Indian languages.
     </p>
-    <div class="india-language-chips reveal-up">
-      <span class="india-lang-chip">Hindi</span>
-      <span class="india-lang-chip">Tamil</span>
-      <span class="india-lang-chip">Telugu</span>
-      <span class="india-lang-chip">Marathi</span>
-      <span class="india-lang-chip">Gujarati</span>
-      <span class="india-lang-chip">Bengali</span>
-      <span class="india-lang-chip">Kannada</span>
-      <span class="india-lang-chip">Malayalam</span>
-      <span class="india-lang-chip">Punjabi</span>
-      <span class="india-lang-chip">Odia</span>
-      <span class="india-lang-chip">Urdu</span>
-      <span class="india-lang-chip">English</span>
-    </div>
     <a href="https://www.youtube.com/@otsullu?sub_confirmation=1" target="_blank" rel="noopener" class="india-yt-link reveal-up">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       Subscribe on YouTube — it's free
@@ -449,18 +440,18 @@
     <!-- Filter bar -->
     <div class="filter-bar reveal-up" id="filterBar" role="group" aria-label="Filter by language">
       <button class="filter-btn active" data-lang="All">All</button>
-      <button class="filter-btn" data-lang="Hindi">Hindi</button>
-      <button class="filter-btn" data-lang="Tamil">Tamil</button>
-      <button class="filter-btn" data-lang="Telugu">Telugu</button>
-      <button class="filter-btn" data-lang="Marathi">Marathi</button>
-      <button class="filter-btn" data-lang="Gujarati">Gujarati</button>
       <button class="filter-btn" data-lang="Bengali">Bengali</button>
+      <button class="filter-btn" data-lang="English">English</button>
+      <button class="filter-btn" data-lang="Gujarati">Gujarati</button>
+      <button class="filter-btn" data-lang="Hindi">Hindi</button>
       <button class="filter-btn" data-lang="Kannada">Kannada</button>
       <button class="filter-btn" data-lang="Malayalam">Malayalam</button>
-      <button class="filter-btn" data-lang="Punjabi">Punjabi</button>
+      <button class="filter-btn" data-lang="Marathi">Marathi</button>
       <button class="filter-btn" data-lang="Odia">Odia</button>
+      <button class="filter-btn" data-lang="Punjabi">Punjabi</button>
+      <button class="filter-btn" data-lang="Tamil">Tamil</button>
+      <button class="filter-btn" data-lang="Telugu">Telugu</button>
       <button class="filter-btn" data-lang="Urdu">Urdu</button>
-      <button class="filter-btn" data-lang="English">English</button>
     </div>
 
     <!-- Video grid -->
@@ -520,20 +511,20 @@
 <script>
 'use strict';
 
-/* Fallback video data — used if videos.json is unavailable */
+/* Fallback video data — alphabetical by language */
 const INDIA_VIDEOS_FALLBACK = [
-  { id: 'NbVIdEArUDM', lang: 'Hindi',     title: 'Indian Stock Market Basics — Hindi',     views: '0', published: '' },
-  { id: 'jrDLWNBTyqQ', lang: 'Tamil',     title: 'Indian Stock Market Basics — Tamil',     views: '0', published: '' },
-  { id: 'NKA6Jtmu11g', lang: 'Telugu',    title: 'Indian Stock Market Basics — Telugu',    views: '0', published: '' },
-  { id: '1WX3uf99VH4', lang: 'Marathi',   title: 'Indian Stock Market Basics — Marathi',   views: '0', published: '' },
-  { id: '0kDb7Qnjx9E', lang: 'Gujarati',  title: 'Indian Stock Market Basics — Gujarati',  views: '0', published: '' },
   { id: 'o-1VRq2GCmo', lang: 'Bengali',   title: 'Indian Stock Market Basics — Bengali',   views: '0', published: '' },
+  { id: 'sR4cDLvJIhc', lang: 'English',   title: 'Indian Stock Market Basics — English',   views: '0', published: '' },
+  { id: '0kDb7Qnjx9E', lang: 'Gujarati',  title: 'Indian Stock Market Basics — Gujarati',  views: '0', published: '' },
+  { id: 'NbVIdEArUDM', lang: 'Hindi',     title: 'Indian Stock Market Basics — Hindi',     views: '0', published: '' },
   { id: 'LGLo30W4-MA', lang: 'Kannada',   title: 'Indian Stock Market Basics — Kannada',   views: '0', published: '' },
   { id: 'S0eSn_aS0P0', lang: 'Malayalam', title: 'Indian Stock Market Basics — Malayalam', views: '0', published: '' },
-  { id: 'gcKGy-36_qQ', lang: 'Punjabi',   title: 'Indian Stock Market Basics — Punjabi',   views: '0', published: '' },
+  { id: '1WX3uf99VH4', lang: 'Marathi',   title: 'Indian Stock Market Basics — Marathi',   views: '0', published: '' },
   { id: 'vwz0cZ4KmOI', lang: 'Odia',      title: 'Indian Stock Market Basics — Odia',      views: '0', published: '' },
+  { id: 'gcKGy-36_qQ', lang: 'Punjabi',   title: 'Indian Stock Market Basics — Punjabi',   views: '0', published: '' },
+  { id: 'jrDLWNBTyqQ', lang: 'Tamil',     title: 'Indian Stock Market Basics — Tamil',     views: '0', published: '' },
+  { id: 'NKA6Jtmu11g', lang: 'Telugu',    title: 'Indian Stock Market Basics — Telugu',    views: '0', published: '' },
   { id: 'uiLuxb33jZ0', lang: 'Urdu',      title: 'Indian Stock Market Basics — Urdu',      views: '0', published: '' },
-  { id: 'sR4cDLvJIhc', lang: 'English',   title: 'Indian Stock Market Basics — English',   views: '0', published: '' },
 ];
 
 let allVideos = [];
@@ -594,7 +585,9 @@ function loadVideos() {
     .then(r => r.json())
     .then(data => {
       const videos = data.videos || [];
-      allVideos = videos.filter(v => v.playlist === 'indian-radar');
+      allVideos = videos
+        .filter(v => v.playlist === 'indian-radar')
+        .sort((a, b) => (a.lang || '').localeCompare(b.lang || ''));
       if (!allVideos.length) allVideos = INDIA_VIDEOS_FALLBACK;
       renderGrid(activeFilter);
     })
