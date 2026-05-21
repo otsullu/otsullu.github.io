@@ -904,6 +904,14 @@ function applyStats(s) {
     velNums[2].textContent = t.tradingDays;
   }
 
+  /* refreshed-at timestamp */
+  const refreshedEl = document.getElementById('statsRefreshedAt');
+  if (refreshedEl && s.meta && s.meta.generatedAt) {
+    const d = new Date(s.meta.generatedAt);
+    refreshedEl.textContent = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+      + ' at ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+  }
+
   /* tickers */
   const others = t.contracts - t.topTickers.reduce((a, x) => a + x.contracts, 0);
   TICKER_DATA.length = 0;
