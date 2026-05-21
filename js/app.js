@@ -182,7 +182,8 @@ const PALETTES = [
   { id: 'graphite', name: 'Graphite',       accent: '#9AA0A8' },
   { id: 'cyan',     name: 'Steel Cyan',     accent: '#48B5C4' },
   { id: 'amber',    name: 'Amber Signal',   accent: '#D49A3A' },
-  { id: 'ullu',     name: 'Ullu',           accent: '#58A6FF' },
+  { id: 'ots',      name: 'OTS Scheme',     accent: '#58A6FF' },
+  { id: 'ullu',     name: 'Ullu Scheme',    accent: '#C9A84C' },
 ];
 const VALID_PALETTE_IDS = PALETTES.map(p => p.id);
 
@@ -201,7 +202,7 @@ function setupConfig() {
   const activePalette = VALID_PALETTE_IDS.includes(html.getAttribute('data-palette'))
     ? html.getAttribute('data-palette') : 'teal';
 
-  const swatchPalettes = PALETTES.filter(p => p.id !== 'ullu');
+  const swatchPalettes = PALETTES.filter(p => p.id !== 'ots' && p.id !== 'ullu');
   if (grid) {
     grid.innerHTML = swatchPalettes.map(p => `
       <button
@@ -219,11 +220,11 @@ function setupConfig() {
     nameEl.textContent = active ? active.name : '';
   }
 
-  /* Ullu signature button */
+  /* Signature buttons */
+  const otsBtn  = document.getElementById('otsPaletteBtn');
   const ulluBtn = document.getElementById('ulluPaletteBtn');
-  if (ulluBtn) {
-    ulluBtn.setAttribute('aria-pressed', activePalette === 'ullu' ? 'true' : 'false');
-  }
+  if (otsBtn)  otsBtn.setAttribute('aria-pressed',  activePalette === 'ots'  ? 'true' : 'false');
+  if (ulluBtn) ulluBtn.setAttribute('aria-pressed', activePalette === 'ullu' ? 'true' : 'false');
 
   function syncThemeButtons() {
     const theme = html.getAttribute('data-theme') || 'dark';
@@ -287,9 +288,11 @@ function setupConfig() {
           b.setAttribute('aria-pressed', b.dataset.paletteId === id ? 'true' : 'false');
         });
       }
-      /* Update Ullu button */
-      const ulluBtn = document.getElementById('ulluPaletteBtn');
-      if (ulluBtn) ulluBtn.setAttribute('aria-pressed', id === 'ullu' ? 'true' : 'false');
+      /* Update signature buttons */
+      const otsBtn2  = document.getElementById('otsPaletteBtn');
+      const ulluBtn2 = document.getElementById('ulluPaletteBtn');
+      if (otsBtn2)  otsBtn2.setAttribute('aria-pressed',  id === 'ots'  ? 'true' : 'false');
+      if (ulluBtn2) ulluBtn2.setAttribute('aria-pressed', id === 'ullu' ? 'true' : 'false');
       /* Update active name */
       if (nameEl) {
         const active = PALETTES.find(p => p.id === id);
