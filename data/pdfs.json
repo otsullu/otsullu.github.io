@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://github.com/otsullu/otsullu.github.io/releases/download/pdf-library/",
+  "baseUrl": "pdfs/",
   "pdfs": [
     {
       "id": "options-greeks",
@@ -52,6 +52,15 @@
       "title": "ARK Venture: Pre-IPO Portfolio — SpaceX & OpenAI",
       "description": "An analysis of ARK's venture exposure to SpaceX and OpenAI — valuation frameworks for pre-IPO positions and what liquidity events could mean for retail investors.",
       "tags": ["venture", "pre-ipo", "spacex", "openai"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "porters-value-chain",
+      "file": "porters-value-chain-architecture-of-competitive-advantage.pdf",
+      "title": "Porter's Value Chain: Architecture of Competitive Advantage",
+      "description": "A deep dive into Michael Porter's Value Chain framework — how firms create, sustain, and defend competitive advantage through the architecture of their internal activities.",
+      "tags": ["strategy", "porter", "competitive advantage", "frameworks"],
       "date": "2026-05-21",
       "featured": false
     },
