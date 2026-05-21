@@ -458,61 +458,61 @@ function renderTickers() {
 
 
 /* ── INDIAN RADAR CAROUSEL ──────────────────────────────────────── */
-function renderVideoCarousel(filter = 'all') {
-  const carousel = document.getElementById('videoCarousel');
-  if (!carousel) return;
+/* ── FREE LIBRARY ───────────────────────────────────────────────── */
+function renderLibrary(data) {
+  const FEATURED_PLAYLISTS = ['wealth-academy', 'options-academy', 'knowledge-radar', 'news-radar'];
 
-  const filtered = filter === 'all'
-    ? VIDEO_DATA
-    : VIDEO_DATA.filter((v) => v.lang === filter);
+  /* Featured video — highest views from non-indian-radar playlists */
+  const candidates = (data.videos || []).filter(v => v.playlist !== 'indian-radar' && v.playlist !== 'infomercials');
+  const featured = candidates.sort((a, b) => parseInt(b.views) - parseInt(a.views))[0];
 
-  const html = filtered.map((v) => `
-    <a
-      href="https://www.youtube.com/watch?v=${v.id}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="video-card"
-      aria-label="Watch ${v.title} on YouTube"
-    >
-      <img
-        src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg"
-        alt="${v.title}"
-        loading="lazy"
-        width="480"
-        height="360"
-      />
-      <div class="video-card-overlay">
-        <div class="video-lang-badge">${v.lang}</div>
-        <div class="video-play-btn" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5,3 19,12 5,21"/>
-          </svg>
+  const featWrap = document.getElementById('featuredVideo');
+  if (featWrap && featured) {
+    featWrap.innerHTML = `
+      <div class="featured-video">
+        <div class="featured-video-embed">
+          <iframe
+            src="https://www.youtube.com/embed/${featured.id}?rel=0&modestbranding=1"
+            title="${featured.title}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
         </div>
-        <p class="video-card-title">${v.title}</p>
+        <div class="featured-video-meta">
+          <span class="featured-video-label">Featured</span>
+          <h3 class="featured-video-title">${featured.title}</h3>
+          <p class="featured-video-stats">${Number(featured.views).toLocaleString()} views &middot; ${featured.published}</p>
+          <a href="https://www.youtube.com/watch?v=${featured.id}" target="_blank" rel="noopener" class="featured-video-link">Watch on YouTube</a>
+        </div>
       </div>
-    </a>
-  `).join('');
+    `;
+  }
 
-  carousel.innerHTML = html || '<p style="color:var(--fg-meta);padding:20px 0;">No videos for this filter.</p>';
-}
+  /* Playlist grid — 4 core playlists */
+  const playlistGrid = document.getElementById('playlistGrid');
+  if (playlistGrid && data.playlists) {
+    const toShow = data.playlists.filter(p => FEATURED_PLAYLISTS.includes(p.id));
+    playlistGrid.innerHTML = toShow.map(p => `
+      <a href="https://www.youtube.com/playlist?list=${p.ytId}" target="_blank" rel="noopener" class="playlist-card">
+        <div class="playlist-card-thumb" style="background-image:url('${p.thumb}')">
+          <div class="playlist-card-overlay"></div>
+          <span class="playlist-card-badge" style="background:${p.color}">${p.label}</span>
+        </div>
+        <div class="playlist-card-body">
+          <p class="playlist-card-desc">${p.desc}</p>
+        </div>
+      </a>
+    `).join('');
+  }
 
-function setupLangFilter() {
-  const filter = document.getElementById('langFilter');
-  if (!filter) return;
-
-  filter.addEventListener('click', (e) => {
-    const pill = e.target.closest('.lang-pill');
-    if (!pill) return;
-
-    filter.querySelectorAll('.lang-pill').forEach((p) => {
-      p.classList.remove('active');
-      p.setAttribute('aria-selected', 'false');
-    });
-
-    pill.classList.add('active');
-    pill.setAttribute('aria-selected', 'true');
-    renderVideoCarousel(pill.dataset.lang);
-  });
+  /* Channel meta */
+  const metaEl = document.getElementById('channelMeta');
+  if (metaEl && data.channel) {
+    const updated = new Date(data.channel.updated);
+    metaEl.textContent = `Data refreshed ${updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  }
 }
 
 /* ── INSIGHT SHELF ──────────────────────────────────────────────── */
@@ -670,7 +670,14 @@ function loadStats() {
   fetch('data/stats.json')
     .then(r => r.json())
     .then(applyStats)
-    .catch(() => { /* silently keep hardcoded fallback values */ });
+    .catch(() => {});
+}
+
+function loadLibrary() {
+  fetch('data/videos.json')
+    .then(r => r.json())
+    .then(renderLibrary)
+    .catch(() => {});
 }
 
 /* ── INIT ───────────────────────────────────────────────────────── */
@@ -681,8 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupReveal();
   renderTimeline();
   renderTickers();
-  renderVideoCarousel();
-  setupLangFilter();
+  loadLibrary();
   renderResources();
   renderDispatches();
   renderFounderQuote();
