@@ -173,7 +173,7 @@ const DISPATCH_DATA = [
 /* ── PALETTE + CONFIG ───────────────────────────────────────────── */
 const PALETTES = [
   { id: 'teal',     name: 'Teal Ledger',    accent: '#0DC9C9' },
-  { id: 'gold',     name: 'Ullu Gold',      accent: '#C9A84C' },
+  { id: 'gold',     name: 'Ullu Gold',      accent: '#FFD700' },
   { id: 'blue',     name: 'Slate Blue',     accent: '#5B8DD6' },
   { id: 'indigo',   name: 'Ink Indigo',     accent: '#7C7CE0' },
   { id: 'forest',   name: 'Forest Capital', accent: '#4FA86B' },
@@ -183,7 +183,7 @@ const PALETTES = [
   { id: 'cyan',     name: 'Steel Cyan',     accent: '#48B5C4' },
   { id: 'amber',    name: 'Amber Signal',   accent: '#D49A3A' },
   { id: 'ots',      name: 'OTS Scheme',     accent: '#58A6FF' },
-  { id: 'ullu',     name: 'Ullu Scheme',    accent: '#C9A84C' },
+  { id: 'ullu',     name: 'Ullu Scheme',    accent: '#FFD700' },
 ];
 const VALID_PALETTE_IDS = PALETTES.map(p => p.id);
 
