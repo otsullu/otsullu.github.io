@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-palette="gold">
+<html lang="en" data-theme="dark" data-palette="amber">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,7 @@
       var t = localStorage.getItem('ots-theme');
       var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
-      document.documentElement.setAttribute('data-palette', 'gold');
+      document.documentElement.setAttribute('data-palette', 'amber');
     } catch(e) {}
   })();
   </script>
