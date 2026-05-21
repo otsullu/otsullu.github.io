@@ -104,6 +104,8 @@ def enrich_videos(video_ids: list[str]) -> list[dict]:
             'playlist':  playlist,
             'lang':      detect_lang(title),
             'views':     stats.get('viewCount', '0'),
+            'likes':     stats.get('likeCount', '0'),
+            'comments':  stats.get('commentCount', '0'),
             'published': pub[:10],
             'india':     india,
         })
@@ -169,21 +171,60 @@ def fetch_playlist_thumbnails() -> dict:
     return result
 
 
-def build_json(videos: list[dict], playlist_thumbs: dict) -> dict:
+def fetch_channel_stats() -> dict:
+    r = requests.get(f'{BASE}/channels', params={
+        'key':  API_KEY,
+        'id':   CHANNEL_ID,
+        'part': 'statistics,snippet',
+    }, timeout=15)
+    r.raise_for_status()
+    items = r.json().get('items', [])
+    if not items:
+        return {}
+    stats = items[0].get('statistics', {})
+    return {
+        'subscribers':  stats.get('subscriberCount', '0'),
+        'totalViews':   stats.get('viewCount', '0'),
+        'videoCount':   stats.get('videoCount', '0'),
+    }
+
+
+def build_json(videos: list[dict], playlist_thumbs: dict, channel_stats: dict) -> dict:
     playlists = []
     for p in PLAYLISTS:
         entry = dict(p)
         entry['thumb'] = playlist_thumbs.get(p['ytId'], '')
         playlists.append(entry)
 
+    # Compute aggregate engagement across all videos
+    total_views    = sum(int(v.get('views',    0) or 0) for v in videos)
+    total_likes    = sum(int(v.get('likes',    0) or 0) for v in videos)
+    total_comments = sum(int(v.get('comments', 0) or 0) for v in videos)
+    engagement_rate = round((total_likes + total_comments) / total_views * 100, 2) if total_views else 0
+
+    # Most viewed video
+    top_video = max(videos, key=lambda v: int(v.get('views', 0) or 0), default=None)
+
     return {
         'channel': {
-            'id':      CHANNEL_ID,
-            'title':   'OTS Ullu',
-            'handle':  '@otsullu',
-            'url':     'https://www.youtube.com/@otsullu',
-            'tagline': 'AI-System-Driven Options Income For the Disciplined Investor',
-            'updated': datetime.now(timezone.utc).isoformat(),
+            'id':          CHANNEL_ID,
+            'title':       'OTS Ullu',
+            'handle':      '@otsullu',
+            'url':         'https://www.youtube.com/@otsullu',
+            'tagline':     'AI-System-Driven Options Income For the Disciplined Investor',
+            'subscribers': channel_stats.get('subscribers', '0'),
+            'totalViews':  channel_stats.get('totalViews',  '0'),
+            'videoCount':  channel_stats.get('videoCount',  '0'),
+            'updated':     datetime.now(timezone.utc).isoformat(),
+        },
+        'engagement': {
+            'totalViews':    total_views,
+            'totalLikes':    total_likes,
+            'totalComments': total_comments,
+            'engagementRate': engagement_rate,
+            'topVideoId':    top_video['id']    if top_video else '',
+            'topVideoTitle': top_video['title'] if top_video else '',
+            'topVideoViews': int(top_video.get('views', 0) or 0) if top_video else 0,
         },
         'playlists': playlists,
         'videos':    videos,
@@ -196,6 +237,8 @@ if __name__ == '__main__':
     print(f'Fetched {len(videos)} videos')
     playlist_thumbs = fetch_playlist_thumbnails()
     print(f'Fetched thumbnails for {len(playlist_thumbs)} playlists')
-    data = build_json(videos, playlist_thumbs)
+    channel_stats = fetch_channel_stats()
+    print(f'Channel stats: {channel_stats}')
+    data = build_json(videos, playlist_thumbs, channel_stats)
     OUT_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'Written to {OUT_FILE}')

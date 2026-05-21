@@ -507,11 +507,34 @@ function renderLibrary(data) {
     `).join('');
   }
 
-  /* Channel meta */
-  const metaEl = document.getElementById('channelMeta');
-  if (metaEl && data.channel) {
-    const updated = new Date(data.channel.updated);
-    metaEl.textContent = `Data refreshed ${updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  /* Channel stats bar */
+  const statsBar = document.getElementById('channelStatsBar');
+  if (statsBar) {
+    const ch = data.channel   || {};
+    const en = data.engagement || {};
+    const fmt = n => Number(n || 0).toLocaleString();
+    const updated = ch.updated ? new Date(ch.updated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+    const stats = [
+      { label: 'Subscribers',     value: fmt(ch.subscribers) },
+      { label: 'Total Views',     value: fmt(ch.totalViews)  },
+      { label: 'Videos',          value: fmt(ch.videoCount)  },
+      { label: 'Likes',           value: fmt(en.totalLikes)  },
+      { label: 'Comments',        value: fmt(en.totalComments) },
+      { label: 'Engagement Rate', value: (en.engagementRate || 0) + '%' },
+    ];
+
+    statsBar.innerHTML = `
+      <div class="yt-stats-grid">
+        ${stats.map(s => `
+          <div class="yt-stat">
+            <span class="yt-stat-value">${s.value}</span>
+            <span class="yt-stat-label">${s.label}</span>
+          </div>
+        `).join('')}
+      </div>
+      ${updated ? `<p class="yt-stats-updated">Data refreshed ${updated}</p>` : ''}
+    `;
   }
 }
 
