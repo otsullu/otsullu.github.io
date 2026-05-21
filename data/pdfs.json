@@ -1,0 +1,77 @@
+{
+  "baseUrl": "https://github.com/otsullu/otsullu.github.io/releases/download/pdf-library/",
+  "pdfs": [
+    {
+      "id": "options-greeks",
+      "file": "Options-Greeks-Understanding-Delta-Gamma-Theta-Vega-Rho.pdf",
+      "title": "Options Greeks: Delta, Gamma, Theta, Vega, Rho",
+      "description": "A practical guide to understanding the five Greeks — how each measures risk, how they interact, and how disciplined options traders use them to manage income strategies.",
+      "tags": ["options", "greeks", "theta", "delta"],
+      "date": "2026-05-21",
+      "featured": true
+    },
+    {
+      "id": "wealth-mgmt-ai-strategy",
+      "file": "Wealth-Management-2026-Execution-and-AI-Strategy.pdf",
+      "title": "Wealth Management 2026: Execution & AI Strategy",
+      "description": "How AI is reshaping portfolio construction, client advisory, and execution in 2026 — frameworks for investors and advisors navigating the new landscape.",
+      "tags": ["wealth", "ai", "strategy", "portfolio"],
+      "date": "2026-05-21",
+      "featured": true
+    },
+    {
+      "id": "amd-q1-2026",
+      "file": "amd-q1-2026-earnings-ai-infrastructure.pdf",
+      "title": "AMD Q1 2026: Earnings & AI Infrastructure",
+      "description": "Deep dive into AMD's Q1 2026 earnings — data center growth, AI chip competitive positioning, and what it signals for the broader semiconductor and infrastructure cycle.",
+      "tags": ["earnings", "semiconductor", "ai", "infrastructure"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "bitcoin-quantum",
+      "file": "bitcoin-vs-quantum-computing-threat-analysis.pdf",
+      "title": "Bitcoin vs Quantum Computing: Threat Analysis",
+      "description": "A rigorous analysis of the quantum computing threat to Bitcoin's cryptographic foundations — timelines, scenarios, and what the crypto community is (and isn't) doing about it.",
+      "tags": ["bitcoin", "crypto", "quantum", "security"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "tech-disruption-timing",
+      "file": "technology-disruption-timing-innovation-ecosystems.pdf",
+      "title": "Technology Disruption: Timing & Innovation Ecosystems",
+      "description": "Why timing matters more than the technology itself — frameworks for identifying where an innovation sits in its adoption curve and how ecosystems accelerate or kill disruption.",
+      "tags": ["technology", "disruption", "innovation", "investing"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "arkvx-pre-ipo",
+      "file": "arkvx-pre-ipo-portfolio-spacex-openai.pdf",
+      "title": "ARK Venture: Pre-IPO Portfolio — SpaceX & OpenAI",
+      "description": "An analysis of ARK's venture exposure to SpaceX and OpenAI — valuation frameworks for pre-IPO positions and what liquidity events could mean for retail investors.",
+      "tags": ["venture", "pre-ipo", "spacex", "openai"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "agi-blueprint",
+      "file": "2026-AGI-Intelligence-Blueprint-OpenAI-Microsoft.pdf",
+      "title": "AGI Intelligence Blueprint: OpenAI & Microsoft 2026",
+      "description": "OpenAI and Microsoft's strategic blueprint for AGI development — capability roadmaps, safety frameworks, and the investment thesis behind the most consequential technology partnership of the decade.",
+      "tags": ["agi", "openai", "microsoft", "ai"],
+      "date": "2026-05-21",
+      "featured": false
+    },
+    {
+      "id": "wealth-mgmt-tech-trends",
+      "file": "2026-Wealth-Management-Technology-Trends-Blueprint.pdf",
+      "title": "Wealth Management Technology Trends Blueprint 2026",
+      "description": "The definitive technology trends shaping wealth management in 2026 — from AI-driven advisory to digital assets custody, RegTech, and the platforms winning institutional mandates.",
+      "tags": ["wealth", "technology", "trends", "fintech"],
+      "date": "2026-05-21",
+      "featured": false
+    }
+  ]
+}

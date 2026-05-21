@@ -209,6 +209,29 @@ const DISPATCH_DATA = [
   },
 ];
 
+const MEDIUM_ARTICLES = [
+  {
+    title: 'The Fallacy of Bitcoin as a Solution to Inflation',
+    excerpt: 'A critical examination of the popular narrative that Bitcoin is an effective inflation hedge — and why the data tells a different story.',
+    url: 'https://samvishwas.medium.com/the-fallacy-of-bitcoin-as-a-solution-to-inflation-384f820190e9',
+  },
+  {
+    title: 'Unraveling the Intricacies of Business Ecosystems: A Deep Dive into the Robo-Advisor Landscape',
+    excerpt: 'How robo-advisors reshaped wealth management — a systems-level analysis of the competitive dynamics, moats, and fragility points in the robo-advisor ecosystem.',
+    url: 'https://samvishwas.medium.com/unraveling-the-intricacies-of-business-ecosystems-a-deep-dive-into-the-robo-advisor-landscape-23e34e716784',
+  },
+  {
+    title: 'The UX Problems Facing Blockchain Technology',
+    excerpt: 'Mass adoption of blockchain is blocked not by technology but by user experience — an analysis of the friction preventing mainstream uptake.',
+    url: 'https://samvishwas.medium.com/the-ux-problems-facing-blockchain-technology-894d1850c1f8',
+  },
+  {
+    title: 'Comparing the Best Layer-1 Blockchain Networks: Bitcoin, Ethereum, Binance, Solana, Cardano and More',
+    excerpt: 'A rigorous comparison of the leading Layer-1 blockchains across throughput, decentralisation, security, and ecosystem depth.',
+    url: 'https://samvishwas.medium.com/comparing-the-best-layer-1-blockchain-networks-bitcoin-ethereum-binance-solana-cardano-and-de48ad181ced',
+  },
+];
+
 /* ── PALETTE + CONFIG ───────────────────────────────────────────── */
 const PALETTES = [
   { id: 'teal',     name: 'Teal Ledger',    accent: '#0DC9C9' },
@@ -580,6 +603,52 @@ function renderResources() {
   grid.innerHTML = html;
 }
 
+/* ── PDF SHELF LOADER ───────────────────────────────────────────── */
+const AGI_PDF_ID = 'agi-blueprint';
+const WM_PDF_ID  = 'wealth-mgmt-tech-trends';
+
+function renderShelfPdfs(pdfs, baseUrl) {
+  let list = [...pdfs];
+  const hasAgi = list.some(p => p.id === AGI_PDF_ID);
+  const hasWm  = list.some(p => p.id === WM_PDF_ID);
+  if (hasAgi && hasWm) {
+    const drop = Math.random() < 0.5 ? AGI_PDF_ID : WM_PDF_ID;
+    list = list.filter(p => p.id !== drop);
+  }
+  return list.map(pdf => {
+    const url  = baseUrl + encodeURIComponent(pdf.file);
+    const tags = (pdf.tags || []).map(t => `<span class="pdf-tag">${t}</span>`).join('');
+    return `
+      <a href="${url}" class="resource-card resource-card-pdf reveal-up" target="_blank" rel="noopener noreferrer" aria-label="${pdf.title}">
+        <div class="resource-card-pdf-top">
+          <span class="resource-type-badge badge-pdf">PDF</span>
+          ${pdf.featured ? '<span class="resource-featured-badge">Featured</span>' : ''}
+        </div>
+        <p class="resource-title">${pdf.title}</p>
+        <p class="resource-desc">${pdf.description}</p>
+        <div class="pdf-tags">${tags}</div>
+        <div class="resource-meta">
+          <span class="resource-dot"></span>
+          ${pdf.date}
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+function loadShelf() {
+  fetch('data/pdfs.json')
+    .then(r => r.json())
+    .then(data => {
+      const grid = document.getElementById('resourceGrid');
+      if (!grid) return;
+      const pdfHtml = renderShelfPdfs(data.pdfs || [], data.baseUrl || '');
+      grid.insertAdjacentHTML('afterbegin', pdfHtml);
+      requestAnimationFrame(() => setupReveal());
+    })
+    .catch(() => {});
+}
+
 function showResourceNotice(el) {
   if (el.dataset.active) return;
   el.dataset.active = 'true';
@@ -597,7 +666,22 @@ function renderDispatches() {
   const feed = document.getElementById('dispatchFeed');
   if (!feed) return;
 
-  const html = DISPATCH_DATA.map((d) => `
+  const mediumPick = MEDIUM_ARTICLES[Math.floor(Math.random() * MEDIUM_ARTICLES.length)];
+
+  const mediumCard = `
+    <article class="dispatch-card dispatch-card-live reveal-up">
+      <div class="dispatch-left">
+        <span class="dispatch-source-badge">Medium · Sam Vishwas</span>
+        <h3 class="dispatch-title">${mediumPick.title}</h3>
+        <p class="dispatch-excerpt">${mediumPick.excerpt}</p>
+      </div>
+      <div class="dispatch-right">
+        <a href="${mediumPick.url}" target="_blank" rel="noopener noreferrer" class="dispatch-read-link">Read →</a>
+      </div>
+    </article>
+  `;
+
+  const comingSoonCards = DISPATCH_DATA.map((d) => `
     <article class="dispatch-card reveal-up">
       <div class="dispatch-left">
         <h3 class="dispatch-title">${d.title}</h3>
@@ -611,7 +695,7 @@ function renderDispatches() {
     </article>
   `).join('');
 
-  feed.innerHTML = html;
+  feed.innerHTML = mediumCard + comingSoonCards;
 }
 
 function showDispatchNotice(btn) {
@@ -713,6 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTickers();
   loadLibrary();
   renderResources();
+  loadShelf();
   renderDispatches();
   renderFounderQuote();
   setFooterYear();
