@@ -1958,6 +1958,66 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   }
 }
 
+/* ── MISSION SECTION ────────────────────────────────────────────── */
+.mission-body {
+  max-width: 720px;
+}
+.mission-body p {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--fg-secondary);
+  margin-bottom: 1.25rem;
+  transition: color var(--t-theme) var(--ease-out);
+}
+.mission-body p:last-child { margin-bottom: 0; }
+
+/* ── BRIDGE SECTION ──────────────────────────────────────────────── */
+.section-bridge {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t-theme) var(--ease-out);
+}
+.bridge-heading {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin-bottom: 1rem;
+  transition: color var(--t-theme) var(--ease-out);
+}
+.bridge-body {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: var(--fg-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.75;
+  transition: color var(--t-theme) var(--ease-out);
+}
+
+/* ── HERO SECONDARY LINK ─────────────────────────────────────────── */
+.hero-engine-link {
+  font-size: 0.9rem;
+  color: var(--fg-secondary);
+  text-decoration: none;
+  padding: 14px 20px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity var(--t-fast) var(--ease-out), color var(--t-theme) var(--ease-out);
+}
+.hero-engine-link:hover { opacity: 1; color: var(--fg); }
+
+/* ── QUALIFY INLINE LINK ─────────────────────────────────────────── */
+.qualify-inline-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast);
+}
+.qualify-inline-link:hover { border-bottom-color: var(--accent); }
+
 /* ── FOUNDER QUOTE STRIP ────────────────────────────────────────── */
 .founder-quote-strip {
   padding: 64px 0;
