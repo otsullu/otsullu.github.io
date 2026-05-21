@@ -2278,8 +2278,8 @@ html[data-palette="ullu"] {
 .sig-btn-ots:hover          { border-color: #58A6FF; box-shadow: 0 0 0 1px #58A6FF40; }
 .sig-btn-ots:focus-visible  { outline: 2px solid #58A6FF; }
 .sig-btn-ots[aria-pressed="true"] { border-color: #58A6FF; box-shadow: 0 0 0 2px #0E1117, 0 0 0 4px #e6edf3; }
-.sig-btn-ots .sig-btn-wordmark { color: #58A6FF; }
-.sig-btn-ots .sig-btn-gold     { color: #FFD700; }
+.sig-btn-ots .sig-btn-wordmark { color: #e6edf3; }
+.sig-btn-ots .sig-btn-gold     { color: #58A6FF; }
 .sig-btn-ots .sig-btn-label    { color: #8B949E; }
 
 /* Ullu button — v1 signature: navy + gold */
