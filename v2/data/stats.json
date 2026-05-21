@@ -1,0 +1,37 @@
+{
+  "trade": {
+    "contracts": 8767,
+    "transactions": 3352,
+    "underlyings": 26,
+    "accounts": 8,
+    "tradingDays": 172,
+    "avgEventsPerDay": 19,
+    "peakEventsPerDay": 145,
+    "ccContracts": 7708,
+    "cspContracts": 1059,
+    "topTickers": [
+      { "sym": "TSLA",  "contracts": 3307 },
+      { "sym": "NVDA",  "contracts": 1086 },
+      { "sym": "COIN",  "contracts": 879  },
+      { "sym": "PLTR",  "contracts": 704  },
+      { "sym": "META",  "contracts": 511  },
+      { "sym": "AMZN",  "contracts": 485  },
+      { "sym": "GOOGL", "contracts": 430  },
+      { "sym": "MSFT",  "contracts": 417  },
+      { "sym": "QQQ",   "contracts": 190  },
+      { "sym": "AAPL",  "contracts": 137  }
+    ]
+  },
+  "surveillance": {
+    "rowsPerCycle": 29969,
+    "fieldsTracked": 78,
+    "evaluationsPerCycle": 809082,
+    "evaluationsPerDay": 21036132,
+    "cyclesPerDay": 26,
+    "dataStreams": 3
+  },
+  "meta": {
+    "generatedAt": "2026-05-20T22:49:46.403Z",
+    "source": "usp_q_WebsiteStats"
+  }
+}

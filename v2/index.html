@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTS Ullu: Open Financial Literacy and Institutional Options Engineering</title>
+  <meta name="description" content="Free multilingual financial education across 12 Indian languages, and an institutional-grade options engine for disciplined investors." />
+  <meta property="og:title" content="OTS Ullu: Open Financial Literacy" />
+  <meta property="og:description" content="Market psychology, equity mechanics, and quantitative foundations — delivered free, without language barriers." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      document.documentElement.setAttribute('data-palette', (p && valid.indexOf(p) !== -1) ? p : 'gold');
+    } catch(e) {}
+  })();
+  </script>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="config-section">
+    <span class="config-section-label">Appearance</span>
+    <div class="theme-segmented" role="group" aria-label="Color theme">
+      <button class="theme-seg-btn" data-theme-set="light" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+        Light
+      </button>
+      <button class="theme-seg-btn" data-theme-set="dark" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Dark
+      </button>
+    </div>
+  </div>
+
+  <div class="config-divider" aria-hidden="true"></div>
+
+  <div class="config-section">
+    <span class="config-section-label">Accent Color</span>
+    <div class="palette-grid" id="paletteGrid" role="radiogroup" aria-label="Accent color palette">
+      <!-- populated by JS -->
+    </div>
+    <span class="palette-active-name" id="paletteActiveName" aria-live="polite"></span>
+  </div>
+
+
+
+</div>
+<div class="config-scrim" id="configScrim" hidden aria-hidden="true"></div>
+
+<!-- ── HERO ───────────────────────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-inner reveal-up">
+    <p class="hero-eyebrow">An Open Financial Literacy Initiative</p>
+    <h1 class="hero-headline"><span class="hero-headline-plain">The math is universal.</span><br/><span class="hero-headline-accent">The education should be too.</span></h1>
+    <p class="hero-subline">Market psychology, equity mechanics, and quantitative foundations.<br/>Delivered free, without language barriers.</p>
+    <div class="hero-actions">
+      <a href="#academy" class="btn-primary">Explore the Free Library</a>
+      <a href="#product" class="hero-engine-link">View the Engine</a>
+    </div>
+  </div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+</section>
+
+<!-- ── MISSION ────────────────────────────────────────────────────── -->
+<section class="section section-mission" id="mission">
+  <div class="container">
+    <div class="section-label reveal-up">Our Belief</div>
+    <h2 class="section-heading reveal-up">Financial literacy is a public right.</h2>
+    <div class="mission-body reveal-up">
+      <p>The stock market is not reserved for those who speak one language, hold a particular degree, or live in a particular city. The mathematics of compounding, time decay, and probability are universal. The access to understand them should be too.</p>
+      <p>OTS Ullu was founded on a single conviction: that free, rigorous financial education — delivered without language barriers — is one of the most meaningful things a market practitioner can give back. We publish in twelve Indian languages not as a content strategy. As a values statement.</p>
+      <p>This is where we start. Everything else follows from here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── OPEN FINANCIAL LITERACY ────────────────────────────────────── -->
+<section class="section section-radar" id="academy">
+  <div class="container">
+
+    <div class="section-label reveal-up">Open Financial Literacy</div>
+    <h2 class="section-heading reveal-up">Markets explained<br/>in your language.</h2>
+    <p class="section-subtext reveal-up">India speaks in dozens of tongues. Financial education should not require translation into a single one. OTS Ullu produces a complete curriculum — market psychology, equity mechanics, probability, and options fundamentals — distributed free across twelve languages because no barrier should stand between a person and their financial understanding.</p>
+
+    <!-- Language filter pills -->
+    <div class="lang-filter" id="langFilter" role="tablist">
+      <button class="lang-pill active" data-lang="all" role="tab" aria-selected="true">All</button>
+      <button class="lang-pill" data-lang="Bengali" role="tab" aria-selected="false">Bengali</button>
+      <button class="lang-pill" data-lang="English" role="tab" aria-selected="false">English</button>
+      <button class="lang-pill" data-lang="Gujarati" role="tab" aria-selected="false">Gujarati</button>
+      <button class="lang-pill" data-lang="Hindi" role="tab" aria-selected="false">Hindi</button>
+      <button class="lang-pill" data-lang="Kannada" role="tab" aria-selected="false">Kannada</button>
+      <button class="lang-pill" data-lang="Malayalam" role="tab" aria-selected="false">Malayalam</button>
+      <button class="lang-pill" data-lang="Marathi" role="tab" aria-selected="false">Marathi</button>
+      <button class="lang-pill" data-lang="Odia" role="tab" aria-selected="false">Odia</button>
+      <button class="lang-pill" data-lang="Punjabi" role="tab" aria-selected="false">Punjabi</button>
+      <button class="lang-pill" data-lang="Tamil" role="tab" aria-selected="false">Tamil</button>
+      <button class="lang-pill" data-lang="Telugu" role="tab" aria-selected="false">Telugu</button>
+      <button class="lang-pill" data-lang="Urdu" role="tab" aria-selected="false">Urdu</button>
+    </div>
+
+    <!-- Scroll-snap carousel -->
+    <div class="video-carousel-wrap">
+      <div class="video-carousel" id="videoCarousel">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── INSIGHT SHELF ──────────────────────────────────────────────── -->
+<section class="section section-shelf" id="shelf">
+  <div class="container">
+
+    <div class="section-label reveal-up">Insight Shelf</div>
+    <h2 class="section-heading reveal-up">Research &amp; Reference Library</h2>
+
+    <div class="resource-grid" id="resourceGrid">
+      <!-- populated by JS -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ANALYTICAL DISPATCHES ─────────────────────────────────────── -->
+<section class="section section-dispatches" id="dispatches">
+  <div class="container">
+
+    <div class="section-label reveal-up">Analytical Dispatches</div>
+    <h2 class="section-heading reveal-up">From the desk.</h2>
+
+    <div class="dispatch-feed" id="dispatchFeed">
+      <!-- populated by JS -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ── THE BRIDGE ─────────────────────────────────────────────────── -->
+<section class="section section-bridge" id="bridge">
+  <div class="container">
+    <div class="bridge-inner reveal-up">
+      <h2 class="bridge-heading">From understanding to execution.</h2>
+      <p class="bridge-body">The same discipline that structures OTS Ullu's education eventually demanded its own tools. Not to replace the principles — to enforce them at scale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ──────────────────────────────────────────────────── -->
+<div class="stats-bar" id="statsBar">
+  <div class="container stats-inner">
+    <div class="stat-item reveal-up">
+      <span class="stat-value" id="statContracts">8,767</span>
+      <span class="stat-label">Contracts Traded</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item reveal-up">
+      <span class="stat-value" id="statTransactions">3,352</span>
+      <span class="stat-label">Transactions</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item reveal-up">
+      <span class="stat-value" id="statUnderlyings">26</span>
+      <span class="stat-label">Underlyings</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item reveal-up">
+      <span class="stat-value" id="statAccounts">8</span>
+      <span class="stat-label">Broker Accounts</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item reveal-up">
+      <span class="stat-value">Jun 2025</span>
+      <span class="stat-label">Reactivated</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRODUCT REVEAL ─────────────────────────────────────────────── -->
+<section class="section section-product" id="product">
+  <div class="container">
+
+    <div class="section-label reveal-up">OTS Ullu MVP-1</div>
+    <h2 class="section-heading reveal-up">Three strategies.<br/>One disciplined system.</h2>
+
+    <div class="capability-grid">
+
+      <div class="capability-card reveal-up">
+        <div class="cap-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 24 L12 16 L18 20 L28 8"/>
+            <path d="M22 8 L28 8 L28 14"/>
+            <line x1="16" y1="28" x2="16" y2="22"/>
+            <circle cx="16" cy="20" r="2" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="cap-title">Short Covered Call</h3>
+        <p class="cap-desc">Retain your underlying stock while theta decay works in your favour. Premium collected at open erodes daily — the position closes profitably as the option approaches worthless at expiry.</p>
+      </div>
+
+      <div class="capability-card reveal-up">
+        <div class="cap-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="18" width="24" height="6" rx="1"/>
+            <path d="M10 18 L10 12 L22 12 L22 18"/>
+            <line x1="16" y1="8" x2="16" y2="12"/>
+            <circle cx="16" cy="6" r="2" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="cap-title">Short Cash-Secured Put</h3>
+        <p class="cap-desc">Sell the put, collect premium upfront, and let theta decay do the work. The engine targets strikes where time erosion outpaces price risk, generating income while actively avoiding unwanted assignment.</p>
+      </div>
+
+      <div class="capability-card reveal-up">
+        <div class="cap-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 16 A10 10 0 1 1 26 16" stroke-dasharray="3 2"/>
+            <path d="M22 10 L26 16 L20 18"/>
+            <circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="cap-title">Wheel Strategy</h3>
+        <p class="cap-desc">Coming in MVP-2: the full income cycle unifying Short Cash-Secured Put and Short Covered Call into a continuous, compounding premium engine.</p>
+      </div>
+
+    </div>
+
+    <!-- Velocity Callout -->
+    <div class="velocity-callout reveal-up">
+      <p class="velocity-quote">
+        "19+ trade events tracked every trading day. Peak tempo: 145 per day. At that velocity, a spreadsheet does not slow you down. It breaks you."
+      </p>
+      <p class="velocity-body">
+        Across 172 trading days, OTS Ullu processed 3,352 transactions covering 8,767 contracts across 26 underlyings and 8 broker accounts — each requiring expiry monitoring, roll-trigger evaluation, and assignment risk assessment in real time. This is the scale at which manual tracking becomes statistically impossible. OTS Ullu exists precisely because it had to.
+      </p>
+      <div class="theta-strip">
+        <div class="theta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <path d="M12 7 Q16 12 12 17"/>
+          </svg>
+        </div>
+        <div class="theta-text">
+          <span class="theta-headline">Every day, time works for us — not against us.</span>
+          <span class="theta-body">Both strategies are short: we sell the option, collect the premium upfront, and profit as theta decay erodes its value toward expiry. The engine's job is to maximise the number of times we do this, at the right strikes, in the right conditions.</span>
+        </div>
+      </div>
+      <div class="velocity-stats">
+        <div class="vel-stat">
+          <span class="vel-num">19+</span>
+          <span class="vel-label">Trade events<br/>per trading day</span>
+        </div>
+        <div class="vel-stat">
+          <span class="vel-num">145</span>
+          <span class="vel-label">Peak daily<br/>transactions</span>
+        </div>
+        <div class="vel-stat">
+          <span class="vel-num">172</span>
+          <span class="vel-label">Trading days<br/>in operation</span>
+        </div>
+        <div class="vel-stat">
+          <span class="vel-num">0</span>
+          <span class="vel-label">Spreadsheets<br/>still in use</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategy Split -->
+    <div class="strategy-split reveal-up">
+      <div class="split-row">
+        <div class="split-item">
+          <span class="split-label">Short Covered Call</span>
+          <div class="split-bar-wrap">
+            <div class="split-bar split-bar-cc" style="width: 88%"></div>
+          </div>
+          <span class="split-pct">88%</span>
+          <span class="split-sub">7,708 contracts</span>
+        </div>
+        <div class="split-item">
+          <span class="split-label">Short Cash-Secured Put</span>
+          <div class="split-bar-wrap">
+            <div class="split-bar split-bar-csp" style="width: 12%"></div>
+          </div>
+          <span class="split-pct">12%</span>
+          <span class="split-sub">1,059 contracts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Tickers -->
+    <div class="ticker-shelf reveal-up">
+      <p class="ticker-shelf-label">Most Traded Underlyings</p>
+      <div class="ticker-list" id="tickerList">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Engineering Pulse Timeline -->
+    <div class="timeline-wrap reveal-up">
+      <h3 class="timeline-heading">Engineering Pulse</h3>
+      <div class="timeline" id="engineeringTimeline">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Qualification Gate -->
+    <div class="qualify-gate reveal-up">
+
+      <div class="qualify-status">
+        <span class="qualify-status-dot"></span>
+        <span class="qualify-status-text">MVP-1 Candidate List: Full</span>
+      </div>
+
+      <h3 class="qualify-heading">MVP-1 is full. Begin preparing for MVP-2.</h3>
+      <p class="qualify-body">Our MVP-1 candidate list is complete. We are honoured by the interest and grateful for every application. Unfortunately, we do not have room to accommodate further requests at this stage. If you are genuinely interested, we encourage you to begin preparing now for MVP-2. Seats will be limited. Invitations are extended by hand, based on demonstrated commitment and qualification.</p>
+
+      <div class="qualify-steps">
+        <p class="qualify-steps-label">How to increase your chances</p>
+        <div class="qualify-step-list">
+          <div class="qualify-step">
+            <span class="qualify-step-num">01</span>
+            <div>
+              <p class="qualify-step-title">Study the curriculum</p>
+              <p class="qualify-step-desc">Work through the full video library. Depth of knowledge signals depth of commitment. Start at <a href="#academy" class="qualify-inline-link">the free library above</a>.</p>
+            </div>
+          </div>
+          <div class="qualify-step">
+            <span class="qualify-step-num">02</span>
+            <div>
+              <p class="qualify-step-title">Follow us and engage with the material</p>
+              <p class="qualify-step-desc">YouTube, Instagram, TikTok, Facebook, and LinkedIn. Genuine questions and thoughtful responses demonstrate the intellectual depth we look for.</p>
+            </div>
+          </div>
+          <div class="qualify-step">
+            <span class="qualify-step-num">03</span>
+            <div>
+              <p class="qualify-step-title">Leave feedback that matters</p>
+              <p class="qualify-step-desc">Thoughtful questions and constructive feedback show us you are engaged with the material, not just the brand.</p>
+            </div>
+          </div>
+          <div class="qualify-step">
+            <span class="qualify-step-num">04</span>
+            <div>
+              <p class="qualify-step-title">Be patient. We will find you.</p>
+              <p class="qualify-step-desc">We monitor engagement across all platforms. When the right partnership fit is apparent, we extend the hand. You do not need to chase us.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qualify-social">
+        <p class="qualify-social-label">Start here</p>
+        <div class="qualify-social-links">
+          <a href="https://www.facebook.com/otsullu" target="_blank" rel="noopener" class="qualify-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/otsullu.insta" target="_blank" rel="noopener" class="qualify-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/company/otsullu" target="_blank" rel="noopener" class="qualify-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.tiktok.com/@otsullu" target="_blank" rel="noopener" class="qualify-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            TikTok
+          </a>
+          <a href="https://www.youtube.com/@otsullu?sub_confirmation=1" target="_blank" rel="noopener" class="qualify-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ── POSITION SURVEILLANCE ──────────────────────────────────────── -->
+<section class="section section-surveillance" id="surveillance">
+  <div class="container">
+
+    <div class="section-label reveal-up">Position Surveillance</div>
+    <h2 class="section-heading reveal-up">The owl never blinks.</h2>
+    <p class="section-subtext reveal-up">Every open position is re-evaluated every 15 minutes across three synchronized market data streams. Not periodically. Not on demand. Continuously — from market open to close, 26 times a day, without exception.</p>
+
+    <div class="surveillance-grid reveal-up">
+      <div class="surv-stat">
+        <span class="surv-num" id="survRowsPerCycle">29,969</span>
+        <span class="surv-label">Market rows evaluated<br/>per cycle</span>
+      </div>
+      <div class="surv-stat">
+        <span class="surv-num" id="survFieldsTracked">78</span>
+        <span class="surv-label">Fields tracked<br/>across 3 data streams</span>
+      </div>
+      <div class="surv-stat">
+        <span class="surv-num" id="survEvalsPerCycle">809K</span>
+        <span class="surv-label">Data point evaluations<br/>per monitoring cycle</span>
+      </div>
+      <div class="surv-stat">
+        <span class="surv-num" id="survEvalsPerDay">21M</span>
+        <span class="surv-label">Evaluations executed<br/>every trading day</span>
+      </div>
+      <div class="surv-stat">
+        <span class="surv-num" id="survCyclesPerDay">26</span>
+        <span class="surv-label">Monitoring cycles<br/>every trading day</span>
+      </div>
+      <div class="surv-stat">
+        <span class="surv-num" id="survDataStreams">3</span>
+        <span class="surv-label">Synchronized streams:<br/>Chain · Quote · Market</span>
+      </div>
+    </div>
+
+    <p class="surv-scale-note reveal-up">And the scale has just started.</p>
+
+  </div>
+</section>
+
+<!-- ── SYSTEM INTELLIGENCE ───────────────────────────────────────── -->
+<section class="section section-intelligence" id="intelligence">
+  <div class="container">
+
+    <div class="section-label reveal-up">The Engine Under the Hood</div>
+    <h2 class="section-heading reveal-up">Not a tool. A decision architecture.</h2>
+    <p class="section-subtext reveal-up">MVP-1 ships with a fully pre-configured policy engine, calibrated by consensus across four large language models, that a user can understand, tweak, and own. Because we believe investing is not a light switch. It is a gradient. Performance varies across parameters, market regimes, and objectives. The system is built for that reality.</p>
+
+    <!-- Three-tier architecture -->
+    <div class="arch-tier-row reveal-up">
+      <div class="arch-tier">
+        <span class="arch-tier-num">2</span>
+        <span class="arch-tier-label">Strategies</span>
+        <span class="arch-tier-detail">Short Covered Call &nbsp;·&nbsp; Short Cash-Secured Put</span>
+      </div>
+      <div class="arch-tier-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="arch-tier">
+        <span class="arch-tier-num">2</span>
+        <span class="arch-tier-label">Objectives</span>
+        <span class="arch-tier-detail">Max Income, Retain Shares &nbsp;·&nbsp; Max Premium, No Assignment</span>
+      </div>
+      <div class="arch-tier-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="arch-tier">
+        <span class="arch-tier-num">40</span>
+        <span class="arch-tier-label">Policy Parameters</span>
+        <span class="arch-tier-detail">19 for Covered Call &nbsp;·&nbsp; 21 for Cash-Secured Put &nbsp;·&nbsp; each with a defined range and step</span>
+      </div>
+    </div>
+
+    <!-- Parameter summary — no internal detail exposed -->
+    <div class="param-summary reveal-up">
+      <div class="param-summary-stat">
+        <span class="param-summary-num">40</span>
+        <span class="param-summary-label">Tunable Parameters</span>
+        <span class="param-summary-sub">Across four analytical dimensions. Pre-configured out of the box and fully adjustable to your objectives.</span>
+      </div>
+      <div class="param-summary-stat">
+        <span class="param-summary-num">13</span>
+        <span class="param-summary-label">Evaluation Filters <span class="filter-engine-evolving">· Continuously Evolving</span></span>
+        <span class="param-summary-sub">A two-stage pipeline: hard gates eliminate unsuitable candidates first, then a weighted multi-factor model ranks what remains. Standard options Greeks anchor every calculation. Proprietary signals layer on top.</span>
+      </div>
+      <div class="param-summary-stat">
+        <span class="param-summary-num">2</span>
+        <span class="param-summary-label">Evaluation Stages</span>
+        <span class="param-summary-sub">Open position qualification runs before roll-to candidate scoring — ensuring every recommendation starts from a sound baseline.</span>
+      </div>
+    </div>
+
+    <!-- AI-ready features -->
+    <div class="ai-ready-grid reveal-up">
+      <div class="ai-ready-card">
+        <div class="ai-ready-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 class="ai-ready-title">Pre-Calibrated by Multi-LLM Consensus</h3>
+        <p class="ai-ready-desc">Default policy values were derived from consensus across four large language models — not a single opinion, not a gut feel. A starting point grounded in collective analytical reasoning.</p>
+      </div>
+      <div class="ai-ready-card">
+        <div class="ai-ready-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="ai-ready-title">Built-in Explainability Reports</h3>
+        <p class="ai-ready-desc">Every roll recommendation ships with an explainability report — structured data explaining which filters passed, which scored highest, and why a candidate ranked where it did.</p>
+      </div>
+      <div class="ai-ready-card">
+        <div class="ai-ready-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3 class="ai-ready-title">Ready-Made Analysis Prompts</h3>
+        <p class="ai-ready-desc">Take your live trade data to any AI instantly. The system generates ready-made prompts pre-loaded with your positions, scores, and context. Real-time second opinion, zero friction.</p>
+      </div>
+      <div class="ai-ready-card">
+        <div class="ai-ready-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3 class="ai-ready-title">Tweak, Test, Learn</h3>
+        <p class="ai-ready-desc">Every parameter has a defined range and step. Tighten delta, shift Days to Expiration, raise Return on Capital thresholds and observe what survives. The system is designed to build your intuition, not replace it.</p>
+      </div>
+    </div>
+
+    <!-- Gradient philosophy -->
+    <blockquote class="gradient-quote reveal-up">
+      <p>"Markets are not binary. Performance does not simply switch on or off. It moves across a continuous gradient shaped by risk, time, and changing regimes. We craft systematic engines that respect this math, providing the precision and discipline required to navigate it."</p>
+      <footer>The OTS Ullu Design Principle</footer>
+    </blockquote>
+
+  </div>
+</section>
+
+<!-- ── FOUNDER QUOTE STRIP ────────────────────────────────────────── -->
+<div class="founder-quote-strip" id="founderQuote">
+  <div class="container">
+    <p class="fq-text"></p>
+    <span class="fq-attribution">Sam Vishwas &nbsp;&middot;&nbsp; Founder, OTS Ullu</span>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+
+      <div class="footer-social">
+      <a href="https://www.facebook.com/otsullu" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/otsullu.insta" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/otsullu" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@otsullu" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@otsullu" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      </div>
+    </div>
+
+    <details class="footer-disclosures">
+      <summary>Disclosures &amp; Risk</summary>
+      <div class="footer-disclosure-body">
+        <p><strong>Educational Content Only.</strong> All content published by OTS Ullu — including videos, articles, tools, and commentary — is provided solely for educational and informational purposes. Nothing on this platform constitutes financial advice, investment advice, trading advice, or any other form of professional advice. Past performance of any strategy, security, or financial instrument discussed is not indicative of future results.</p>
+        <p>Options trading involves significant risk of loss and is not suitable for all investors. Selling covered calls and cash-secured puts may still result in substantial losses. You should carefully consider your investment objectives, level of experience, risk appetite, and financial situation before engaging in options trading. Always consult a qualified financial advisor or licensed broker before making any investment decision.</p>
+        <p>OTS Ullu is not a registered investment advisor, broker-dealer, or financial institution. We do not manage client funds, execute trades on behalf of users, or provide personalised portfolio recommendations. Any stock, ETF, or option mentioned is for illustrative and educational purposes only and does not constitute a buy or sell recommendation.</p>
+        <p><strong>AI-Assisted Content.</strong> OTS Ullu uses artificial intelligence tools to research, analyse, summarise, and present financial information. AI systems can and do make errors — including factual inaccuracies, outdated data, and flawed analysis. We strongly encourage all viewers and users to conduct their own independent research and verify any information before acting on it. AI-generated content on this platform does not substitute for professional financial, legal, or tax advice.</p>
+      </div>
+    </details>
+
+    <p class="footer-copy">
+      &copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.
+    </p>
+
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
