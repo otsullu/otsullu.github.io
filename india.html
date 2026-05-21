@@ -272,11 +272,14 @@
     /* ── VIDEO GRID ───────────────────────────────────────────────── */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
-    @media (max-width: 600px) {
-      .video-grid { grid-template-columns: 1fr; }
+    @media (min-width: 540px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+    @media (min-width: 860px) {
+      .video-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
     }
     .video-card {
       display: flex;
@@ -374,7 +377,7 @@
     }
 
     /* ── VIDEO SECTIONS ───────────────────────────────────────────── */
-    .video-section { margin-bottom: 48px; }
+    .video-section { margin-bottom: 56px; }
     .video-section[hidden] { display: none; }
     .video-section-heading {
       font-size: 0.72rem;
@@ -383,9 +386,30 @@
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--accent-tint-20);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--accent-tint-25);
       transition: color var(--t-theme) var(--ease-out), border-color var(--t-theme) var(--ease-out);
+    }
+    .video-section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+    .video-section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      transition: background var(--t-theme) var(--ease-out);
+    }
+    .video-section-divider-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-meta);
+      white-space: nowrap;
+      transition: color var(--t-theme) var(--ease-out);
     }
 
     /* empty state */
@@ -582,9 +606,15 @@
       </div>
     </div>
 
+    <!-- Divider -->
+    <div class="video-section-divider" id="sectionDivider" hidden>
+      <div class="video-section-divider-line"></div>
+      <span class="video-section-divider-label">More from IndianRadar.AI</span>
+      <div class="video-section-divider-line"></div>
+    </div>
+
     <!-- Section 2: More from IndianRadar -->
     <div class="video-section" id="sectionMore">
-      <h3 class="video-section-heading">More from IndianRadar.AI</h3>
       <div class="video-grid" id="gridMore" aria-live="polite"></div>
     </div>
 
@@ -639,13 +669,36 @@ let basicsVideos = [];  // "Indian Stock Market Basics in *"
 let moreVideos   = [];  // all other indian-radar videos
 let activeFilter = 'All';
 
+/* Convert Unicode mathematical bold/italic letters back to plain ASCII */
+function normalizeMathBold(str) {
+  return [...str].map(ch => {
+    const cp = ch.codePointAt(0);
+    if (cp >= 0x1D400 && cp <= 0x1D419) return String.fromCharCode(cp - 0x1D400 + 65);  // Bold A-Z
+    if (cp >= 0x1D41A && cp <= 0x1D433) return String.fromCharCode(cp - 0x1D41A + 97);  // Bold a-z
+    if (cp >= 0x1D5D4 && cp <= 0x1D5ED) return String.fromCharCode(cp - 0x1D5D4 + 65);  // Bold Sans A-Z
+    if (cp >= 0x1D5EE && cp <= 0x1D607) return String.fromCharCode(cp - 0x1D5EE + 97);  // Bold Sans a-z
+    if (cp >= 0x1D468 && cp <= 0x1D481) return String.fromCharCode(cp - 0x1D468 + 65);  // Bold Italic A-Z
+    if (cp >= 0x1D482 && cp <= 0x1D49B) return String.fromCharCode(cp - 0x1D482 + 97);  // Bold Italic a-z
+    return ch;
+  }).join('');
+}
+
+/* Normalise lang values — Oriya is the old script name, modern is Odia */
+const LANG_NORM = { Oriya: 'Odia' };
+function normLang(lang) { return LANG_NORM[lang] || lang || 'Unknown'; }
+
 function isBasicsVideo(v) {
-  return /indian stock market basics in/i.test(v.title);
+  return /indian stock market basics in/i.test(normalizeMathBold(v.title));
 }
 
 function extractLangFromTitle(v) {
-  const m = v.title.match(/indian stock market basics in\s+(\w+)/i);
-  return m ? m[1] : (v.lang || 'Unknown');
+  const plain = normalizeMathBold(v.title);
+  const m = plain.match(/indian stock market basics in\s+(\w+)/i);
+  return m ? m[1] : normLang(v.lang);
+}
+
+function getDisplayLang(v) {
+  return isBasicsVideo(v) ? extractLangFromTitle(v) : normLang(v.lang);
 }
 
 function videoCard(v) {
@@ -654,7 +707,7 @@ function videoCard(v) {
   const viewStr = views > 0 ? Number(views).toLocaleString() + ' views' : '';
   const dateStr = v.published || '';
   const meta    = [viewStr, dateStr].filter(Boolean).join(' · ');
-  const lang    = v.lang || 'Unknown';
+  const lang    = getDisplayLang(v);
 
   return `
     <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer"
@@ -680,7 +733,7 @@ function renderSections(lang) {
   const gridB     = document.getElementById('gridBasics');
   const gridM     = document.getElementById('gridMore');
 
-  const filterFn = v => lang === 'All' || v.lang === lang;
+  const filterFn = v => lang === 'All' || getDisplayLang(v) === lang;
 
   const filteredBasics = basicsVideos.filter(filterFn);
   const filteredMore   = moreVideos.filter(filterFn);
@@ -695,6 +748,8 @@ function renderSections(lang) {
 
   if (secBasics) secBasics.hidden = filteredBasics.length === 0;
   if (secMore)   secMore.hidden   = filteredMore.length === 0;
+  const divider = document.getElementById('sectionDivider');
+  if (divider) divider.hidden = filteredMore.length === 0;
 
   setupReveal();
 }
@@ -724,7 +779,7 @@ function loadVideos() {
 
       moreVideos = indianRadar
         .filter(v => !isBasicsVideo(v))
-        .sort((a, b) => (a.lang || '').localeCompare(b.lang || ''));
+        .sort((a, b) => getDisplayLang(a).localeCompare(getDisplayLang(b)));
 
       if (!basicsVideos.length && !moreVideos.length) {
         basicsVideos = INDIA_VIDEOS_FALLBACK;
