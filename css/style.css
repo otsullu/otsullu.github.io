@@ -2002,6 +2002,10 @@ html[data-theme="light"][data-palette="cyan"]    { --accent:#2589A0; --accent-di
 html[data-palette="amber"]                       { --accent:#D49A3A; --accent-dim:#A07634; --accent-glow:#D49A3A26; }
 html[data-theme="light"][data-palette="amber"]   { --accent:#A8761F; --accent-dim:#7E5816; --accent-glow:#A8761F26; }
 
+/* Ullu — mirrors the OTS Ullu MVP-1 application palette */
+html[data-palette="ullu"]                        { --accent:#58A6FF; --accent-dim:#2878CC; --accent-glow:#58A6FF26; }
+html[data-theme="light"][data-palette="ullu"]    { --accent:#0969DA; --accent-dim:#0550AE; --accent-glow:#0969DA26; }
+
 /* ── CONFIG TRIGGER ─────────────────────────────────────────────── */
 .config-trigger {
   width: 34px;
@@ -2180,6 +2184,50 @@ html[data-theme="light"][data-palette="amber"]   { --accent:#A8761F; --accent-di
   text-align: center;
   min-height: 1.2em;
   transition: color var(--t-theme);
+}
+
+/* ── ULLU SIGNATURE BUTTON ──────────────────────────────────────── */
+.ullu-palette-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  background: #0E1117;
+  border: 1px solid #30363D;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
+  gap: 8px;
+}
+.ullu-palette-btn:hover {
+  border-color: #58A6FF;
+  box-shadow: 0 0 0 1px #58A6FF40;
+  transform: translateY(-1px);
+}
+.ullu-palette-btn:focus-visible {
+  outline: 2px solid #58A6FF;
+  outline-offset: 2px;
+}
+.ullu-palette-btn[aria-pressed="true"] {
+  border-color: #58A6FF;
+  box-shadow: 0 0 0 2px #0E1117, 0 0 0 4px #e6edf3;
+}
+.ullu-btn-wordmark {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #58A6FF;
+}
+.ullu-btn-gold {
+  color: #FFD700;
+}
+.ullu-btn-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8B949E;
 }
 
 /* ── MISSION SECTION ────────────────────────────────────────────── */
