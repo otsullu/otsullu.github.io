@@ -1964,13 +1964,6 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   transition: background var(--t-theme) var(--ease-out);
 }
 
-.resource-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-@media (min-width: 1024px) { .resource-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .resource-card {
   padding: 24px;
@@ -2061,6 +2054,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .resource-featured-badge {
@@ -2073,6 +2067,249 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   border: 1px solid var(--accent-tint-25);
   border-radius: 4px;
   padding: 2px 7px;
+  margin-bottom: 0;
+}
+
+/* badge inside pdf-top row should not push down */
+.resource-card-pdf-top .resource-type-badge {
+  margin-bottom: 0;
+}
+
+/* ── SHELF ROWS ─────────────────────────────────────────────────── */
+.resource-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.shelf-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.shelf-row-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+}
+
+/* ── SHELF CAROUSEL ─────────────────────────────────────────────── */
+.shelf-carousel-wrap {
+  position: relative;
+}
+
+.shelf-carousel-track-outer {
+  overflow: hidden;
+}
+
+.shelf-carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.shelf-carousel-track .resource-card-pdf {
+  flex: 0 0 calc((100% - 32px) / 3);
+  min-width: 0;
+}
+
+.shelf-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  z-index: 2;
+}
+
+.shelf-carousel-arrow:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.shelf-carousel-arrow.prev { left: -18px; }
+.shelf-carousel-arrow.next { right: -18px; }
+
+.shelf-carousel-arrow[disabled] {
+  opacity: 0.3;
+  /* keep pointer-events on so the click is captured and doesn't fall through */
+}
+
+@keyframes shelf-arrow-bump {
+  0%   { transform: translateY(-50%) scale(1); }
+  30%  { transform: translateY(-50%) scale(0.82); }
+  60%  { transform: translateY(-50%) scale(1.08); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+.shelf-arrow-bump {
+  animation: shelf-arrow-bump 0.28s ease;
+}
+
+@media (max-width: 767px) {
+  .shelf-carousel-track .resource-card-pdf {
+    flex: 0 0 calc(100% - 0px);
+  }
+  .shelf-carousel-arrow { display: none; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .shelf-carousel-track .resource-card-pdf {
+    flex: 0 0 calc((100% - 16px) / 2);
+  }
+}
+
+/* ── PDF INLINE VIEWER MODAL ────────────────────────────────────── */
+.pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.pdf-modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  width: 92vw;
+  max-width: 1200px;
+  height: 82vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.pdf-modal-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-modal-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--r-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent-tint-25);
+  background: var(--accent-tint-08, var(--accent-tint-10));
+  text-decoration: none;
+  transition: background var(--t-fast);
+}
+
+.pdf-modal-download:hover { background: var(--accent-tint-15, var(--accent-tint-25)); }
+
+.pdf-modal-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--fg-meta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--t-fast);
+}
+
+.pdf-modal-close:hover { background: var(--border); }
+
+.pdf-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.pdf-nav-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.pdf-nav-btn:hover:not([disabled]) {
+  border-color: var(--accent);
+  background: var(--accent-tint-10);
+  color: var(--accent);
+}
+
+.pdf-nav-btn[disabled] { opacity: 0.3; cursor: default; }
+
+.pdf-nav-counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg-meta);
+  min-width: 54px;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.pdf-modal-body {
+  flex: 1;
+  overflow: hidden;
+  padding: 16px 12px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .pdf-modal-body { background: #2a2a2a; }
+
+.pdf-modal-loading {
+  text-align: center;
+  color: var(--fg-meta);
+  font-size: 0.85rem;
+}
+
+.pdf-page-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+  border-radius: 2px;
+  display: none;
 }
 
 .pdf-tags {
@@ -2803,7 +3040,6 @@ html[data-theme="light"][data-palette="ots"]     { --accent:#0969DA; --accent-di
 
 /* ── RESPONSIVE ─────────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .resource-grid { grid-template-columns: 1fr; }
   .hero-subline br { display: none; }
   .access-capture { padding: 32px 20px; }
 }

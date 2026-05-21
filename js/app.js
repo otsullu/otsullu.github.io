@@ -142,49 +142,6 @@ const RESOURCE_DATA = [
     url: 'https://fintech.samvishwas.com/Calculators/payoff-vs-invest.html',
     contributor: 'Sam Vishwas, Founder',
   },
-  {
-    type: 'PDF',
-    title: 'Magnificent 7: Economic Moats and Competitive Advantages',
-    readTime: '12 min read',
-    comingSoon: true,
-  },
-  {
-    type: 'PPT',
-    title: 'Covered Call Mechanics: Strike Selection Framework',
-    readTime: '8 min read',
-    comingSoon: true,
-  },
-  {
-    type: 'PDF',
-    title: 'Wheel Strategy Playbook: Entry, Management and Exit Rules',
-    readTime: '18 min read',
-    comingSoon: true,
-  },
-  {
-    type: 'XLS',
-    title: 'Options Premium Income Calculator: Monthly Yield Tracker',
-    readTime: 'Interactive',
-    comingSoon: true,
-  },
-  {
-    type: 'PDF',
-    title: 'Behavioural Finance: 12 Cognitive Biases Costing You Returns',
-    readTime: '15 min read',
-    comingSoon: true,
-  },
-  {
-    type: 'PPT',
-    title: 'Cash-Secured Put Strategy: IV Rank and Delta Entry Matrix',
-    readTime: '10 min read',
-    comingSoon: true,
-  },
-  {
-    type: 'SOON',
-    title: 'Position Canvas: Your Strategy in Two and Three Dimensions',
-    desc: 'Visualize every open position across two and three dimensions. Validate your strategy, feel the Greeks in motion, and explore outcomes using advanced charting and visualization techniques.',
-    readTime: 'Coming Soon',
-    comingSoon: true,
-  },
 ];
 
 const FOUNDER_QUOTES = [
@@ -562,28 +519,29 @@ function renderLibrary(data) {
 }
 
 /* ── INSIGHT SHELF ──────────────────────────────────────────────── */
+function buildCarousel(cards, label) {
+  const inner = cards.join('');
+  const arrowPrev = `<button class="shelf-carousel-arrow prev" aria-label="Previous" disabled><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L4 7l5 5"/></svg></button>`;
+  const arrowNext = `<button class="shelf-carousel-arrow next" aria-label="Next"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2l5 5-5 5"/></svg></button>`;
+  return `
+    <div class="shelf-row">
+      <div class="shelf-row-label">${label}</div>
+      <div class="shelf-carousel-wrap">
+        ${arrowPrev}
+        <div class="shelf-carousel-track-outer">
+          <div class="shelf-carousel-track">${inner}</div>
+        </div>
+        ${arrowNext}
+      </div>
+    </div>
+  `;
+}
+
 function renderResources() {
   const grid = document.getElementById('resourceGrid');
   if (!grid) return;
 
-  const html = RESOURCE_DATA.map((r) => {
-    if (r.comingSoon) {
-      const badgeLabel = r.type === 'SOON' ? 'SOON' : 'PLACEHOLDER';
-      return `
-        <div class="resource-card resource-card-soon reveal-up" onclick="showResourceNotice(this)" role="button" tabindex="0" aria-label="${r.title} — Coming Soon">
-          <div class="resource-card-soon-header">
-            <span class="resource-type-badge badge-${r.type.toLowerCase()}">${r.type}</span>
-            <span class="resource-placeholder-label">${badgeLabel}</span>
-          </div>
-          <p class="resource-title">${r.title}</p>
-          ${r.desc ? `<p class="resource-desc">${r.desc}</p>` : ''}
-          <div class="resource-meta">
-            <span class="resource-dot"></span>
-            ${r.readTime}
-          </div>
-        </div>
-      `;
-    }
+  const toolCards = RESOURCE_DATA.filter(r => !r.comingSoon).map(r => {
     const isExternal = r.url && r.url !== '#';
     const attrs = isExternal ? `target="_blank" rel="noopener noreferrer"` : '';
     return `
@@ -598,9 +556,13 @@ function renderResources() {
         ${r.contributor ? `<div class="resource-contributor">Contributed by ${r.contributor}</div>` : ''}
       </a>
     `;
-  }).join('');
+  });
 
-  grid.innerHTML = html;
+  if (toolCards.length > 0) {
+    grid.insertAdjacentHTML('beforeend', buildCarousel(toolCards, 'Tools'));
+    const wraps = grid.querySelectorAll('.shelf-carousel-wrap');
+    initShelfCarousel(wraps[wraps.length - 1]);
+  }
 }
 
 /* ── PDF SHELF LOADER ───────────────────────────────────────────── */
@@ -619,7 +581,11 @@ function renderShelfPdfs(pdfs, baseUrl) {
     const url  = baseUrl + encodeURIComponent(pdf.file);
     const tags = (pdf.tags || []).map(t => `<span class="pdf-tag">${t}</span>`).join('');
     return `
-      <a href="${url}" class="resource-card resource-card-pdf reveal-up" target="_blank" rel="noopener noreferrer" aria-label="${pdf.title}">
+      <div class="resource-card resource-card-pdf reveal-up"
+           role="button" tabindex="0"
+           aria-label="${pdf.title}"
+           data-pdf-url="${url}"
+           data-pdf-title="${pdf.title.replace(/"/g,'&quot;')}">
         <div class="resource-card-pdf-top">
           <span class="resource-type-badge badge-pdf">PDF</span>
           ${pdf.featured ? '<span class="resource-featured-badge">Featured</span>' : ''}
@@ -631,9 +597,178 @@ function renderShelfPdfs(pdfs, baseUrl) {
           <span class="resource-dot"></span>
           ${pdf.date}
         </div>
-      </a>
+      </div>
     `;
-  }).join('');
+  });
+}
+
+function initShelfCarousel(wrap) {
+  const track = wrap.querySelector('.shelf-carousel-track');
+  const prev  = wrap.querySelector('.shelf-carousel-arrow.prev');
+  const next  = wrap.querySelector('.shelf-carousel-arrow.next');
+  const cards = Array.from(track.children);
+
+  function visibleCount() {
+    const w = wrap.offsetWidth;
+    if (w < 640) return 1;
+    if (w < 1024) return 2;
+    return 3;
+  }
+
+  if (cards.length <= visibleCount()) {
+    prev.style.display = 'none';
+    next.style.display = 'none';
+    return;
+  }
+
+  let idx = 0;
+
+  function update() {
+    const n = visibleCount();
+    const maxIdx = Math.max(0, cards.length - n);
+    idx = Math.min(idx, maxIdx);
+    const cardWidth = cards[0].offsetWidth + 16;
+    track.style.transform = `translateX(-${idx * cardWidth}px)`;
+    prev.disabled = idx === 0;
+    next.disabled = idx >= maxIdx;
+  }
+
+  function bump(btn) {
+    if (btn.dataset.bumping) return;
+    btn.dataset.bumping = '1';
+    btn.classList.add('shelf-arrow-bump');
+    btn.addEventListener('animationend', () => {
+      btn.classList.remove('shelf-arrow-bump');
+      delete btn.dataset.bumping;
+    }, { once: true });
+  }
+
+  prev.addEventListener('click', e => {
+    e.stopPropagation();
+    if (idx === 0) { bump(prev); return; }
+    idx = Math.max(0, idx - 1);
+    update();
+  });
+  next.addEventListener('click', e => {
+    e.stopPropagation();
+    const n = visibleCount();
+    const maxIdx = Math.max(0, cards.length - n);
+    if (idx >= maxIdx) { bump(next); return; }
+    idx += 1;
+    update();
+  });
+  window.addEventListener('resize', update);
+  update();
+}
+
+function openPdfModal(url, title) {
+  const existing = document.getElementById('pdfModalOverlay');
+  if (existing) existing.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'pdfModalOverlay';
+  overlay.className = 'pdf-modal-overlay';
+  overlay.innerHTML = `
+    <div class="pdf-modal" role="dialog" aria-modal="true" aria-label="${title}">
+      <div class="pdf-modal-header">
+        <span class="pdf-modal-title">${title}</span>
+        <div class="pdf-nav" aria-label="Page navigation">
+          <button class="pdf-nav-btn" id="pdfFirst" title="First page" disabled>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="2" y2="11"/><path d="M11 2L5 6.5l6 4.5"/></svg>
+          </button>
+          <button class="pdf-nav-btn" id="pdfPrev" title="Previous page" disabled>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L3 6.5l5 4.5"/></svg>
+          </button>
+          <span class="pdf-nav-counter" id="pdfCounter">—</span>
+          <button class="pdf-nav-btn" id="pdfNext" title="Next page" disabled>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2l5 4.5L5 11"/></svg>
+          </button>
+          <button class="pdf-nav-btn" id="pdfLast" title="Last page" disabled>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="11" y1="2" x2="11" y2="11"/><path d="M2 2l6 4.5L2 11"/></svg>
+          </button>
+        </div>
+        <a href="${url}" download class="pdf-modal-download">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v7M3.5 5.5l3 3 3-3"/><path d="M1 10h11"/></svg>
+          Download
+        </a>
+        <button class="pdf-modal-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+        </button>
+      </div>
+      <div class="pdf-modal-body">
+        <div class="pdf-modal-loading">Loading…</div>
+        <canvas class="pdf-page-canvas" id="pdfCanvas"></canvas>
+      </div>
+    </div>
+  `;
+
+  const close = () => overlay.remove();
+  overlay.querySelector('.pdf-modal-close').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+  document.body.appendChild(overlay);
+
+  if (!window.pdfjsLib) {
+    overlay.querySelector('.pdf-modal-loading').textContent = 'PDF viewer not available. Use the Download button.';
+    return;
+  }
+
+  pdfjsLib.getDocument({ url }).promise.then(pdf => {
+    const loadingEl = overlay.querySelector('.pdf-modal-loading');
+    const canvas    = overlay.querySelector('#pdfCanvas');
+    const counter   = overlay.querySelector('#pdfCounter');
+    const btnFirst  = overlay.querySelector('#pdfFirst');
+    const btnPrev   = overlay.querySelector('#pdfPrev');
+    const btnNext   = overlay.querySelector('#pdfNext');
+    const btnLast   = overlay.querySelector('#pdfLast');
+    const total     = pdf.numPages;
+    let current     = 1;
+    let rendering   = false;
+
+    async function renderPage(n) {
+      if (rendering) return;
+      rendering = true;
+      const page     = await pdf.getPage(n);
+      const bodyW    = canvas.parentElement.clientWidth - 24;
+      const bodyH    = canvas.parentElement.clientHeight - 24;
+      const vp0      = page.getViewport({ scale: 1 });
+      const scale    = Math.min(bodyW / vp0.width, bodyH / vp0.height, 2);
+      const vp       = page.getViewport({ scale });
+      canvas.width   = vp.width;
+      canvas.height  = vp.height;
+      canvas.style.display = 'block';
+      loadingEl.style.display = 'none';
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      rendering = false;
+      counter.textContent = `${n} / ${total}`;
+      btnFirst.disabled = btnPrev.disabled = n === 1;
+      btnNext.disabled  = btnLast.disabled  = n === total;
+    }
+
+    function goTo(n) { current = n; renderPage(current); }
+
+    btnFirst.addEventListener('click', e => { e.stopPropagation(); goTo(1); });
+    btnPrev.addEventListener ('click', e => { e.stopPropagation(); goTo(Math.max(1, current - 1)); });
+    btnNext.addEventListener ('click', e => { e.stopPropagation(); goTo(Math.min(total, current + 1)); });
+    btnLast.addEventListener ('click', e => { e.stopPropagation(); goTo(total); });
+
+    document.addEventListener('keydown', function navKeys(e) {
+      if (!document.getElementById('pdfModalOverlay')) {
+        document.removeEventListener('keydown', navKeys);
+        return;
+      }
+      if (e.key === 'Escape')       { close(); document.removeEventListener('keydown', navKeys); }
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  goTo(Math.min(total, current + 1));
+      else if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    goTo(Math.max(1, current - 1));
+      else if (e.key === 'Home')    goTo(1);
+      else if (e.key === 'End')     goTo(total);
+    });
+
+    counter.textContent = `— / ${total}`;
+    renderPage(1);
+  }).catch(() => {
+    overlay.querySelector('.pdf-modal-loading').textContent = 'Could not load PDF. Use the Download button.';
+  });
 }
 
 function loadShelf() {
@@ -642,8 +777,23 @@ function loadShelf() {
     .then(data => {
       const grid = document.getElementById('resourceGrid');
       if (!grid) return;
-      const pdfHtml = renderShelfPdfs(data.pdfs || [], data.baseUrl || '');
-      grid.insertAdjacentHTML('afterbegin', pdfHtml);
+      const pdfCards = renderShelfPdfs(data.pdfs || [], data.baseUrl || '');
+      if (pdfCards.length > 0) {
+        grid.insertAdjacentHTML('afterbegin', buildCarousel(pdfCards, 'Research &amp; Reference'));
+        initShelfCarousel(grid.querySelector('.shelf-carousel-wrap'));
+      }
+
+      grid.addEventListener('click', e => {
+        const card = e.target.closest('[data-pdf-url]');
+        if (card) openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle);
+      });
+      grid.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = e.target.closest('[data-pdf-url]');
+          if (card) { e.preventDefault(); openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle); }
+        }
+      });
+
       requestAnimationFrame(() => setupReveal());
     })
     .catch(() => {});
