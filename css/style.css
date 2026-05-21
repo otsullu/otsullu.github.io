@@ -2002,9 +2002,20 @@ html[data-theme="light"][data-palette="cyan"]    { --accent:#2589A0; --accent-di
 html[data-palette="amber"]                       { --accent:#D49A3A; --accent-dim:#A07634; --accent-glow:#D49A3A26; }
 html[data-theme="light"][data-palette="amber"]   { --accent:#A8761F; --accent-dim:#7E5816; --accent-glow:#A8761F26; }
 
-/* Ullu — mirrors the OTS Ullu MVP-1 application palette */
-html[data-palette="ullu"]                        { --accent:#58A6FF; --accent-dim:#2878CC; --accent-glow:#58A6FF26; }
-html[data-theme="light"][data-palette="ullu"]    { --accent:#0969DA; --accent-dim:#0550AE; --accent-glow:#0969DA26; }
+/* OTS — mirrors the OTS Ullu MVP-1 application blue */
+html[data-palette="ots"]                         { --accent:#58A6FF; --accent-dim:#2878CC; --accent-glow:#58A6FF26; }
+html[data-theme="light"][data-palette="ots"]     { --accent:#0969DA; --accent-dim:#0550AE; --accent-glow:#0969DA26; }
+
+/* Ullu — v1 signature: deep navy background + gold accent */
+html[data-palette="ullu"] {
+  --accent:     #C9A84C;
+  --accent-dim: #8A6E28;
+  --accent-glow:#C9A84C26;
+  --bg:         #0B1E2D;
+  --bg-alt:     #112233;
+  --border:     rgba(201,168,76,0.15);
+  --border-strong: rgba(201,168,76,0.28);
+}
 
 /* ── CONFIG TRIGGER ─────────────────────────────────────────────── */
 .config-trigger {
@@ -2056,11 +2067,40 @@ html[data-theme="light"][data-palette="ullu"]    { --accent:#0969DA; --accent-di
     width: 100%;
     border-radius: var(--r-lg) var(--r-lg) 0 0;
     animation: sheetIn 240ms var(--ease-out);
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding: 0 20px max(24px, env(safe-area-inset-bottom));
+  }
+  /* Drag handle */
+  .config-panel::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--border-strong);
+    border-radius: 2px;
+    margin: 12px auto 16px;
   }
   @keyframes sheetIn {
     from { transform: translateY(100%); }
     to   { transform: translateY(0); }
+  }
+  /* Larger touch targets on mobile */
+  .palette-swatch {
+    width: 40px;
+    height: 40px;
+  }
+  .palette-grid {
+    gap: 12px;
+  }
+  .theme-seg-btn {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  .sig-palette-btn {
+    padding: 14px 16px;
+  }
+  .config-trigger {
+    width: 38px;
+    height: 38px;
   }
 }
 
@@ -2186,48 +2226,57 @@ html[data-theme="light"][data-palette="ullu"]    { --accent:#0969DA; --accent-di
   transition: color var(--t-theme);
 }
 
-/* ── ULLU SIGNATURE BUTTON ──────────────────────────────────────── */
-.ullu-palette-btn {
+/* ── SIGNATURE SCHEME BUTTONS ───────────────────────────────────── */
+.sig-palette-btn {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 11px 16px;
-  background: #0E1117;
-  border: 1px solid #30363D;
   border-radius: var(--r-md);
   cursor: pointer;
   transition: border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
   gap: 8px;
+  margin-bottom: 8px;
 }
-.ullu-palette-btn:hover {
-  border-color: #58A6FF;
-  box-shadow: 0 0 0 1px #58A6FF40;
-  transform: translateY(-1px);
+.sig-palette-btn:last-child { margin-bottom: 0; }
+.sig-palette-btn:hover  { transform: translateY(-1px); }
+.sig-palette-btn:focus-visible { outline-offset: 2px; }
+
+/* OTS button — application blue */
+.sig-btn-ots {
+  background: #0E1117;
+  border: 1px solid #30363D;
 }
-.ullu-palette-btn:focus-visible {
-  outline: 2px solid #58A6FF;
-  outline-offset: 2px;
+.sig-btn-ots:hover          { border-color: #58A6FF; box-shadow: 0 0 0 1px #58A6FF40; }
+.sig-btn-ots:focus-visible  { outline: 2px solid #58A6FF; }
+.sig-btn-ots[aria-pressed="true"] { border-color: #58A6FF; box-shadow: 0 0 0 2px #0E1117, 0 0 0 4px #e6edf3; }
+.sig-btn-ots .sig-btn-wordmark { color: #58A6FF; }
+.sig-btn-ots .sig-btn-gold     { color: #FFD700; }
+.sig-btn-ots .sig-btn-label    { color: #8B949E; }
+
+/* Ullu button — v1 signature: navy + gold */
+.sig-btn-ullu {
+  background: #0B1E2D;
+  border: 1px solid rgba(201,168,76,0.35);
 }
-.ullu-palette-btn[aria-pressed="true"] {
-  border-color: #58A6FF;
-  box-shadow: 0 0 0 2px #0E1117, 0 0 0 4px #e6edf3;
-}
-.ullu-btn-wordmark {
+.sig-btn-ullu:hover          { border-color: #C9A84C; box-shadow: 0 0 0 1px rgba(201,168,76,0.25); }
+.sig-btn-ullu:focus-visible  { outline: 2px solid #C9A84C; }
+.sig-btn-ullu[aria-pressed="true"] { border-color: #C9A84C; box-shadow: 0 0 0 2px #0B1E2D, 0 0 0 4px #C9A84C; }
+.sig-btn-ullu .sig-btn-wordmark { color: #e6edf3; }
+.sig-btn-ullu .sig-btn-gold     { color: #C9A84C; }
+.sig-btn-ullu .sig-btn-label    { color: rgba(201,168,76,0.6); }
+
+.sig-btn-wordmark {
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #58A6FF;
 }
-.ullu-btn-gold {
-  color: #FFD700;
-}
-.ullu-btn-label {
+.sig-btn-label {
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8B949E;
 }
 
 /* ── MISSION SECTION ────────────────────────────────────────────── */
