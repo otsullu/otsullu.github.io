@@ -594,7 +594,7 @@ function loadVideos() {
     .then(r => r.json())
     .then(data => {
       const videos = data.videos || [];
-      allVideos = videos.filter(v => v.india === true || v.playlist === 'indian-radar');
+      allVideos = videos.filter(v => v.playlist === 'indian-radar');
       if (!allVideos.length) allVideos = INDIA_VIDEOS_FALLBACK;
       renderGrid(activeFilter);
     })
