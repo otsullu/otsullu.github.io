@@ -146,6 +146,17 @@
   /* ── TAB PANELS ───────────────────────────────────────────────────── */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+
+  /* ── MOBILE ───────────────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .tab-btn { padding: 12px 10px 11px; font-size: 12px; }
+    .tab-btn .full-label { display: none; }
+    .tab-btn .short-label { display: inline; }
+  }
+  @media (min-width: 481px) {
+    .tab-btn .full-label { display: inline; }
+    .tab-btn .short-label { display: none; }
+  }
   </style>
 </head>
 <body>
@@ -198,10 +209,10 @@
 
 <!-- ── TAB NAVIGATION ─────────────────────────────────────────────── -->
 <nav class="tab-nav" role="tablist" aria-label="Site sections">
-  <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-home"    id="tbtn-home"   >Home</button>
-  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-library" id="tbtn-library">The Observatory</button>
-  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-engine"  id="tbtn-engine" >The Platform</button>
-  <button class="tab-btn tab-btn-waitlist" role="tab" aria-selected="false" aria-controls="tab-waitlist" id="tbtn-waitlist">MVP-2 Waitlist</button>
+  <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-home"    id="tbtn-home"   ><span class="full-label">Home</span><span class="short-label">Home</span></button>
+  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-library" id="tbtn-library"><span class="full-label">The Observatory</span><span class="short-label">Observatory</span></button>
+  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-engine"  id="tbtn-engine" ><span class="full-label">The Platform</span><span class="short-label">Platform</span></button>
+  <button class="tab-btn tab-btn-waitlist" role="tab" aria-selected="false" aria-controls="tab-waitlist" id="tbtn-waitlist"><span class="full-label">MVP-2 Waitlist</span><span class="short-label">Waitlist</span></button>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════════════
