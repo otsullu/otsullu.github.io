@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'The Stock Kept Rising After I Sold It',
+    excerpt: 'Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.',
+    series: 'The Mind Against the Market · Part 1',
+    url: '/the-mind-against-the-market/article-1/',
+  },
+  {
     title: 'Why the Wheel Strategy Outperforms Buy-and-Hold in Sideways Markets',
     excerpt: 'A quantitative examination of risk-adjusted returns across three market regimes, with a focus on theta decay harvesting and systematic roll logic.',
   },
@@ -454,7 +460,8 @@ function renderLibrary(data) {
 
   /* Featured video — highest views from non-indian-radar playlists */
   const candidates = (data.videos || []).filter(v => v.playlist !== 'indian-radar' && v.playlist !== 'infomercials');
-  const featured = candidates.sort((a, b) => parseInt(b.views) - parseInt(a.views))[0];
+  const top5 = candidates.sort((a, b) => parseInt(b.views) - parseInt(a.views)).slice(0, 5);
+  const featured = top5[Math.floor(Math.random() * top5.length)];
 
   const featWrap = document.getElementById('featuredVideo');
   if (featWrap && featured) {
@@ -503,7 +510,7 @@ function renderLibrary(data) {
     const ch = data.channel   || {};
     const en = data.engagement || {};
     const fmt = n => Number(n || 0).toLocaleString();
-    const updated = ch.updated ? new Date(ch.updated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    const updated = ch.updated ? new Date(ch.updated).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' }) : '';
 
     const stats = [
       { label: 'Subscribers',     value: fmt(ch.subscribers) },
@@ -853,15 +860,17 @@ function renderDispatches() {
   `;
 
   const comingSoonCards = DISPATCH_DATA.map((d) => `
-    <article class="dispatch-card reveal-up">
+    <article class="dispatch-card${d.url ? ' dispatch-card-live' : ''} reveal-up">
       <div class="dispatch-left">
+        ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
         <h3 class="dispatch-title">${d.title}</h3>
         <p class="dispatch-excerpt">${d.excerpt}</p>
       </div>
       <div class="dispatch-right">
-        <button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">
-          Coming Soon
-        </button>
+        ${d.url
+          ? `<a href="${d.url}" class="dispatch-read-link">Read →</a>`
+          : `<button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">Coming Soon</button>`
+        }
       </div>
     </article>
   `).join('');
@@ -929,8 +938,7 @@ function applyStats(s) {
   const refreshedEl = document.getElementById('statsRefreshedAt');
   if (refreshedEl && s.meta && s.meta.generatedAt) {
     const d = new Date(s.meta.generatedAt);
-    refreshedEl.textContent = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
-      + ' at ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+    refreshedEl.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
   }
 
   /* tickers */
