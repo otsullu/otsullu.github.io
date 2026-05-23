@@ -5,3 +5,5 @@ v*/
 .env.*
 scripts/.env
 scripts/.env.prd
+scripts/*.png
+scripts/__pycache__/
