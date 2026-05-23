@@ -7,6 +7,14 @@ import os, json, requests
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Load .env.prd if API key not already in environment
+_env_file = Path(__file__).parent.parent / '.env.prd'
+if _env_file.exists() and 'YOUTUBE_API_KEY' not in os.environ:
+    for line in _env_file.read_text().splitlines():
+        if '=' in line and not line.startswith('#'):
+            k, v = line.split('=', 1)
+            os.environ[k.strip()] = v.strip()
+
 API_KEY    = os.environ['YOUTUBE_API_KEY']
 CHANNEL_ID = os.environ.get('CHANNEL_ID', 'UCBDisZXo_jR3PXOSBZesVSw')
 BASE       = 'https://www.googleapis.com/youtube/v3'

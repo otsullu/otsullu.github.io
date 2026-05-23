@@ -74,6 +74,15 @@
       "featured": false
     },
     {
+      "id": "nvidia-q1-2027",
+      "file": "nvidia-2027-Q1-agentic-ai-factory-blueprint.pdf",
+      "title": "NVIDIA Q1 FY2027: Agentic AI Factory Blueprint",
+      "description": "NVIDIA's Q1 FY2027 earnings deep dive — the agentic AI infrastructure buildout, Blackwell ramp, data center dominance, and what the numbers reveal about the next phase of the AI capital cycle.",
+      "tags": ["nvidia", "earnings", "ai", "semiconductor", "infrastructure"],
+      "date": "2026-05-23",
+      "featured": false
+    },
+    {
       "id": "wealth-mgmt-tech-trends",
       "file": "2026-Wealth-Management-Technology-Trends-Blueprint.pdf",
       "title": "Wealth Management Technology Trends Blueprint 2026",

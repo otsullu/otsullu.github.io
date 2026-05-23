@@ -1,2 +1,7 @@
 .claude/
 v*/
+.env
+.env.prd
+.env.*
+scripts/.env
+scripts/.env.prd
