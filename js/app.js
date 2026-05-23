@@ -178,14 +178,24 @@ const MEDIUM_ARTICLES = [
     url: 'https://samvishwas.medium.com/unraveling-the-intricacies-of-business-ecosystems-a-deep-dive-into-the-robo-advisor-landscape-23e34e716784',
   },
   {
-    title: 'The UX Problems Facing Blockchain Technology',
-    excerpt: 'Mass adoption of blockchain is blocked not by technology but by user experience — an analysis of the friction preventing mainstream uptake.',
-    url: 'https://samvishwas.medium.com/the-ux-problems-facing-blockchain-technology-894d1850c1f8',
+    title: 'Comparing the Best Layer 1 Blockchain Networks: Bitcoin, Ethereum, Binance, Solana, Cardano, and Polkadot',
+    excerpt: 'A structured comparison of the major Layer-1 blockchains across throughput, decentralisation, security, and ecosystem depth — a framework for investors evaluating crypto exposure.',
+    url: 'https://samvishwas.medium.com/comparing-the-best-layer-1-blockchain-networks-bitcoin-ethereum-binance-solana-cardano-and-de48ad181ced',
   },
   {
-    title: 'Comparing the Best Layer-1 Blockchain Networks: Bitcoin, Ethereum, Binance, Solana, Cardano and More',
-    excerpt: 'A rigorous comparison of the leading Layer-1 blockchains across throughput, decentralisation, security, and ecosystem depth.',
-    url: 'https://samvishwas.medium.com/comparing-the-best-layer-1-blockchain-networks-bitcoin-ethereum-binance-solana-cardano-and-de48ad181ced',
+    title: 'Crypto vs. Regulators: Is the Situation Worse Than the UK Red Flag Act of 1865?',
+    excerpt: 'Drawing a sharp parallel between crypto regulatory overreach and the Victorian-era law that nearly strangled the automobile industry — history as a lens for today\'s investor risk.',
+    url: 'https://samvishwas.medium.com/crypto-vs-the-sec-is-situation-worst-than-the-uk-red-flag-act-of-1865-7c33064edd9a',
+  },
+  {
+    title: 'Crypto Lingo: 30 Terms You Need to Know',
+    excerpt: 'The essential vocabulary of crypto — from wallets and gas fees to DeFi and consensus mechanisms. Know the language before you deploy the capital.',
+    url: 'https://samvishwas.medium.com/crypto-lingo-30-terms-you-need-to-know-if-you-want-to-sound-like-a-pro-or-just-confuse-your-738200d73da2',
+  },
+  {
+    title: 'How to Frame Your Work in Frameworks: A Guide for Business Managers',
+    excerpt: 'Structured thinking is a competitive edge. This guide breaks down how to use strategic frameworks to cut through complexity — a skill as relevant to investors as to managers.',
+    url: 'https://samvishwas.medium.com/how-to-frame-your-work-in-frameworks-a-guide-for-business-managers-39dc25ec2de2',
   },
 ];
 
@@ -519,13 +529,14 @@ function renderLibrary(data) {
 }
 
 /* ── INSIGHT SHELF ──────────────────────────────────────────────── */
-function buildCarousel(cards, label) {
+function buildCarousel(cards, label, desc) {
   const inner = cards.join('');
   const arrowPrev = `<button class="shelf-carousel-arrow prev" aria-label="Previous" disabled><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L4 7l5 5"/></svg></button>`;
   const arrowNext = `<button class="shelf-carousel-arrow next" aria-label="Next"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2l5 5-5 5"/></svg></button>`;
   return `
     <div class="shelf-row">
       <div class="shelf-row-label">${label}</div>
+      ${desc ? `<p class="shelf-row-desc">${desc}</p>` : ''}
       <div class="shelf-carousel-wrap">
         ${arrowPrev}
         <div class="shelf-carousel-track-outer">
@@ -559,9 +570,20 @@ function renderResources() {
   });
 
   if (toolCards.length > 0) {
-    grid.insertAdjacentHTML('beforeend', buildCarousel(toolCards, 'Tools'));
-    const wraps = grid.querySelectorAll('.shelf-carousel-wrap');
-    initShelfCarousel(wraps[wraps.length - 1]);
+    fetch('data/tools-descriptions.json')
+      .then(r => r.json())
+      .then(data => {
+        const descs = data.descriptions || [];
+        const desc = descs.length ? descs[Math.floor(Math.random() * descs.length)] : '';
+        grid.insertAdjacentHTML('beforeend', buildCarousel(toolCards, 'Tools', desc));
+        const wraps = grid.querySelectorAll('.shelf-carousel-wrap');
+        initShelfCarousel(wraps[wraps.length - 1]);
+      })
+      .catch(() => {
+        grid.insertAdjacentHTML('beforeend', buildCarousel(toolCards, 'Tools'));
+        const wraps = grid.querySelectorAll('.shelf-carousel-wrap');
+        initShelfCarousel(wraps[wraps.length - 1]);
+      });
   }
 }
 
@@ -589,14 +611,11 @@ function renderShelfPdfs(pdfs, baseUrl) {
         <div class="resource-card-pdf-top">
           <span class="resource-type-badge badge-pdf">PDF</span>
           ${pdf.featured ? '<span class="resource-featured-badge">Featured</span>' : ''}
+          <span class="resource-card-date">${pdf.date}</span>
         </div>
         <p class="resource-title">${pdf.title}</p>
         <p class="resource-desc">${pdf.description}</p>
         <div class="pdf-tags">${tags}</div>
-        <div class="resource-meta">
-          <span class="resource-dot"></span>
-          ${pdf.date}
-        </div>
       </div>
     `;
   });
@@ -672,6 +691,19 @@ function openPdfModal(url, title) {
     <div class="pdf-modal" role="dialog" aria-modal="true" aria-label="${title}">
       <div class="pdf-modal-header">
         <span class="pdf-modal-title">${title}</span>
+        <button class="pdf-modal-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+        </button>
+      </div>
+      <div class="pdf-modal-body">
+        <div class="pdf-modal-loading">Loading…</div>
+        <canvas class="pdf-page-canvas" id="pdfCanvas"></canvas>
+      </div>
+      <div class="pdf-modal-footer">
+        <a href="${url}" download class="pdf-modal-download">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v7M3.5 5.5l3 3 3-3"/><path d="M1 10h11"/></svg>
+          Download
+        </a>
         <div class="pdf-nav" aria-label="Page navigation">
           <button class="pdf-nav-btn" id="pdfFirst" title="First page" disabled>
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="2" y2="11"/><path d="M11 2L5 6.5l6 4.5"/></svg>
@@ -687,17 +719,6 @@ function openPdfModal(url, title) {
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="11" y1="2" x2="11" y2="11"/><path d="M2 2l6 4.5L2 11"/></svg>
           </button>
         </div>
-        <a href="${url}" download class="pdf-modal-download">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v7M3.5 5.5l3 3 3-3"/><path d="M1 10h11"/></svg>
-          Download
-        </a>
-        <button class="pdf-modal-close" aria-label="Close">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
-        </button>
-      </div>
-      <div class="pdf-modal-body">
-        <div class="pdf-modal-loading">Loading…</div>
-        <canvas class="pdf-page-canvas" id="pdfCanvas"></canvas>
       </div>
     </div>
   `;
