@@ -8,16 +8,16 @@
     "subscribers": "55",
     "totalViews": "3574",
     "videoCount": "73",
-    "updated": "2026-05-25T18:18:52.394415+00:00"
+    "updated": "2026-05-25T18:23:48.442737+00:00"
   },
   "engagement": {
-    "totalViews": 3675,
+    "totalViews": 3684,
     "totalLikes": 135,
     "totalComments": 45,
-    "engagementRate": 4.9,
+    "engagementRate": 4.89,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
-    "topVideoViews": 405
+    "topVideoViews": 413
   },
   "playlists": [
     {
@@ -316,7 +316,7 @@
       "thumb": "https://i.ytimg.com/vi/2nsnR8QgYgE/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "9",
+      "views": "10",
       "likes": "1",
       "comments": "1",
       "published": "2026-05-15",
@@ -388,7 +388,7 @@
       "thumb": "https://i.ytimg.com/vi/YAU4Jplof3A/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "405",
+      "views": "413",
       "likes": "2",
       "comments": "1",
       "published": "2026-05-10",
