@@ -2277,6 +2277,8 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 .pdf-modal-download:hover { background: var(--accent-tint-15, var(--accent-tint-25)); }
 
 .pdf-modal-close {
+  margin-left: auto;
+  flex-shrink: 0;
   width: 28px;
   height: 28px;
   border: none;

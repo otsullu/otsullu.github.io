@@ -2,13 +2,49 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "advanced-options-risk",
+      "file": "Advanced-Options-Risk-Minor-Greeks-Implied-Volatility-Pricing-Models.pdf",
+      "title": "Advanced Options Risk: Minor Greeks, Implied Volatility & Pricing Models",
+      "description": "A deep dive into the lesser-known Greeks — Vanna, Charm, Vomma, and more — alongside implied volatility surface dynamics and options pricing model foundations for sophisticated risk management.",
+      "tags": ["options", "greeks", "implied volatility", "risk", "pricing"],
+      "date": "2026-05-27",
+      "featured": true
+    },
+    {
+      "id": "modern-wealth-india",
+      "file": "modern-wealth-architecture-indian-stock-market.pdf",
+      "title": "Modern Wealth Architecture: Indian Stock Market",
+      "description": "A comprehensive framework for building wealth through the Indian equity markets — from Nifty mechanics and sector rotation to behavioral traps specific to Indian retail investors.",
+      "tags": ["india", "wealth", "equity", "nifty", "investing"],
+      "date": "2026-05-27",
+      "featured": true
+    },
+    {
+      "id": "modern-wealth-investing",
+      "file": "modern-wealth-architecture-investing-guide.pdf",
+      "title": "Modern Wealth Architecture: The Investing Guide",
+      "description": "A structured guide to building a modern wealth architecture — asset allocation, compounding mechanics, risk frameworks, and the mindset shifts that separate long-term wealth builders from speculators.",
+      "tags": ["wealth", "investing", "asset allocation", "compounding", "portfolio"],
+      "date": "2026-05-27",
+      "featured": true
+    },
+    {
+      "id": "disposition-effect",
+      "file": "overcoming-disposition-effect-loss-aversion-and-stock-market-mistakes.pdf",
+      "title": "Overcoming the Disposition Effect: Loss Aversion & Stock Market Mistakes",
+      "description": "Why investors sell winners too early and hold losers too long — the psychology behind the disposition effect, loss aversion, and the systematic mistakes that destroy long-term returns.",
+      "tags": ["behavioral finance", "psychology", "loss aversion", "investing", "mistakes"],
+      "date": "2026-05-27",
+      "featured": true
+    },
+    {
       "id": "options-greeks",
       "file": "Options-Greeks-Understanding-Delta-Gamma-Theta-Vega-Rho.pdf",
       "title": "Options Greeks: Delta, Gamma, Theta, Vega, Rho",
       "description": "A practical guide to understanding the five Greeks — how each measures risk, how they interact, and how disciplined options traders use them to manage income strategies.",
       "tags": ["options", "greeks", "theta", "delta"],
       "date": "2026-05-21",
-      "featured": true
+      "featured": false
     },
     {
       "id": "wealth-mgmt-ai-strategy",
@@ -17,7 +53,7 @@
       "description": "How AI is reshaping portfolio construction, client advisory, and execution in 2026 — frameworks for investors and advisors navigating the new landscape.",
       "tags": ["wealth", "ai", "strategy", "portfolio"],
       "date": "2026-05-21",
-      "featured": true
+      "featured": false
     },
     {
       "id": "amd-q1-2026",
