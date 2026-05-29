@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260528c" />
+  <link rel="stylesheet" href="css/style.css?v=20260529" />
   <script>
   (function(){
     try {
@@ -167,7 +167,7 @@
 <!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#" class="brand" aria-label="OTS Ullu Home">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
       <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
     </a>
     <button class="config-trigger" id="configTrigger"
@@ -214,7 +214,7 @@
 <nav class="tab-nav" role="tablist" aria-label="Site sections">
   <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-home"    id="tbtn-home"   ><span class="full-label">Home</span><span class="short-label">Home</span></button>
   <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-library" id="tbtn-library"><span class="full-label">The Observatory</span><span class="short-label">Observatory</span></button>
-  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-engine"  id="tbtn-engine" ><span class="full-label">The Platform</span><span class="short-label">Platform</span></button>
+  <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-platform"  id="tbtn-platform" ><span class="full-label">The Platform</span><span class="short-label">Platform</span></button>
   <button class="tab-btn tab-btn-waitlist" role="tab" aria-selected="false" aria-controls="tab-waitlist" id="tbtn-waitlist"><span class="full-label">MVP-2 Waitlist</span><span class="short-label">Waitlist</span></button>
 </nav>
 
@@ -332,7 +332,7 @@
 <!-- ══════════════════════════════════════════════════════════════════
      TAB 3 — THE ENGINE
      ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-engine" role="tabpanel" aria-labelledby="tbtn-engine">
+<div class="tab-panel" id="tab-platform" role="tabpanel" aria-labelledby="tbtn-platform">
 
   <!-- Bridge -->
   <section class="section section-bridge" id="bridge">
@@ -570,7 +570,7 @@
     </div>
   </section>
 
-</div><!-- /tab-engine -->
+</div><!-- /tab-platform -->
 
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -674,17 +674,17 @@
       </div>
     </details>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: May 27, 2026, 11:15 AM PDT</p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: May 29, 2026, 11:57 AM PDT</p>
   </div>
 </footer>
 
-<script src="js/pdf.min.js?v=20260528c"></script>
+<script src="js/pdf.min.js?v=20260529"></script>
 <script>
   if (window.pdfjsLib) {
-    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260528c';
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/app.js?v=20260528c"></script>
+<script src="js/app.js?v=20260529"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {
@@ -757,7 +757,7 @@ document.getElementById('waitlistModal').addEventListener('click', function(e) {
 // Restore tab from URL hash on load
 (function() {
   const hash = location.hash.replace('#', '');
-  const map  = { home: 'tab-home', observatory: 'tab-library', platform: 'tab-engine', waitlist: 'tab-waitlist' };
+  const map  = { home: 'tab-home', observatory: 'tab-library', platform: 'tab-platform', waitlist: 'tab-waitlist' };
   if (hash && map[hash]) switchTab(map[hash]);
 })();
 </script>

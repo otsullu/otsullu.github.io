@@ -159,6 +159,12 @@ const DISPATCH_DATA = [
     url: '/the-mind-against-the-market/article-1/',
   },
   {
+    title: 'The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options',
+    excerpt: 'She had rolled the position six times, every roll a winner, and was about to close it for the only reason that should never count: the number six.',
+    series: 'OTS Ullu · Strategy',
+    url: '/articles/when-to-roll-or-stop/',
+  },
+  {
     title: 'Why the Wheel Strategy Outperforms Buy-and-Hold in Sideways Markets',
     excerpt: 'A quantitative examination of risk-adjusted returns across three market regimes, with a focus on theta decay harvesting and systematic roll logic.',
   },
@@ -859,23 +865,33 @@ function renderDispatches() {
     </article>
   `;
 
-  const comingSoonCards = DISPATCH_DATA.map((d) => `
-    <article class="dispatch-card${d.url ? ' dispatch-card-live' : ''} reveal-up">
+  const liveCards = DISPATCH_DATA.filter(d => d.url).map((d) => `
+    <article class="dispatch-card dispatch-card-live reveal-up">
       <div class="dispatch-left">
         ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
         <h3 class="dispatch-title">${d.title}</h3>
         <p class="dispatch-excerpt">${d.excerpt}</p>
       </div>
       <div class="dispatch-right">
-        ${d.url
-          ? `<a href="${d.url}" class="dispatch-read-link">Read →</a>`
-          : `<button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">Coming Soon</button>`
-        }
+        <a href="${d.url}" class="dispatch-read-link">Read →</a>
       </div>
     </article>
   `).join('');
 
-  feed.innerHTML = mediumCard + comingSoonCards;
+  const comingSoonCards = DISPATCH_DATA.filter(d => !d.url).map((d) => `
+    <article class="dispatch-card reveal-up">
+      <div class="dispatch-left">
+        ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
+        <h3 class="dispatch-title">${d.title}</h3>
+        <p class="dispatch-excerpt">${d.excerpt}</p>
+      </div>
+      <div class="dispatch-right">
+        <button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">Coming Soon</button>
+      </div>
+    </article>
+  `).join('');
+
+  feed.innerHTML = liveCards + mediumCard + comingSoonCards;
 }
 
 function showDispatchNotice(btn) {
