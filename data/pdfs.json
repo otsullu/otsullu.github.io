@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "covered-calls-roll-stop",
+      "file": "when-to-roll-or-stop-covered-calls-cash-secured-puts-strategy-guide-ots-ullu-slide-deck.pdf",
+      "title": "When to Roll or Stop: Covered Calls & Cash-Secured Puts Strategy Guide",
+      "description": "A practical slide deck covering the decision framework for rolling or closing covered calls and cash-secured puts — entry criteria, management rules, and the key signals that tell you when to act.",
+      "tags": ["options", "covered calls", "cash-secured puts", "strategy", "income"],
+      "date": "2026-05-28",
+      "featured": true
+    },
+    {
       "id": "advanced-options-risk",
       "file": "Advanced-Options-Risk-Minor-Greeks-Implied-Volatility-Pricing-Models.pdf",
       "title": "Advanced Options Risk: Minor Greeks, Implied Volatility & Pricing Models",
