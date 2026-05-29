@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "60",
-    "totalViews": "3848",
-    "videoCount": "76",
-    "updated": "2026-05-28T20:40:43.399755+00:00"
+    "totalViews": "3897",
+    "videoCount": "77",
+    "updated": "2026-05-29T10:55:02.477430+00:00"
   },
   "engagement": {
-    "totalViews": 3897,
-    "totalLikes": 139,
-    "totalComments": 48,
-    "engagementRate": 4.8,
+    "totalViews": 3912,
+    "totalLikes": 141,
+    "totalComments": 49,
+    "engagementRate": 4.86,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 421
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/CndYoU5zg1Y/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/F7N2KS4cTbY/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -70,6 +70,18 @@
     }
   ],
   "videos": [
+    {
+      "id": "F7N2KS4cTbY",
+      "title": "🛑 𝗪𝗵𝗲𝗻 𝘁𝗼 𝗦𝗧𝗢𝗣 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀: 𝗧𝗵𝗲 𝗥𝗲𝗮𝗹 𝗦𝘁𝗿𝗮𝘁𝗲𝗴𝘆 𝗳𝗼𝗿 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹𝘀 & 𝗖𝗮𝘀𝗵-𝗦𝗲𝗰𝘂𝗿𝗲𝗱 𝗣𝘂𝘁𝘀 📉",
+      "thumb": "https://i.ytimg.com/vi/F7N2KS4cTbY/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-05-29",
+      "india": true
+    },
     {
       "id": "CndYoU5zg1Y",
       "title": "𝗕𝗹𝗮𝗰𝗸-𝗦𝗰𝗵𝗼𝗹𝗲𝘀 𝘃𝘀 𝗕𝗶𝗻𝗼𝗺𝗶𝗮𝗹 𝗠𝗼𝗱𝗲𝗹: 𝗛𝗼𝘄 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗔𝗿𝗲 𝗥𝗲𝗮𝗹𝗹𝘆 𝗣𝗿𝗶𝗰𝗲𝗱 📊🧠",
@@ -100,8 +112,8 @@
       "thumb": "https://i.ytimg.com/vi/nZ3RBA0g7bQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "27",
-      "likes": "1",
+      "views": "34",
+      "likes": "2",
       "comments": "1",
       "published": "2026-05-26",
       "india": true
@@ -220,7 +232,7 @@
       "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Gujarati",
-      "views": "58",
+      "views": "59",
       "likes": "0",
       "comments": "1",
       "published": "2026-05-19",
@@ -376,7 +388,7 @@
       "thumb": "https://i.ytimg.com/vi/Y8ARcot9Ve4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "30",
+      "views": "31",
       "likes": "4",
       "comments": "4",
       "published": "2026-05-13",
@@ -916,7 +928,7 @@
       "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "204",
+      "views": "209",
       "likes": "4",
       "comments": "0",
       "published": "2026-04-15",
