@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options | OTS Ullu</title>
+  <meta name="description" content="She had rolled the position six times, every roll a winner, and she was about to close it for the only reason that should never count: the number six." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options" />
+  <meta property="og:description" content="She had rolled the position six times, every roll a winner, and she was about to close it for the only reason that should never count: the number six." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/when-to-roll-or-stop/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/when-to-roll-or-stop/img-01-hero.jpg" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Strategy" />
+  <meta property="article:tag" content="Short Options, Cash-Secured Put, Covered Call, Rolling, Options Strategy" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options" />
+  <meta name="twitter:description" content="She had rolled the position six times, every roll a winner, and she was about to close it for the only reason that should never count: the number six." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/when-to-roll-or-stop/img-01-hero.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/when-to-roll-or-stop/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options",
+    "description": "She had rolled the position six times, every roll a winner, and she was about to close it for the only reason that should never count: the number six.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "The Rule I Never Believed"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin-bottom: 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-hero-img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    margin-bottom: 48px;
+    object-fit: cover;
+    max-height: 520px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-body {
+    max-width: 760px;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+  }
+  .article-img-caption {
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .article-body ul {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+  }
+  .article-body ul li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong {
+    color: var(--fg);
+  }
+
+
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .article-references ul { list-style: none; padding: 0; margin: 0; }
+  .ref-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-card:last-child { border-bottom: none; }
+  .ref-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 36px;
+  }
+  .ref-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  .ref-body a { color: var(--accent); }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .article-video-thumb-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .article-video-thumb-link {
+    position: relative;
+    width: 55%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: block;
+    text-decoration: none;
+  }
+  .article-video-thumb-link img {
+    width: 100%;
+    display: block;
+  }
+  .article-video-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 180ms;
+  }
+  .article-video-thumb-link:hover .article-video-thumb-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%);
+  }
+  .article-video-play-btn {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #111;
+    transition: transform 180ms;
+    flex-shrink: 0;
+  }
+  .article-video-play-btn svg { width: 26px; height: 26px; margin-left: 4px; }
+  .article-video-thumb-link:hover .article-video-play-btn { transform: scale(1.08); }
+  .article-video-thumb-label {
+    position: absolute;
+    bottom: 14px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  @media (max-width: 520px) {
+    .article-video-thumb-link { width: 100%; }
+  }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="max-width:860px; padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/">Articles</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>The Rule I Never Believed</span>
+    </nav>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options</h1>
+      <p class="article-lede">
+        She had rolled the position six times, every roll a winner, and she was about to close it for the only reason that should never count: the number six.
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Strategy</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Short Premium &amp; Rolling</span>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <img
+      src="../../assets/img/articles/when-to-roll-or-stop/img-01-hero.jpg"
+      alt="The dangerous comfort of repeated rolls"
+      class="article-hero-img"
+      loading="eager"
+    />
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <p>Picture a trader on a Friday afternoon. She is short a cash-secured put she has now rolled six times. The stock wobbled, she rolled down and out, collected credit, did it again, and again. The position is green. The next roll in front of her is clean: a real net credit, a strike she likes, more time. Every number says <em>do it.</em></p>
+
+      <p>And then a voice in her head, picked up from a trading book or a mentor or some half-remembered desk wisdom, says: <em>you have rolled this six times. That is the limit. Close it. Take the assignment. Move on.</em></p>
+
+      <p>So she closes a perfectly good position. She crosses a fresh spread, pays the commissions, and rebuilds her exposure from scratch; not because the next trade is better, but because a counter told her this one had used up its allowance.</p>
+
+      <p>I am not writing this from a hunch alone. While I build OTS Ullu from the ground up, I am taking the time to validate each theory and assumption currently in practice, and along the way its engine has watched over thousands of these exact decisions, day after day, across dozens of underlyings and many broker accounts, through hundreds of trading days of live activity. And through all of that volume, one conviction has held from the very first trade. A counter should never be the thing that ends a trade. Five rolls, ten, a hundred; the number was never the point. The trade is the point. If the next roll earns its place, you make it. If it does not, you do not. The roll count gets no vote.</p>
+
+      <p>This article is the case for that conviction, made carefully, because the rule I am arguing against is not a careless one. It is the opposite: excellent engineering for a problem most of us do not have.</p>
+
+      <h2 class="article-section-heading">Where the rule comes from, and why I respect it</h2>
+
+      <p>The "cap your rolls at four to six" rule lives on professional desks for real reasons. I spent a long time tracing them, through structured debate across several AI systems and against my own trading record, because I wanted to be sure I was not dismissing something I simply did not understand. Here is what I found. The cap is not really about the trade at all. It is a stand-in for constraints that have nothing to do with whether the next roll is good.</p>
+
+      <p>A fund has a <strong>mandate</strong>. Its prospectus authorized a certain kind of exposure: a duration, a size, a concentration. Roll a short put far enough and it quietly becomes a longer-dated position than anyone signed off on. The cap is a fence around the paperwork.</p>
+
+      <p>A fund has <strong>investors and auditors</strong>. A position rolled deep underwater shows an ugly mark every quarter, and rolling to avoid booking the loss is exactly the behavior that earns a manager a hard conversation with the people whose money it is. The cap forces the loss into daylight, where stewardship of other people's money demands it live.</p>
+
+      <p>A fund has <strong>margin that punishes age</strong>. Under portfolio margining, a position moving against you eats more capital as it deteriorates, so its real return quietly rots on the firm's books in a way you would never see in a cash-secured account.</p>
+
+      <p>And a desk has <strong>too many positions and too few people</strong>. Nobody can re-examine four thousand aging chains by hand. A hard number is a forcing function; it drags scarce senior attention to the trades that have earned a second look.</p>
+
+      <p>Every one of those is sound. If I ran a desk, I would cap rolls too. A bright-line number is fast, defensible, and auditable; and at institutional scale, judgment does not scale, but a counter does.</p>
+
+      <p>Here is the thing, though. Look at that list again. Mandate. Auditors. Margin decay. Attention budget. Now hold it up against an individual managing their own book.</p>
+
+      <p>None of it is yours.</p>
+
+      <p>You have no prospectus to breach. No limited partner reading your marks. If your puts are genuinely cash-secured, your capital charge does not creep as the position ages; the cash is the cash. And you are already the human in the loop; nobody needs a counter to make you look at your own positions, because looking at your own positions is the entire job. The cap was built to solve four problems you do not have. Inheriting it anyway is like installing a smoke detector built for a commercial kitchen in a house with no stove.</p>
+
+      <h2 class="article-section-heading">The one question that should actually decide</h2>
+
+      <p>If a number should not end a trade, what should? Strip away all the institutional machinery and the cap was always reaching, clumsily, for a single question; the same one I built into the core of how OTS Ullu thinks.</p>
+
+      <div class="pull-quote">
+        <p><strong>Would I open this exact position, fresh, today?</strong></p>
+      </div>
+
+      <!-- Decision framework image -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/when-to-roll-or-stop/img-02-decision-framework.jpg"
+          alt="The one question that should actually decide whether to roll or stop a short options position"
+          loading="lazy"
+        />
+        <p class="article-img-caption">The one question that should actually decide.</p>
+      </div>
+
+      <p>Same underlying. Same strike. Same delta. Same implied volatility. If I were sitting on cash right now, would I put this trade on?</p>
+
+      <p>If the answer is <em>yes</em>, then rolling and starting fresh are the same trade economically, except that rolling is cheaper. No new spread to cross, no extra commissions, no break in the thesis. The capital goes to work either way; rolling simply gets it there without paying the toll twice.</p>
+
+      <p>If the answer is <em>no</em>, the roll is a loss you are refusing to look at, wearing the costume of a good trade. And here is the trap that catches careful people: every advantage you can point to (the credit you collected, the better strike, the extra time) is measured against the position you are stuck in, not against everything else you could do with that money. A roll can look like a win on every one of those and still be a position you would never choose if you were starting clean. The honest comparison is not "is this roll positive?" It is "is this roll better than the best thing I could do with the same capital?" A roll earning 8% a year, while fresh trades on your platform average 15%, fails that test no matter how many green checkmarks it collects.</p>
+
+      <p>Notice what that question never asks: how many times have I rolled this already? It does not care. A position can fail it on roll two. It can sail through on roll twenty-five.</p>
+
+      <p>And this matters: none of this is a license to roll forever. It is the reverse. The counter says "stop at six, no matter how good the trade." My test says "justify every single roll against the standard you would hold fresh capital to, every time." That is harder than counting. It simply stops trades on their merits instead of on a tally. Removing an arbitrary ceiling is not the same as endorsing endless repair, and anyone who hears "roll as much as you want" has heard the opposite of what I am saying.</p>
+
+      <h2 class="article-section-heading">This is not a puts thing; it is a short-premium thing</h2>
+
+      <p>I keep saying "put" because that is the trader in our story, but make no mistake: everything here applies just as fully to the other great short-premium income trade, the short covered call. Both are positions where you <em>sell</em> the option, collect the premium up front, and roll to keep collecting it. The cash-secured put and the covered call are simply the two directions of the same discipline.</p>
+
+      <p>Sold a call against your stock, watched the stock rip up toward your strike, rolled up and out for a credit to keep your shares? Same logic, mirror image. A short covered call rolled forty times is fine if every one of those forty rolls would pass the "open it fresh today?" test; if you would happily sell that call, at that strike, against that stock, right now. The day a roll-up means chasing a runaway stock and capping it below where you would ever willingly sell, that is the day to stop. Not the day a counter says so.</p>
+
+      <p>Puts roll down to chase a falling stock. Calls roll up to chase a rising one. Different direction, identical sin: pretending a position you would never open is worth keeping because you are already in it. The number of prior rolls tells you nothing about which case you are in. The merits tell you everything.</p>
+
+      <h2 class="article-section-heading">What actually says stop</h2>
+
+      <!-- Stop signals image -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/when-to-roll-or-stop/img-03-stop-signals.jpg"
+          alt="Real signals that tell you it's time to stop rolling a short options position"
+          loading="lazy"
+        />
+        <p class="article-img-caption">Real signals that tell you it's time to stop.</p>
+      </div>
+
+      <p>So the counter is out. But real stop signals do exist, and they are worth more than a number because they read the trade, not the tally. The catch is that they live at the level of the whole rolled chain, not the single roll in front of you, which is exactly why a one-roll-at-a-time gate cannot see them coming. Four are worth watching:</p>
+
+      <ul>
+        <li><strong>The credit is drying up.</strong> Each roll brings in less than the last: $1.80, then $0.90, then $0.30, then a dime. At some point you are not harvesting premium anymore; you are rolling for free just to avoid booking a loss. The income was an illusion two rolls ago.</li>
+        <li><strong>The strike is walking away from you.</strong> This is the quiet killer, because it hides behind a passing trade. To roll a put down on a falling stock, you buy back your old put at a fat loss, since it ballooned as the stock dropped, and sell a lower one further out. After a sharp enough drop, that can still net a small credit, so the trade "passes." But you have locked in the loss and chased the stock down to collect pennies. That is not income. That is catching a falling knife with a smile on your face.</li>
+        <li><strong>Time is getting expensive.</strong> When you have to go ninety days out to scrape what thirty days used to pay, your decay per day is collapsing. The "premium" has become an interest rate you are charging yourself to avoid the truth.</li>
+        <li><strong>One position is eating the book.</strong> A roll can be flawless on its own and still be a mistake, because defending one ticker has quietly grown it into a quarter of your buying power. A great trade can be a terrible portfolio.</li>
+      </ul>
+
+      <p>Put those together and a dying position is obvious without ever counting a thing. The credit fades, the strike drifts from comfortably out-of-the-money to underwater, each roll begs for more time; that is a stop signal, and it might fire on roll three of a crash or never on roll thirty of a calm market. A counter would have flagged the calm one and waved the crash right through. The trajectory gets it right. The counter gets it backwards.</p>
+
+      <h2 class="article-section-heading">When the counter is the right tool, yes, really</h2>
+
+      <p>I would be breaking my own rule (judge the situation, not the slogan) if I told you to throw the cap away everywhere. So, plainly: if you manage pooled money under a mandate, if you answer to limited partners or auditors, if your margin degrades as positions age, or if you run a delegated or fully automated account where no human reviews each chain, keep the cap. In those worlds the per-trade judgment I am describing is a luxury you cannot scale, and a bright line is the responsible choice. The cap is not wrong. It is simply built for a room you may not be standing in.</p>
+
+      <p>The whole argument, in one sentence: match the rule to your own constraints, not to someone else's.</p>
+
+      <h2 class="article-section-heading">Why I am telling you this</h2>
+
+      <p>I am building OTS Ullu because I want individual investors to have the systematic discipline of an institutional desk without inheriting the cage that desk lives in. The day-one conviction, that merit ends a trade and a counter never does, is built into how the engine evaluates every roll, for puts and calls alike. It does not ask how many times you have been here. It asks whether you would choose to be here now.</p>
+
+      <p>But I would rather start an argument than win one quietly. If you have built roll or assignment logic on a real desk, or taught it, or lived inside the mandates and margin math I have only studied from the outside, push on this. Tell me where it holds and where it breaks. The institutions got the engineering right for their world. I am trying to get it right for a different one, and the sharpest critics are usually the people who solved the original problem first.</p>
+
+      <p>So, where am I wrong? That is the most useful thing you could tell me.</p>
+
+      <p><em>Sam Vishwas, Founder, OTS Ullu. Wisdom-Driven Investing for Long-Term Wealth</em></p>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/when-to-roll-or-stop-covered-calls-cash-secured-puts-strategy-guide-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Video thumbnail -->
+      <div class="article-video-thumb-wrap">
+        <a href="https://youtu.be/F7N2KS4cTbY" target="_blank" rel="noopener noreferrer"
+           class="article-video-thumb-link" aria-label="Watch on YouTube">
+          <img src="https://img.youtube.com/vi/F7N2KS4cTbY/hqdefault.jpg" alt="Watch: The Rule I Never Believed" />
+          <div class="article-video-thumb-overlay">
+            <div class="article-video-play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="article-video-thumb-label">Watch on YouTube</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>Educational, not investment advice. Short options carry real risk, including assignment and loss. Judge any approach against your own situation, or with a licensed advisor.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about which rules actually apply to them.</p>
+      </div>
+
+      <!-- Credits & Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Credits</h3>
+        <p>Article illustrations and concept images were created using Grok Imagine (xAI).</p>
+      </div>
+
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js"></script>
+</body>
+</html>
