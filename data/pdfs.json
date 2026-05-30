@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "fomo-protocol",
+      "file": "the-fomo-protocol-overcome-herd-mentality-investing-ots-ullu-slide-deck.pdf",
+      "title": "The FOMO Protocol: Overcome Herd Mentality in Investing",
+      "description": "A practical slide deck on breaking free from fear of missing out and herd mentality — the psychological traps that drive retail investors into crowded trades at the worst possible times.",
+      "tags": ["behavioral finance", "fomo", "herd mentality", "psychology", "investing"],
+      "date": "2026-05-29",
+      "featured": true
+    },
+    {
       "id": "covered-calls-roll-stop",
       "file": "when-to-roll-or-stop-covered-calls-cash-secured-puts-strategy-guide-ots-ullu-slide-deck.pdf",
       "title": "When to Roll or Stop: Covered Calls & Cash-Secured Puts Strategy Guide",
