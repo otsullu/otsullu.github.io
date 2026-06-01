@@ -983,6 +983,153 @@ function loadStats() {
     .catch(() => {});
 }
 
+/* ── PODCAST RSS ────────────────────────────────────────────────── */
+const PODCAST_RSS    = 'https://anchor.fm/s/113326c98/podcast/rss';
+const RSS2JSON_API   = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+function parsePodcastFeed(items) {
+  const now    = Date.now();
+  const DAY_MS = 86400000;
+
+  return items.map(item => {
+    const pub   = item.pubDate ? new Date(item.pubDate) : null;
+    const age   = pub ? now - pub.getTime() : Infinity;
+    return {
+      title:    item.title    || 'Untitled',
+      pub,
+      duration: item.enclosure?.duration || item.duration || '',
+      audioUrl: item.enclosure?.link || '',
+      thumb:    item.enclosure?.image || '',
+      isNew:    age < 7 * DAY_MS,
+    };
+  });
+}
+
+function fmtDuration(raw) {
+  if (!raw) return '';
+  const secs = parseInt(raw, 10);
+  if (isNaN(secs)) return '';
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  const s = secs % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m ${s < 10 ? '0' + s : s}s`;
+}
+
+function renderPodcastEpisodes(episodes) {
+  const el = document.getElementById('podcastEpisodes');
+  if (!el) return;
+
+  if (!episodes.length) {
+    el.innerHTML = '<div class="podcast-episodes-loading">No episodes yet.</div>';
+    return;
+  }
+
+  let activeAudio = null;
+  let activeBtn   = null;
+
+  function resetBtn(btn) {
+    btn.querySelector('.play-icon').style.display  = '';
+    btn.querySelector('.pause-icon').style.display = 'none';
+    btn.querySelector('.play-label').textContent   = 'Play';
+    const player = btn.closest('.podcast-episode-body').querySelector('.podcast-inline-player');
+    if (player) player.style.display = 'none';
+  }
+
+  function wirePodcastPlayers() {
+    el.querySelectorAll('.podcast-episode-play').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body   = btn.closest('.podcast-episode-body');
+        const player = body.querySelector('.podcast-inline-player');
+        const audio  = player.querySelector('audio');
+        const isThis = activeAudio === audio;
+
+        if (activeAudio && activeAudio !== audio) {
+          activeAudio.pause();
+          resetBtn(activeBtn);
+        }
+
+        if (isThis) {
+          if (audio.paused) {
+            audio.play();
+            btn.querySelector('.play-icon').style.display  = 'none';
+            btn.querySelector('.pause-icon').style.display = '';
+            btn.querySelector('.play-label').textContent   = 'Pause';
+          } else {
+            audio.pause();
+            btn.querySelector('.play-icon').style.display  = '';
+            btn.querySelector('.pause-icon').style.display = 'none';
+            btn.querySelector('.play-label').textContent   = 'Play';
+          }
+        } else {
+          player.style.display = 'block';
+          audio.play();
+          btn.querySelector('.play-icon').style.display  = 'none';
+          btn.querySelector('.pause-icon').style.display = '';
+          btn.querySelector('.play-label').textContent   = 'Pause';
+          activeAudio = audio;
+          activeBtn   = btn;
+        }
+
+        audio.addEventListener('ended', () => resetBtn(btn), { once: true });
+      });
+    });
+  }
+
+  el.innerHTML = episodes.map((ep, i) => {
+    const dateStr = ep.pub
+      ? ep.pub.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      : '';
+    const badge = ep.isNew
+      ? '<span class="podcast-episode-badge podcast-episode-badge--new">New</span>'
+      : i === 0
+        ? '<span class="podcast-episode-badge">Latest</span>'
+        : '';
+    const playBtn = ep.audioUrl
+      ? `<button class="podcast-episode-play" data-audio="${ep.audioUrl}" aria-label="Play ${ep.title}">
+           <svg class="play-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 2l7 4-7 4V2z"/></svg>
+           <svg class="pause-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" style="display:none"><path d="M3 2h2v8H3V2zm4 0h2v8H7V2z"/></svg>
+           <span class="play-label">Play</span>
+         </button>
+         <div class="podcast-inline-player" style="display:none">
+           <audio preload="none" src="${ep.audioUrl}" style="width:100%;height:36px;margin-top:8px;accent-color:var(--accent)"></audio>
+         </div>`
+      : '';
+    const thumbHtml = ep.thumb
+      ? `<img class="podcast-episode-thumb" src="${ep.thumb}" alt="" loading="lazy">`
+      : `<div class="podcast-episode-thumb podcast-episode-thumb--fallback"></div>`;
+
+    return `
+      <div class="podcast-episode">
+        ${thumbHtml}
+        <div class="podcast-episode-body">
+          ${badge}
+          <div class="podcast-episode-title">${ep.title}</div>
+          <div class="podcast-episode-meta">${dateStr} · ${fmtDuration(ep.duration)}</div>
+          ${playBtn}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  wirePodcastPlayers();
+}
+
+function loadPodcast() {
+  const el = document.getElementById('podcastEpisodes');
+  if (!el) return;
+
+  fetch(RSS2JSON_API + encodeURIComponent(PODCAST_RSS))
+    .then(r => r.json())
+    .then(data => {
+      if (data.status !== 'ok') throw new Error('feed error');
+      renderPodcastEpisodes(parsePodcastFeed(data.items || []));
+    })
+    .catch(() => {
+      el.innerHTML = '<div class="podcast-episodes-loading">Could not load episodes. <a href="' + PODCAST_RSS + '" target="_blank" rel="noopener" style="color:var(--accent)">Open RSS feed</a></div>';
+    });
+}
+
 function loadLibrary() {
   fetch('data/videos.json')
     .then(r => r.json())
@@ -999,6 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTimeline();
   renderTickers();
   loadLibrary();
+  loadPodcast();
   renderResources();
   loadShelf();
   renderDispatches();
