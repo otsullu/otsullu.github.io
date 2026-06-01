@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260601" />
+  <link rel="stylesheet" href="css/style.css?v=20260601b" />
   <script>
   (function(){
     try {
@@ -250,6 +250,11 @@
   <!-- Stats bar -->
   <div class="stats-bar" id="statsBar">
     <div class="container stats-inner">
+      <div class="stat-item reveal-up">
+        <span class="stat-value" id="statNotional">$293M</span>
+        <span class="stat-label">Notional Turnover</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item reveal-up">
         <span class="stat-value" id="statContracts">8,767</span>
         <span class="stat-label">Contracts Traded</span>
@@ -720,7 +725,7 @@
       </div>
     </details>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: June 1, 2026, 4:35 PM PDT</p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: June 1, 2026, 4:46 PM PDT</p>
   </div>
 </footer>
 
@@ -730,7 +735,7 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/app.js?v=20260601"></script>
+<script src="js/app.js?v=20260601b"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {
