@@ -1,7 +1,7 @@
 {
   "trade": {
     "underlyings": 26,
-    "tradingDays": 172,
+    "tradingDays": 178,
     "topTickers": [
       {
         "sym": "TSLA"
@@ -38,15 +38,15 @@
     "cspPct": 12
   },
   "surveillance": {
-    "rowsPerCycle": 29969,
+    "rowsPerCycle": 31398,
     "fieldsTracked": 78,
-    "evaluationsPerCycle": 809082,
-    "evaluationsPerDay": 21036132,
+    "evaluationsPerCycle": 847665,
+    "evaluationsPerDay": 22039290,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-05-20T22:49:46.403Z",
+    "generatedAt": "2026-06-01T23:45:33.690",
     "source": "usp_q_WebsiteStats"
   }
 }
