@@ -1,37 +1,68 @@
 {
   "trade": {
-    "contracts": 8767,
-    "transactions": 3352,
+    "grossNotional": 293091800,
+    "contracts": 8765,
+    "transactions": 3353,
     "underlyings": 26,
-    "accounts": 8,
-    "tradingDays": 172,
-    "avgEventsPerDay": 19,
+    "accounts": 6,
+    "tradingDays": 178,
+    "avgEventsPerDay": 18,
     "peakEventsPerDay": 145,
-    "ccContracts": 7708,
-    "cspContracts": 1059,
+    "ccContracts": 7704,
+    "cspContracts": 1061,
     "topTickers": [
-      { "sym": "TSLA",  "contracts": 3307 },
-      { "sym": "NVDA",  "contracts": 1086 },
-      { "sym": "COIN",  "contracts": 879  },
-      { "sym": "PLTR",  "contracts": 704  },
-      { "sym": "META",  "contracts": 511  },
-      { "sym": "AMZN",  "contracts": 485  },
-      { "sym": "GOOGL", "contracts": 430  },
-      { "sym": "MSFT",  "contracts": 417  },
-      { "sym": "QQQ",   "contracts": 190  },
-      { "sym": "AAPL",  "contracts": 137  }
+      {
+        "sym": "TSLA",
+        "contracts": 3315
+      },
+      {
+        "sym": "NVDA",
+        "contracts": 1068
+      },
+      {
+        "sym": "COIN",
+        "contracts": 874
+      },
+      {
+        "sym": "PLTR",
+        "contracts": 703
+      },
+      {
+        "sym": "META",
+        "contracts": 511
+      },
+      {
+        "sym": "AMZN",
+        "contracts": 495
+      },
+      {
+        "sym": "GOOGL",
+        "contracts": 430
+      },
+      {
+        "sym": "MSFT",
+        "contracts": 417
+      },
+      {
+        "sym": "QQQ",
+        "contracts": 196
+      },
+      {
+        "sym": "AAPL",
+        "contracts": 137
+      }
     ]
   },
   "surveillance": {
-    "rowsPerCycle": 29969,
+    "rowsPerCycle": 31398,
     "fieldsTracked": 78,
-    "evaluationsPerCycle": 809082,
-    "evaluationsPerDay": 21036132,
+    "evaluationsPerCycle": 847665,
+    "evaluationsPerDay": 22039290,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-05-20T22:49:46.403Z",
+    "generatedAt": "2026-06-01T23:45:33.690",
     "source": "usp_q_WebsiteStats"
   }
 }
