@@ -928,6 +928,9 @@ function applyStats(s) {
 
   /* stat bar */
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  const n = t.grossNotional || 0;
+  const notionalFmt = n >= 1e9 ? `$${(n/1e9).toFixed(2)}B` : n >= 1e6 ? `$${Math.round(n/1e6)}M` : `$${Number(n).toLocaleString()}`;
+  set('statNotional',     notionalFmt);
   set('statContracts',    Number(t.contracts).toLocaleString());
   set('statTransactions', Number(t.transactions).toLocaleString());
   set('statUnderlyings',  t.underlyings);
