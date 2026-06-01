@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "indian-investment-vehicles",
+      "file": "indian-investment-vehicles-comparison-guide-ots-ullu-slide-deck.pdf",
+      "title": "Indian Investment Vehicles: A Comparison Guide",
+      "description": "A practical comparison of the major Indian investment vehicles — mutual funds, ETFs, PMS, AIFs, direct equity, and bonds — covering structure, costs, tax treatment, and who each is best suited for.",
+      "tags": ["india", "investing", "mutual funds", "ETF", "tax", "wealth"],
+      "date": "2026-06-01",
+      "featured": true
+    },
+    {
       "id": "fomo-protocol",
       "file": "the-fomo-protocol-overcome-herd-mentality-investing-ots-ullu-slide-deck.pdf",
       "title": "The FOMO Protocol: Overcome Herd Mentality in Investing",

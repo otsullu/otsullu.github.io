@@ -1032,14 +1032,14 @@ function renderPodcastEpisodes(episodes) {
     btn.querySelector('.play-icon').style.display  = '';
     btn.querySelector('.pause-icon').style.display = 'none';
     btn.querySelector('.play-label').textContent   = 'Play';
-    const player = btn.closest('.podcast-episode-body').querySelector('.podcast-inline-player');
+    const player = btn.closest('.podcast-card-body').querySelector('.podcast-inline-player');
     if (player) player.style.display = 'none';
   }
 
   function wirePodcastPlayers() {
     el.querySelectorAll('.podcast-episode-play').forEach(btn => {
       btn.addEventListener('click', () => {
-        const body   = btn.closest('.podcast-episode-body');
+        const body   = btn.closest('.podcast-card-body');
         const player = body.querySelector('.podcast-inline-player');
         const audio  = player.querySelector('audio');
         const isThis = activeAudio === audio;
@@ -1076,15 +1076,18 @@ function renderPodcastEpisodes(episodes) {
     });
   }
 
-  el.innerHTML = episodes.map((ep, i) => {
+  const cards = episodes.map((ep, i) => {
     const dateStr = ep.pub
       ? ep.pub.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       : '';
     const badge = ep.isNew
-      ? '<span class="podcast-episode-badge podcast-episode-badge--new">New</span>'
+      ? '<span class="resource-type-badge badge-podcast badge-podcast--new">New</span>'
       : i === 0
-        ? '<span class="podcast-episode-badge">Latest</span>'
-        : '';
+        ? '<span class="resource-type-badge badge-podcast">Latest</span>'
+        : '<span class="resource-type-badge badge-podcast">Episode</span>';
+    const thumbHtml = ep.thumb
+      ? `<img class="podcast-card-thumb" src="${ep.thumb}" alt="" loading="lazy">`
+      : `<div class="podcast-card-thumb podcast-card-thumb--fallback"></div>`;
     const playBtn = ep.audioUrl
       ? `<button class="podcast-episode-play" data-audio="${ep.audioUrl}" aria-label="Play ${ep.title}">
            <svg class="play-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 2l7 4-7 4V2z"/></svg>
@@ -1095,23 +1098,21 @@ function renderPodcastEpisodes(episodes) {
            <audio preload="none" src="${ep.audioUrl}" style="width:100%;height:36px;margin-top:8px;accent-color:var(--accent)"></audio>
          </div>`
       : '';
-    const thumbHtml = ep.thumb
-      ? `<img class="podcast-episode-thumb" src="${ep.thumb}" alt="" loading="lazy">`
-      : `<div class="podcast-episode-thumb podcast-episode-thumb--fallback"></div>`;
-
     return `
-      <div class="podcast-episode">
+      <div class="resource-card podcast-card">
         ${thumbHtml}
-        <div class="podcast-episode-body">
-          ${badge}
-          <div class="podcast-episode-title">${ep.title}</div>
-          <div class="podcast-episode-meta">${dateStr} · ${fmtDuration(ep.duration)}</div>
+        <div class="podcast-card-body">
+          <div class="resource-card-pdf-top">${badge}<span class="resource-card-date">${dateStr}</span></div>
+          <p class="resource-title">${ep.title}</p>
+          <p class="resource-desc">${fmtDuration(ep.duration)}</p>
           ${playBtn}
         </div>
       </div>
     `;
-  }).join('');
+  });
 
+  el.innerHTML = buildCarousel(cards, 'Episodes');
+  initShelfCarousel(el.querySelector('.shelf-carousel-wrap'));
   wirePodcastPlayers();
 }
 
