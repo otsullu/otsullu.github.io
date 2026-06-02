@@ -2212,6 +2212,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 .podcast-card-body .resource-title { margin-bottom: 4px; }
 .podcast-card-body .resource-desc  { color: var(--fg-meta); font-size: 0.78rem; margin-bottom: 12px; }
+.podcast-card-body .podcast-episode-play { margin-top: auto; }
 
 .section-shelf {
   background: var(--bg-alt);
