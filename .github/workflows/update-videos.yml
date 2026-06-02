@@ -2,8 +2,8 @@ name: Refresh YouTube Data
 
 on:
   schedule:
-    # Runs every hour
-    - cron: '0 * * * *'
+    # Runs every 8 hours (temporary: back to hourly after June 15, 2026)
+    - cron: '0 */8 * * *'
   workflow_dispatch:   # allow manual trigger from GitHub UI
 
 permissions:
