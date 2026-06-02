@@ -1040,27 +1040,26 @@ function renderPodcastEpisodes(episodes) {
   function resetBtn(btn) {
     btn.querySelector('.play-icon').style.display  = '';
     btn.querySelector('.pause-icon').style.display = 'none';
-    const body = btn.closest('.podcast-card-body');
-    const pw = body.querySelector('.podcast-progress-wrap');
-    if (pw) pw.style.visibility = 'hidden';
+    const wrap = btn.closest('.podcast-thumb-wrap');
+    const tp = wrap && wrap.querySelector('.podcast-thumb-progress');
+    if (tp) tp.classList.remove('is-active');
   }
 
   function wirePodcastPlayers() {
     el.querySelectorAll('.podcast-episode-play').forEach(btn => {
-      const body    = btn.closest('.podcast-card-body');
-      const footer  = btn.closest('.podcast-card-footer');
-      const audio   = footer.querySelector('.podcast-audio');
-      const pw      = body.querySelector('.podcast-progress-wrap');
-      const fill    = pw && pw.querySelector('.podcast-progress-fill');
-      const thumb   = pw && pw.querySelector('.podcast-progress-thumb');
-      const bar     = pw && pw.querySelector('.podcast-progress-bar');
-      const elapsed = pw && pw.querySelector('.podcast-elapsed');
-      const remain  = pw && pw.querySelector('.podcast-remaining');
+      const wrap    = btn.closest('.podcast-thumb-wrap');
+      const audio   = wrap.querySelector('.podcast-audio');
+      const tp      = wrap.querySelector('.podcast-thumb-progress');
+      const fill    = tp && tp.querySelector('.podcast-progress-fill');
+      const pthumb  = tp && tp.querySelector('.podcast-progress-thumb');
+      const bar     = tp && tp.querySelector('.podcast-progress-bar');
+      const elapsed = tp && tp.querySelector('.podcast-elapsed');
+      const remain  = tp && tp.querySelector('.podcast-remaining');
 
       function setPlaying() {
         btn.querySelector('.play-icon').style.display  = 'none';
         btn.querySelector('.pause-icon').style.display = '';
-        if (pw) pw.style.visibility = 'visible';
+        if (tp) tp.classList.add('is-active');
       }
       function setPaused() {
         btn.querySelector('.play-icon').style.display  = '';
@@ -1070,9 +1069,9 @@ function renderPodcastEpisodes(episodes) {
       audio.addEventListener('timeupdate', () => {
         if (!audio.duration) return;
         const pct = audio.currentTime / audio.duration * 100;
-        if (fill)    fill.style.width = pct + '%';
-        if (thumb)   thumb.style.left = pct + '%';
-        if (bar)     bar.setAttribute('aria-valuenow', Math.round(pct));
+        if (fill)   fill.style.width  = pct + '%';
+        if (pthumb) pthumb.style.left = pct + '%';
+        if (bar)    bar.setAttribute('aria-valuenow', Math.round(pct));
         if (elapsed) elapsed.textContent = fmtSecs(audio.currentTime);
         if (remain)  remain.textContent  = fmtSecs(audio.duration - audio.currentTime) + ' left';
       });
@@ -1129,35 +1128,32 @@ function renderPodcastEpisodes(episodes) {
     const thumbHtml = ep.thumb
       ? `<img class="podcast-card-thumb" src="${ep.thumb}" alt="" loading="lazy">`
       : `<div class="podcast-card-thumb podcast-card-thumb--fallback"></div>`;
-    const playBtn = ep.audioUrl
-      ? `<div class="podcast-card-footer">
+    const thumbWrap = ep.audioUrl
+      ? `<div class="podcast-thumb-wrap">
+           ${thumbHtml}
            <button class="podcast-episode-play" data-audio="${ep.audioUrl}" aria-label="Play ${ep.title}">
-             <svg class="play-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3l10 5-10 5V3z"/></svg>
-             <svg class="pause-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="display:none"><path d="M4 3h3v10H4V3zm5 0h3v10H9V3z"/></svg>
+             <svg class="play-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3.5l13 6.5-13 6.5V3.5z"/></svg>
+             <svg class="pause-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display:none"><path d="M5 4h4v12H5V4zm6 0h4v12h-4V4z"/></svg>
            </button>
-           <span class="podcast-duration">${fmtDuration(ep.duration)}</span>
            <audio class="podcast-audio" preload="none" src="${ep.audioUrl}"></audio>
-         </div>
-         <div class="podcast-progress-wrap">
-           <div class="podcast-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
-             <div class="podcast-progress-fill"></div>
-             <div class="podcast-progress-thumb"></div>
-           </div>
-           <div class="podcast-progress-times">
-             <span class="podcast-elapsed">0:00</span>
-             <span class="podcast-remaining"></span>
+           <div class="podcast-thumb-progress">
+             <div class="podcast-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+               <div class="podcast-progress-fill"></div>
+               <div class="podcast-progress-thumb"></div>
+             </div>
+             <div class="podcast-progress-times">
+               <span class="podcast-elapsed">0:00</span>
+               <span class="podcast-remaining"></span>
+             </div>
            </div>
          </div>`
-      : `<div class="podcast-card-footer">
-           <span class="podcast-duration">${fmtDuration(ep.duration)}</span>
-         </div>`;
+      : `<div class="podcast-thumb-wrap">${thumbHtml}</div>`;
     return `
       <div class="resource-card podcast-card">
-        ${thumbHtml}
+        ${thumbWrap}
         <div class="podcast-card-body">
-          <div class="resource-card-pdf-top">${badge}<span class="resource-card-date">${dateStr}</span></div>
+          <div class="resource-card-pdf-top">${badge}<span class="podcast-duration">${fmtDuration(ep.duration)}</span><span class="resource-card-date">${dateStr}</span></div>
           <p class="resource-title">${ep.title}</p>
-          ${playBtn}
         </div>
       </div>
     `;
