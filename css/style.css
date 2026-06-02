@@ -2385,7 +2385,8 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   transition: transform 0.35s var(--ease-out);
 }
 
-.shelf-carousel-track .resource-card-pdf {
+.shelf-carousel-track .resource-card-pdf,
+.shelf-carousel-track .podcast-card {
   flex: 0 0 calc((100% - 32px) / 3);
   min-width: 0;
 }
@@ -2433,14 +2434,16 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 @media (max-width: 767px) {
-  .shelf-carousel-track .resource-card-pdf {
-    flex: 0 0 calc(100% - 0px);
+  .shelf-carousel-track .resource-card-pdf,
+  .shelf-carousel-track .podcast-card {
+    flex: 0 0 100%;
   }
   .shelf-carousel-arrow { display: none; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .shelf-carousel-track .resource-card-pdf {
+  .shelf-carousel-track .resource-card-pdf,
+  .shelf-carousel-track .podcast-card {
     flex: 0 0 calc((100% - 16px) / 2);
   }
 }
