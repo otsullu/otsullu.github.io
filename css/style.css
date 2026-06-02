@@ -2434,11 +2434,20 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 @media (max-width: 767px) {
-  .shelf-carousel-track .resource-card-pdf,
-  .shelf-carousel-track .podcast-card {
+  .shelf-carousel-track .resource-card-pdf {
     flex: 0 0 100%;
   }
   .shelf-carousel-arrow { display: none; }
+
+  /* Podcast: stack vertically on mobile like YouTube videos */
+  .section-podcast .shelf-carousel-track {
+    flex-direction: column;
+    transform: none !important;
+  }
+  .section-podcast .shelf-carousel-track .podcast-card {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
