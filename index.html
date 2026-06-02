@@ -758,7 +758,8 @@ function switchTab(panelId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Persist tab in URL hash for deep-linking
-  history.replaceState(null, '', '#' + panelId.replace('tab-', ''));
+  const hashMap = { 'tab-library': 'observatory', 'tab-home': 'home', 'tab-platform': 'platform', 'tab-waitlist': 'waitlist' };
+  history.replaceState(null, '', '#' + (hashMap[panelId] || panelId.replace('tab-', '')));
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn => {

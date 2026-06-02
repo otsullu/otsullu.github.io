@@ -1031,50 +1031,88 @@ function renderPodcastEpisodes(episodes) {
   let activeAudio = null;
   let activeBtn   = null;
 
+  function fmtSecs(s) {
+    if (!isFinite(s) || s < 0) return '0:00';
+    const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+
   function resetBtn(btn) {
     btn.querySelector('.play-icon').style.display  = '';
     btn.querySelector('.pause-icon').style.display = 'none';
-    btn.querySelector('.play-label').textContent   = 'Play';
-    const player = btn.closest('.podcast-card-body').querySelector('.podcast-inline-player');
-    if (player) player.style.display = 'none';
+    const body = btn.closest('.podcast-card-body');
+    const pw = body.querySelector('.podcast-progress-wrap');
+    if (pw) pw.style.visibility = 'hidden';
   }
 
   function wirePodcastPlayers() {
     el.querySelectorAll('.podcast-episode-play').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const body   = btn.closest('.podcast-card-body');
-        const player = body.querySelector('.podcast-inline-player');
-        const audio  = player.querySelector('audio');
-        const isThis = activeAudio === audio;
+      const body    = btn.closest('.podcast-card-body');
+      const footer  = btn.closest('.podcast-card-footer');
+      const audio   = footer.querySelector('.podcast-audio');
+      const pw      = body.querySelector('.podcast-progress-wrap');
+      const fill    = pw && pw.querySelector('.podcast-progress-fill');
+      const thumb   = pw && pw.querySelector('.podcast-progress-thumb');
+      const bar     = pw && pw.querySelector('.podcast-progress-bar');
+      const elapsed = pw && pw.querySelector('.podcast-elapsed');
+      const remain  = pw && pw.querySelector('.podcast-remaining');
 
+      function setPlaying() {
+        btn.querySelector('.play-icon').style.display  = 'none';
+        btn.querySelector('.pause-icon').style.display = '';
+        if (pw) pw.style.visibility = 'visible';
+      }
+      function setPaused() {
+        btn.querySelector('.play-icon').style.display  = '';
+        btn.querySelector('.pause-icon').style.display = 'none';
+      }
+
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        const pct = audio.currentTime / audio.duration * 100;
+        if (fill)    fill.style.width = pct + '%';
+        if (thumb)   thumb.style.left = pct + '%';
+        if (bar)     bar.setAttribute('aria-valuenow', Math.round(pct));
+        if (elapsed) elapsed.textContent = fmtSecs(audio.currentTime);
+        if (remain)  remain.textContent  = fmtSecs(audio.duration - audio.currentTime) + ' left';
+      });
+
+      audio.addEventListener('ended', () => { resetBtn(btn); });
+
+      if (bar) {
+        function scrub(e) {
+          if (!audio.duration) return;
+          const rect = bar.getBoundingClientRect();
+          const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          audio.currentTime = pct * audio.duration;
+        }
+        let dragging = false;
+        bar.addEventListener('mousedown', e => { dragging = true; scrub(e); });
+        document.addEventListener('mousemove', e => { if (dragging) scrub(e); });
+        document.addEventListener('mouseup',   () => { dragging = false; });
+        bar.addEventListener('touchstart', e => scrub(e.touches[0]), { passive: true });
+        bar.addEventListener('touchmove',  e => scrub(e.touches[0]), { passive: true });
+        bar.addEventListener('keydown', e => {
+          if (!audio.duration) return;
+          if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+          if (e.key === 'ArrowLeft')  audio.currentTime = Math.max(0, audio.currentTime - 10);
+        });
+      }
+
+      btn.addEventListener('click', () => {
         if (activeAudio && activeAudio !== audio) {
           activeAudio.pause();
           resetBtn(activeBtn);
         }
-
-        if (isThis) {
-          if (audio.paused) {
-            audio.play();
-            btn.querySelector('.play-icon').style.display  = 'none';
-            btn.querySelector('.pause-icon').style.display = '';
-            btn.querySelector('.play-label').textContent   = 'Pause';
-          } else {
-            audio.pause();
-            btn.querySelector('.play-icon').style.display  = '';
-            btn.querySelector('.pause-icon').style.display = 'none';
-            btn.querySelector('.play-label').textContent   = 'Play';
-          }
+        if (activeAudio === audio && !audio.paused) {
+          audio.pause();
+          setPaused();
         } else {
-          player.style.display = 'block';
           audio.play();
-          btn.querySelector('.play-icon').style.display  = 'none';
-          btn.querySelector('.pause-icon').style.display = '';
-          btn.querySelector('.play-label').textContent   = 'Pause';
+          setPlaying();
           activeAudio = audio;
           activeBtn   = btn;
         }
-
-        audio.addEventListener('ended', () => resetBtn(btn), { once: true });
       });
     });
   }
@@ -1092,22 +1130,33 @@ function renderPodcastEpisodes(episodes) {
       ? `<img class="podcast-card-thumb" src="${ep.thumb}" alt="" loading="lazy">`
       : `<div class="podcast-card-thumb podcast-card-thumb--fallback"></div>`;
     const playBtn = ep.audioUrl
-      ? `<button class="podcast-episode-play" data-audio="${ep.audioUrl}" aria-label="Play ${ep.title}">
-           <svg class="play-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 2l7 4-7 4V2z"/></svg>
-           <svg class="pause-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" style="display:none"><path d="M3 2h2v8H3V2zm4 0h2v8H7V2z"/></svg>
-           <span class="play-label">Play</span>
-         </button>
-         <div class="podcast-inline-player" style="display:none">
-           <audio preload="none" src="${ep.audioUrl}" style="width:100%;height:36px;margin-top:8px;accent-color:var(--accent)"></audio>
+      ? `<div class="podcast-card-footer">
+           <button class="podcast-episode-play" data-audio="${ep.audioUrl}" aria-label="Play ${ep.title}">
+             <svg class="play-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3l10 5-10 5V3z"/></svg>
+             <svg class="pause-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="display:none"><path d="M4 3h3v10H4V3zm5 0h3v10H9V3z"/></svg>
+           </button>
+           <span class="podcast-duration">${fmtDuration(ep.duration)}</span>
+           <audio class="podcast-audio" preload="none" src="${ep.audioUrl}"></audio>
+         </div>
+         <div class="podcast-progress-wrap">
+           <div class="podcast-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+             <div class="podcast-progress-fill"></div>
+             <div class="podcast-progress-thumb"></div>
+           </div>
+           <div class="podcast-progress-times">
+             <span class="podcast-elapsed">0:00</span>
+             <span class="podcast-remaining"></span>
+           </div>
          </div>`
-      : '';
+      : `<div class="podcast-card-footer">
+           <span class="podcast-duration">${fmtDuration(ep.duration)}</span>
+         </div>`;
     return `
       <div class="resource-card podcast-card">
         ${thumbHtml}
         <div class="podcast-card-body">
           <div class="resource-card-pdf-top">${badge}<span class="resource-card-date">${dateStr}</span></div>
           <p class="resource-title">${ep.title}</p>
-          <p class="resource-desc">${fmtDuration(ep.duration)}</p>
           ${playBtn}
         </div>
       </div>
