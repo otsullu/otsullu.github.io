@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "64",
-    "totalViews": "4059",
-    "videoCount": "84",
-    "updated": "2026-06-02T19:59:23.085786+00:00"
+    "totalViews": "4090",
+    "videoCount": "85",
+    "updated": "2026-06-03T18:10:58.987026+00:00"
   },
   "engagement": {
-    "totalViews": 4072,
-    "totalLikes": 148,
+    "totalViews": 4110,
+    "totalLikes": 149,
     "totalComments": 52,
-    "engagementRate": 4.91,
+    "engagementRate": 4.89,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 421
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/F7N2KS4cTbY/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/T_307eHOeNQ/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "T_307eHOeNQ",
+      "title": "⏱️ 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻 𝗧𝗵𝗲𝘁𝗮: 𝗧𝗵𝗲 𝗨𝗹𝘁𝗶𝗺𝗮𝘁𝗲 𝗚𝘂𝗶𝗱𝗲 𝘁𝗼 𝗧𝗶𝗺𝗲 𝗗𝗲𝗰𝗮𝘆 & 𝗣𝗿𝗲𝗺𝗶𝘂𝗺 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 📉",
+      "thumb": "https://i.ytimg.com/vi/T_307eHOeNQ/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-06-03",
+      "india": true
+    },
+    {
       "id": "RP4sNdRE_lE",
       "title": "𝗧𝗵𝗲 𝗔𝗻𝗰𝗶𝗲𝗻𝘁 𝗥𝗼𝗼𝘁𝘀 𝗼𝗳 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗧𝗿𝗮𝗱𝗶𝗻𝗴: From Olive Presses to Wall Street 📈",
       "thumb": "https://i.ytimg.com/vi/RP4sNdRE_lE/maxresdefault.jpg",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/1rvobFtZ7gw/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "5",
+      "views": "33",
       "likes": "2",
       "comments": "0",
       "published": "2026-06-01",
@@ -100,8 +112,8 @@
       "thumb": "https://i.ytimg.com/vi/aayeURdvfRM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "19",
-      "likes": "1",
+      "views": "24",
+      "likes": "2",
       "comments": "0",
       "published": "2026-06-01",
       "india": true
@@ -112,7 +124,7 @@
       "thumb": "https://i.ytimg.com/vi/Jd5j0_WCiqM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "4",
+      "views": "5",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-31",
@@ -136,7 +148,7 @@
       "thumb": "https://i.ytimg.com/vi/uiKYbRel2gc/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "12",
+      "views": "14",
       "likes": "2",
       "comments": "2",
       "published": "2026-05-31",
@@ -508,7 +520,7 @@
       "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "58",
+      "views": "59",
       "likes": "2",
       "comments": "1",
       "published": "2026-05-10",
@@ -1012,7 +1024,7 @@
       "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "215",
+      "views": "216",
       "likes": "4",
       "comments": "0",
       "published": "2026-04-15",
