@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "64",
-    "totalViews": "4121",
-    "videoCount": "85",
-    "updated": "2026-06-04T21:57:00.384485+00:00"
+    "totalViews": "4148",
+    "videoCount": "86",
+    "updated": "2026-06-05T11:53:15.083822+00:00"
   },
   "engagement": {
-    "totalViews": 4145,
+    "totalViews": 4173,
     "totalLikes": 150,
     "totalComments": 52,
-    "engagementRate": 4.87,
+    "engagementRate": 4.84,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 421
@@ -34,7 +34,7 @@
       "ytId": "PLZEDE8n1EZ0QbpBD3ZaqYWVDu9wEpvHxZ",
       "color": "#c9a84c",
       "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles.",
-      "thumb": "https://i.ytimg.com/vi/nZ3RBA0g7bQ/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/BK1FMrBG6ng/maxresdefault.jpg"
     },
     {
       "id": "wealth-academy",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "BK1FMrBG6ng",
+      "title": "𝗪𝗵𝗮𝘁 𝗕𝗮𝗰𝗸𝘀 𝘁𝗵𝗲 𝗨.𝗦. 𝗗𝗼𝗹𝗹𝗮𝗿? 𝗧𝗵𝗲 𝗧𝗿𝘂𝘁𝗵 𝗔𝗯𝗼𝘂𝘁 𝗙𝗶𝗮𝘁 𝗠𝗼𝗻𝗲𝘆 & 𝗧𝗵𝗲 𝗚𝗼𝗹𝗱 𝗦𝘁𝗮𝗻𝗱𝗮𝗿𝗱 💵🤯",
+      "thumb": "https://i.ytimg.com/vi/BK1FMrBG6ng/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-06-05",
+      "india": true
+    },
+    {
       "id": "T_307eHOeNQ",
       "title": "⏱️ 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻 𝗧𝗵𝗲𝘁𝗮: 𝗧𝗵𝗲 𝗨𝗹𝘁𝗶𝗺𝗮𝘁𝗲 𝗚𝘂𝗶𝗱𝗲 𝘁𝗼 𝗧𝗶𝗺𝗲 𝗗𝗲𝗰𝗮𝘆 & 𝗣𝗿𝗲𝗺𝗶𝘂𝗺 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 📉",
       "thumb": "https://i.ytimg.com/vi/T_307eHOeNQ/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "7",
+      "views": "12",
       "likes": "0",
       "comments": "0",
       "published": "2026-06-03",
@@ -100,7 +112,7 @@
       "thumb": "https://i.ytimg.com/vi/1rvobFtZ7gw/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "52",
+      "views": "70",
       "likes": "3",
       "comments": "0",
       "published": "2026-06-01",
@@ -160,7 +172,7 @@
       "thumb": "https://i.ytimg.com/vi/uy1_T7n3oaY/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "14",
+      "views": "15",
       "likes": "1",
       "comments": "1",
       "published": "2026-05-30",
@@ -328,7 +340,7 @@
       "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Gujarati",
-      "views": "78",
+      "views": "81",
       "likes": "0",
       "comments": "1",
       "published": "2026-05-19",
@@ -520,7 +532,7 @@
       "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "59",
+      "views": "60",
       "likes": "2",
       "comments": "1",
       "published": "2026-05-10",
