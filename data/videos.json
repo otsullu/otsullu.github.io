@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "69",
-    "totalViews": "4366",
-    "videoCount": "86",
-    "updated": "2026-06-08T14:51:47.850034+00:00"
+    "totalViews": "4379",
+    "videoCount": "87",
+    "updated": "2026-06-08T22:12:37.649506+00:00"
   },
   "engagement": {
-    "totalViews": 4387,
+    "totalViews": 4393,
     "totalLikes": 151,
     "totalComments": 52,
-    "engagementRate": 4.63,
+    "engagementRate": 4.62,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 421
@@ -58,7 +58,7 @@
       "ytId": "PLZEDE8n1EZ0QFan242PpKNi7PodQX55ot",
       "color": "#ff9933",
       "desc": "Indian market intelligence in 10+ languages — Hindi, Tamil, Telugu, Marathi, Gujarati and more.",
-      "thumb": "https://i.ytimg.com/vi/aayeURdvfRM/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/Xj4ft49EWXk/maxresdefault.jpg"
     },
     {
       "id": "infomercials",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "Xj4ft49EWXk",
+      "title": "🚀 निवेश का महा-गाइड: 𝗠𝘂𝘁𝘂𝗮𝗹 𝗙𝘂𝗻𝗱𝘀 से लेकर 𝗦𝗜𝗙𝘀, 𝗣𝗠𝗦 और 𝗔𝗜𝗙𝘀 तक — सब कुछ समझें! 💸",
+      "thumb": "https://i.ytimg.com/vi/Xj4ft49EWXk/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "Hindi",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-06-08",
+      "india": true
+    },
+    {
       "id": "BK1FMrBG6ng",
       "title": "𝗪𝗵𝗮𝘁 𝗕𝗮𝗰𝗸𝘀 𝘁𝗵𝗲 𝗨.𝗦. 𝗗𝗼𝗹𝗹𝗮𝗿? 𝗧𝗵𝗲 𝗧𝗿𝘂𝘁𝗵 𝗔𝗯𝗼𝘂𝘁 𝗙𝗶𝗮𝘁 𝗠𝗼𝗻𝗲𝘆 & 𝗧𝗵𝗲 𝗚𝗼𝗹𝗱 𝗦𝘁𝗮𝗻𝗱𝗮𝗿𝗱 💵🤯",
       "thumb": "https://i.ytimg.com/vi/BK1FMrBG6ng/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "52",
+      "views": "53",
       "likes": "1",
       "comments": "0",
       "published": "2026-06-05",
@@ -136,7 +148,7 @@
       "thumb": "https://i.ytimg.com/vi/Jd5j0_WCiqM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "15",
+      "views": "16",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-31",
@@ -448,7 +460,7 @@
       "thumb": "https://i.ytimg.com/vi/w4elsYEoIhI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "87",
+      "views": "89",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-16",
@@ -1036,7 +1048,7 @@
       "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "223",
+      "views": "225",
       "likes": "4",
       "comments": "0",
       "published": "2026-04-15",
