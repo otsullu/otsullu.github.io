@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "physical-ai-career",
+      "file": "physical-ai-career-blueprint-student-guide.pdf",
+      "title": "Physical AI Career Blueprint: Student Guide",
+      "description": "A practical guide for students and early-career professionals looking to build careers at the intersection of physical AI — robotics, autonomous systems, and embodied intelligence — covering skill stacks, company landscapes, and entry points into the field.",
+      "tags": ["ai", "robotics", "career", "physical ai", "students"],
+      "date": "2026-06-17",
+      "featured": true
+    },
+    {
       "id": "jeff-bezos-prometheus",
       "file": "jeff-bezos-project-prometheus-ai-teardown.pdf",
       "title": "Jeff Bezos: Project Prometheus AI Teardown",
