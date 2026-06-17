@@ -2,6 +2,24 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "jeff-bezos-prometheus",
+      "file": "jeff-bezos-project-prometheus-ai-teardown.pdf",
+      "title": "Jeff Bezos: Project Prometheus AI Teardown",
+      "description": "A deep dive into Jeff Bezos's Project Prometheus — the AI initiative reshaping Amazon's infrastructure, logistics, and consumer intelligence. What it means for the competitive landscape and long-term investors watching the next phase of Bezos-era capital allocation.",
+      "tags": ["amazon", "bezos", "ai", "strategy", "investing"],
+      "date": "2026-06-17",
+      "featured": true
+    },
+    {
+      "id": "spacex-ipo-s1",
+      "file": "spacex-ipo-spcx-s1-teardown-financial-analysis.pdf",
+      "title": "SpaceX IPO S-1 Teardown: Financial Analysis",
+      "description": "A deep dive into SpaceX's S-1 filing — revenue breakdown, Starlink unit economics, launch cadence, profitability trajectory, and what the IPO structure means for retail investors watching the most anticipated listing of the decade.",
+      "tags": ["spacex", "ipo", "s-1", "investing", "equity"],
+      "date": "2026-06-14",
+      "featured": true
+    },
+    {
       "id": "indian-investment-vehicles",
       "file": "indian-investment-vehicles-comparison-guide-ots-ullu-slide-deck.pdf",
       "title": "Indian Investment Vehicles: A Comparison Guide",
@@ -27,6 +45,15 @@
       "tags": ["options", "covered calls", "cash-secured puts", "strategy", "income"],
       "date": "2026-05-28",
       "featured": true
+    },
+    {
+      "id": "nvidia-q1-2027",
+      "file": "nvidia-2027-Q1-agentic-ai-factory-blueprint.pdf",
+      "title": "NVIDIA Q1 FY2027: Agentic AI Factory Blueprint",
+      "description": "NVIDIA's Q1 FY2027 earnings deep dive — the agentic AI infrastructure buildout, Blackwell ramp, data center dominance, and what the numbers reveal about the next phase of the AI capital cycle.",
+      "tags": ["nvidia", "earnings", "ai", "semiconductor", "infrastructure"],
+      "date": "2026-05-23",
+      "featured": false
     },
     {
       "id": "advanced-options-risk",
@@ -128,39 +155,12 @@
       "featured": false
     },
     {
-      "id": "jeff-bezos-prometheus",
-      "file": "jeff-bezos-project-prometheus-ai-teardown.pdf",
-      "title": "Jeff Bezos: Project Prometheus AI Teardown",
-      "description": "A deep dive into Jeff Bezos's Project Prometheus — the AI initiative reshaping Amazon's infrastructure, logistics, and consumer intelligence. What it means for the competitive landscape and long-term investors watching the next phase of Bezos-era capital allocation.",
-      "tags": ["amazon", "bezos", "ai", "strategy", "investing"],
-      "date": "2026-06-17",
-      "featured": true
-    },
-    {
-      "id": "spacex-ipo-s1",
-      "file": "spacex-ipo-spcx-s1-teardown-financial-analysis.pdf",
-      "title": "SpaceX IPO S-1 Teardown: Financial Analysis",
-      "description": "A deep dive into SpaceX's S-1 filing — revenue breakdown, Starlink unit economics, launch cadence, profitability trajectory, and what the IPO structure means for retail investors watching the most anticipated listing of the decade.",
-      "tags": ["spacex", "ipo", "s-1", "investing", "equity"],
-      "date": "2026-06-14",
-      "featured": true
-    },
-    {
       "id": "agi-blueprint",
       "file": "2026-AGI-Intelligence-Blueprint-OpenAI-Microsoft.pdf",
       "title": "AGI Intelligence Blueprint: OpenAI & Microsoft 2026",
       "description": "OpenAI and Microsoft's strategic blueprint for AGI development — capability roadmaps, safety frameworks, and the investment thesis behind the most consequential technology partnership of the decade.",
       "tags": ["agi", "openai", "microsoft", "ai"],
       "date": "2026-05-21",
-      "featured": false
-    },
-    {
-      "id": "nvidia-q1-2027",
-      "file": "nvidia-2027-Q1-agentic-ai-factory-blueprint.pdf",
-      "title": "NVIDIA Q1 FY2027: Agentic AI Factory Blueprint",
-      "description": "NVIDIA's Q1 FY2027 earnings deep dive — the agentic AI infrastructure buildout, Blackwell ramp, data center dominance, and what the numbers reveal about the next phase of the AI capital cycle.",
-      "tags": ["nvidia", "earnings", "ai", "semiconductor", "infrastructure"],
-      "date": "2026-05-23",
       "featured": false
     },
     {
