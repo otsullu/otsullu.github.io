@@ -128,6 +128,15 @@
       "featured": false
     },
     {
+      "id": "spacex-ipo-s1",
+      "file": "spacex-ipo-spcx-s1-teardown-financial-analysis.pdf",
+      "title": "SpaceX IPO S-1 Teardown: Financial Analysis",
+      "description": "A deep dive into SpaceX's S-1 filing — revenue breakdown, Starlink unit economics, launch cadence, profitability trajectory, and what the IPO structure means for retail investors watching the most anticipated listing of the decade.",
+      "tags": ["spacex", "ipo", "s-1", "investing", "equity"],
+      "date": "2026-06-14",
+      "featured": true
+    },
+    {
       "id": "agi-blueprint",
       "file": "2026-AGI-Intelligence-Blueprint-OpenAI-Microsoft.pdf",
       "title": "AGI Intelligence Blueprint: OpenAI & Microsoft 2026",
