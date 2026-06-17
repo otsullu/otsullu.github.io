@@ -128,6 +128,15 @@
       "featured": false
     },
     {
+      "id": "jeff-bezos-prometheus",
+      "file": "jeff-bezos-project-prometheus-ai-teardown.pdf",
+      "title": "Jeff Bezos: Project Prometheus AI Teardown",
+      "description": "A deep dive into Jeff Bezos's Project Prometheus — the AI initiative reshaping Amazon's infrastructure, logistics, and consumer intelligence. What it means for the competitive landscape and long-term investors watching the next phase of Bezos-era capital allocation.",
+      "tags": ["amazon", "bezos", "ai", "strategy", "investing"],
+      "date": "2026-06-17",
+      "featured": true
+    },
+    {
       "id": "spacex-ipo-s1",
       "file": "spacex-ipo-spcx-s1-teardown-financial-analysis.pdf",
       "title": "SpaceX IPO S-1 Teardown: Financial Analysis",
