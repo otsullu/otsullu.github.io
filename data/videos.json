@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "71",
-    "totalViews": "4522",
-    "videoCount": "94",
-    "updated": "2026-06-17T22:26:32.255864+00:00"
+    "totalViews": "4528",
+    "videoCount": "95",
+    "updated": "2026-06-18T12:33:31.513060+00:00"
   },
   "engagement": {
-    "totalViews": 4558,
-    "totalLikes": 157,
-    "totalComments": 57,
-    "engagementRate": 4.7,
+    "totalViews": 4581,
+    "totalLikes": 160,
+    "totalComments": 58,
+    "engagementRate": 4.76,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/QkLCqIMsfWY/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/O3pO0J6amq4/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "O3pO0J6amq4",
+      "title": "🚨 𝗝𝗲𝗳𝗳 𝗕𝗲𝘇𝗼𝘀’ 𝗦𝗲𝗰𝗿𝗲𝘁 $𝟭𝟬𝟬 𝗕𝗜𝗟𝗟𝗜𝗢𝗡 𝗔𝗜 𝗗𝗮𝘁𝗮 𝗙𝗮𝗿𝗺: 𝗧𝗵𝗲 𝗥𝗲𝗮𝗹 𝗦𝘁𝗼𝗿𝘆 𝗕𝗲𝗵𝗶𝗻𝗱 𝗣𝗿𝗼𝗺𝗲𝘁𝗵𝗲𝘂𝘀 🤖🏭",
+      "thumb": "https://i.ytimg.com/vi/O3pO0J6amq4/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "5",
+      "likes": "2",
+      "comments": "1",
+      "published": "2026-06-18",
+      "india": true
+    },
+    {
       "id": "78BiJgkKPGU",
       "title": "🚀 𝟭𝟬 𝗞𝗲𝗯𝗶𝗮𝘀𝗮𝗮𝗻 𝗞𝗲𝘂𝗮𝗻𝗴𝗮𝗻 𝗔𝗺𝗽𝘂𝗵 𝘂𝗻𝘁𝘂𝗸 𝗞𝗲𝗹𝘂𝗮𝗿𝗴𝗮 𝗜𝗻𝗱𝗼𝗻𝗲𝘀𝗶𝗮 | 𝗟𝗮𝗻𝗴𝗸𝗮𝗵 𝗞𝗲𝗰𝗶𝗹, 𝗠𝗮𝘀𝗮 𝗗𝗲𝗽𝗮𝗻 𝗟𝗲𝗯𝗶𝗵 𝗕𝗮𝗶𝗸",
       "thumb": "https://i.ytimg.com/vi/78BiJgkKPGU/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "35",
+      "views": "49",
       "likes": "2",
       "comments": "1",
       "published": "2026-06-16",
@@ -88,8 +100,8 @@
       "thumb": "https://i.ytimg.com/vi/Q9LyVaO9L-8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "7",
-      "likes": "1",
+      "views": "10",
+      "likes": "2",
       "comments": "1",
       "published": "2026-06-15",
       "india": true
@@ -184,7 +196,7 @@
       "thumb": "https://i.ytimg.com/vi/T_307eHOeNQ/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "136",
+      "views": "137",
       "likes": "0",
       "comments": "0",
       "published": "2026-06-03",
