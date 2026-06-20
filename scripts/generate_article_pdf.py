@@ -1,15 +1,35 @@
 """
 Generate a styled PDF from an article HTML file using Playwright.
-Usage: python scripts/generate_article_pdf.py
+
+Usage:
+  python scripts/generate_article_pdf.py
+      (defaults to article-1)
+  python scripts/generate_article_pdf.py \
+      --html the-mind-against-the-market/article-3/index.html \
+      --output pdfs/i-knew-this-would-happen.pdf \
+      --credit "The Mind Against the Market  ·  Article 3  ·  Published June 2026  ·  © 2026 OTS Ullu. All rights reserved."
 """
 
+import argparse
 import asyncio
 from pathlib import Path
 from playwright.async_api import async_playwright
 
-REPO_ROOT   = Path(__file__).parent.parent
-ARTICLE_HTML = REPO_ROOT / "the-mind-against-the-market" / "article-1" / "index.html"
-OUTPUT_PDF   = REPO_ROOT / "pdfs" / "the-stock-kept-rising-after-i-sold-it.pdf"
+REPO_ROOT = Path(__file__).parent.parent
+
+parser = argparse.ArgumentParser(description="Generate a styled article PDF with Playwright.")
+parser.add_argument("--html", default="the-mind-against-the-market/article-1/index.html",
+                    help="Path to the article HTML, relative to repo root.")
+parser.add_argument("--output", default="pdfs/the-stock-kept-rising-after-i-sold-it.pdf",
+                    help="Output PDF path, relative to repo root.")
+parser.add_argument("--credit",
+                    default="The Mind Against the Market  ·  Article 1  ·  Published May 2026  ·  © 2026 OTS Ullu. All rights reserved.",
+                    help="Footer credit line injected at the end of the article.")
+args = parser.parse_args()
+
+ARTICLE_HTML = REPO_ROOT / args.html
+OUTPUT_PDF   = REPO_ROOT / args.output
+CREDIT_LINE  = args.credit
 
 PRINT_CSS = """
   /* ── FORCE LIGHT THEME COMPLETELY ── */
@@ -117,7 +137,7 @@ PRINT_CSS = """
   .site-footer { display: none !important; }
   .article-meta-section:last-of-type::after {
     display: block !important;
-    content: "The Mind Against the Market  ·  Article 1  ·  Published May 2026  ·  © 2026 OTS Ullu. All rights reserved." !important;
+    content: "%CREDIT_LINE%" !important;
     margin-top: 10px !important;
     padding-top: 8px !important;
     border-top: 1px solid #ddd !important;
@@ -143,8 +163,8 @@ async def generate():
             document.body.style.background = '#ffffff';
         }""")
 
-        # Inject print CSS overrides
-        await page.add_style_tag(content=PRINT_CSS)
+        # Inject print CSS overrides (with the dynamic credit line)
+        await page.add_style_tag(content=PRINT_CSS.replace("%CREDIT_LINE%", CREDIT_LINE))
 
         # Wait for fonts, images, and style recalc to settle
         await page.wait_for_timeout(2000)
