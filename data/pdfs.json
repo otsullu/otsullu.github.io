@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "cost-of-certainty",
+      "file": "cost-of-certainty-investing-psychology.pdf",
+      "title": "The Cost of Certainty: Overconfidence & the Investing Mind",
+      "description": "A slide deck on the psychology of overconfidence — how a single correct call convinces investors they can predict the market, and the self-attribution, illusion-of-control, and escalation-of-commitment traps that quietly turn conviction into costly mistakes. The companion to Part 3 of The Mind Against the Market.",
+      "tags": ["behavioral finance", "overconfidence", "psychology", "investing", "self-attribution"],
+      "date": "2026-06-20",
+      "featured": true
+    },
+    {
       "id": "physical-ai-career",
       "file": "physical-ai-career-blueprint-student-guide.pdf",
       "title": "Physical AI Career Blueprint: Student Guide",
