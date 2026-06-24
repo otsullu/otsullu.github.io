@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "72",
     "totalViews": "4684",
-    "videoCount": "98",
-    "updated": "2026-06-24T10:56:06.975708+00:00"
+    "videoCount": "100",
+    "updated": "2026-06-24T18:00:40.719630+00:00"
   },
   "engagement": {
-    "totalViews": 4724,
+    "totalViews": 4730,
     "totalLikes": 165,
     "totalComments": 62,
-    "engagementRate": 4.81,
+    "engagementRate": 4.8,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -34,7 +34,7 @@
       "ytId": "PLZEDE8n1EZ0QbpBD3ZaqYWVDu9wEpvHxZ",
       "color": "#c9a84c",
       "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles.",
-      "thumb": "https://i.ytimg.com/vi/cAZnEI5dOlo/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/rr2jvLntUkA/maxresdefault.jpg"
     },
     {
       "id": "wealth-academy",
@@ -71,12 +71,36 @@
   ],
   "videos": [
     {
+      "id": "rr2jvLntUkA",
+      "title": "🧠 𝗧𝗿𝗶𝗴𝗴𝗲𝗿𝘀 𝗼𝗳 𝗙𝗮𝗹𝘀𝗲 𝗖𝗼𝗻𝗳𝗶𝗱𝗲𝗻𝗰𝗲: 𝗧𝗵𝗲 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻 𝗼𝗳 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗶𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 📉",
+      "thumb": "https://i.ytimg.com/vi/rr2jvLntUkA/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-06-24",
+      "india": true
+    },
+    {
+      "id": "RBhwEuFhsas",
+      "title": "🚀 𝗧𝗵𝗲 $700𝗕 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗔𝗜 𝗥𝗮𝗰𝗲: Q1 2026 Big Tech Earnings & CapEx Breakdown",
+      "thumb": "https://i.ytimg.com/vi/RBhwEuFhsas/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-06-24",
+      "india": true
+    },
+    {
       "id": "WVtsjJMEUzQ",
       "title": "वित्तीय बर्बादी का सच: शेयर बाज़ार में 𝗦𝗺𝗮𝗿𝘁 𝗜𝗻𝘃𝗲𝘀𝘁𝗼𝗿𝘀 अपना पैसा कैसे गँवाते हैं? 🧠💸",
       "thumb": "https://i.ytimg.com/vi/WVtsjJMEUzQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "29",
+      "views": "30",
       "likes": "2",
       "comments": "2",
       "published": "2026-06-23",
@@ -484,7 +508,7 @@
       "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Gujarati",
-      "views": "86",
+      "views": "87",
       "likes": "0",
       "comments": "1",
       "published": "2026-05-19",
@@ -916,7 +940,7 @@
       "thumb": "https://i.ytimg.com/vi/-QD_V31gna4/hqdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "155",
+      "views": "157",
       "likes": "1",
       "comments": "0",
       "published": "2026-04-29",
@@ -1180,7 +1204,7 @@
       "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "234",
+      "views": "236",
       "likes": "4",
       "comments": "0",
       "published": "2026-04-15",
