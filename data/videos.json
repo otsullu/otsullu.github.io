@@ -5,16 +5,16 @@
     "handle": "@otsullu",
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
-    "subscribers": "73",
+    "subscribers": "74",
     "totalViews": "4758",
     "videoCount": "102",
-    "updated": "2026-06-27T10:14:18.692683+00:00"
+    "updated": "2026-06-27T17:17:09.449036+00:00"
   },
   "engagement": {
-    "totalViews": 4778,
+    "totalViews": 4734,
     "totalLikes": 170,
     "totalComments": 66,
-    "engagementRate": 4.94,
+    "engagementRate": 4.99,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -76,8 +76,8 @@
       "thumb": "https://i.ytimg.com/vi/2imRa4v8EcI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "6",
-      "likes": "1",
+      "views": "10",
+      "likes": "2",
       "comments": "2",
       "published": "2026-06-26",
       "india": true
@@ -100,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/rr2jvLntUkA/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "12",
+      "views": "13",
       "likes": "3",
       "comments": "1",
       "published": "2026-06-24",
@@ -1269,30 +1269,6 @@
       "comments": "0",
       "published": "2026-04-09",
       "india": true
-    },
-    {
-      "id": "TGpbCKqJ6qg",
-      "title": "American vs. European Options: The Surprising History",
-      "thumb": "https://i.ytimg.com/vi/TGpbCKqJ6qg/maxresdefault.jpg",
-      "playlist": "wealth-academy",
-      "lang": "English",
-      "views": "15",
-      "likes": "0",
-      "comments": "0",
-      "published": "2026-04-09",
-      "india": false
-    },
-    {
-      "id": "1QMRglIYn-E",
-      "title": "Patching the Market: How Merchants Engineered the Modern Options",
-      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
-      "playlist": "wealth-academy",
-      "lang": "English",
-      "views": "34",
-      "likes": "1",
-      "comments": "0",
-      "published": "2026-04-08",
-      "india": false
     }
   ]
 }
