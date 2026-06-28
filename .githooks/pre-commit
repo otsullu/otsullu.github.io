@@ -1,0 +1,32 @@
+#!/bin/sh
+# Auto-stamp the footer timestamp + asset version on commits that touch
+# the site shell or its assets. Data-only commits (e.g. YouTube refresh)
+# pass through untouched so we don't needlessly bust the asset cache.
+#
+# IMPORTANT: time MUST come from PowerShell (the Windows clock), never the
+# Git Bash `date`, which runs in UTC and silently returns the wrong day.
+
+staged=$(git diff --cached --name-only)
+
+# Only act when the shell or hand-authored assets actually changed.
+echo "$staged" | grep -Eq '^(index\.html|css/style\.css|js/app\.js)$' || exit 0
+
+ts=$(powershell.exe -NoProfile -Command "Get-Date -Format 'MMMM d, yyyy, h:mm tt'" | tr -d '\r')
+ver=$(powershell.exe -NoProfile -Command "Get-Date -Format 'yyyyMMdd'" | tr -d '\r')
+abbr=$(powershell.exe -NoProfile -Command "if((Get-Date).IsDaylightSavingTime()){'PDT'}else{'PST'}" | tr -d '\r')
+
+if [ -z "$ts" ] || [ -z "$ver" ] || [ -z "$abbr" ]; then
+  echo "pre-commit: could not read time from PowerShell; aborting commit." >&2
+  exit 1
+fi
+
+# Rewrite footer timestamp and the two hand-authored asset versions.
+# pdf.min.js / pdf.worker.min.js are vendored and intentionally left alone.
+sed -E -i \
+  -e "s|(Last updated: ).*P[DS]T|\1${ts} ${abbr}|" \
+  -e "s|(style\.css\?v=)[0-9A-Za-z]+|\1${ver}|" \
+  -e "s|(js/app\.js\?v=)[0-9A-Za-z]+|\1${ver}|" \
+  index.html
+
+git add index.html
+echo "pre-commit: stamped footer '${ts} ${abbr}' and asset version '${ver}'." >&2
