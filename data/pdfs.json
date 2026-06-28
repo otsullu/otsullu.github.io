@@ -2,6 +2,24 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "behavioral-mirror",
+      "file": "behavioral-mirror-illusion-of-control-psychology.pdf",
+      "title": "The Behavioral Mirror: Illusion of Control in High-Stakes Trading",
+      "description": "A slide deck transposing Ellen Langer's landmark 1975 'illusion of control' research onto modern high-stakes trading — how traders mistake subjective confidence for genuine skill in markets where chance and skill inextricably overlap, and the widening gap between mathematical reality and perceived expertise.",
+      "tags": ["behavioral finance", "illusion of control", "psychology", "trading", "langer"],
+      "date": "2026-06-27",
+      "featured": true
+    },
+    {
+      "id": "architecture-of-chance",
+      "file": "architecture-of-chance-illusion-of-control-psychology.pdf",
+      "title": "The Architecture of Chance: The Illusion of Control",
+      "description": "A slide deck on the psychology of the illusion of control — why we try to master the uncontrollable. Built on Ellen Langer's seminal 1975 research and the craps-table paradox, it explains how the mind irrationally believes effort and concentration can bend purely random outcomes to its will.",
+      "tags": ["behavioral finance", "illusion of control", "psychology", "investing", "langer"],
+      "date": "2026-06-27",
+      "featured": true
+    },
+    {
       "id": "cost-of-certainty",
       "file": "cost-of-certainty-investing-psychology.pdf",
       "title": "The Cost of Certainty: Overconfidence & the Investing Mind",
