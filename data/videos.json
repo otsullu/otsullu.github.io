@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "74",
-    "totalViews": "4758",
+    "totalViews": "4789",
     "videoCount": "102",
-    "updated": "2026-06-28T04:18:57.986938+00:00"
+    "updated": "2026-06-28T10:31:42.159958+00:00"
   },
   "engagement": {
-    "totalViews": 4742,
-    "totalLikes": 170,
+    "totalViews": 4793,
+    "totalLikes": 171,
     "totalComments": 66,
-    "engagementRate": 4.98,
+    "engagementRate": 4.94,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -76,7 +76,7 @@
       "thumb": "https://i.ytimg.com/vi/2imRa4v8EcI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "13",
+      "views": "14",
       "likes": "2",
       "comments": "2",
       "published": "2026-06-26",
@@ -196,7 +196,7 @@
       "thumb": "https://i.ytimg.com/vi/KSuPVKMhe7c/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "13",
+      "views": "14",
       "likes": "3",
       "comments": "1",
       "published": "2026-06-15",
@@ -1269,6 +1269,30 @@
       "comments": "0",
       "published": "2026-04-09",
       "india": true
+    },
+    {
+      "id": "TGpbCKqJ6qg",
+      "title": "American vs. European Options: The Surprising History",
+      "thumb": "https://i.ytimg.com/vi/TGpbCKqJ6qg/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "15",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-04-09",
+      "india": false
+    },
+    {
+      "id": "1QMRglIYn-E",
+      "title": "Patching the Market: How Merchants Engineered the Modern Options",
+      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "34",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-04-08",
+      "india": false
     }
   ]
 }
