@@ -8,11 +8,11 @@
     "subscribers": "74",
     "totalViews": "4799",
     "videoCount": "103",
-    "updated": "2026-06-30T11:14:39.106530+00:00"
+    "updated": "2026-06-30T18:02:14.105702+00:00"
   },
   "engagement": {
-    "totalViews": 4751,
-    "totalLikes": 170,
+    "totalViews": 4827,
+    "totalLikes": 174,
     "totalComments": 68,
     "engagementRate": 5.01,
     "topVideoId": "YAU4Jplof3A",
@@ -76,8 +76,8 @@
       "thumb": "https://i.ytimg.com/vi/QC1mcMHNxts/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "11",
-      "likes": "1",
+      "views": "19",
+      "likes": "2",
       "comments": "1",
       "published": "2026-06-30",
       "india": true
@@ -172,7 +172,7 @@
       "thumb": "https://i.ytimg.com/vi/O3pO0J6amq4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "51",
+      "views": "52",
       "likes": "4",
       "comments": "1",
       "published": "2026-06-18",
@@ -796,7 +796,7 @@
       "thumb": "https://i.ytimg.com/vi/KRlVBbBKb3w/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "39",
+      "views": "40",
       "likes": "5",
       "comments": "0",
       "published": "2026-05-08",
@@ -868,8 +868,8 @@
       "thumb": "https://i.ytimg.com/vi/JqDL9ERM_QE/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "21",
-      "likes": "1",
+      "views": "22",
+      "likes": "2",
       "comments": "0",
       "published": "2026-05-04",
       "india": true
@@ -1252,7 +1252,7 @@
       "thumb": "https://i.ytimg.com/vi/KZj3kNeb7Ys/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "24",
+      "views": "25",
       "likes": "2",
       "comments": "0",
       "published": "2026-04-13",
@@ -1268,6 +1268,42 @@
       "likes": "1",
       "comments": "0",
       "published": "2026-04-10",
+      "india": false
+    },
+    {
+      "id": "R-75m05ukGM",
+      "title": "🎉 Welcome to the future of smart investing!",
+      "thumb": "https://i.ytimg.com/vi/R-75m05ukGM/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "15",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-04-09",
+      "india": true
+    },
+    {
+      "id": "TGpbCKqJ6qg",
+      "title": "American vs. European Options: The Surprising History",
+      "thumb": "https://i.ytimg.com/vi/TGpbCKqJ6qg/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "15",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-04-09",
+      "india": false
+    },
+    {
+      "id": "1QMRglIYn-E",
+      "title": "Patching the Market: How Merchants Engineered the Modern Options",
+      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "34",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-04-08",
       "india": false
     }
   ]
