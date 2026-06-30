@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles | OTS Ullu</title>
+  <meta name="description" content="Original long-form articles from OTS Ullu — practitioner case studies and strategy pieces on options, behavioral finance, and disciplined investing." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Articles | OTS Ullu" />
+  <meta property="og:description" content="Original long-form articles from OTS Ullu — practitioner case studies and strategy pieces on options, behavioral finance, and disciplined investing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://otsullu.com/articles/" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/" />
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--accent); text-decoration: none; transition: opacity 150ms; }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep { color: var(--fg-meta); opacity: 0.5; }
+
+  .articles-header { max-width: 760px; margin-bottom: 40px; }
+  .articles-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .articles-intro {
+    font-size: clamp(1.02rem, 2.4vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="max-width:860px; padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>Articles</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="articles-header">
+      <h1 class="articles-title">Articles</h1>
+      <p class="articles-intro">
+        Original long-form pieces from the OTS Ullu desk — practitioner case studies and strategy essays on options, behavioral finance, and disciplined, math-first investing.
+      </p>
+    </header>
+
+    <!-- Article list -->
+    <div class="dispatch-feed">
+
+      <article class="dispatch-card dispatch-card-live">
+        <div class="dispatch-left">
+          <span class="dispatch-source-badge">OTS Ullu · Case Study</span>
+          <h3 class="dispatch-title">I Bought Life360 Near the Top. I Was Ready for the Fall.</h3>
+          <p class="dispatch-excerpt">A case study in how a sound company, disciplined sizing, and a covered-call process turned a 44% equity drawdown into a net-profitable position. The shares fell 43.9%; the position is up 9.37%.</p>
+        </div>
+        <div class="dispatch-right">
+          <a href="/articles/life360-covered-call-case-study/" class="dispatch-read-link">Read →</a>
+        </div>
+      </article>
+
+      <article class="dispatch-card dispatch-card-live">
+        <div class="dispatch-left">
+          <span class="dispatch-source-badge">OTS Ullu · Strategy</span>
+          <h3 class="dispatch-title">The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options</h3>
+          <p class="dispatch-excerpt">She had rolled the position six times, every roll a winner, and was about to close it for the only reason that should never count: the number six.</p>
+        </div>
+        <div class="dispatch-right">
+          <a href="/articles/when-to-roll-or-stop/" class="dispatch-read-link">Read →</a>
+        </div>
+      </article>
+
+      <article class="dispatch-card dispatch-card-live">
+        <div class="dispatch-left">
+          <span class="dispatch-source-badge">The Mind Against the Market · Part 1</span>
+          <h3 class="dispatch-title">The Stock Kept Rising After I Sold It</h3>
+          <p class="dispatch-excerpt">Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.</p>
+        </div>
+        <div class="dispatch-right">
+          <a href="/the-mind-against-the-market/article-1/" class="dispatch-read-link">Read →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+</body>
+</html>
