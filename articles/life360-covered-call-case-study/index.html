@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Bought Life360 Near the Top. I Was Ready for the Fall. | OTS Ullu</title>
+  <meta name="description" content="A case study in how a sound company, disciplined position sizing, and a rolling covered-call process turned a 44% equity drawdown into a net-profitable position." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="I Bought Life360 Near the Top. I Was Ready for the Fall." />
+  <meta property="og:description" content="A case study in how a sound company, disciplined position sizing, and a rolling covered-call process turned a 44% equity drawdown into a net-profitable position." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/life360-covered-call-case-study/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/life360-covered-call-case-study/img-01-hero.png" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Strategy" />
+  <meta property="article:tag" content="Covered Calls, Rolling, Position Sizing, Drawdown, Life360, Options Strategy" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="I Bought Life360 Near the Top. I Was Ready for the Fall." />
+  <meta name="twitter:description" content="A case study in how a sound company, disciplined position sizing, and a rolling covered-call process turned a 44% equity drawdown into a net-profitable position." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/life360-covered-call-case-study/img-01-hero.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/life360-covered-call-case-study/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "I Bought Life360 Near the Top. I Was Ready for the Fall.",
+    "description": "A case study in how a sound company, disciplined position sizing, and a rolling covered-call process turned a 44% equity drawdown into a net-profitable position.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    },
+    "datePublished": "2026-06-30"
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "I Bought Life360 Near the Top"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin-bottom: 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-hero-img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    margin-bottom: 48px;
+    object-fit: cover;
+    max-height: 520px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-body {
+    max-width: 760px;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 36px 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .exec-note {
+    margin: 0 0 36px;
+    padding: 18px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .exec-note p {
+    font-size: 0.96rem !important;
+    line-height: 1.7 !important;
+    font-style: italic;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0 !important;
+  }
+  .exec-note strong { color: var(--fg); font-style: normal; }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+    background: #ffffff;
+  }
+  .article-img-caption {
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .article-body ul, .article-body ol {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+  }
+  .article-body ul { list-style: disc; }
+  .article-body ol { list-style: decimal; }
+  .article-body li::marker { color: var(--accent); }
+  .article-body ul li, .article-body ol li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong, .article-body ol li strong {
+    color: var(--fg);
+  }
+
+  /* ── Data tables (exhibits) ───────────────────────────────────────── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 16px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th,
+  .article-table td {
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.45;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .article-table .row-total td {
+    font-weight: 700;
+    background: var(--accent-tint-10);
+    color: var(--fg);
+  }
+
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="max-width:860px; padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/">Articles</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>I Bought Life360 Near the Top</span>
+    </nav>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">I Bought Life360 Near the Top. I Was Ready for the Fall.</h1>
+      <p class="article-lede">
+        A case study in how a sound company, disciplined sizing, and a covered-call process turned a 44% equity drawdown into a net-profitable position.
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Strategy</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Covered-Call Case Study</span>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <img
+      src="../../assets/img/articles/life360-covered-call-case-study/img-01-hero.png"
+      alt="Life360: the stock fell 44% while a rolling covered-call process drove the net position to +9.37%"
+      class="article-hero-img"
+      loading="eager"
+    />
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <div class="exec-note">
+        <p><strong>Executive note:</strong> This article is a practitioner case study, not an argument for prediction. The central lesson is that process design, position sizing, and repeatable option mechanics can change the emotional and financial profile of a drawdown when the underlying business thesis remains intact.</p>
+      </div>
+
+      <p>On September 8, 2025, I bought 200 shares of Life360 (NASDAQ: LIF) at a cost basis of $102.64. The stock had climbed hard and fast, and I knew it could give a good portion of that back. I bought anyway, not on a hunch and not because I imagined I had timed a bottom, but for three reasons I could defend with arithmetic rather than hope:</p>
+
+      <ol>
+        <li><strong>The business is solid.</strong> I had watched Life360 for a long time. The fundamentals, including users, revenue, and the path to profitability, were genuinely strong. More on that below. This was a considered position in a real company, not a momentum chase.</li>
+        <li><strong>It is a credible acquisition target.</strong> The obvious acquirers are the very phone makers whose built-in location features compete with it. If a bid ever comes, I want to already be a shareholder when it does. That optionality doesn't decay, and you cannot capture it from the sidelines.</li>
+        <li><strong>I had a plan before I clicked buy.</strong> The position was deliberately small, a controlled, math-first allocation, and I intended to write covered calls against it from day one. A drawdown was never a threat to that plan. It was fuel for it.</li>
+      </ol>
+
+      <p>My wishes do not move the market, and I never pretended otherwise. I knew the stock had run up quickly and could pull back, and I made my peace with that <em>before</em> I owned a single share. I did not need to be right about the entry price. If Life360 got acquired, I would profit. If it did not, I would collect premium month after month, drive my cost basis down, and eventually sell at a profit on my own timeline. <strong>Both roads paid. I built a position where being early on the entry was survivable, and even profitable, by design.</strong></p>
+
+      <p>There was also a quieter reason to keep it small and deliberate: I wanted to study my own behavior in a real drawdown, with real money, but never enough to cloud my judgment. Call it a controlled experiment, with one question worth more to me than this single trade's outcome:</p>
+
+      <div class="pull-quote">
+        <p>When a sound business gets repriced violently by the market, does options knowledge actually change how a disciplined investor behaves, or do we all eventually press the panic button?</p>
+      </div>
+
+      <p>Within months the shares were cut by nearly in half. That was not a crisis; it was a scenario I had already prepared for. Ten months later I have the answer, in numbers that reconcile to the penny. But the numbers are the easy part. The real lesson is about time, temperament, and treating profit and loss as a gradient instead of a verdict.</p>
+
+      <h2 class="article-section-heading">The External Narrative Versus the Ledger</h2>
+
+      <p>If you only saw the price chart, you would write the obvious story:</p>
+
+      <p><em>"He bought the top of a hot stock and got stuck holding a 44% loss."</em></p>
+
+      <p>Here is the story the ledger actually tells:</p>
+
+      <p><em>"He built a premium-collection engine on top of a temporarily depressed position, harvested more cash from volatility than the shares lost in value, and never had to sell at the bottom."</em></p>
+
+      <p>Same trade. Two completely different realities. The difference between them is not luck, and it is not market timing. It is one tool, the covered call, applied mechanically, repeatedly, and without drama, by someone who decided the rules <em>before</em> the pain arrived.</p>
+
+      <h2 class="article-section-heading">Why Life360 Was Worth Owning, Even at a High Price</h2>
+
+      <p>I had been watching Life360 for a long time before I ever bought a share. The thesis was never about a cheap entry. It was about a durable business that the market would eventually have to pay up for, and a company I genuinely wanted to own a piece of.</p>
+
+      <p>The fundamentals are not in question. Life360 closed 2025 with roughly 95.8 million monthly active users, full-year revenue of $489.5 million, up 32%, and, for the first time in company history, annual net income. The momentum carried into 2026: Q1 revenue grew 38% year over year to $143.1 million, monthly active users reached about 97.8 million across more than 180 countries, and a newly broken-out advertising line, powered by the Nativo acquisition, jumped 329% to $19.7 million. The company is dual-listed, on NASDAQ as LIF and ASX as 360, profitable, cash-rich, and sits at roughly one in seven U.S. smartphones.</p>
+
+      <p>Yes, it competes with the phone makers' own "find my" features. That competition is real and permanent, but it cuts both ways. The same big-tech players who compete with Life360 are also its most logical <em>acquirers</em>. A platform with approximately 98 million engaged families, deep first-party location data, and a profitable subscription engine is exactly the kind of asset a larger company buys rather than rebuilds. That acquisition optionality was a real part of my decision: it is upside you can only hold if you are already a shareholder, and it is a reason you do not casually dump the stock into a drawdown. The moat, meanwhile, is the use case itself. Families do not abandon the app that watches over their children, parents, pets, and cars, and the trusted data that flows from that is what now powers the advertising business.</p>
+
+      <p>So, I was clear-eyed about the entry. The stock had run up hard and fast, and the pullback was entirely plausible. I bought anyway because the <em>price</em> was never the load-bearing part of the decision. The company was, the acquisition optionality was, and, above all, the management plan was. I was comfortable with the shares falling because I had the covered-call framework ready before I owned them.</p>
+
+      <p>So, what went wrong? Nothing in business. Everything was in the multiple. After a huge run, LIF got caught in growth-stock compression. The market punished the valuation even as revenue, users, and profitability all climbed. The stock fell from the $103 region to a 52-week low near $37, and the share price spent six months falling roughly 40% while the company kept posting records.</p>
+
+      <p><strong>That gap, with the thesis intact while the price collapsed, is the entire reason this trade was a candidate for rolling instead of cutting.</strong> It is the single most important filter in this whole piece, and I will come back to it.</p>
+
+      <p>I sized the position small on purpose. It was large enough that a loss would feel real, because you cannot test your temperament with money you do not care about, but small enough that a 50% equity drawdown would not dent the broader portfolio. That sizing decision is what made everything downstream possible. It removed the "I cannot afford to be wrong" voice and left only the question I actually wanted to study: <em>what is the optimal process here?</em></p>
+
+      <h2 class="article-section-heading">The Mechanics: A Rolling Covered-Call Ladder</h2>
+
+      <p>From the day I owned the shares, I sold calls against them and rolled relentlessly. Somewhere in those first weeks, I stopped managing the stock and started managing the premium stream. That shift is the whole article.</p>
+
+      <p>The logic of every single roll was identical and boring:</p>
+
+      <ol>
+        <li>When a short call is tested or approached expiration, <strong>buy it back and sell a new one for a net credit.</strong></li>
+        <li>Adjust the strike to stay sensible relative to where the stock actually was.</li>
+        <li>Extend duration when it bought more time value to harvest.</li>
+        <li>Keep doing this <strong>as long as the business thesis is held.</strong></li>
+      </ol>
+
+      <p>The strikes tell the story of the stock all by themselves. They walked <em>down</em> as LIF fell, then <em>back up</em> as it recovered:</p>
+
+      <p><strong>105, 90, 80, 70, and 65</strong> during the descent in autumn 2025; <strong>60, 50, and 45</strong> during the bottoming phase in winter 2026; and <strong>50 and 60</strong> during the recovery in spring and summer 2026.</p>
+
+      <p>A few moments are worth pulling out of the full ledger, because they show how this works in practice rather than in theory.</p>
+
+      <p><strong>The September open.</strong> I sold the first 105-strike calls the day I bought the shares. The stock was near my basis, so the calls were near the money and rich. The experiment funded itself from minute one.</p>
+
+      <p><strong>The November harvest, which was the big one.</strong> As LIF cratered into the $60s and $70s, implied volatility spiked. High implied volatility is the covered-call seller's payday because richer option prices mean larger credits. On November 6, with the stock falling hard, I sold 80-strike calls for $16.60. A premium that large is only available when fear is present. Five days later, I bought them back for $4.08. <strong>Net: +$2,501.32 on a single roll</strong>, with cumulative premium now around $3,875. The income engine did its best work precisely when the share price was at its worst.</p>
+
+      <p><strong>The January gift.</strong> The 65-strike calls I sold on November 20 simply expired worthless on January 20 because the stock was well below the strike. <strong>Net: +$1,694.66, with zero closing cost.</strong> A full premium, kept in its entirety, paid for by the very weakness that was scaring everyone else out. Entering 2026, the position had collected roughly $6,081.</p>
+
+      <p><strong>The recovery sells.</strong> As LIF based near $37 and turned, I kept selling: 60s, 50s, and 45s. I collected smaller but steady credits and let some potential assignment upside ride. Today, June 29, 2026, with the stock recovered into the high $50s, I sold two December 60-strike calls for $9.30 each: <strong>a fresh $1,859.42 credit</strong> that funds the position straight through year-end.</p>
+
+      <p>I will be honest about one detour, because hiding it would undercut the whole point of transparent education: during a sharp late-January spike, I also made two <em>long</em> call trades. They were not covered calls, but directional bets on the move. One worked (+$2,153.30), and one did not (−$744.70), for a net gain of +$1,408.60. That was discretionary trading layered on top of the system, and I am separating it from the covered-call engine on purpose, so the core math stays clean.</p>
+
+      <!-- Figure 1 — income engine -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/life360-covered-call-case-study/img-02-covered-call-engine.png"
+          alt="Bar chart of every covered-call roll's net premium across both chains, with the running cumulative climbing to $9,526.23"
+          loading="lazy"
+        />
+        <p class="article-img-caption"><strong>Figure 1 — The income engine, leg by leg, across both chains.</strong> Each bar is one roll's net premium: green collected, the orange-hatched pair are the two roll-downs I bought back at a loss, and the blue bar is the open December leg. The orange line is the running total climbing to $9,526.23 in covered-call premium. The two discretionary long-call trades sit outside this view and add $1,408.60 on top, for $10,934.83 total. Notice where the engine did its heaviest lifting — the $2,501 November roll — was exactly when the stock was falling hardest.</p>
+      </div>
+
+      <h2 class="article-section-heading">The Uncomfortable Rolls</h2>
+
+      <p>Not every roll felt good. Twice, the stock bounced <em>against</em> a call I had just sold, and the disciplined move was to buy that call back at a loss: about <strong>−$1,100 in late October</strong>, and again <strong>−$1,028 last week</strong> when LIF rallied through a 50-strike I was short. Closing a leg in the red runs against every instinct a trader has.</p>
+
+      <p>But here is the thing: the discomfort was never emotional for me. It was arithmetic. A losing buyback that lets me re-sell a higher, longer-dated call for a larger credit is still a net-positive decision for the <em>position</em>. I was never trying to win every individual leg. I was lowering the basis of the whole holding, one roll at a time. When that is the scoreboard you are watching, a red number on a single leg stops being a wound and becomes a line item.</p>
+
+      <h2 class="article-section-heading">The Breakeven Walk: Where the Math Changes the Psychology</h2>
+
+      <p>If you charted this, you would watch two lines move toward each other: the share price plunging, and my net cost basis dropping even faster, until the basis line slips beneath the price and the position quietly turns green. Here is the part most investors never get to see, because they sell long before it happens.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Exhibit 1. Position Economics at the Current Mark</caption>
+          <thead>
+            <tr><th>Metric</th><th>Amount</th><th>Per share</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Original position: 200 shares at $102.64</td><td class="num">$20,528.00</td><td class="num">$102.64</td></tr>
+            <tr><td>Equity P&amp;L at current mark, approximately $57.58</td><td class="num">−$9,012.00</td><td class="num">—</td></tr>
+            <tr><td>Equity return on the shares alone</td><td class="num">−43.90%</td><td class="num">—</td></tr>
+            <tr><td>Total premium collected, all options activity</td><td class="num">+$10,934.83</td><td class="num">$54.67</td></tr>
+            <tr><td>Net cost basis: $20,528.00 less $10,934.83</td><td class="num">$9,593.17</td><td class="num">$47.97</td></tr>
+            <tr><td>Current equity value</td><td class="num">$11,516.00</td><td class="num">$57.58</td></tr>
+            <tr class="row-total"><td>Net P&amp;L on the position</td><td class="num">+$1,922.83</td><td class="num">—</td></tr>
+            <tr class="row-total"><td>Net return</td><td class="num">+9.37%</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Figure 2 — cost basis vs price -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/life360-covered-call-case-study/img-03-cost-basis-vs-price.png"
+          alt="Line chart showing the LIF share price falling while the exact net cost basis falls faster, crossing below the price and turning the position net green"
+          loading="lazy"
+        />
+        <p class="article-img-caption"><strong>Figure 2 — The stock fell, but my cost basis fell faster.</strong> The dashed line, exact and derived from realized premium at each roll, is my net cost basis; the solid line is the share price. The basis drops faster than the stock, so when LIF recovers, the price crosses back above the basis, and that crossing is the moment the position turns net-positive.</p>
+      </div>
+
+      <p>Read that twice.</p>
+
+      <p><strong>The shares are down 43.9%. The position is up 9.37%.</strong></p>
+
+      <p>The premium I collected ($10,934.83) is <em>larger than the entire drawdown in the stock</em> ($9,012). My net cost basis has fallen from $102.64 to <strong>$47.97 per share</strong>, and the stock now trades around $57.58. I am green on a net basis while the share price is still roughly $45 below where I bought it.</p>
+
+      <p>If you want the conservative version, counting only realized covered-call premium and ignoring the open December credit and the directional trades, the number is still $7,666.81. That is a 37% return on the cost basis in under ten months, and a net breakeven of $64.31. Either way you cut it, the math has inverted the trade. The drawdown did not disappear. It got <em>out-earned</em>.</p>
+
+      <h2 class="article-section-heading">The Psychology: Where the Real Edge Lives</h2>
+
+      <p>Let me dismantle a myth about myself before anyone builds one. I am not immune to loss aversion. Watching a position fall 44% is unpleasant for me exactly as it is for you. The difference was never superhuman discipline. <strong>The difference was having a better script than "sell to make the pain stop."</strong></p>
+
+      <p>Three ideas did the heavy lifting.</p>
+
+      <p><strong>Profit and loss is a gradient, not a binary.</strong> Most people experience a drawdown as a single shameful verdict: <em>I was wrong.</em> But the position was never one number frozen in time. Every roll, including the November 80-strike that paid $2,501 while the stock was collapsing, converted a sliver of paper loss into realized cash that permanently lowered my breakeven. When you can see your basis dropping in real time, the red number on the screen loses its grip on you.</p>
+
+      <p><strong>Impatience is the enemy; time is the asset.</strong> I never needed LIF to recover <em>fast</em>. I needed it to recover <em>eventually</em>, and I was paid handsomely to wait. That worthless-expiring 65-strike in January was the market handing me $1,694 simply for being patient. A good business that gets cheap is not a problem to be escaped in 48 hours; it is a runway over which you collect rent.</p>
+
+      <p><strong>Knowing the company is a virtue.</strong> This is the filter that makes the whole thing legitimate. I kept rolling because I had conviction in the <em>business</em>. Revenue, users, and profitability were all climbing. I did not keep rolling merely because I hoped the <em>stock price</em> would bounce. Those are different things and conflating them is how people rationalize riding a genuinely broken company to zero.</p>
+
+      <p>Which brings me to the most important section in this entire piece.</p>
+
+      <h2 class="article-section-heading">When the Framework Works, and When It Fails</h2>
+
+      <p>This is <strong>not</strong> my primary strategy, and it should not be yours. It is a tool for one specific situation: <strong>a position where the underlying business thesis is intact, but the price has temporarily disconnected from it.</strong> Deploy it outside that situation and you will hurt yourself.</p>
+
+      <h3 class="article-subheading">Rolling covered calls is rational when:</h3>
+      <ul>
+        <li>The business thesis still holds. (LIF's revenue, users, and profitability all kept climbing. The price fell on <em>multiple compression</em>, not deterioration.)</li>
+        <li>The options are liquid enough to roll without bleeding out on spreads.</li>
+        <li>The position is sized so you can ride the drawdown without portfolio-level stress.</li>
+        <li>You understand and accept assignment risk at every strike you sell.</li>
+      </ul>
+
+      <h3 class="article-subheading">Rolling is a trap when:</h3>
+      <ul>
+        <li>The thesis is actually broken — falling users, a lost competitive war, or a damaged balance sheet. Then you are throwing good premium after a dying position. <em>Exit.</em></li>
+        <li>Liquidity dries up and there's no premium worth harvesting.</li>
+        <li>The position is too large, so fear, rather than math, starts driving your rolls.</li>
+      </ul>
+
+      <p>If the fundamentals at Life360 had cracked, through sustained user losses, a decisive competitive defeat, or a balance-sheet problem, I would have closed the trade and taken the loss. The covered-call ladder does not fix bad business. It buys time and income for a good one the market has temporarily mispriced. Confuse those two and the tool becomes a way to lie to yourself with extra steps.</p>
+
+      <h2 class="article-section-heading">Where the Position Stands Today</h2>
+
+      <p>The mark is around $57.58. My net breakeven is $47.97. I am short a December 60 call that is currently out of the money, with $1,859.42 already in hand against it. If the stock grinds higher or chops sideways, I harvest more premium. If it dips again, the same ladder is right there waiting. The capital is working harder than a buy-and-hold position ever would have, and the emotional weight is almost gone because the math is finally on my side.</p>
+
+      <p>The trade is still open. The experiment continues. And it has already taught me the lesson I set out to test.</p>
+
+      <h2 class="article-section-heading">The Takeaway</h2>
+
+      <p>The market does not care what you paid. The investors who learn that the expensive way usually learn it by capitulating into a 40% to 60% drawdown, locking in a permanent loss, and then watching a perfectly good company recover without them.</p>
+
+      <p>Options knowledge doesn't make you immune to that fear. It does something better: <strong>it changes the payoff matrix of your own psychology.</strong> It gives you a mechanical, repeatable way to extract value from a drawdown while keeping your exposure to the thesis that made you buy in the first place. It turns "I'm down 44% and it hurts" into "my basis is $48, I'm net green, and I get paid to keep waiting."</p>
+
+      <p>Knowledge beats psychology, but only when you convert that knowledge into process <em>before</em> the stress arrives. That conversion, done in advance and applied without drama, is the whole game.</p>
+
+      <p><strong>Let the math decide.</strong></p>
+
+      <p><em>— Sam Vishwas, Founder, OTS Ullu | Pleasanton, CA | 30 June 2026</em></p>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/i-bought-life360-near-the-top-covered-call-case-study-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Appendix -->
+      <h2 class="article-section-heading">Appendix: The Full Audit Trail</h2>
+
+      <p>Every figure above ties to this ledger. Premium amounts are net of fees, per the canonical position records. Strikes are call options; 2 contracts = 200 shares (full coverage).</p>
+
+      <h3 class="article-subheading">Covered Calls: The Income Engine</h3>
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Exhibit 2. Covered-Call Ledger</caption>
+          <thead>
+            <tr><th>#</th><th>Opened</th><th>Closed</th><th>Strike</th><th>Expiry</th><th>Net premium</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td class="num">2025-09-08</td><td class="num">2025-09-18</td><td class="num">105</td><td class="num">2025-09-19</td><td class="num">+$323.30</td><td>Sold at entry, near the money</td></tr>
+            <tr><td>2</td><td class="num">2025-09-18</td><td class="num">2025-09-18</td><td class="num">105</td><td class="num">2025-10-17</td><td class="num">−$32.70</td><td>Same-day adjustment</td></tr>
+            <tr><td>3</td><td class="num">2025-09-18</td><td class="num">2025-10-21</td><td class="num">105</td><td class="num">2025-11-21</td><td class="num">+$1,349.31</td><td></td></tr>
+            <tr><td>4</td><td class="num">2025-10-21</td><td class="num">2025-10-27</td><td class="num">90</td><td class="num">2025-11-21</td><td class="num">−$1,100.68</td><td>Loss buyback; stock bounced against the strike</td></tr>
+            <tr><td>5</td><td class="num">2025-10-27</td><td class="num">2025-11-06</td><td class="num">90</td><td class="num">2026-01-16</td><td class="num">+$834.32</td><td></td></tr>
+            <tr><td>6</td><td class="num">2025-11-06</td><td class="num">2025-11-11</td><td class="num">80</td><td class="num">2026-01-16</td><td class="num">+$2,501.32</td><td>Largest roll; sold into an implied-volatility spike at $16.60</td></tr>
+            <tr><td>7</td><td class="num">2025-11-11</td><td class="num">2025-11-20</td><td class="num">70</td><td class="num">2026-01-16</td><td class="num">+$511.32</td><td></td></tr>
+            <tr><td>8</td><td class="num">2025-11-20</td><td class="num">2026-01-20, expired</td><td class="num">65</td><td class="num">2026-01-16</td><td class="num">+$1,694.66</td><td>Expired worthless; full premium kept</td></tr>
+            <tr><td>9</td><td class="num">2026-02-02</td><td class="num">2026-02-18</td><td class="num">60</td><td class="num">2026-03-20</td><td class="num">+$621.31</td><td>Recovery phase begins</td></tr>
+            <tr><td>10</td><td class="num">2026-02-18</td><td class="num">2026-03-03</td><td class="num">50</td><td class="num">2026-04-17</td><td class="num">+$873.31</td><td></td></tr>
+            <tr><td>11</td><td class="num">2026-03-03</td><td class="num">2026-04-16</td><td class="num">45</td><td class="num">2026-04-17</td><td class="num">+$503.30</td><td>Sold near the approximately $37 bottom</td></tr>
+            <tr><td>12</td><td class="num">2026-04-16</td><td class="num">2026-06-10</td><td class="num">50</td><td class="num">2026-06-18</td><td class="num">+$616.12</td><td></td></tr>
+            <tr><td>13</td><td class="num">2026-06-10</td><td class="num">2026-06-29</td><td class="num">50</td><td class="num">2026-07-17</td><td class="num">−$1,028.08</td><td>Loss buyback; stock rallied through the strike</td></tr>
+            <tr class="row-total"><td colspan="5">Realized covered-call total</td><td class="num">+$7,666.81</td><td></td></tr>
+            <tr><td>14</td><td class="num">2026-06-29</td><td class="num"><em>Open</em></td><td class="num">60</td><td class="num">2026-12-18</td><td class="num">+$1,859.42</td><td>Open credit, funds position through year-end</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="article-subheading">Discretionary Long Calls: The January Spike</h3>
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Exhibit 3. Discretionary Long-Call Activity</caption>
+          <thead>
+            <tr><th>Opened</th><th>Closed</th><th>Strike</th><th>Expiry</th><th>Net</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">2026-01-22</td><td class="num">2026-01-23</td><td class="num">55 long</td><td class="num">2026-02-20</td><td class="num">+$2,153.30</td></tr>
+            <tr><td class="num">2026-01-23</td><td class="num">2026-02-02</td><td class="num">70 long</td><td class="num">2026-02-20</td><td class="num">−$744.70</td></tr>
+            <tr class="row-total"><td colspan="4">Long-call total</td><td class="num">+$1,408.60</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="article-subheading">Reconciliation</h3>
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Exhibit 4. Premium Reconciliation</caption>
+          <thead>
+            <tr><th>Bucket</th><th>Amount</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Realized covered-call premium</td><td class="num">$7,666.81</td></tr>
+            <tr><td>Open December 60 credit</td><td class="num">$1,859.42</td></tr>
+            <tr><td>Discretionary long calls, net</td><td class="num">$1,408.60</td></tr>
+            <tr class="row-total"><td>Total premium collected</td><td class="num">$10,934.83</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>Position fundamentals for Life360 are drawn from the company's reported Q4 2025 and Q1 2026 results. This is a real position from the author's own portfolio, shared for education. It is not investment advice. Options involve risk, including assignment and loss of principal; size and manage your own positions according to your own risk rules.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about which rules actually apply to them.</p>
+      </div>
+
+      <!-- Credits & Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Credits</h3>
+        <p>Figures were generated programmatically from the author's own position records.</p>
+      </div>
+
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js"></script>
+</body>
+</html>
