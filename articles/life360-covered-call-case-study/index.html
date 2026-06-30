@@ -399,6 +399,23 @@
     font-style: italic;
     margin-bottom: 0 !important;
   }
+
+  /* ── PRINT / PDF: ensure wide exhibit tables fit the page (no scroll
+     container in print, so they must shrink to avoid clipping). ── */
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.68rem !important; }
+    .article-table caption { font-size: 0.74rem !important; padding: 10px 10px 4px !important; }
+    .article-table th, .article-table td { padding: 5px 7px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-img-wrap, .pull-quote, .author-card, .disclaimer-box {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+  }
   </style>
 </head>
 <body>
