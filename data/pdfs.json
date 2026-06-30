@@ -2,15 +2,6 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
-      "id": "life360-covered-call-case-study",
-      "file": "i-bought-life360-near-the-top-covered-call-case-study-ots-ullu.pdf",
-      "title": "I Bought Life360 Near the Top. I Was Ready for the Fall.",
-      "description": "A practitioner case study on how a sound company, disciplined position sizing, and a rolling covered-call ladder turned a 44% equity drawdown in Life360 (NASDAQ: LIF) into a net-profitable position — $10,934.83 in premium harvested, net cost basis driven from $102.64 to $47.97, and a +9.37% position return while the shares were still down 43.9%.",
-      "tags": ["options", "covered calls", "rolling", "position sizing", "case study", "life360"],
-      "date": "2026-06-30",
-      "featured": true
-    },
-    {
       "id": "behavioral-mirror",
       "file": "behavioral-mirror-illusion-of-control-psychology.pdf",
       "title": "The Behavioral Mirror: Illusion of Control in High-Stakes Trading",

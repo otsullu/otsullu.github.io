@@ -2526,8 +2526,24 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 @media (max-width: 767px) {
-  .shelf-carousel-track .resource-card-pdf {
-    flex: 0 0 100%;
+  /* Arrows are hidden on mobile, so the track must be natively swipeable.
+     Switch the inner wrapper from clipped to horizontal scroll + snap, and
+     drop the JS translateX so the user can flick between cards. */
+  .shelf-carousel-track-outer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .shelf-carousel-track-outer::-webkit-scrollbar { display: none; }
+  .shelf-carousel-track {
+    transform: none !important;
+  }
+  .shelf-carousel-track .resource-card-pdf,
+  .shelf-carousel-track .resource-card {
+    flex: 0 0 88%;
+    scroll-snap-align: start;
   }
   .shelf-carousel-arrow { display: none; }
 
