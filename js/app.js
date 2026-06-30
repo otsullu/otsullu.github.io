@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'I Bought Life360 Near the Top. I Was Ready for the Fall.',
+    excerpt: 'A case study in how a sound company, disciplined sizing, and a covered-call process turned a 44% equity drawdown into a net-profitable position. The shares fell 43.9%; the position is up 9.37%.',
+    series: 'OTS Ullu · Case Study',
+    url: '/articles/life360-covered-call-case-study/',
+  },
+  {
     title: 'The Stock Kept Rising After I Sold It',
     excerpt: 'Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.',
     series: 'The Mind Against the Market · Part 1',
