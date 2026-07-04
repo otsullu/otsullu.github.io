@@ -5,16 +5,16 @@
     "handle": "@otsullu",
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
-    "subscribers": "74",
-    "totalViews": "4864",
-    "videoCount": "104",
-    "updated": "2026-07-03T17:38:21.660799+00:00"
+    "subscribers": "75",
+    "totalViews": "4868",
+    "videoCount": "105",
+    "updated": "2026-07-04T03:38:07.355946+00:00"
   },
   "engagement": {
-    "totalViews": 4868,
+    "totalViews": 4871,
     "totalLikes": 175,
-    "totalComments": 68,
-    "engagementRate": 4.99,
+    "totalComments": 69,
+    "engagementRate": 5.01,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -34,7 +34,7 @@
       "ytId": "PLZEDE8n1EZ0QbpBD3ZaqYWVDu9wEpvHxZ",
       "color": "#c9a84c",
       "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles.",
-      "thumb": "https://i.ytimg.com/vi/rr2jvLntUkA/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/UzhLtuRN6Qk/maxresdefault.jpg"
     },
     {
       "id": "wealth-academy",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "UzhLtuRN6Qk",
+      "title": "🛑 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗻𝗴 𝘃𝘀. 𝗚𝗮𝗺𝗯𝗹𝗶𝗻𝗴: The 𝗪𝗮𝗹𝗹 𝗦𝘁𝗿𝗲𝗲𝘁 𝗖𝗮𝘀𝗶𝗻𝗼 𝗠𝘆𝘁𝗵 Debunked 📈📉",
+      "thumb": "https://i.ytimg.com/vi/UzhLtuRN6Qk/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-03",
+      "india": true
+    },
+    {
       "id": "Op375WoRm4E",
       "title": "🚨 𝗛𝗶𝗱𝗱𝗲𝗻 𝗧𝗿𝗶𝗽𝘄𝗶𝗿𝗲𝘀 𝗶𝗻 𝗬𝗼𝘂𝗿 𝗥𝗲𝘁𝗶𝗿𝗲𝗺𝗲𝗻𝘁 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀: The 59½ Rule, SIPC & Reg BI Explained",
       "thumb": "https://i.ytimg.com/vi/Op375WoRm4E/maxresdefault.jpg",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/QC1mcMHNxts/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "45",
+      "views": "46",
       "likes": "2",
       "comments": "1",
       "published": "2026-06-30",
@@ -136,7 +148,7 @@
       "thumb": "https://i.ytimg.com/vi/RBhwEuFhsas/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "2",
+      "views": "3",
       "likes": "0",
       "comments": "0",
       "published": "2026-06-24",
