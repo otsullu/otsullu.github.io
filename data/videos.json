@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "75",
-    "totalViews": "4880",
-    "videoCount": "105",
-    "updated": "2026-07-05T17:17:23.766717+00:00"
+    "totalViews": "4882",
+    "videoCount": "106",
+    "updated": "2026-07-06T04:03:09.409390+00:00"
   },
   "engagement": {
-    "totalViews": 4880,
+    "totalViews": 4883,
     "totalLikes": 176,
-    "totalComments": 69,
-    "engagementRate": 5.02,
+    "totalComments": 70,
+    "engagementRate": 5.04,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -34,7 +34,7 @@
       "ytId": "PLZEDE8n1EZ0QbpBD3ZaqYWVDu9wEpvHxZ",
       "color": "#c9a84c",
       "desc": "Research-backed frameworks from top universities — behavioral finance, investor psychology, and market principles.",
-      "thumb": "https://i.ytimg.com/vi/UzhLtuRN6Qk/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/UXqxhFtcJZ8/maxresdefault.jpg"
     },
     {
       "id": "wealth-academy",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "UXqxhFtcJZ8",
+      "title": "🤖📉 𝗧𝗵𝗲 𝗔𝗜 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻: 𝗪𝗵𝘆 𝘁𝗵𝗲 𝗠𝗮𝗴𝗻𝗶𝗳𝗶𝗰𝗲𝗻𝘁 𝟳 𝗔𝗿𝗲 𝗙𝗮𝗰𝗶𝗻𝗴 𝗮 𝗧𝗿𝗶𝗹𝗹𝗶𝗼𝗻-𝗗𝗼𝗹𝗹𝗮𝗿 𝗘𝗦𝗚 𝗖𝗿𝗶𝘀𝗶𝘀",
+      "thumb": "https://i.ytimg.com/vi/UXqxhFtcJZ8/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-06",
+      "india": true
+    },
+    {
       "id": "UzhLtuRN6Qk",
       "title": "🛑 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗻𝗴 𝘃𝘀. 𝗚𝗮𝗺𝗯𝗹𝗶𝗻𝗴: The 𝗪𝗮𝗹𝗹 𝗦𝘁𝗿𝗲𝗲𝘁 𝗖𝗮𝘀𝗶𝗻𝗼 𝗠𝘆𝘁𝗵 Debunked 📈📉",
       "thumb": "https://i.ytimg.com/vi/UzhLtuRN6Qk/maxresdefault.jpg",
@@ -100,7 +112,7 @@
       "thumb": "https://i.ytimg.com/vi/QC1mcMHNxts/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "47",
+      "views": "48",
       "likes": "2",
       "comments": "1",
       "published": "2026-06-30",
@@ -244,7 +256,7 @@
       "thumb": "https://i.ytimg.com/vi/QkLCqIMsfWY/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "16",
+      "views": "17",
       "likes": "1",
       "comments": "1",
       "published": "2026-06-14",
