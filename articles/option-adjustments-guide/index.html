@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>The Trader's Guide to Option Adjustments | OTS Ullu</title>
+  <meta name="description" content="How the OCC adjusts listed options for splits, special dividends, mergers, spinoffs, and bankruptcies. Every rule traced to the By-Laws. Every example to its OCC Information Memo." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Trader's Guide to Option Adjustments" />
+  <meta property="og:description" content="How the OCC adjusts listed options for splits, special dividends, mergers, spinoffs, and bankruptcies. Every rule traced to the By-Laws. Every example to its OCC Information Memo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/option-adjustments-guide/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/option-adjustments-guide/img-01-hero.jpg" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Education" />
+  <meta property="article:tag" content="Option Adjustments, OCC, Stock Splits, Special Dividends, Mergers, Covered Calls" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Trader's Guide to Option Adjustments" />
+  <meta name="twitter:description" content="How the OCC adjusts listed options for splits, special dividends, mergers, spinoffs, and bankruptcies. Every rule traced to the By-Laws. Every example to its OCC Information Memo." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/option-adjustments-guide/img-01-hero.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/option-adjustments-guide/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Trader's Guide to Option Adjustments",
+    "description": "How the OCC adjusts listed options for splits, special dividends, mergers, spinoffs, and bankruptcies. Every rule traced to the By-Laws. Every example to its OCC Information Memo.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "The Trader's Guide to Option Adjustments"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin-bottom: 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-hero-img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    margin-bottom: 48px;
+    object-fit: cover;
+    max-height: 520px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-body {
+    max-width: 760px;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Real-example callout — sourced OCC memo blocks */
+  .example-callout {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .example-callout .example-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .example-callout p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.5em !important;
+  }
+  .example-callout p:last-child { margin-bottom: 0 !important; }
+  .example-callout strong { color: var(--fg); }
+
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+  }
+  .article-img-caption {
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .article-body ul {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+    list-style: disc;
+  }
+  .article-body ul li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong {
+    color: var(--fg);
+  }
+
+  /* ── DATA TABLE (split comparison) ── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    table-layout: auto;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 14px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th,
+  .article-table td {
+    text-align: left;
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .article-references ul { list-style: none; padding: 0; margin: 0; }
+  .ref-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-card:last-child { border-bottom: none; }
+  .ref-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 84px;
+  }
+  .ref-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  .ref-body a { color: var(--accent); }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.7rem !important; }
+    .article-table th, .article-table td { padding: 5px 8px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-img-wrap, .pull-quote, .example-callout, .author-card, .disclaimer-box {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="max-width:860px; padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/">Articles</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>The Trader's Guide to Option Adjustments</span>
+    </nav>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">The Trader's Guide to Option Adjustments</h1>
+      <p class="article-lede">
+        How the OCC adjusts listed options for splits, special dividends, mergers, spinoffs, and bankruptcies. Every rule traced to the By-Laws. Every example to its OCC Information Memo.
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Education</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>OCC Contract Adjustments</span>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <img
+      src="../../assets/img/articles/option-adjustments-guide/img-01-hero.jpg"
+      alt="How the OCC rewrites listed option contracts through corporate actions"
+      class="article-hero-img"
+      loading="eager"
+    />
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <div class="disclaimer-box">
+        <p><strong style="color:var(--fg-secondary);font-style:normal;">Educational only — not investment advice.</strong> Verify current OCC memos before trading any adjusted contract.</p>
+      </div>
+
+      <p>You've priced the volatility and mapped the Greeks. Then the underlying splits, pays a surprise dividend, or gets bought out — and your contract quietly gets rewritten. This guide explains exactly how the Options Clearing Corporation (OCC) rewrites it, why the math stays fair, and what it means when you are short the call.</p>
+
+      <h2 class="article-section-heading">01 — The One Equation That Governs Everything</h2>
+
+      <p>Corporate actions would otherwise hand a windfall to one side of a contract and a loss to the other. The OCC — the single issuer and clearinghouse for every listed U.S. equity option — adjusts the contract to hold its economics still. Learn this one invariant and every scenario becomes arithmetic.</p>
+
+      <p><strong>The invariant:</strong> Aggregate Exercise Price = Strike × Multiplier. The OCC changes whatever it must (contract count, strike, multiplier, or deliverable) so that this number, and the total value of what you receive or deliver on exercise, stays constant across the event.</p>
+
+      <div class="pull-quote">
+        <p>Aggregate Exercise Price = Strike × Multiplier. Hold that constant, and every adjustment becomes arithmetic.</p>
+      </div>
+
+      <p>There are only two ways to keep that promise:</p>
+
+      <ul>
+        <li><strong>Give you more contracts.</strong> Clean whole-number splits (2-for-1, 4-for-1) multiply your contract count and divide the strike. The deliverable stays a standard 100 shares, so liquidity is unaffected.</li>
+        <li><strong>Rewrite the single contract.</strong> Odd splits, reverse splits, special dividends, and mergers keep your contract count the same and instead adjust the strike, the multiplier, and the deliverable. The result is a non-standard ("adjusted") contract.</li>
+      </ul>
+
+      <p><strong>Governing law:</strong> Stock events follow By-Laws Article VI, Sections 11 and 11A. Mergers and mandatory conversions follow Article XII. Everything that follows is those sections in plain English.</p>
+
+      <h2 class="article-section-heading">02 — When Adjustments Happen: The Ex-Date</h2>
+
+      <p>This is the detail most guides skip, and it decides whether your near-dated position is even affected. The adjustment takes effect on the corporate action's <strong>ex-distribution date</strong>. Contracts that expire <em>before</em> the ex-date settle on the old, pre-event terms. Contracts living on or past the ex-date get rewritten.</p>
+
+      <p><strong>Practical rule:</strong> A short call expiring the Friday before a Monday ex-date is <strong>not</strong> adjusted — it settles as a plain 100-share contract. The same strike expiring the following week is. When a split or distribution is on the calendar, sort your ladder by expiration against the ex-date before you assume anything.</p>
+
+      <h2 class="article-section-heading">03 — Forward Splits: Even and Odd</h2>
+
+      <!-- Forward splits image -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/option-adjustments-guide/img-02-forward-splits.jpg"
+          alt="Even 2-for-1 splits multiply contracts; odd 3-for-2 splits rewrite strike, multiplier, and deliverable"
+          loading="lazy"
+        />
+        <p class="article-img-caption">Even splits multiply your contracts; odd splits rewrite the single contract's strike, multiplier, and deliverable.</p>
+      </div>
+
+      <p>Companies split forward to lower the share price. Share count rises, price falls proportionally, and the OCC keeps your position whole in one of two ways depending on whether the ratio divides evenly into 100.</p>
+
+      <h3 class="article-subheading">Even (whole-number) splits — 2-for-1, 4-for-1</h3>
+
+      <p>The tidy case. Under current OCC policy (By-Laws Art. VI §11A), when a split results in a whole number of additional shares per existing share, your <strong>contract count multiplies</strong>, your <strong>strike divides</strong> by the ratio, and the deliverable stays a standard 100 shares. No non-standard symbol, no liquidity penalty.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Example — illustrative 2-for-1</span>
+        <p>1 contract at $100 strike becomes 2 contracts at $50 strike. Aggregate exercise value stays $10,000. Deliverable remains 100 shares per contract.</p>
+      </div>
+
+      <h3 class="article-subheading">Odd (fractional) splits — 3-for-2, 4-for-3</h3>
+
+      <p>Multiplying contracts by 1.5 would create half a contract, which is not allowed. So the OCC keeps your <strong>contract count the same</strong> and instead divides the strike, raises the multiplier, and expands the deliverable — all by the split ratio.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Real example — PACCAR (PCAR) 3-for-2, ex 02/08/2023 · OCC Memo #51729</span>
+        <p><strong>Before:</strong> 1 contract, $37.20 strike, multiplier 100, 100 shares deliverable.</p>
+        <p><strong>After (PCAR1):</strong> 1 contract, $24.80 strike (÷1.5), multiplier 150 (×1.5), 150 shares deliverable.</p>
+        <p>Aggregate exercise value: $3,720 both before and after. A quoted premium of 1.00 now equals $150.</p>
+      </div>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Contracts</th>
+              <th>Strike</th>
+              <th>Multiplier</th>
+              <th>Deliverable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Even split (2:1)</td>
+              <td class="num">↑ ×2</td>
+              <td class="num">↓ ÷2</td>
+              <td class="num">— 100</td>
+              <td class="num">— 100 sh</td>
+            </tr>
+            <tr>
+              <td>Odd split (3:2)</td>
+              <td class="num">— 1</td>
+              <td class="num">↓ ÷1.5</td>
+              <td class="num">↑ 150</td>
+              <td class="num">↑ 150 sh</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="article-section-heading">04 — Reverse Splits and Cash-in-Lieu</h2>
+
+      <p>Companies reverse-split to lift a low share price, often to hold a listing. Here the pattern inverts: your <strong>contract count, strike, and multiplier all stay the same</strong>, and only the <strong>deliverable shrinks</strong> by the ratio. Since the strike does not move, the aggregate exercise price is automatically preserved.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Example — canonical 1-for-10</span>
+        <p><strong>Before:</strong> stock at $0.50, 100-share deliverable, $50 exercise value. <strong>After:</strong> stock at $5.00, 10-share deliverable, still $50 exercise value. Strike unchanged at $0.50.</p>
+      </div>
+
+      <h3 class="article-subheading">When the ratio does not divide cleanly</h3>
+
+      <p>A 1-for-3 reverse turns a 100-share deliverable into 33.33 shares. The deliverable rounds down to <strong>33 shares</strong>, and the missing 0.333 is settled as <strong>cash-in-lieu (CIL)</strong>, fixed in dollars at the time of adjustment. The same CIL mechanism appears anywhere a corporate action leaves a fractional deliverable — odd forward splits and spinoffs included.</p>
+
+      <p><strong>Cash-in-lieu note:</strong> The cash amount is locked at adjustment. The holder gives up any future time value or price movement on the fractional piece.</p>
+
+      <h2 class="article-section-heading">05 — Dividends: Ordinary vs. Special</h2>
+
+      <h3 class="article-subheading">Ordinary dividends — no adjustment, ever</h3>
+
+      <p>A dividend paid on a regular schedule is "ordinary" — <strong>regardless of size</strong> — and the OCC does not adjust for it. The market has already priced the expected stream into the option. What defines "ordinary" is whether the company pays pursuant to a regular policy or practice, not the dollar amount. (By-Laws Art. VI §11A)</p>
+
+      <h3 class="article-subheading">Special dividends — material, and only sometimes adjusted</h3>
+
+      <!-- Special dividend image -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/option-adjustments-guide/img-03-special-dividends.jpg"
+          alt="A special dividend triggers an option adjustment only above the materiality threshold"
+          loading="lazy"
+        />
+        <p class="article-img-caption">A one-off special distribution is measured against the contract's own deliverable — not just the per-share figure.</p>
+      </div>
+
+      <p>A one-off special distribution triggers an adjustment only if it is <strong>material</strong>: at least <strong>$0.125 per share</strong>, i.e. <strong>$12.50 per standard contract</strong>. The threshold is measured against the <strong>contract's own deliverable</strong>, not just the per-share figure. This matters for already-adjusted contracts.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Example — materiality on a non-standard deliverable</span>
+        <p>A $0.15 special dividend on a standard 100-share contract = $15.00 (above threshold → adjusted). The identical $0.15 on a non-standard 50-share deliverable = $7.50 (below threshold → <strong>not</strong> adjusted). (SR-OCC-2024-003)</p>
+      </div>
+
+      <h3 class="article-subheading">Adjustment methods for special dividends</h3>
+
+      <ul>
+        <li><strong>Method A (default):</strong> Every strike drops by the dividend amount; the deliverable stays 100 shares.</li>
+        <li><strong>Method B:</strong> When reducing the strike would drive it to zero or below, the OCC leaves the strike alone and adds the dividend as a cash component to the deliverable. The contract now delivers 100 shares plus fixed cash, and the symbol changes.</li>
+      </ul>
+
+      <div class="example-callout">
+        <span class="example-label">Real example — A-Mark Precious Metals (AMRK) $1.00 distribution, ex 09/11/2023 · OCC Memo #53136</span>
+        <p>Strikes reduced by $1.00 across the board. Deliverable remained 100 shares.</p>
+      </div>
+
+      <h2 class="article-section-heading">06 — Mergers, Spinoffs, and Liquidations</h2>
+
+      <p>Here the deliverable simply becomes whatever a shareholder received in the deal — cash, stock of another company, a mixture, or other property.</p>
+
+      <h3 class="article-subheading">Cash mergers (all-cash buyouts)</h3>
+
+      <p>The stock stops trading, so the deliverable converts to the fixed cash figure and the option's <strong>expiration is accelerated</strong> (Rule 807). Post-conversion there is no underlying left to move, so out-of-the-money options simply expire worthless. Settlement runs through OCC's cash system as the difference between the extended strike and the cash deliverable.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Real example — Amryt Pharma (AMYT) · OCC Memo #52249</span>
+        <p>Acquired for $14.50 net cash per ADS. Each option's deliverable became roughly $1,450 in cash per contract. Expirations accelerated. Non-transferable contingent value rights were excluded from the deliverable.</p>
+      </div>
+
+      <h3 class="article-subheading">Cash-and-stock mergers</h3>
+
+      <p>The deliverable carries both legs. When Bristol-Myers Squibb bought Celgene, each CELG share received $50.00 cash + 1 BMY share + 1 tradeable CVR. Scaled to a 100-share contract, the adjusted deliverable became $5,000 cash + 100 BMY shares + 100 CVRs. Tradeable CVRs ride along; non-transferable ones are excluded.</p>
+
+      <h3 class="article-subheading">Spinoffs</h3>
+
+      <p>The parent's option deliverable expands to include the new child stock on a pro-rata basis, plus cash-in-lieu for any fractional shares.</p>
+
+      <div class="example-callout">
+        <span class="example-label">Real example — AT&amp;T (T) to Warner Bros. Discovery (WBD) · OCC Memo #50289</span>
+        <p>Shareholders received 0.241917 WBD per T share. One AT&amp;T contract was adjusted to deliver 100 shares of T plus approximately 24 shares of WBD, with cash-in-lieu covering the leftover fraction.</p>
+      </div>
+
+      <h3 class="article-subheading">Bankruptcies and liquidations</h3>
+
+      <ul>
+        <li><strong>Shares canceled for nothing:</strong> Calls become worthless. Put holders, on exercise, receive the strike value in cash and deliver no shares — the deliverable has collapsed to zero.</li>
+        <li><strong>Shares still exist (delisted or trading OTC):</strong> Options continue to settle into those shares; exchanges typically restrict them to closing-only transactions.</li>
+        <li><strong>Trading halted:</strong> Option trading is generally halted alongside the stock, though exercise rights usually remain.</li>
+      </ul>
+
+      <p><strong>Note on tender/exchange offers:</strong> OCC generally makes no adjustment for tender or exchange offers (cash, stock, or otherwise), even if coercive. Only a subsequent merger or consolidation triggers adjustment. (Interpretation .03 to Art. VI §11)</p>
+
+      <h2 class="article-section-heading">07 — American vs. European: Why Style Drives Dividend Risk</h2>
+
+      <p><strong>American-style</strong> options can be exercised any time before expiration. <strong>European-style</strong> options only at expiration. Most single-name stock and ETF options are American; many broad-based index options are European.</p>
+
+      <p>Because the OCC never adjusts for ordinary dividends, the only way to capture one through an option is to own the shares over the ex-date. A holder of a deep in-the-money American call may exercise early — the day before ex — purely to collect the dividend.</p>
+
+      <p><strong>Assignment risk if you write calls:</strong> If you are short an American call that is in-the-money into an ex-dividend date, you carry <strong>early-assignment (dividend) risk</strong>: you can be assigned the night before ex and forced to deliver shares. European options are structurally immune because early exercise is impossible.</p>
+
+      <h2 class="article-section-heading">08 — The Writer's Desk: Impacts on Your Short Options</h2>
+
+      <!-- Writer's desk image -->
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/option-adjustments-guide/img-04-writers-desk.jpg"
+          alt="An option adjustment lands on the obligation side of a covered-call and cash-secured-put book"
+          loading="lazy"
+        />
+        <p class="article-img-caption">On the writer's desk, an adjustment lands on the obligation side of your book — and the surprises are operational, not theoretical.</p>
+      </div>
+
+      <p>Most explainers stop at the option holder. But if you sell covered calls and cash-secured puts — especially with share retention as the goal — an adjustment lands on the <strong>obligation</strong> side of your book. The surprises are operational, not theoretical.</p>
+
+      <p><strong>Your deliverable can change under you.</strong> After a 3-for-2 split, your one short call no longer obligates 100 shares — it obligates 150. After a cash-and-stock merger it may obligate shares of a company you never traded, plus cash. On assignment of an adjusted put, your capital requirement can be materially larger than the "strike × 100" you sized the trade on.</p>
+
+      <ul>
+        <li><strong>Assignment still happens on adjusted contracts.</strong> A non-standard symbol does not shelter you; the short position carries the new deliverable obligation in full.</li>
+        <li><strong>Your Greeks re-scale.</strong> After a 4-for-1 you hold four contracts, each with one-quarter the per-contract theta and vega. Aggregate exposure is preserved, but per-line risk reports look nothing like before. Confirm units before you react.</li>
+        <li><strong>Liquidity evaporates.</strong> Adjusted series trade with wide spreads because market-makers concentrate in the fresh standard 100-share series listed alongside them. Rolling or closing an adjusted short can cost you the spread.</li>
+        <li><strong>Share-retention math shifts.</strong> If the whole point is keeping the shares, re-check assignment probability against the new strike and deliverable the moment the memo posts — the cushion you built may have moved.</li>
+      </ul>
+
+      <p><strong>The discipline:</strong> The instant any name in your book has a corporate action on the calendar: pull the OCC memo, re-read your deliverable, re-price your assignment risk against the ex-date, and decide before liquidity thins — not after.</p>
+
+      <h2 class="article-section-heading">09 — Reading an Adjusted Contract Without Getting Fooled</h2>
+
+      <ul>
+        <li><strong>Look for the numeral.</strong> When a deliverable stops being a plain 100 shares of one stock, the OCC appends a digit to the root (PCAR → PCAR1) and it increments with each successive adjustment (…1, …2). A trailing number is your flag to read the memo.</li>
+        <li><strong>A "cheap" strike is usually not a gift.</strong> An adjusted $90 call quoted at $1.00 next to a standard $90 call at $10.00 is not arbitrage — the adjusted one likely delivers far fewer shares or carries a different multiplier. Check the deliverable before you get excited.</li>
+        <li><strong>Do the exercise-value math, not the strike math.</strong> Intrinsic value on an adjusted contract is (deliverable value − strike × multiplier). Screens that assume a 100 multiplier will mislead you.</li>
+      </ul>
+
+      <h2 class="article-section-heading">10 — Verify It Yourself in Ninety Seconds</h2>
+
+      <p>Never trade an adjusted contract on a summary, including this one. The OCC publishes an Information Memo with the exact, official terms of every adjustment, and issues one only when an adjustment is actually made.</p>
+
+      <ul>
+        <li><strong>Search by symbol or memo number</strong> at <a href="https://infomemo.theocc.com" target="_blank" rel="noopener">infomemo.theocc.com</a> — the memo names the effective date, new multiplier, strike divisor, and precise deliverable.</li>
+        <li><strong>Stock splits and dividends</strong> are governed by By-Laws Article VI, Sections 11 and 11A.</li>
+        <li><strong>Mergers and conversions</strong> by Article XII.</li>
+        <li><strong>Cash-settlement acceleration</strong> by Rule 807.</li>
+        <li><strong>The dividend framework</strong> (the $0.125 / $12.50 threshold, ordinary-vs-special test, and strike-vs-cash methods) sits in OCC's interpretive guidance, last refreshed via SR-OCC-2024-003.</li>
+      </ul>
+
+      <div class="pull-quote">
+        <p>Never trade an adjusted contract on a summary — including this one. The controlling OCC Information Memo governs any specific event.</p>
+      </div>
+
+      <!-- Sources -->
+      <div class="article-references">
+        <h2>Every Example, Sourced</h2>
+        <ul>
+          <li class="ref-card">
+            <span class="ref-year">#51729</span>
+            <p class="ref-body"><strong>PACCAR (PCAR)</strong> — 3-for-2 forward split, ex 02/08/2023. OCC Information Memo #51729.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">#53136</span>
+            <p class="ref-body"><strong>A-Mark Precious Metals (AMRK)</strong> — $1.00 special distribution, ex 09/11/2023. OCC Information Memo #53136.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">#52249</span>
+            <p class="ref-body"><strong>Amryt Pharma (AMYT)</strong> — all-cash merger at $14.50/ADS. OCC Information Memo #52249.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">#50289</span>
+            <p class="ref-body"><strong>AT&amp;T (T) → Warner Bros. Discovery (WBD)</strong> — spinoff, 0.241917 WBD per T share. OCC Information Memo #50289.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">Filings</span>
+            <p class="ref-body"><strong>Celgene / Bristol-Myers Squibb</strong> — cash-and-stock merger terms per SEC merger filings.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">Rulemaking</span>
+            <p class="ref-body"><strong>Dividend framework</strong> — ordinary-vs-special test and $0.125 / $12.50 materiality threshold per SR-OCC-2024-003. Governing law: By-Laws Art. VI §§11, 11A; Art. XII; Rule 807.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/traders-guide-to-option-adjustments-occ-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>This guide explains the mechanics of OCC contract adjustments. It is not a recommendation to buy, sell, write, or hold any option or security, and it is not legal, tax, or financial advice. Contract adjustments are made case-by-case; the controlling OCC Information Memo governs any specific event. Verify current terms before acting. Past memos and examples are for illustration only.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about the rules that actually govern their positions.</p>
+      </div>
+
+      <!-- Credits & Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Credits</h3>
+        <p>Article illustrations and concept images were created with AI image-generation tools.</p>
+      </div>
+
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js"></script>
+</body>
+</html>
