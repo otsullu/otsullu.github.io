@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "executive-blueprint-global-scale",
+      "file": "Architectures_of_Global_Scale.pdf",
+      "title": "The Executive Blueprint: The Architecture of Global Corporate Scale",
+      "description": "A comparative architecture of how the world's Top Ten Global Titans are engineered — leadership frameworks, operational control, and wealth compounding at multi-trillion-dollar scale. Three layers: the foundational origins that shape a CEO's baseline risk tolerance, the structural tension between centralized micromanagement and massive delegation, and the capital-allocation mechanics from concentrated equity to RSU diversification.",
+      "tags": ["leadership", "ceos", "corporate strategy", "capital allocation", "big tech"],
+      "date": "2026-07-07",
+      "featured": true
+    },
+    {
       "id": "small-steps-better-future-indonesia",
       "file": "Small_Steps_Better_Future_10_Money_Habits_For_Indonesian_Families.pdf",
       "title": "Small Steps, Better Future: Money Habits That Work for Everyday Indonesian Families",
