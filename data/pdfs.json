@@ -2,6 +2,24 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "small-steps-better-future-indonesia",
+      "file": "Small_Steps_Better_Future_10_Money_Habits_For_Indonesian_Families.pdf",
+      "title": "Small Steps, Better Future: Money Habits That Work for Everyday Indonesian Families",
+      "description": "A visual playbook of practical, repeatable money habits for everyday Indonesian families — built for financial educators, program managers, and community leaders. Follows workers like Budi, an ojol driver, and Sari, a hospitality worker, through the small steps that finally answer the month-end question: 'Where did all my money go?'",
+      "tags": ["personal finance", "money habits", "financial literacy", "indonesia", "budgeting"],
+      "date": "2026-07-07",
+      "featured": true
+    },
+    {
+      "id": "anatomy-of-an-investment-mistake",
+      "file": "i-knew-this-would-happen-anatomy-of-an-investment-mistake-slide-deck.pdf",
+      "title": "Anatomy of an Investment Mistake: When Discipline Becomes Delusion",
+      "description": "A visual deck from The Mind Against the Market series — a forensic breakdown of how genuine discipline quietly morphs into catastrophic delusion. It maps the widening gap between objective market reality and the investor's internal narrative, and the fatal thought that dresses sidelined hesitation up as clarity: 'I knew this would happen.'",
+      "tags": ["behavioral finance", "psychology", "overconfidence", "investing", "mind against the market"],
+      "date": "2026-07-07",
+      "featured": true
+    },
+    {
       "id": "option-adjustment-mechanics",
       "file": "Option_Adjustment_Mechanics.pdf",
       "title": "Option Adjustment Mechanics: How the OCC Rewrites Listed Options",
