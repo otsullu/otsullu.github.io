@@ -2,6 +2,24 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "option-adjustment-mechanics",
+      "file": "Option_Adjustment_Mechanics.pdf",
+      "title": "Option Adjustment Mechanics: How the OCC Rewrites Listed Options",
+      "description": "A visual companion deck to the Option Adjustments guide — how the OCC holds a contract's economics still through splits, special dividends, and mergers. The single invariant (Aggregate Exercise Price = Strike × Multiplier), the two adjustment paths (more contracts vs. rewriting the single contract), and what changes on the obligation side of a short book.",
+      "tags": ["options", "occ", "stock splits", "mergers", "covered calls"],
+      "date": "2026-07-07",
+      "featured": true
+    },
+    {
+      "id": "walk-talk-collision-ai-esg",
+      "file": "the-ai-friction-diagnostic-magnificent-7-semiconductor-esg-risks-2024-2026.pdf",
+      "title": "The Walk/Talk Collision: Generative AI, Stakeholder Friction & the True NPV of Corporate Diplomacy",
+      "description": "A proprietary risk diagnostic on the collision between Magnificent 7 and semiconductor growth narratives and the physical limits of AI infrastructure — how generative-AI expansion strains mega-cap governance, environmental, and labor commitments (power grids, Scope 3 emissions, municipal water, labor rights). Sourced from Wharton ESG, FCLTGlobal, and Lazard activism data, 2024–2026.",
+      "tags": ["ai", "esg", "magnificent 7", "semiconductors", "risk"],
+      "date": "2026-07-07",
+      "featured": true
+    },
+    {
       "id": "behavioral-mirror",
       "file": "behavioral-mirror-illusion-of-control-psychology.pdf",
       "title": "The Behavioral Mirror: Illusion of Control in High-Stakes Trading",
