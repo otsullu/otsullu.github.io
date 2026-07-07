@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'The Trader\'s Guide to Option Adjustments',
+    excerpt: 'When the underlying splits, pays a surprise dividend, or gets bought out, the OCC quietly rewrites your contract. How every adjustment works — traced to the By-Laws, with every example sourced to its OCC memo — and what it means when you are short the call.',
+    series: 'OTS Ullu · Guide',
+    url: '/articles/option-adjustments-guide/',
+  },
+  {
     title: 'I Bought Life360 Near the Top. I Was Ready for the Fall.',
     excerpt: 'A case study in how a sound company, disciplined sizing, and a covered-call process turned a 44% equity drawdown into a net-profitable position. The shares fell 43.9%; the position is up 9.37%.',
     series: 'OTS Ullu · Case Study',
