@@ -410,6 +410,65 @@
   .btn-pdf-download:hover { opacity: 0.85; }
   .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
 
+  .article-video-thumb-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .article-video-thumb-link {
+    position: relative;
+    width: 55%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: block;
+    text-decoration: none;
+  }
+  .article-video-thumb-link img {
+    width: 100%;
+    display: block;
+  }
+  .article-video-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 180ms;
+  }
+  .article-video-thumb-link:hover .article-video-thumb-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%);
+  }
+  .article-video-play-btn {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #111;
+    transition: transform 180ms;
+    flex-shrink: 0;
+  }
+  .article-video-play-btn svg { width: 26px; height: 26px; margin-left: 4px; }
+  .article-video-thumb-link:hover .article-video-play-btn { transform: scale(1.08); }
+  .article-video-thumb-label {
+    position: absolute;
+    bottom: 14px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  @media (max-width: 520px) {
+    .article-video-thumb-link { width: 100%; }
+  }
+
   .disclaimer-box {
     margin: 40px 0;
     padding: 20px 24px;
@@ -802,6 +861,20 @@
           Download PDF Version
         </a>
         <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Video thumbnail -->
+      <div class="article-video-thumb-wrap">
+        <a href="https://youtu.be/FHjsZvj4888" target="_blank" rel="noopener noreferrer"
+           class="article-video-thumb-link" aria-label="Watch on YouTube">
+          <img src="https://img.youtube.com/vi/FHjsZvj4888/hqdefault.jpg" alt="Watch: The Trader's Guide to Option Adjustments" loading="lazy" />
+          <div class="article-video-thumb-overlay">
+            <div class="article-video-play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="article-video-thumb-label">Watch on YouTube</span>
+          </div>
+        </a>
       </div>
 
       <!-- Disclaimer -->

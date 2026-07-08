@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'The $100 Billion Out-of-Office Reply',
+    excerpt: 'A comedic thriller about the invisible plumbing of the options market. When the machine that guarantees every option in America takes a month off, a responsible trader in Ohio, a naked hedge fund, and a pension full of retirees all discover what novation, margin, and gamma really do — the day they stop.',
+    series: 'OTS Ullu · Story',
+    url: '/articles/the-100-billion-out-of-office-reply/',
+  },
+  {
     title: 'The Trader\'s Guide to Option Adjustments',
     excerpt: 'When the underlying splits, pays a surprise dividend, or gets bought out, the OCC quietly rewrites your contract. How every adjustment works — traced to the By-Laws, with every example sourced to its OCC memo — and what it means when you are short the call.',
     series: 'OTS Ullu · Guide',
