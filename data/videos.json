@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "75",
     "totalViews": "4910",
-    "videoCount": "107",
-    "updated": "2026-07-09T03:47:56.823848+00:00"
+    "videoCount": "110",
+    "updated": "2026-07-09T11:09:34.525210+00:00"
   },
   "engagement": {
-    "totalViews": 4912,
-    "totalLikes": 178,
+    "totalViews": 4926,
+    "totalLikes": 179,
     "totalComments": 71,
-    "engagementRate": 5.07,
+    "engagementRate": 5.08,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -66,17 +66,53 @@
       "ytId": "PLZEDE8n1EZ0SLtrPqYRrEtSL92aprflh9",
       "color": "#8b5cf6",
       "desc": "Short motivational videos and platform announcements from OTS Ullu.",
-      "thumb": "https://i.ytimg.com/vi/ooiZ1_SOn5g/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/WBIPxMn5L-E/maxresdefault.jpg"
     }
   ],
   "videos": [
+    {
+      "id": "WBIPxMn5L-E",
+      "title": "🚨 What if the Options Clearing Corporation simply stopped working?",
+      "thumb": "https://i.ytimg.com/vi/WBIPxMn5L-E/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-07-09",
+      "india": true
+    },
+    {
+      "id": "mlxgcAT_bvA",
+      "title": "🎧 𝗧𝗵𝗲 $𝟭𝟬𝟬 𝗕𝗶𝗹𝗹𝗶𝗼𝗻 𝗢𝘂𝘁-𝗼𝗳-𝗢𝗳𝗳𝗶𝗰𝗲 𝗥𝗲𝗽𝗹𝘆: What Happens When the Options Clearinghouse Quits? 📈",
+      "thumb": "https://i.ytimg.com/vi/mlxgcAT_bvA/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "10",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-07-08",
+      "india": true
+    },
+    {
+      "id": "_fpZlIWzD68",
+      "title": "🏛️ 𝗧𝗵𝗲 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗚𝗹𝗼𝗯𝗮𝗹 𝗗𝗼𝗹𝗹𝗮𝗿 𝗧𝗿𝘂𝘀𝘁: 𝗙𝗿𝗼𝗺 𝗚𝗼𝗹𝗱 𝗦𝘁𝗮𝗻𝗱𝗮𝗿𝗱 𝘁𝗼 𝗗𝗶𝗴𝗶𝘁𝗮𝗹 𝗙𝘂𝘁𝘂𝗿𝗲",
+      "thumb": "https://i.ytimg.com/vi/_fpZlIWzD68/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-07-07",
+      "india": true
+    },
     {
       "id": "FHjsZvj4888",
       "title": "🚨 𝗢𝗖𝗖 𝗢𝗽𝘁𝗶𝗼𝗻 𝗔𝗱𝗷𝘂𝘀𝘁𝗺𝗲𝗻𝘁𝘀 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱: What Happens During Splits, Dividends & Mergers? 📉",
       "thumb": "https://i.ytimg.com/vi/FHjsZvj4888/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "5",
+      "views": "8",
       "likes": "1",
       "comments": "1",
       "published": "2026-07-07",
@@ -88,7 +124,7 @@
       "thumb": "https://i.ytimg.com/vi/UXqxhFtcJZ8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "7",
+      "views": "8",
       "likes": "1",
       "comments": "1",
       "published": "2026-07-06",
