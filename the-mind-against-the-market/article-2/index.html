@@ -108,6 +108,45 @@
     opacity: 0.5;
   }
 
+  /* Top prev/next article nav */
+  .article-topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-topnav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-decoration: none;
+    max-width: 49%;
+  }
+  .article-topnav-link.prev { align-items: flex-start; text-align: left; }
+  .article-topnav-link.next { align-items: flex-end; text-align: right; margin-left: auto; }
+  .article-topnav-link .topnav-dir {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .article-topnav-link .topnav-title {
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    line-height: 1.4;
+    transition: color 150ms;
+  }
+  .article-topnav-link:hover .topnav-title { color: var(--accent); }
+  .article-topnav-link.disabled { opacity: 0.4; pointer-events: none; cursor: default; }
+  @media (max-width: 640px) {
+    .article-topnav-link .topnav-title { font-size: 0.8rem; }
+  }
+
   /* Series badge */
   .series-badge {
     display: inline-flex;
@@ -535,6 +574,18 @@
       <a href="../">The Mind Against the Market</a>
       <span class="breadcrumb-sep" aria-hidden="true">›</span>
       <span aria-current="page">Article 2</span>
+    </nav>
+
+    <!-- Top prev/next nav -->
+    <nav class="article-topnav" aria-label="Series navigation">
+      <a href="../article-1/" class="article-topnav-link prev">
+        <span class="topnav-dir">‹ Previous · Part 1</span>
+        <span class="topnav-title">The Stock Kept Rising After I Sold It</span>
+      </a>
+      <a href="../article-3/" class="article-topnav-link next">
+        <span class="topnav-dir">Next · Part 3 ›</span>
+        <span class="topnav-title">I Knew This Would Happen</span>
+      </a>
     </nav>
 
     <!-- Series badge -->

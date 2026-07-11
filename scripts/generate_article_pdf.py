@@ -72,6 +72,7 @@ PRINT_CSS = """
   .config-panel,
   .config-scrim,
   .series-nav,
+  .article-topnav,
   .pdf-download-wrap,
   .breadcrumb,
   .series-badge {
