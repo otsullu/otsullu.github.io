@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "architecture-of-elaborate-bias",
+      "file": "forensic-confirmation-bias-audit-investing.pdf",
+      "title": "The Architecture of Elaborate Bias: A Forensic Confirmation-Bias Audit",
+      "description": "A visual case file from The Mind Against the Market series — a forensic audit of how rigorous research quietly becomes a machine for confirming what you already believe. It traces the funnel of motivated reasoning, the asymmetric-scrutiny matrix (maximum friction for disconfirming data, none for the bullish case), and the intelligence paradox: smarter investors don't escape the bias, they just build more elaborate justifications for it. Ends with the Anti-Bias Architecture — four structural tollgates (falsification test, balanced research log, external red team, kill-criterion) that override human instinct where it matters most.",
+      "tags": ["behavioral finance", "confirmation bias", "motivated reasoning", "investing", "mind against the market"],
+      "date": "2026-07-11",
+      "featured": true
+    },
+    {
       "id": "executive-blueprint-global-scale",
       "file": "Architectures_of_Global_Scale.pdf",
       "title": "The Executive Blueprint: The Architecture of Global Corporate Scale",

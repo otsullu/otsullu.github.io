@@ -177,12 +177,6 @@ const DISPATCH_DATA = [
     url: '/articles/life360-covered-call-case-study/',
   },
   {
-    title: 'The Stock Kept Rising After I Sold It',
-    excerpt: 'Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.',
-    series: 'The Mind Against the Market · Part 1',
-    url: '/the-mind-against-the-market/article-1/',
-  },
-  {
     title: 'The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options',
     excerpt: 'She had rolled the position six times, every roll a winner, and was about to close it for the only reason that should never count: the number six.',
     series: 'OTS Ullu · Strategy',
