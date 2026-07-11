@@ -154,7 +154,7 @@ const FOUNDER_QUOTES = [
 const DISPATCH_DATA = [
   {
     title: 'The Research Confirmed It',
-    excerpt: 'He swore he would never guess again — he would do the work. Ten sources minimum, a 14-tab workbook, a nine-page thesis. It looked like rigor. It was confirmation bias wearing the costume of discipline — and the harder he worked, the harder it was to see.',
+    excerpt: 'Mike swore he would never guess again — he would do the work. Ten sources minimum, a 14-tab workbook, a nine-page thesis. It looked like rigor. It was confirmation bias wearing the costume of discipline — and the harder he worked, the harder it was to see.',
     series: 'The Mind Against the Market · Part 4',
     url: '/the-mind-against-the-market/article-4/',
   },
