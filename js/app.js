@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'The Research Confirmed It',
+    excerpt: 'He swore he would never guess again — he would do the work. Ten sources minimum, a 14-tab workbook, a nine-page thesis. It looked like rigor. It was confirmation bias wearing the costume of discipline — and the harder he worked, the harder it was to see.',
+    series: 'The Mind Against the Market · Part 4',
+    url: '/the-mind-against-the-market/article-4/',
+  },
+  {
     title: 'The $100 Billion Out-of-Office Reply',
     excerpt: 'A comedic thriller about the invisible plumbing of the options market. When the machine that guarantees every option in America takes a month off, a responsible trader in Ohio, a naked hedge fund, and a pension full of retirees all discover what novation, margin, and gamma really do — the day they stop.',
     series: 'OTS Ullu · Story',
