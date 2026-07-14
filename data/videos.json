@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "76",
-    "totalViews": "5006",
-    "videoCount": "111",
-    "updated": "2026-07-14T02:52:20.116171+00:00"
+    "totalViews": "5032",
+    "videoCount": "112",
+    "updated": "2026-07-14T10:03:12.705699+00:00"
   },
   "engagement": {
-    "totalViews": 5044,
-    "totalLikes": 180,
-    "totalComments": 72,
-    "engagementRate": 5.0,
+    "totalViews": 5050,
+    "totalLikes": 181,
+    "totalComments": 73,
+    "engagementRate": 5.03,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -42,7 +42,7 @@
       "ytId": "PLZEDE8n1EZ0QYxsDHtj-kb2xX10OLAttN",
       "color": "#c9a84c",
       "desc": "Long-term wealth building strategies — compounding, valuation, portfolio construction, zero hype.",
-      "thumb": "https://i.ytimg.com/vi/KlHx_TiiZHo/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/XcdOckzXUx4/maxresdefault.jpg"
     },
     {
       "id": "options-academy",
@@ -71,13 +71,25 @@
   ],
   "videos": [
     {
+      "id": "XcdOckzXUx4",
+      "title": "🚨 The 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻: How Smart Investors Sabotage Themselves | 𝗖𝗼𝗻𝗳𝗶𝗿𝗺𝗮𝘁𝗶𝗼𝗻 𝗕𝗶𝗮𝘀 𝗜𝗻 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗻𝗴",
+      "thumb": "https://i.ytimg.com/vi/XcdOckzXUx4/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-14",
+      "india": true
+    },
+    {
       "id": "dwK9d6h1W5Y",
       "title": "🚨 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 मध्ये तुमचा 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵 तुम्हाला कसं फसवतं? | | 𝗖𝗼𝗻𝗳𝗶𝗿𝗺𝗮𝘁𝗶𝗼𝗻 𝗕𝗶𝗮𝘀 𝗜𝗻 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗻𝗴",
       "thumb": "https://i.ytimg.com/vi/dwK9d6h1W5Y/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "37",
-      "likes": "1",
+      "views": "39",
+      "likes": "2",
       "comments": "1",
       "published": "2026-07-13",
       "india": true
@@ -136,7 +148,7 @@
       "thumb": "https://i.ytimg.com/vi/UXqxhFtcJZ8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "12",
+      "views": "13",
       "likes": "1",
       "comments": "1",
       "published": "2026-07-06",
@@ -244,7 +256,7 @@
       "thumb": "https://i.ytimg.com/vi/KlHx_TiiZHo/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "15",
+      "views": "16",
       "likes": "0",
       "comments": "1",
       "published": "2026-06-22",
