@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "76",
-    "totalViews": "5086",
-    "videoCount": "112",
-    "updated": "2026-07-16T17:24:08.478601+00:00"
+    "totalViews": "5089",
+    "videoCount": "113",
+    "updated": "2026-07-17T03:14:48.379338+00:00"
   },
   "engagement": {
-    "totalViews": 5102,
+    "totalViews": 5109,
     "totalLikes": 182,
-    "totalComments": 73,
-    "engagementRate": 5.0,
+    "totalComments": 74,
+    "engagementRate": 5.01,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/FHjsZvj4888/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "-0j6FFZm4Us",
+      "title": "𝐌𝐚𝐬𝐭𝐞𝐫 𝐈𝐦𝐩𝐥𝐢𝐞𝐝 𝐕𝐨𝐥𝐚𝐭𝐢𝐥𝐢𝐭𝐲 & 𝐓𝐡𝐞 𝐆𝐫𝐞𝐞𝐤𝐬 𝐄𝐱𝐥𝐚𝐢𝐧𝐞𝐝 📈",
+      "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-17",
+      "india": true
+    },
+    {
       "id": "XcdOckzXUx4",
       "title": "🚨 The 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻: How Smart Investors Sabotage Themselves | 𝗖𝗼𝗻𝗳𝗶𝗿𝗺𝗮𝘁𝗶𝗼𝗻 𝗕𝗶𝗮𝘀 𝗜𝗻 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗻𝗴",
       "thumb": "https://i.ytimg.com/vi/XcdOckzXUx4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "13",
+      "views": "18",
       "likes": "1",
       "comments": "1",
       "published": "2026-07-14",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/dwK9d6h1W5Y/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "79",
+      "views": "80",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-13",
@@ -196,7 +208,7 @@
       "thumb": "https://i.ytimg.com/vi/2imRa4v8EcI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "25",
+      "views": "26",
       "likes": "2",
       "comments": "3",
       "published": "2026-06-26",
