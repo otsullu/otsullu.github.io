@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "76",
-    "totalViews": "5110",
-    "videoCount": "113",
-    "updated": "2026-07-17T17:17:05.145795+00:00"
+    "totalViews": "5140",
+    "videoCount": "114",
+    "updated": "2026-07-18T02:52:18.960058+00:00"
   },
   "engagement": {
-    "totalViews": 5138,
+    "totalViews": 5149,
     "totalLikes": 191,
-    "totalComments": 74,
-    "engagementRate": 5.16,
+    "totalComments": 75,
+    "engagementRate": 5.17,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/2imRa4v8EcI/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/fWvQym2ylkI/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "fWvQym2ylkI",
+      "title": "🚨 𝐖𝐡𝐲 𝐍𝐞𝐭𝐟𝐥𝐢𝐱 𝐒𝐭𝐨𝐜𝐤 𝐃𝐑𝐎𝐏𝐏𝐄𝐃 𝟗% 𝐀𝐟𝐭𝐞𝐫 𝐐𝟐 𝟐𝟎𝟐𝟔 𝐄𝐚𝐫𝐧𝐢𝐧𝐠𝐬? | 𝐍𝐅𝐋𝐗 𝐀𝐧𝐚𝐥𝐲𝐬𝐢𝐬 📉",
+      "thumb": "https://i.ytimg.com/vi/fWvQym2ylkI/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-17",
+      "india": true
+    },
+    {
       "id": "-0j6FFZm4Us",
       "title": "𝐌𝐚𝐬𝐭𝐞𝐫 𝐈𝐦𝐩𝐥𝐢𝐞𝐝 𝐕𝐨𝐥𝐚𝐭𝐢𝐥𝐢𝐭𝐲 & 𝐓𝐡𝐞 𝐆𝐫𝐞𝐞𝐤𝐬 𝐄𝐱𝐥𝐚𝐢𝐧𝐞𝐝 📈",
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "4",
+      "views": "5",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/XcdOckzXUx4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "31",
+      "views": "38",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-14",
@@ -208,7 +220,7 @@
       "thumb": "https://i.ytimg.com/vi/2imRa4v8EcI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "26",
+      "views": "27",
       "likes": "2",
       "comments": "3",
       "published": "2026-06-26",
