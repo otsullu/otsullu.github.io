@@ -642,13 +642,6 @@ function renderShelfPdfs(pdfs, baseUrl) {
            data-pdf-title="${safeTitle}">
         <div class="resource-card-pdf-top">
           <span class="resource-type-badge badge-pdf">PDF</span>
-          ${pdf.featured ? '<span class="resource-featured-badge">Featured</span>' : ''}
-          <span class="resource-card-date">${pdf.date}</span>
-        </div>
-        <p class="resource-title">${pdf.title}</p>
-        <p class="resource-desc">${pdf.description}</p>
-        <div class="pdf-tags">${tags}</div>
-        <div class="pdf-card-actions">
           <button type="button" class="pdf-share-btn"
                   data-share-url="${url}"
                   title="Copy a shareable link to this PDF"
@@ -656,7 +649,11 @@ function renderShelfPdfs(pdfs, baseUrl) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             <span class="pdf-share-label">Copy link</span>
           </button>
+          <span class="resource-card-date">${pdf.date}</span>
         </div>
+        <p class="resource-title">${pdf.title}</p>
+        <p class="resource-desc">${pdf.description}</p>
+        <div class="pdf-tags">${tags}</div>
       </div>
     `;
   });
