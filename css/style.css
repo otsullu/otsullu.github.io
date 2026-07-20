@@ -2637,12 +2637,6 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 .pdf-modal-download:hover { background: var(--accent-tint-15, var(--accent-tint-25)); }
 
 /* ── PDF SHARE / COPY LINK ──────────────────────────────────────── */
-.pdf-card-actions {
-  margin-top: 14px;
-  display: flex;
-  align-items: center;
-}
-
 .pdf-share-btn {
   display: inline-flex;
   align-items: center;
@@ -2678,6 +2672,16 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   color: var(--accent);
   border-color: var(--accent-tint-40);
   background: var(--accent-tint-10);
+}
+
+/* Compact variant when the share button sits in the card's top row */
+.resource-card-pdf-top .pdf-share-btn {
+  padding: 3px 9px;
+  font-size: 0.7rem;
+}
+.resource-card-pdf-top .pdf-share-btn svg {
+  width: 12px;
+  height: 12px;
 }
 
 .pdf-modal-actions {
