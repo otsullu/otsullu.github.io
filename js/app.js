@@ -633,12 +633,13 @@ function renderShelfPdfs(pdfs, baseUrl) {
   return list.map(pdf => {
     const url  = baseUrl + encodeURIComponent(pdf.file);
     const tags = (pdf.tags || []).map(t => `<span class="pdf-tag">${t}</span>`).join('');
+    const safeTitle = pdf.title.replace(/"/g,'&quot;');
     return `
       <div class="resource-card resource-card-pdf reveal-up"
            role="button" tabindex="0"
            aria-label="${pdf.title}"
            data-pdf-url="${url}"
-           data-pdf-title="${pdf.title.replace(/"/g,'&quot;')}">
+           data-pdf-title="${safeTitle}">
         <div class="resource-card-pdf-top">
           <span class="resource-type-badge badge-pdf">PDF</span>
           ${pdf.featured ? '<span class="resource-featured-badge">Featured</span>' : ''}
@@ -647,9 +648,66 @@ function renderShelfPdfs(pdfs, baseUrl) {
         <p class="resource-title">${pdf.title}</p>
         <p class="resource-desc">${pdf.description}</p>
         <div class="pdf-tags">${tags}</div>
+        <div class="pdf-card-actions">
+          <button type="button" class="pdf-share-btn"
+                  data-share-url="${url}"
+                  title="Copy a shareable link to this PDF"
+                  aria-label="Copy a shareable link to ${safeTitle}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span class="pdf-share-label">Copy link</span>
+          </button>
+        </div>
       </div>
     `;
   });
+}
+
+/* ── SHARE / COPY LINK ──────────────────────────────────────────── */
+function absolutePdfUrl(u) {
+  try { return new URL(u, window.location.href).href; }
+  catch (e) { return u; }
+}
+
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  /* Fallback for non-secure contexts (e.g. plain http) */
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(ta);
+    ok ? resolve() : reject(new Error('copy failed'));
+  });
+}
+
+function copyShareLink(url, btn) {
+  const abs   = absolutePdfUrl(url);
+  const label = btn && btn.querySelector('.pdf-share-label');
+
+  function flash(msg) {
+    if (!label || btn.dataset.flashing) return;
+    btn.dataset.flashing = '1';
+    const original = label.textContent;
+    label.textContent = msg;
+    btn.classList.add('copied');
+    setTimeout(() => {
+      label.textContent = original;
+      btn.classList.remove('copied');
+      delete btn.dataset.flashing;
+    }, 1800);
+  }
+
+  copyTextToClipboard(abs)
+    .then(() => flash('Link copied'))
+    .catch(() => { window.prompt('Copy this link to share:', abs); });
 }
 
 function initShelfCarousel(wrap) {
@@ -731,10 +789,19 @@ function openPdfModal(url, title) {
         <canvas class="pdf-page-canvas" id="pdfCanvas"></canvas>
       </div>
       <div class="pdf-modal-footer">
-        <a href="${url}" download class="pdf-modal-download">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v7M3.5 5.5l3 3 3-3"/><path d="M1 10h11"/></svg>
-          Download
-        </a>
+        <div class="pdf-modal-actions">
+          <a href="${url}" download class="pdf-modal-download">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v7M3.5 5.5l3 3 3-3"/><path d="M1 10h11"/></svg>
+            Download
+          </a>
+          <button type="button" class="pdf-share-btn pdf-modal-copy"
+                  data-share-url="${url}"
+                  title="Copy a shareable link to this PDF"
+                  aria-label="Copy a shareable link to this PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span class="pdf-share-label">Copy link</span>
+          </button>
+        </div>
         <div class="pdf-nav" aria-label="Page navigation">
           <button class="pdf-nav-btn" id="pdfFirst" title="First page" disabled>
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="2" y2="11"/><path d="M11 2L5 6.5l6 4.5"/></svg>
@@ -757,6 +824,15 @@ function openPdfModal(url, title) {
   const close = () => overlay.remove();
   overlay.querySelector('.pdf-modal-close').addEventListener('click', close);
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+  const modalCopyBtn = overlay.querySelector('.pdf-share-btn');
+  if (modalCopyBtn) {
+    modalCopyBtn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      copyShareLink(modalCopyBtn.dataset.shareUrl, modalCopyBtn);
+    });
+  }
 
   document.body.appendChild(overlay);
 
@@ -836,11 +912,25 @@ function loadShelf() {
       }
 
       grid.addEventListener('click', e => {
+        const shareBtn = e.target.closest('.pdf-share-btn');
+        if (shareBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          copyShareLink(shareBtn.dataset.shareUrl, shareBtn);
+          return;
+        }
         const card = e.target.closest('[data-pdf-url]');
         if (card) openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle);
       });
       grid.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
+          const shareBtn = e.target.closest('.pdf-share-btn');
+          if (shareBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            copyShareLink(shareBtn.dataset.shareUrl, shareBtn);
+            return;
+          }
           const card = e.target.closest('[data-pdf-url]');
           if (card) { e.preventDefault(); openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle); }
         }

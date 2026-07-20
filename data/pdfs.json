@@ -2,6 +2,24 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "decoding-the-vix",
+      "file": "Cboe-VIX-Index-Calculation-Methodology.pdf",
+      "title": "Decoding the VIX: How the Cboe Volatility Index Is Actually Calculated",
+      "description": "A visual walkthrough of the machinery behind the market's 'fear gauge' — why the VIX is a forward-looking, 30-day estimate distilled from a whole strip of SPX option prices, not a forecast of direction. Covers the variance formula and how each strike contributes, near-term and next-term expiration selection, the interpolation to a constant 30-day horizon, how to read the sub-20, 20–30, and 30-plus regimes, why the index mean-reverts, and what it cannot tell you.",
+      "tags": ["volatility", "vix", "options", "cboe", "risk"],
+      "date": "2026-07-20",
+      "featured": true
+    },
+    {
+      "id": "implied-volatility-premium-selling",
+      "file": "Implied-Volatility-Options-Selling-Strategies.pdf",
+      "title": "Master the Mechanics of Implied Volatility: A Premium Seller's Field Guide",
+      "description": "A visual field guide to implied volatility for premium sellers — how implied differs from historical volatility, why IV is the fear premium priced into every option, and how it drives extrinsic value. Walks through selling covered calls and cash-secured puts into high-IV conditions, the mechanics of IV crush around earnings, volatility skew, the event-risk trap, and the golden rules for collecting premium without getting run over.",
+      "tags": ["options", "implied volatility", "covered calls", "cash-secured puts", "premium selling"],
+      "date": "2026-07-20",
+      "featured": true
+    },
+    {
       "id": "architecture-of-elaborate-bias",
       "file": "forensic-confirmation-bias-audit-investing.pdf",
       "title": "The Architecture of Elaborate Bias: A Forensic Confirmation-Bias Audit",
