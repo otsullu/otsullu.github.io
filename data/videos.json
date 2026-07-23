@@ -8,13 +8,13 @@
     "subscribers": "83",
     "totalViews": "5218",
     "videoCount": "116",
-    "updated": "2026-07-23T10:28:04.620214+00:00"
+    "updated": "2026-07-23T17:35:13.821296+00:00"
   },
   "engagement": {
-    "totalViews": 5235,
+    "totalViews": 5264,
     "totalLikes": 202,
-    "totalComments": 77,
-    "engagementRate": 5.33,
+    "totalComments": 78,
+    "engagementRate": 5.32,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -112,7 +112,7 @@
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "23",
+      "views": "24",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -379,18 +379,6 @@
       "views": "17",
       "likes": "1",
       "comments": "1",
-      "published": "2026-06-14",
-      "india": true
-    },
-    {
-      "id": "_2JO0ne7heU",
-      "title": "🚀 𝗦𝗽𝗮𝗰𝗲𝗫 𝗜𝗣𝗢 𝗗𝗲𝗲𝗽 𝗗𝗶𝘃𝗲: $𝟮 𝗧𝗿𝗶𝗹𝗹𝗶𝗼𝗻 𝗩𝗮𝗹𝘂𝗮𝘁𝗶𝗼𝗻, 𝗦𝘁𝗮𝗿𝗹𝗶𝗻𝗸 𝗥𝗲𝘃𝗲𝗻𝘂𝗲 & 𝘅𝗔𝗜 𝗠𝗲𝗿𝗴𝗲𝗿 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱",
-      "thumb": "https://i.ytimg.com/vi/_2JO0ne7heU/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "14",
-      "likes": "0",
-      "comments": "0",
       "published": "2026-06-14",
       "india": true
     },
@@ -683,6 +671,18 @@
       "india": true
     },
     {
+      "id": "jrDLWNBTyqQ",
+      "title": "📊 பங்குச்சந்தை என்றால் என்ன? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗧𝗮𝗺𝗶𝗹 🚀",
+      "thumb": "https://i.ytimg.com/vi/jrDLWNBTyqQ/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "Tamil",
+      "views": "40",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-05-19",
+      "india": true
+    },
+    {
       "id": "uiLuxb33jZ0",
       "title": "📊 اسٹاک مارکیٹ کیا ہے؟ | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗨𝗿𝗱𝘂 🚀",
       "thumb": "https://i.ytimg.com/vi/uiLuxb33jZ0/maxresdefault.jpg",
@@ -748,7 +748,7 @@
       "thumb": "https://i.ytimg.com/vi/NKA6Jtmu11g/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Telugu",
-      "views": "36",
+      "views": "37",
       "likes": "2",
       "comments": "3",
       "published": "2026-05-18",
@@ -1156,7 +1156,7 @@
       "thumb": "https://i.ytimg.com/vi/dApTepJzC8w/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "37",
+      "views": "38",
       "likes": "2",
       "comments": "0",
       "published": "2026-04-28",
