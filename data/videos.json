@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "84",
-    "totalViews": "5256",
-    "videoCount": "116",
-    "updated": "2026-07-27T17:46:55.105674+00:00"
+    "totalViews": "5259",
+    "videoCount": "117",
+    "updated": "2026-07-28T02:53:35.623504+00:00"
   },
   "engagement": {
-    "totalViews": 5260,
+    "totalViews": 5267,
     "totalLikes": 202,
-    "totalComments": 77,
-    "engagementRate": 5.3,
+    "totalComments": 78,
+    "engagementRate": 5.32,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/dqsKX9PNIvk/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/PtVDvtkGsho/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "PtVDvtkGsho",
+      "title": "🚨 𝗧𝗲𝘀𝗹𝗮'𝘀 𝗤𝟮 𝟮𝟬𝟮𝟲 𝗣𝗮𝗿𝗮𝗱𝗼𝘅: 𝗧𝗵𝗲 $𝟱.𝟴𝗕 𝗕𝗲𝘁 𝗼𝗻 𝗔𝗜 & 𝗥𝗼𝗯𝗼𝘁𝗶𝗰𝘀 🤖",
+      "thumb": "https://i.ytimg.com/vi/PtVDvtkGsho/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "4",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-07-27",
+      "india": true
+    },
+    {
       "id": "dqsKX9PNIvk",
       "title": "🚀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝗡𝗼𝘄 𝗤𝟮 𝟮𝟬𝟮𝟲 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: $1B AI Milestone, 𝗥𝘂𝗹𝗲 𝗼𝗳 𝟱𝟲 & Massive Growth! 📈",
       "thumb": "https://i.ytimg.com/vi/dqsKX9PNIvk/maxresdefault.jpg",
@@ -112,7 +124,7 @@
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "26",
+      "views": "27",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -184,7 +196,7 @@
       "thumb": "https://i.ytimg.com/vi/FHjsZvj4888/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "16",
+      "views": "17",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-07",
@@ -208,7 +220,7 @@
       "thumb": "https://i.ytimg.com/vi/UzhLtuRN6Qk/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "9",
+      "views": "10",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-03",
