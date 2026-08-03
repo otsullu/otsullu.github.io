@@ -5,16 +5,16 @@
     "handle": "@otsullu",
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
-    "subscribers": "86",
-    "totalViews": "5286",
-    "videoCount": "118",
-    "updated": "2026-08-03T11:31:19.208259+00:00"
+    "subscribers": "85",
+    "totalViews": "5306",
+    "videoCount": "119",
+    "updated": "2026-08-03T17:56:18.298049+00:00"
   },
   "engagement": {
-    "totalViews": 5309,
-    "totalLikes": 205,
-    "totalComments": 79,
-    "engagementRate": 5.35,
+    "totalViews": 5314,
+    "totalLikes": 199,
+    "totalComments": 80,
+    "engagementRate": 5.25,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/PtVDvtkGsho/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/P_a37QmluUo/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "P_a37QmluUo",
+      "title": "🚨 Evaluating Tech at Scale: The Dos and Don'ts of Meta's Q2 Earnings 📈🔥",
+      "thumb": "https://i.ytimg.com/vi/P_a37QmluUo/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "4",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-08-03",
+      "india": true
+    },
+    {
       "id": "82njVx9ZZ9k",
       "title": "How America Created One National Currency: 𝗧𝗵𝗲 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 𝗼𝗳 𝗨.𝗦. 𝗠𝗼𝗻𝗲𝘆 💵🏛️",
       "thumb": "https://i.ytimg.com/vi/82njVx9ZZ9k/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "11",
+      "views": "12",
       "likes": "1",
       "comments": "1",
       "published": "2026-08-01",
@@ -1361,7 +1373,7 @@
       "playlist": "wealth-academy",
       "lang": "English",
       "views": "44",
-      "likes": "2",
+      "likes": "1",
       "comments": "0",
       "published": "2026-04-20",
       "india": false
@@ -1385,7 +1397,7 @@
       "playlist": "options-academy",
       "lang": "English",
       "views": "31",
-      "likes": "4",
+      "likes": "3",
       "comments": "0",
       "published": "2026-04-19",
       "india": true
@@ -1397,7 +1409,7 @@
       "playlist": "indian-radar",
       "lang": "English",
       "views": "26",
-      "likes": "2",
+      "likes": "1",
       "comments": "0",
       "published": "2026-04-18",
       "india": true
@@ -1445,7 +1457,7 @@
       "playlist": "wealth-academy",
       "lang": "English",
       "views": "13",
-      "likes": "2",
+      "likes": "1",
       "comments": "0",
       "published": "2026-04-10",
       "india": false
@@ -1469,7 +1481,7 @@
       "playlist": "wealth-academy",
       "lang": "English",
       "views": "17",
-      "likes": "1",
+      "likes": "0",
       "comments": "0",
       "published": "2026-04-09",
       "india": false
@@ -1481,7 +1493,7 @@
       "playlist": "wealth-academy",
       "lang": "English",
       "views": "35",
-      "likes": "2",
+      "likes": "1",
       "comments": "0",
       "published": "2026-04-08",
       "india": false
