@@ -2674,6 +2674,10 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   background: var(--accent-tint-10);
 }
 
+.article-share-row {
+  margin: 0 0 32px;
+}
+
 /* Compact variant when the share button sits in the card's top row */
 .resource-card-pdf-top .pdf-share-btn {
   padding: 3px 9px;
@@ -2931,36 +2935,20 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   min-width: 130px;
 }
 
-.dispatch-coming-soon {
-  font-size: 0.78rem;
+.dispatch-view-all {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  padding: 22px 32px;
+  background: var(--bg-elev);
+}
+.dispatch-view-all-link {
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--fg-meta);
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 5px 14px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition:
-    color var(--t-fast),
-    border-color var(--t-fast),
-    background var(--t-fast);
-}
-
-.dispatch-coming-soon:hover {
-  color: var(--fg-secondary);
-  border-color: var(--fg-meta);
-}
-
-.dispatch-coming-soon.dispatch-notice-active {
   color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-glow);
-  white-space: normal;
-  width: 160px;
-  text-align: center;
-  line-height: 1.4;
+  text-decoration: none;
+  transition: opacity 150ms;
 }
+.dispatch-view-all-link:hover { opacity: 0.75; }
 
 @media (max-width: 600px) {
   .dispatch-card {

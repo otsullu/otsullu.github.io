@@ -183,22 +183,28 @@ const DISPATCH_DATA = [
     url: '/articles/life360-covered-call-case-study/',
   },
   {
+    title: 'I Knew This Would Happen',
+    excerpt: 'Mike stayed out of the bubble — and watched it collapse exactly as he\'d expected. For the first time, his restraint felt less like caution and more like insight, like a real edge. It was the most dangerous thing that happened to him all year, and he had no idea.',
+    series: 'The Mind Against the Market · Part 3',
+    url: '/the-mind-against-the-market/article-3/',
+  },
+  {
+    title: 'Everyone Was Getting Rich Except Me',
+    excerpt: 'Mike had one hand on the Buy button, $10,000 ready, and ninety-one rocket emojis lighting up the company Slack. What stopped him — and what the science of herd mentality says about why FOMO is nearly impossible to resist.',
+    series: 'The Mind Against the Market · Part 2',
+    url: '/the-mind-against-the-market/article-2/',
+  },
+  {
     title: 'The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options',
     excerpt: 'She had rolled the position six times, every roll a winner, and was about to close it for the only reason that should never count: the number six.',
     series: 'OTS Ullu · Strategy',
     url: '/articles/when-to-roll-or-stop/',
   },
   {
-    title: 'Why the Wheel Strategy Outperforms Buy-and-Hold in Sideways Markets',
-    excerpt: 'A quantitative examination of risk-adjusted returns across three market regimes, with a focus on theta decay harvesting and systematic roll logic.',
-  },
-  {
-    title: 'The IV Rank Illusion: What Most Options Traders Get Wrong',
-    excerpt: 'Implied volatility rank is widely misused. We unpack why raw IV percentile is more actionable than IV rank for premium-selling strategies.',
-  },
-  {
-    title: 'Covered Calls on ETFs vs. Individual Stocks: A Risk-Adjusted Analysis',
-    excerpt: 'Diversified underlying vs. concentrated single-stock exposure in covered call writing. The data reveals a counterintuitive result for income investors.',
+    title: 'The Stock Kept Rising After I Sold It',
+    excerpt: 'Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.',
+    series: 'The Mind Against the Market · Part 1',
+    url: '/the-mind-against-the-market/article-1/',
   },
 ];
 
@@ -957,6 +963,36 @@ function showResourceNotice(el) {
 }
 
 /* ── ANALYTICAL DISPATCHES ──────────────────────────────────────── */
+const DISPATCH_HOME_LIMIT = 3;
+
+function shareBtnHtml(url) {
+  return `
+    <button type="button" class="pdf-share-btn article-share-btn"
+            data-share-url="${url}"
+            title="Copy a shareable link to this article"
+            aria-label="Copy a shareable link to this article">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <span class="pdf-share-label">Copy link</span>
+    </button>
+  `;
+}
+
+function dispatchCardHtml(d, reveal = true) {
+  return `
+    <article class="dispatch-card dispatch-card-live${reveal ? ' reveal-up' : ''}">
+      <div class="dispatch-left">
+        ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
+        <h3 class="dispatch-title">${d.title}</h3>
+        <p class="dispatch-excerpt">${d.excerpt}</p>
+      </div>
+      <div class="dispatch-right">
+        <a href="${d.url}" class="dispatch-read-link">Read →</a>
+        ${shareBtnHtml(d.url)}
+      </div>
+    </article>
+  `;
+}
+
 function renderDispatches() {
   const feed = document.getElementById('dispatchFeed');
   if (!feed) return;
@@ -976,46 +1012,21 @@ function renderDispatches() {
     </article>
   `;
 
-  const liveCards = DISPATCH_DATA.filter(d => d.url).map((d) => `
-    <article class="dispatch-card dispatch-card-live reveal-up">
-      <div class="dispatch-left">
-        ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
-        <h3 class="dispatch-title">${d.title}</h3>
-        <p class="dispatch-excerpt">${d.excerpt}</p>
-      </div>
-      <div class="dispatch-right">
-        <a href="${d.url}" class="dispatch-read-link">Read →</a>
-      </div>
-    </article>
-  `).join('');
+  const liveCards = DISPATCH_DATA.filter(d => d.url).slice(0, DISPATCH_HOME_LIMIT).map(dispatchCardHtml).join('');
 
-  const comingSoonCards = DISPATCH_DATA.filter(d => !d.url).map((d) => `
-    <article class="dispatch-card reveal-up">
-      <div class="dispatch-left">
-        ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
-        <h3 class="dispatch-title">${d.title}</h3>
-        <p class="dispatch-excerpt">${d.excerpt}</p>
-      </div>
-      <div class="dispatch-right">
-        <button class="dispatch-coming-soon" onclick="showDispatchNotice(this)" type="button">Coming Soon</button>
-      </div>
+  const viewAllCard = `
+    <article class="dispatch-card dispatch-view-all reveal-up">
+      <a href="/articles/" class="dispatch-view-all-link">View all articles →</a>
     </article>
-  `).join('');
+  `;
 
-  feed.innerHTML = liveCards + mediumCard + comingSoonCards;
+  feed.innerHTML = liveCards + mediumCard + viewAllCard;
 }
 
-function showDispatchNotice(btn) {
-  if (btn.dataset.active) return;
-  btn.dataset.active = 'true';
-  const original = btn.textContent;
-  btn.textContent = 'We are working on this. Thank you for your interest.';
-  btn.classList.add('dispatch-notice-active');
-  setTimeout(() => {
-    btn.textContent = original;
-    btn.classList.remove('dispatch-notice-active');
-    delete btn.dataset.active;
-  }, 3000);
+function renderArticlesHub() {
+  const feed = document.getElementById('articlesHub');
+  if (!feed) return;
+  feed.innerHTML = DISPATCH_DATA.filter(d => d.url).map(d => dispatchCardHtml(d, false)).join('');
 }
 
 /* ── FOUNDER QUOTE STRIP ────────────────────────────────────────── */
@@ -1310,9 +1321,17 @@ document.addEventListener('DOMContentLoaded', () => {
   renderResources();
   loadShelf();
   renderDispatches();
+  renderArticlesHub();
   renderFounderQuote();
   setFooterYear();
   loadStats();
+
+  document.body.addEventListener('click', e => {
+    const shareBtn = e.target.closest('.article-share-btn');
+    if (!shareBtn) return;
+    e.preventDefault();
+    copyShareLink(shareBtn.dataset.shareUrl, shareBtn);
+  });
 
   // Re-run reveal after dynamic content is injected
   requestAnimationFrame(() => setupReveal());
