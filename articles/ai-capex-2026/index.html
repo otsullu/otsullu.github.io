@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>AI CapEx 2026: Scale, Structure, and Return Paths | OTS Ullu</title>
+  <meta name="description" content="A practical map of the 2026 AI infrastructure build-out for retail investors: absolute scale, four economic models, quarterly cash-flow impact, interdependence risk, and the observable signals worth tracking each quarter." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI CapEx 2026: Scale, Structure, and Return Paths" />
+  <meta property="og:description" content="Four hyperscalers have guided to roughly $720-765B in combined 2026 CapEx. A practical map of the build-out: economic models, quarterly cash-flow impact, interdependence risk, and observable return signals." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/ai-capex-2026/" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Capital Allocation" />
+  <meta property="article:tag" content="AI, CapEx, Hyperscalers, Capital Allocation, Infrastructure, SpaceX, Oracle, Nvidia" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI CapEx 2026: Scale, Structure, and Return Paths" />
+  <meta name="twitter:description" content="Four hyperscalers have guided to roughly $720-765B in combined 2026 CapEx. A practical map of the build-out: economic models, quarterly cash-flow impact, interdependence risk, and observable return signals." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/ai-capex-2026/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI CapEx 2026: Scale, Structure, and Return Paths",
+    "description": "A practical map of the 2026 AI infrastructure build-out for retail investors: absolute scale, economic models, quarterly cash-flow impact, interdependence risk, and observable return signals.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    },
+    "datePublished": "2026-08-12"
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "AI CapEx 2026: Scale, Structure, and Return Paths"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css?v=20260812" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--accent); text-decoration: none; transition: opacity 150ms; }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep { color: var(--fg-meta); opacity: 0.5; }
+
+  .article-header { max-width: 760px; margin-bottom: 8px; }
+  .article-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+    margin-bottom: 40px;
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  /* Cover strip — replaces a photo hero for a data report */
+  .report-cover {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .report-cover-cell {
+    background: var(--bg-elev);
+    padding: 16px 18px;
+  }
+  .report-cover-label {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 6px;
+  }
+  .report-cover-value {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--fg);
+    line-height: 1.4;
+    margin: 0;
+  }
+  @media (max-width: 620px) {
+    .report-cover { grid-template-columns: 1fr; }
+  }
+
+  .article-body { max-width: 760px; }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .exec-note {
+    margin: 0 0 36px;
+    padding: 18px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .exec-note p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .exec-note p:last-child { margin-bottom: 0 !important; }
+  .exec-note strong { color: var(--fg); }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-section-heading .sec-num {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin-bottom: 6px;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 36px 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.1rem, 2.3vw, 1.25rem) !important;
+    font-weight: 600;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.5 !important;
+  }
+  .pull-quote .pull-quote-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  /* ── Model cards (2x2 grid) ─────────────────────────────────────── */
+  .model-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .model-card {
+    padding: 20px 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .model-card-badge {
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-tint-10);
+    padding: 4px 10px;
+    border-radius: var(--r-sm, 6px);
+    margin-bottom: 10px;
+  }
+  .model-card h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 8px;
+  }
+  .model-card p {
+    font-size: 0.86rem !important;
+    line-height: 1.6 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0 !important;
+  }
+  @media (max-width: 620px) {
+    .model-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Data tables (exhibits) ───────────────────────────────────────── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    table-layout: auto;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 14px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th, .article-table td {
+    text-align: left;
+    padding: 8px 11px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .article-table .notes-col { width: 30%; min-width: 150px; }
+  .article-table .placeholder { color: var(--fg-meta); opacity: 0.5; }
+
+  /* ── Bar charts (built in CSS — the report ships no chart images) ── */
+  .capex-chart {
+    margin: 28px 0;
+    padding: 22px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .capex-chart-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 3px;
+  }
+  .capex-chart-sub {
+    font-size: 0.74rem;
+    color: var(--fg-meta);
+    margin: 0 0 20px;
+  }
+  .capex-chart-legend {
+    display: flex;
+    gap: 18px;
+    font-size: 0.74rem;
+    color: var(--fg-meta);
+    margin-bottom: 18px;
+  }
+  .capex-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .capex-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; background: var(--accent); }
+  .capex-swatch.dim { opacity: 0.4; }
+
+  .capex-bar-group { margin-bottom: 16px; }
+  .capex-bar-group:last-child { margin-bottom: 0; }
+  .capex-bar-row {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .capex-bar-row:last-child { margin-bottom: 0; }
+  .capex-bar-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--fg-secondary);
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .capex-bar-q {
+    font-size: 0.66rem;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--fg-meta);
+    letter-spacing: 0;
+  }
+  .capex-bar-track {
+    background: var(--border);
+    border-radius: 4px;
+    height: 20px;
+    position: relative;
+  }
+  .capex-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+  .capex-bar-fill.dim { opacity: 0.4; }
+  .capex-bar-value {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  @media (max-width: 480px) {
+    .capex-bar-row { grid-template-columns: 76px 1fr auto; }
+    .capex-bar-label { font-size: 0.68rem; }
+  }
+
+  .callout-box {
+    margin: 40px 0;
+    padding: 26px 28px;
+    background: var(--accent-tint-10);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--r-lg);
+  }
+  .callout-box h2 {
+    font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .callout-box .callout-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .callout-box p {
+    font-size: 0.92rem !important;
+    line-height: 1.68 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.9em !important;
+  }
+  .callout-box p:last-child { margin-bottom: 0 !important; }
+
+  .article-body ul, .article-body ol {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+  }
+  .article-body ul { list-style: disc; }
+  .article-body ol { list-style: decimal; }
+  .article-body li::marker { color: var(--accent); }
+  .article-body ul li, .article-body ol li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong, .article-body ol li strong { color: var(--fg); }
+
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .article-references p {
+    font-size: 0.84rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.68rem !important; }
+    .article-table caption { font-size: 0.74rem !important; padding: 10px 10px 4px !important; }
+    .article-table th, .article-table td { padding: 5px 7px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr { break-inside: avoid !important; page-break-inside: avoid !important; }
+    .model-grid { grid-template-columns: 1fr 1fr !important; }
+    .model-card, .capex-chart, .callout-box, .pull-quote, .author-card, .disclaimer-box, .report-cover {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-section-heading { break-after: avoid !important; page-break-after: avoid !important; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="max-width:860px; padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/">Articles</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>AI CapEx 2026</span>
+    </nav>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <p class="article-kicker">OTS Ullu · Capital Allocation Series</p>
+      <h1 class="article-title">AI CapEx 2026: Scale, Structure, and Return Paths</h1>
+      <p class="article-lede">
+        A practical map of the 2026 AI infrastructure build-out for retail investors: absolute scale, economic models, quarterly cash-flow impact, interdependence risk, and observable return signals.
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Capital Allocation</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Report</span>
+      </div>
+    </header>
+
+    <!-- Cover strip (report has no photo assets) -->
+    <div class="report-cover">
+      <div class="report-cover-cell">
+        <p class="report-cover-label">Author</p>
+        <p class="report-cover-value">Sam Vishwas<br />Founder, OTS Ullu</p>
+      </div>
+      <div class="report-cover-cell">
+        <p class="report-cover-label">Data Current Through</p>
+        <p class="report-cover-value">Q2 2026 / fiscal Q4 2026 earnings, early August 2026</p>
+      </div>
+      <div class="report-cover-cell">
+        <p class="report-cover-label">Fact-Checked</p>
+        <p class="report-cover-value">Against primary filings and transcripts, August 7, 2026</p>
+      </div>
+    </div>
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <div class="exec-note">
+        <p><strong>Scope.</strong> This report stays within capital allocation and return-on-investment questions. It does not cover ESG framing, energy policy, or Apple. Figures are approximate where companies report ranges and are labeled accordingly. Nothing here is investment advice.</p>
+        <p><strong>What &ldquo;AI CapEx&rdquo; means here.</strong> Cash purchases of property and equipment, servers, networking, data-center construction, and related long-lived assets, as reported on the cash-flow statement, plus material finance-lease principal where companies explicitly include it in guidance. It excludes pure operating leases that stay off the CapEx line, R&amp;D expense, and content or acquisition spending. AI CapEx is not a clean line item at every company; management commentary and segment disclosures are used to estimate the AI-specific share.</p>
+        <p><strong>The headline.</strong> Four hyperscalers have guided to roughly $720&ndash;765 billion in combined 2026 CapEx. Adding Oracle, CoreWeave, and SpaceX pushes observable U.S. AI-related CapEx above $850 billion for the year, against a backdrop of compressing or negative free cash flow at three of the four largest spenders.</p>
+      </div>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 01</span>Scale of the Build-Out</h2>
+
+      <p>The four largest hyperscalers, Amazon, Alphabet, Microsoft, and Meta, have guided to roughly $720 to $765 billion in combined capital expenditure for calendar 2026. Adding Oracle, CoreWeave, and SpaceX pushes the observable U.S. AI-related CapEx total well above $850 billion for the year.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Table 1. 2026 CapEx Guidance (Selected Companies)</caption>
+          <thead>
+            <tr><th>Company</th><th>2026 Guidance</th><th class="notes-col">Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Amazon</td><td class="num">~$220B</td><td>Raised from ~$200B on July 30 earnings call, cited higher memory costs</td></tr>
+            <tr><td>Alphabet</td><td class="num">$195&ndash;205B</td><td>Raised from $190B after Q2 earnings, July 22</td></tr>
+            <tr><td>Microsoft</td><td class="num">~$175&ndash;190B</td><td>Calendar-year estimate; guidance held steady versus peers</td></tr>
+            <tr><td>Meta</td><td class="num">$130&ndash;145B</td><td>Includes finance-lease principal; narrowed from $125&ndash;145B</td></tr>
+            <tr><td>Oracle</td><td class="num">~$70B net FY27</td><td>Fiscal 2027 guidance; gross $90&ndash;95B before customer prepayments</td></tr>
+            <tr><td>CoreWeave</td><td class="num">$31&ndash;35B</td><td>Neo-cloud specialist</td></tr>
+            <tr><td>SpaceX</td><td class="num">~$45B (est.)</td><td>No formal guidance issued; figure is an analyst estimate, not company guidance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="capex-chart">
+        <p class="capex-chart-title">2026 CapEx Guidance by Company</p>
+        <p class="capex-chart-sub">Bars scaled to $220B (Amazon, the largest single guidance figure in the set)</p>
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Amazon</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:100%"></div></div>
+            <span class="capex-bar-value">$220B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Alphabet</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:93.2%"></div></div>
+            <span class="capex-bar-value">$195&ndash;205B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Microsoft</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:86.4%"></div></div>
+            <span class="capex-bar-value">$175&ndash;190B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Meta</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:65.9%"></div></div>
+            <span class="capex-bar-value">$130&ndash;145B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Oracle <span class="capex-bar-q">FY27</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:31.8%"></div></div>
+            <span class="capex-bar-value">~$70B net</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">CoreWeave</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:15.9%"></div></div>
+            <span class="capex-bar-value">$31&ndash;35B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">SpaceX</span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:20.5%"></div></div>
+            <span class="capex-bar-value">~$45B est.</span>
+          </div>
+        </div>
+      </div>
+
+      <p>Sequential quarterly increases remain large. In the most recent reported quarter (ended June 2026), Amazon spent $53.1 billion on cash CapEx, Alphabet $44.9 billion, Microsoft $41.0 billion, Meta $31.1 billion, and SpaceX $18.4 billion, of which $15.8 billion was AI infrastructure.</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 02</span>Four Economic Models</h2>
+
+      <p>Four practical categories organize the different return paths and risk profiles. They are not rigid classifications.</p>
+
+      <div class="model-grid">
+        <div class="model-card">
+          <span class="model-card-badge">Platform Operators</span>
+          <h3>Amazon, Microsoft, Alphabet, Meta</h3>
+          <p>Large existing cloud or advertising businesses that fund heavy infrastructure primarily from operating cash flow, then monetize through cloud services, advertising, or internal model deployment.</p>
+        </div>
+        <div class="model-card">
+          <span class="model-card-badge">Specialty / Neo-Cloud Builders</span>
+          <h3>Oracle, CoreWeave</h3>
+          <p>Companies whose primary business is selling AI compute capacity under multi-year contracts, often with significant customer prepayments that improve the cash profile of CapEx.</p>
+        </div>
+        <div class="model-card">
+          <span class="model-card-badge">Vertical Integrators</span>
+          <h3>Tesla, SpaceX</h3>
+          <p>Companies building AI primarily for their own physical products and systems: autonomous vehicles, robots, and related real-world applications. Physical AI is structurally harder and slower to commercialize than pure software or chatbot models.</p>
+        </div>
+        <div class="model-card">
+          <span class="model-card-badge">Supporting Infrastructure</span>
+          <h3>Power, cooling, networking, storage suppliers</h3>
+          <p>Capture spend without owning the end-user AI models or cloud relationships. Sits adjacent to, not inside, the other three categories.</p>
+        </div>
+      </div>
+
+      <p><strong>SpaceX dual-role note.</strong> SpaceX is best classified as a Vertical Integrator for its core internal demand (its AI business, formerly xAI, plus physical systems following the 2026 SpaceX&ndash;xAI merger). It has, however, become a material external compute supplier. Its agreement with Anthropic, disclosed in SpaceX&rsquo;s May 2026 S-1 IPO filing, is worth $45 billion in total, structured at $1.25 billion per month through May 2029, with either party able to exit on 90 days&rsquo; notice. This dual role, internal demand plus external leasing, is material and should be tracked separately from pure vertical spend.</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 03</span>Methodology Notes</h2>
+
+      <ul>
+        <li>Primary source: company-reported CapEx, management guidance, and earnings call transcripts.</li>
+        <li>Ranges are preserved where companies give them; fiscal-year figures are flagged separately from calendar-year figures.</li>
+        <li>Cross-year and cross-company comparisons use calendar-year framing where possible.</li>
+        <li>Free-cash-flow coverage of CapEx is shown as operating cash flow divided by CapEx for the same period.</li>
+        <li>No forward valuation multiples or stock recommendations are offered.</li>
+      </ul>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 04</span>Company Deep-Dives</h2>
+
+      <h3 class="article-subheading">Amazon</h3>
+      <p>Largest absolute spender. Guidance raised to approximately $220 billion for 2026 on the July 30 earnings call, up from $200 billion, driven by higher memory costs. CEO Andy Jassy told investors the company will still not have enough capacity to meet demand in 2026, and expects that to hold into 2027. AWS revenue grew 37 percent in Q2, the fastest pace in eighteen quarters, with an AWS backlog of $496 billion. Trailing-twelve-month free cash flow moved to an outflow of $7.6 billion, driven by a $66.1 billion year-over-year increase in property and equipment purchases.</p>
+
+      <h3 class="article-subheading">Alphabet</h3>
+      <p>Guidance raised to $195&ndash;205 billion after Q2 earnings on July 22. Q2 CapEx alone reached $44.9 billion. Google Cloud backlog reached $514 billion, roughly double the figure reported a year earlier. Free cash flow turned negative in Q2, the first negative quarter in roughly two decades, an outflow of approximately $5.9 billion.</p>
+
+      <h3 class="article-subheading">Microsoft</h3>
+      <p>Calendar 2026 CapEx in the $175&ndash;190 billion range. Azure growth continues at a high rate, with management stating Azure demand exceeds supply. Microsoft has kept free cash flow positive while several peers turned negative, though the margin of safety is narrower than in prior years.</p>
+
+      <h3 class="article-subheading">Meta</h3>
+      <p>Guided to $130&ndash;145 billion for 2026, including finance-lease principal, narrowed from a wider prior range. Q2 CapEx was $31.1 billion against $31.9 billion of operating cash flow, consuming nearly all of it. Free cash flow fell from $8.5 billion to $784 million year over year, a decline of more than 90 percent.</p>
+
+      <h3 class="article-subheading">Oracle</h3>
+      <div class="exec-note">
+        <p><strong>Fiscal-year correction.</strong> Oracle&rsquo;s reporting year ends May 31, which offsets it from the other companies in this report. Fiscal 2026 (the year ended May 31, 2026) actual CapEx was $55.7 billion, exceeding Oracle&rsquo;s own prior guidance of $50 billion. For fiscal 2027, Oracle has guided to gross CapEx of $90&ndash;95 billion, with $20&ndash;25 billion expected to be reimbursed by customer prepayments, for a net self-funded outlay of approximately $70 billion. Readers should not read Oracle&rsquo;s figures as directly calendar-year comparable to the other companies in this report.</p>
+      </div>
+      <p>Remaining performance obligations reached a record $638 billion as of May 31, 2026, up 363 percent year over year and up $85 billion in the fourth fiscal quarter alone. Most of the increase reflects large-scale AI contracts, including arrangements where the customer prepays for or supplies GPU hardware directly, a structure that reduces Oracle&rsquo;s own capital burden. Bank of America has estimated that more than half of the RPO traces to a single customer, OpenAI. Free cash flow was negative $23.7 billion for fiscal 2026, and Oracle plans to raise approximately $40 billion in additional debt and equity financing in fiscal 2027. S&amp;P Global Ratings downgraded Oracle&rsquo;s credit rating to BBB- in July 2026, citing the capital intensity of the AI buildout.</p>
+
+      <h3 class="article-subheading">CoreWeave</h3>
+      <p>Focused neo-cloud pure-play guided to $31&ndash;35 billion of 2026 CapEx. Revenue backlog, which per CoreWeave&rsquo;s own definition includes remaining performance obligations plus other amounts the company estimates will be recognized under committed customer contracts, reached $99.4 billion at the end of Q1 2026, up nearly 50 percent sequentially. Management has stated that CapEx is tied to already-signed customer contracts, with roughly 36 percent of the backlog expected to convert within 24 months and roughly 75 percent within four years.</p>
+
+      <h3 class="article-subheading">Tesla</h3>
+      <p>Guided for more than $25 billion of 2026 CapEx, with management indicating spending will continue to grow for the next two to three years. Portions of the spend support AI training compute, semiconductor efforts, vehicle autonomy, and humanoid robotics. Because the compute is intended primarily for internal products, external market recovery matters less to utilization than it does for the Platform Operators.</p>
+
+      <h3 class="article-subheading">SpaceX</h3>
+      <p>SpaceX completed the largest IPO in history in June 2026, raising $85.7 billion, following its earlier 2026 merger with xAI. Its first quarterly report as a public company, released August 4, showed Q2 revenue of $7.81 billion, up 92 percent year over year, against a narrowed net loss of $541 million. Q2 CapEx reached $18.37 billion, more than sixfold higher than a year earlier and well above the $13.22 billion analysts had expected, of which $15.83 billion was AI infrastructure. Q1 CapEx had been $10.1 billion, of which $7.7 billion was AI. The company&rsquo;s AI segment (which includes its former xAI business, the X platform, and cloud services) generated $2.56 billion in Q2 revenue, up 247 percent year over year, but posted a $1.26 billion operating loss.</p>
+
+      <div class="exec-note">
+        <p><strong>Correction: no formal guidance.</strong> SpaceX did not provide formal financial guidance for the remainder of 2026. A full-year run-rate figure of roughly $65 billion, implied by extrapolating the Q2 pace, is not something management stated. Sell-side estimates instead cluster closer to $45 billion for full-year 2026 CapEx. Separately, JPMorgan has flagged SpaceX capex approaching $200 billion annually by 2027 and 2028 as a multi-year risk to free cash flow, a trend it also sees across the hyperscalers generally. Both figures are analyst projections, not company guidance, and should be presented as such.</p>
+      </div>
+
+      <p>SpaceX ended Q2 with $100 billion in cash, cash equivalents, and marketable securities, and reported an AI backlog contributing to a company-wide backlog of $47.5 billion. Musk has stated an internal target of a $100 billion AI annualized revenue run rate by year-end. The stock fell as much as 11 percent after the Q2 report despite the revenue beat, on investor concern over the pace of AI capital spending and the absence of guidance.</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 05</span>2026 CapEx by Quarter and Cash-Flow Impact</h2>
+
+      <p>The full-year guidance numbers are large, but the cash leaves the building in stages. The second-quarter numbers show continued acceleration rather than a plateau.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Table 2. Q2 2026 CapEx and Sequential Change (Selected Companies)</caption>
+          <thead>
+            <tr><th>Company</th><th>Q2 2026 CapEx</th><th>Sequential Change</th><th class="notes-col">Cash-Flow Coverage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Amazon</td><td class="num">$53.1B</td><td class="num">+$10.2B</td><td>TTM free cash flow negative ($7.6B outflow)</td></tr>
+            <tr><td>Alphabet</td><td class="num">$44.9B</td><td class="num">+~$9B</td><td>Negative for first time in roughly two decades</td></tr>
+            <tr><td>Microsoft</td><td class="num">$41.0B</td><td class="num">+~$9B</td><td>Positive; strongest coverage among the four</td></tr>
+            <tr><td>Meta</td><td class="num">$31.1B</td><td class="num">+~$11B</td><td>Barely positive; FCF down over 90% YoY</td></tr>
+            <tr><td>SpaceX</td><td class="num">$18.4B</td><td class="num">+$8.3B</td><td>Financed substantially by IPO proceeds and external capital, not internal cash generation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Operating cash flow still covers CapEx at Microsoft and Meta on a quarterly basis in the most recent data, while Amazon, Alphabet, and especially SpaceX show materially lower coverage ratios. Full-year arithmetic for Amazon, roughly $97&ndash;106 billion combined for the first half against the $220 billion full-year target, implies a second-half run-rate of approximately $114&ndash;123 billion, consistent with the guidance within normal quarterly variability.</p>
+
+      <div class="capex-chart">
+        <p class="capex-chart-title">Q1 vs. Q2 2026 CapEx, Side by Side</p>
+        <p class="capex-chart-sub">Bars scaled to $53.1B (Amazon Q2, the largest single-quarter figure in the set) &middot; source: company 10-Q filings and earnings releases</p>
+        <div class="capex-chart-legend">
+          <span><span class="capex-swatch dim" aria-hidden="true"></span> Q1 2026</span>
+          <span><span class="capex-swatch" aria-hidden="true"></span> Q2 2026</span>
+        </div>
+
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Amazon <span class="capex-bar-q">Q1</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill dim" style="width:83.2%"></div></div>
+            <span class="capex-bar-value">$44.2B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">&nbsp;<span class="capex-bar-q">Q2</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:100%"></div></div>
+            <span class="capex-bar-value">$53.1B</span>
+          </div>
+        </div>
+
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Alphabet <span class="capex-bar-q">Q1</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill dim" style="width:67.2%"></div></div>
+            <span class="capex-bar-value">$35.7B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">&nbsp;<span class="capex-bar-q">Q2</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:84.6%"></div></div>
+            <span class="capex-bar-value">$44.9B</span>
+          </div>
+        </div>
+
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Microsoft <span class="capex-bar-q">Q1</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill dim" style="width:58.2%"></div></div>
+            <span class="capex-bar-value">$30.9B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">&nbsp;<span class="capex-bar-q">Q2</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:77.2%"></div></div>
+            <span class="capex-bar-value">$41.0B</span>
+          </div>
+        </div>
+
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">Meta <span class="capex-bar-q">Q1</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill dim" style="width:37.3%"></div></div>
+            <span class="capex-bar-value">$19.8B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">&nbsp;<span class="capex-bar-q">Q2</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:58.6%"></div></div>
+            <span class="capex-bar-value">$31.1B</span>
+          </div>
+        </div>
+
+        <div class="capex-bar-group">
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">SpaceX <span class="capex-bar-q">Q1</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill dim" style="width:19.0%"></div></div>
+            <span class="capex-bar-value">$10.1B</span>
+          </div>
+          <div class="capex-bar-row">
+            <span class="capex-bar-label">&nbsp;<span class="capex-bar-q">Q2</span></span>
+            <div class="capex-bar-track"><div class="capex-bar-fill" style="width:34.7%"></div></div>
+            <span class="capex-bar-value">$18.4B</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 06</span>Supporting Infrastructure and Peripheral Players</h2>
+
+      <p>A second layer of companies supplies the storage, servers, networking, power, and cooling systems that turn capital budgets into working data centers. This category sits adjacent to the four economic models above; it is not folded into any single one of them. To keep the list focused, two filters apply: market capitalization above $25 billion, and clear, material exposure to AI infrastructure spend rather than pure software or services.</p>
+
+      <h3 class="article-subheading">Storage and Data Management</h3>
+      <p>NetApp provides high-performance enterprise storage systems and software used in AI training and inference environments, helping manage the rapid growth of unstructured data that accompanies large model workloads.</p>
+
+      <h3 class="article-subheading">Servers and Systems</h3>
+      <p>Dell Technologies is a major supplier of AI-optimized servers, storage arrays, and full-rack solutions sold to both hyperscalers and large enterprises, with a growing share of revenue tied directly to AI infrastructure deployments.</p>
+
+      <h3 class="article-subheading">Networking</h3>
+      <p>Cisco Systems supplies the switching, routing, and data-center networking fabric that connects GPU clusters at scale. Arista Networks focuses more tightly on high-speed Ethernet switches designed for AI and cloud workloads.</p>
+
+      <h3 class="article-subheading">Power and Cooling</h3>
+      <p>Vertiv designs power-management and liquid-cooling systems required by high-density AI racks. GE Vernova and Eaton supply power-generation equipment, grid infrastructure, and electrical systems that support the electricity demand of new data centers.</p>
+
+      <p>These companies do not set the overall CapEx budget, but they convert a large portion of it into physical capacity. Their order books, backlog growth, and utilization commentary serve as useful secondary signals of how quickly the AI build-out is progressing. Exposure is real but second-order: returns depend on the durability of the primary CapEx cycle rather than on model performance itself.</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 07</span>Private Frontier Demand</h2>
+
+      <p>Large multi-year compute commitments from frontier model developers form an important demand bridge for the public infrastructure builders. OpenAI and Anthropic are private and are therefore excluded from any ranking; they are treated solely as demand catalysts.</p>
+
+      <p>OpenAI has raised its projected compute spending to approximately $750 billion through 2030. Publicly reported agreements include a roughly $300 billion multi-year contract with Oracle (a primary driver of Oracle&rsquo;s RPO growth), an AWS commitment totaling approximately $138 billion over eight years, and substantial additional Azure spending, alongside a roughly $250 billion incremental Azure commitment.</p>
+
+      <p>Anthropic has announced an up-to-5-gigawatt agreement with Amazon, including nearly 1 GW of new capacity by the end of 2026; a 5 GW agreement with Google and Broadcom beginning in 2027; a strategic partnership with Microsoft and Nvidia including $30 billion of Azure capacity; and a $50 billion U.S. infrastructure investment with Fluidstack. It has separately agreed to use all compute capacity at SpaceX&rsquo;s Colossus 1 facility, more than 300 megawatts across more than 220,000 Nvidia GPUs, at $1.25 billion per month through May 2029, a deal worth $45 billion in total as disclosed in SpaceX&rsquo;s IPO filing.</p>
+
+      <p>These contracts convert CapEx into contracted revenue for the infrastructure owners and reduce near-term utilization risk. They do not eliminate the longer-term question of whether the underlying models generate sufficient end-user value to sustain the spending cycle.</p>
+
+      <div class="callout-box">
+        <span class="callout-label">Key Takeaway</span>
+        <h2>Interdependence and Domino Risk</h2>
+        <p>The AI CapEx cycle is no longer a set of independent company budgets. It is a dense web of multi-year commitments linking the hyperscalers, frontier labs, chipmakers, and specialized infrastructure providers to one another. A material delay, funding shortfall, or strategic reversal at any one of the large nodes, whether a frontier lab, a major hyperscaler, or a key infrastructure supplier, would ripple through multiple balance sheets at once.</p>
+        <p>SpaceX&rsquo;s dual role, internal vertical demand for its own AI business plus external leasing to Anthropic, adds a distinct transmission channel. Changes in Anthropic&rsquo;s spending, or the spending of any other SpaceX AI-infrastructure tenant, directly affect SpaceX&rsquo;s AI segment revenue and cash flow, which investors are already scrutinizing closely following the Q2 stock decline. Chipmakers themselves often take equity or warrants in the same labs that later buy their silicon, closing the loop further.</p>
+        <p>Backlogs that currently look like locked-in demand could convert more slowly than expected. Free-cash-flow pressure would intensify for the builders, and secondary suppliers of servers, networking, power, and cooling would feel a slowdown quickly. Conversely, successful monetization of leased capacity shortens the cash-payback period on new CapEx and can accelerate further build-out; durability of that pattern across multiple quarters, not a single data point, will be the more informative signal.</p>
+      </div>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 09</span>Infrastructure Scorecard</h2>
+
+      <p>A structured worksheet for the reader to fill in as each quarter&rsquo;s results arrive. Track the six signals below against each company covered in this report.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Infrastructure Scorecard (Blank Worksheet)</caption>
+          <thead>
+            <tr>
+              <th>Metric</th><th>AMZN</th><th>GOOGL</th><th>MSFT</th><th>META</th><th>ORCL</th><th>CRWV</th><th>TSLA</th><th>SPCX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Absolute CapEx trajectory</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+            <tr><td>Cash-flow coverage</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+            <tr><td>RPO / backlog growth</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+            <tr><td>Capacity additions (GW)</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+            <tr><td>External leasing share</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+            <tr><td>Physical-AI milestones</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td><td class="placeholder">&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size:0.82rem; color:var(--fg-meta); line-height:1.6;"><strong>Absolute CapEx trajectory:</strong> actual spend versus most recent guidance, and direction of any revision. <strong>Cash-flow coverage:</strong> operating cash flow divided by CapEx, same period. <strong>RPO / backlog growth:</strong> sequential change in remaining performance obligations or contracted backlog. <strong>Capacity additions:</strong> gigawatts brought online versus management commentary on remaining shortages. <strong>External leasing share:</strong> especially relevant for SpaceX, given its dual internal/external role. <strong>Physical-AI milestones:</strong> Tesla autonomy miles, Optimus deployment rates, versus pure cloud utilization (Tesla and SpaceX only).</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 10</span>Segment Leaders and Forward Indicators</h2>
+
+      <p>Near-term observable signals matter more than narrative. Retail investors should watch, each quarter:</p>
+
+      <ul>
+        <li>Whether CapEx guidance rises, holds, or is cut, and whether companies begin issuing formal multi-quarter guidance where they currently do not (SpaceX being the clearest current gap)</li>
+        <li>Cash-flow coverage ratios, and whether any currently positive company (Microsoft, so far) turns negative</li>
+        <li>Growth in multi-year contracted cloud and AI services revenue or RPO</li>
+        <li>Gigawatts of new capacity brought online versus management commentary on remaining shortages</li>
+        <li>For Vertical Integrators: measurable progress in physical systems that can absorb the compute, such as autonomy miles or robot deployment counts</li>
+        <li>Any shift in the mix between internal and external demand, particularly at SpaceX</li>
+      </ul>
+
+      <p>The distinction between software or chatbot AI and physical AI remains important. The former can scale revenue faster once models improve; the latter faces longer hardware, safety, and real-world integration cycles. Both are funded by the same CapEx wave, but their return timelines differ.</p>
+
+      <h2 class="article-section-heading"><span class="sec-num">Section 11</span>Closing Observation</h2>
+
+      <p>The absolute scale of 2026 AI CapEx is unprecedented. The more useful questions are structural: which economic models convert the spend into durable cash returns, how quickly payback occurs, and how interdependent the participants have become. The data above is intended as a working map rather than a forecast. Readers can update the tables and scorecard as new quarterly results arrive. No stock recommendations are offered.</p>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/ai-capex-2026-scale-structure-return-paths-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this report">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- References / Sources -->
+      <div class="article-references">
+        <h2>Sources</h2>
+        <p>Company earnings releases and transcripts, Q1&ndash;Q2 2026 or nearest fiscal-period equivalent; SEC filings including 10-Q, 8-K, and the SpaceX S-1; company investor-relations pages; and contemporaneous reporting from CNBC, Reuters, Bloomberg, Yahoo Finance, and Forbes. All figures are management guidance or reported actuals as of company disclosures through early August 2026 and are subject to revision in subsequent filings. Verified against primary sources on August 7, 2026.</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p><strong style="color:var(--fg-secondary);font-style:normal;">Educational purpose only.</strong> This report is provided for general educational and informational purposes. It does not constitute investment, financial, legal, or tax advice, and it is not a recommendation to buy, sell, or hold any security. Nothing in this document should be construed as an offer or solicitation. Portions of this report were researched, drafted, or formatted with the assistance of AI language models; all data points should be independently verified against original company filings before being relied upon for any decision. Figures reflect company guidance and reported actuals as of the dates noted and are subject to revision in subsequent filings. Readers should consult a licensed financial advisor before making investment decisions.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>This report is part of the OTS Ullu Capital Allocation Series, which applies the same disciplined, source-checked approach used in the platform's options and portfolio work to broader market structure questions.</p>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js?v=20260812"></script>
+</body>
+</html>

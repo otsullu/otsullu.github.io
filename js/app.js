@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'AI CapEx 2026: Scale, Structure, and Return Paths',
+    excerpt: 'Four hyperscalers have guided to roughly $720-765B in combined 2026 CapEx. A practical map of the build-out for retail investors: the four economic models, quarterly cash-flow impact, interdependence risk across hyperscalers and frontier labs, and the observable signals worth tracking each quarter.',
+    series: 'OTS Ullu · Capital Allocation Series',
+    url: '/articles/ai-capex-2026/',
+  },
+  {
     title: 'The Research Confirmed It',
     excerpt: 'Mike swore he would never guess again — he would do the work. Ten sources minimum, a 14-tab workbook, a nine-page thesis. It looked like rigor. It was confirmation bias wearing the costume of discipline — and the harder he worked, the harder it was to see.',
     series: 'The Mind Against the Market · Part 4',
