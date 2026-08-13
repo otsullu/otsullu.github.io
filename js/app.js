@@ -1029,6 +1029,19 @@ function renderArticlesHub() {
   feed.innerHTML = DISPATCH_DATA.filter(d => d.url).map(d => dispatchCardHtml(d, false)).join('');
 }
 
+function renderSeriesHub() {
+  const feed = document.getElementById('seriesHub');
+  if (!feed) return;
+  const items = DISPATCH_DATA.filter(d => d.url && d.series && d.series.indexOf('The Mind Against the Market') === 0);
+  items.sort((a, b) => {
+    const pa = parseInt((a.series.match(/Part (\d+)/) || [])[1] || '0', 10);
+    const pb = parseInt((b.series.match(/Part (\d+)/) || [])[1] || '0', 10);
+    return pa - pb;
+  });
+  // Prepend published parts before the static "coming soon" cards already in the page.
+  feed.insertAdjacentHTML('afterbegin', items.map(d => dispatchCardHtml(d, false)).join(''));
+}
+
 /* ── FOUNDER QUOTE STRIP ────────────────────────────────────────── */
 function renderFounderQuote() {
   const el = document.getElementById('founderQuote');
@@ -1322,6 +1335,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadShelf();
   renderDispatches();
   renderArticlesHub();
+  renderSeriesHub();
   renderFounderQuote();
   setFooterYear();
   loadStats();

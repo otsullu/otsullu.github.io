@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Mind Against the Market | OTS Ullu</title>
+  <meta name="description" content="A 6-part behavioral finance series from OTS Ullu — following one investor through the psychological traps that quietly wreck good decisions: the disposition effect, herd mentality, overconfidence, and confirmation bias." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Mind Against the Market" />
+  <meta property="og:description" content="A 6-part behavioral finance series from OTS Ullu — following one investor through the psychological traps that quietly wreck good decisions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://otsullu.com/articles/the-mind-against-the-market/" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/the-mind-against-the-market/" />
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles"},
+      {"@type": "ListItem", "position": 3, "name": "The Mind Against the Market"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css?v=20260812" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a { color: var(--accent); text-decoration: none; transition: opacity 150ms; }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep { color: var(--fg-meta); opacity: 0.5; }
+
+  .series-hub-header { max-width: 760px; margin: 0 auto 40px; }
+  .series-hub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-tint-10);
+    border: 1px solid var(--accent-tint-30);
+    color: var(--accent);
+    border-radius: var(--r-full);
+    padding: 5px 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .series-hub-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .series-hub-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .series-hub-intro {
+    font-size: clamp(1.02rem, 2.4vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+
+  /* Coming-soon parts — static, non-interactive */
+  .series-card-pending {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 28px 32px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    opacity: 0.55;
+  }
+  .series-card-pending:last-child { border-bottom: none; }
+  .series-card-pending .dispatch-title { margin-bottom: 4px; }
+  .series-pending-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--fg-meta);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .series-card-pending { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#observatory">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/">Articles</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/articles/the-mind-against-the-market/" aria-current="page">The Mind Against the Market</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="series-hub-header">
+      <div class="series-hub-badge">
+        <span class="series-hub-badge-dot" aria-hidden="true"></span>
+        6-Part Behavioral Finance Series
+      </div>
+      <h1 class="series-hub-title">The Mind Against the Market</h1>
+      <p class="series-hub-intro">
+        One investor, six mistakes, one recurring enemy: his own mind. A series about the psychological traps, the disposition effect, herd mentality, overconfidence, and confirmation bias, that quietly wreck otherwise good decisions, and the mechanical systems that override them.
+      </p>
+    </header>
+
+    <!-- Series list — published parts populated from DISPATCH_DATA in js/app.js -->
+    <div class="dispatch-feed" id="seriesHub">
+
+      <!-- Parts 5 & 6 — not yet published -->
+      <div class="series-card-pending">
+        <div>
+          <h3 class="dispatch-title">Part 5</h3>
+          <p class="dispatch-excerpt">Coming soon.</p>
+        </div>
+        <span class="series-pending-badge">Coming Soon</span>
+      </div>
+      <div class="series-card-pending">
+        <div>
+          <h3 class="dispatch-title">Part 6</h3>
+          <p class="dispatch-excerpt">Coming soon.</p>
+        </div>
+        <span class="series-pending-badge">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js?v=20260812"></script>
+</body>
+</html>
