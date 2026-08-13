@@ -5,7 +5,7 @@ Usage:
   python scripts/generate_article_pdf.py
       (defaults to article-1)
   python scripts/generate_article_pdf.py \
-      --html the-mind-against-the-market/article-3/index.html \
+      --html articles/the-mind-against-the-market/article-3/index.html \
       --output pdfs/i-knew-this-would-happen.pdf \
       --credit "The Mind Against the Market  ·  Article 3  ·  Published June 2026  ·  © 2026 OTS Ullu. All rights reserved."
 """
@@ -18,7 +18,7 @@ from playwright.async_api import async_playwright
 REPO_ROOT = Path(__file__).parent.parent
 
 parser = argparse.ArgumentParser(description="Generate a styled article PDF with Playwright.")
-parser.add_argument("--html", default="the-mind-against-the-market/article-1/index.html",
+parser.add_argument("--html", default="articles/the-mind-against-the-market/article-1/index.html",
                     help="Path to the article HTML, relative to repo root.")
 parser.add_argument("--output", default="pdfs/the-stock-kept-rising-after-i-sold-it.pdf",
                     help="Output PDF path, relative to repo root.")
