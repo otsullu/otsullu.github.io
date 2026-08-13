@@ -162,7 +162,7 @@ const DISPATCH_DATA = [
     title: 'The Research Confirmed It',
     excerpt: 'Mike swore he would never guess again — he would do the work. Ten sources minimum, a 14-tab workbook, a nine-page thesis. It looked like rigor. It was confirmation bias wearing the costume of discipline — and the harder he worked, the harder it was to see.',
     series: 'The Mind Against the Market · Part 4',
-    url: '/the-mind-against-the-market/article-4/',
+    url: '/articles/the-mind-against-the-market/article-4/',
   },
   {
     title: 'The $100 Billion Out-of-Office Reply',
@@ -186,13 +186,13 @@ const DISPATCH_DATA = [
     title: 'I Knew This Would Happen',
     excerpt: 'Mike stayed out of the bubble — and watched it collapse exactly as he\'d expected. For the first time, his restraint felt less like caution and more like insight, like a real edge. It was the most dangerous thing that happened to him all year, and he had no idea.',
     series: 'The Mind Against the Market · Part 3',
-    url: '/the-mind-against-the-market/article-3/',
+    url: '/articles/the-mind-against-the-market/article-3/',
   },
   {
     title: 'Everyone Was Getting Rich Except Me',
     excerpt: 'Mike had one hand on the Buy button, $10,000 ready, and ninety-one rocket emojis lighting up the company Slack. What stopped him — and what the science of herd mentality says about why FOMO is nearly impossible to resist.',
     series: 'The Mind Against the Market · Part 2',
-    url: '/the-mind-against-the-market/article-2/',
+    url: '/articles/the-mind-against-the-market/article-2/',
   },
   {
     title: 'The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options',
@@ -204,7 +204,7 @@ const DISPATCH_DATA = [
     title: 'The Stock Kept Rising After I Sold It',
     excerpt: 'Mike locked in a 69% gain on a semiconductor stock and celebrated. Two years later it had risen another 380%. The science of why our brains sabotage our best investments — and the three-step system to stop it.',
     series: 'The Mind Against the Market · Part 1',
-    url: '/the-mind-against-the-market/article-1/',
+    url: '/articles/the-mind-against-the-market/article-1/',
   },
 ];
 
