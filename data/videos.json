@@ -8,13 +8,13 @@
     "subscribers": "85",
     "totalViews": "5398",
     "videoCount": "122",
-    "updated": "2026-08-16T16:30:58.094961+00:00"
+    "updated": "2026-08-17T01:38:25.085603+00:00"
   },
   "engagement": {
-    "totalViews": 5399,
+    "totalViews": 5498,
     "totalLikes": 205,
-    "totalComments": 83,
-    "engagementRate": 5.33,
+    "totalComments": 82,
+    "engagementRate": 5.22,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 422
@@ -119,15 +119,63 @@
       "india": true
     },
     {
+      "id": "WBIPxMn5L-E",
+      "title": "🚨 What if the Options Clearing Corporation simply stopped working?",
+      "thumb": "https://i.ytimg.com/vi/WBIPxMn5L-E/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "6",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-07-09",
+      "india": true
+    },
+    {
       "id": "82njVx9ZZ9k",
       "title": "How America Created One National Currency: 𝗧𝗵𝗲 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 𝗼𝗳 𝗨.𝗦. 𝗠𝗼𝗻𝗲𝘆 💵🏛️",
       "thumb": "https://i.ytimg.com/vi/82njVx9ZZ9k/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "30",
+      "views": "32",
       "likes": "3",
       "comments": "1",
       "published": "2026-08-01",
+      "india": true
+    },
+    {
+      "id": "ooiZ1_SOn5g",
+      "title": "🎉 𝐎𝐧𝐞 𝐘𝐞𝐚𝐫 𝐀𝐠𝐨 𝐓𝐨𝐝𝐚𝐲… 𝐓𝐡𝐢𝐬 𝐓𝐫𝐚𝐝𝐞 𝐇𝐚𝐭𝐜𝐡𝐞𝐝 𝐎𝐓𝐒 𝐔𝐥𝐥𝐮!",
+      "thumb": "https://i.ytimg.com/vi/ooiZ1_SOn5g/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "17",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-06-26",
+      "india": true
+    },
+    {
+      "id": "y1S3Agis02w",
+      "title": "🧠 The Disposition Effect Explained — Why Investors Lose Money Without Realizing It",
+      "thumb": "https://i.ytimg.com/vi/y1S3Agis02w/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "25",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-05-28",
+      "india": true
+    },
+    {
+      "id": "ynS_Sn5264U",
+      "title": "🚨 𝗡𝗩𝗜𝗗𝗜𝗔 𝗤𝟭 𝗙𝗬𝟮𝟳 𝗘𝗔𝗥𝗡𝗜𝗡𝗚𝗦: $𝟴𝟭.𝟲𝗕 𝗥𝗘𝗖𝗢𝗥𝗗, 𝗩𝗘𝗥𝗔 𝗖𝗣𝗨 & 𝗧𝗛𝗘 𝗡𝗘𝗫𝗧 𝗔𝗜 𝗪𝗔𝗩𝗘 🚀",
+      "thumb": "https://i.ytimg.com/vi/ynS_Sn5264U/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "106",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-05-22",
       "india": true
     },
     {
@@ -212,18 +260,6 @@
       "likes": "4",
       "comments": "1",
       "published": "2026-07-13",
-      "india": true
-    },
-    {
-      "id": "WBIPxMn5L-E",
-      "title": "🚨 What if the Options Clearing Corporation simply stopped working?",
-      "thumb": "https://i.ytimg.com/vi/WBIPxMn5L-E/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "6",
-      "likes": "1",
-      "comments": "0",
-      "published": "2026-07-09",
       "india": true
     },
     {
@@ -319,18 +355,6 @@
       "views": "30",
       "likes": "2",
       "comments": "3",
-      "published": "2026-06-26",
-      "india": true
-    },
-    {
-      "id": "ooiZ1_SOn5g",
-      "title": "🎉 𝐎𝐧𝐞 𝐘𝐞𝐚𝐫 𝐀𝐠𝐨 𝐓𝐨𝐝𝐚𝐲… 𝐓𝐡𝐢𝐬 𝐓𝐫𝐚𝐝𝐞 𝐇𝐚𝐭𝐜𝐡𝐞𝐝 𝐎𝐓𝐒 𝐔𝐥𝐥𝐮!",
-      "thumb": "https://i.ytimg.com/vi/ooiZ1_SOn5g/maxresdefault.jpg",
-      "playlist": "options-academy",
-      "lang": "English",
-      "views": "17",
-      "likes": "1",
-      "comments": "1",
       "published": "2026-06-26",
       "india": true
     },
@@ -635,18 +659,6 @@
       "india": true
     },
     {
-      "id": "y1S3Agis02w",
-      "title": "🧠 The Disposition Effect Explained — Why Investors Lose Money Without Realizing It",
-      "thumb": "https://i.ytimg.com/vi/y1S3Agis02w/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "25",
-      "likes": "1",
-      "comments": "1",
-      "published": "2026-05-28",
-      "india": true
-    },
-    {
       "id": "nZ3RBA0g7bQ",
       "title": "📉 𝗪𝗵𝘆 𝗬𝗼𝘂 𝗦𝗲𝗹𝗹 𝗪𝗶𝗻𝗻𝗶𝗻𝗴 𝗦𝘁𝗼𝗰𝗸𝘀 𝗧𝗼𝗼 𝗘𝗮𝗿𝗹𝘆 (The Disposition Effect Explained)",
       "thumb": "https://i.ytimg.com/vi/nZ3RBA0g7bQ/maxresdefault.jpg",
@@ -656,18 +668,6 @@
       "likes": "2",
       "comments": "1",
       "published": "2026-05-26",
-      "india": true
-    },
-    {
-      "id": "P2X_M24DRog",
-      "title": "🛡️ 𝗗𝗲𝗺𝗮𝘁 & 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 अकाउंट कैसे काम करते हैं? SEBI के नए सुरक्षा नियम आसान हिंदी में 📈 | Part 2",
-      "thumb": "https://i.ytimg.com/vi/P2X_M24DRog/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "Hindi",
-      "views": "12",
-      "likes": "1",
-      "comments": "1",
-      "published": "2026-05-24",
       "india": true
     },
     {
@@ -1060,7 +1060,7 @@
       "thumb": "https://i.ytimg.com/vi/FQ3DcB3UgNw/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "66",
+      "views": "69",
       "likes": "3",
       "comments": "0",
       "published": "2026-05-07",
@@ -1283,18 +1283,6 @@
       "india": true
     },
     {
-      "id": "VJEv682bNTE",
-      "title": "No Matter Which Way You Look At It!",
-      "thumb": "https://i.ytimg.com/vi/VJEv682bNTE/maxresdefault.jpg",
-      "playlist": "wealth-academy",
-      "lang": "English",
-      "views": "44",
-      "likes": "1",
-      "comments": "0",
-      "published": "2026-04-20",
-      "india": false
-    },
-    {
       "id": "LGok3HuxhK8",
       "title": "𝗧𝗵𝗲 𝗠𝗶𝗰𝗿𝗼𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗔𝘀𝘆𝗺𝗺𝗲𝘁𝗿𝘆: 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 & 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 📈",
       "thumb": "https://i.ytimg.com/vi/LGok3HuxhK8/maxresdefault.jpg",
@@ -1413,6 +1401,18 @@
       "comments": "0",
       "published": "2026-04-21",
       "india": true
+    },
+    {
+      "id": "VJEv682bNTE",
+      "title": "No Matter Which Way You Look At It!",
+      "thumb": "https://i.ytimg.com/vi/VJEv682bNTE/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "44",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-04-20",
+      "india": false
     },
     {
       "id": "Zl_N5o7VweE",
