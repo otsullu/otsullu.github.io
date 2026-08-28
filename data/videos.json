@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "84",
-    "totalViews": "5452",
-    "videoCount": "122",
-    "updated": "2026-08-27T08:32:41.009443+00:00"
+    "totalViews": "5453",
+    "videoCount": "123",
+    "updated": "2026-08-28T00:48:18.369525+00:00"
   },
   "engagement": {
-    "totalViews": 5453,
+    "totalViews": 5455,
     "totalLikes": 206,
-    "totalComments": 83,
-    "engagementRate": 5.3,
+    "totalComments": 84,
+    "engagementRate": 5.32,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 423
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/v4jPI3lfJcA/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/Mpw3jm5pIzQ/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -70,6 +70,18 @@
     }
   ],
   "videos": [
+    {
+      "id": "Mpw3jm5pIzQ",
+      "title": "🚨 𝗡𝗩𝗜𝗗𝗜𝗔 𝗤𝟮 𝗙𝗬𝟮𝟳 𝗥𝗲𝘀𝘂𝗹𝘁𝘀: $𝟵𝟲.𝟮𝗕 𝗔𝗜 𝗘𝘅𝗽𝗹𝗼𝘀𝗶𝗼𝗻! (But Is a Gross Margin Reset Coming?)",
+      "thumb": "https://i.ytimg.com/vi/Mpw3jm5pIzQ/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-08-27",
+      "india": true
+    },
     {
       "id": "v4jPI3lfJcA",
       "title": "Is the $850B AI Build-Out a Massive House of Cards? 💸 (The Truth About CapEx)",
