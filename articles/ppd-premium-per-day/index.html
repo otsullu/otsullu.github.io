@@ -275,6 +275,18 @@
     display: block;
     box-shadow: var(--shadow-md);
   }
+  .ppd-formula-label {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .ppd-formula-code {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
   .article-references {
     margin: 48px 0 40px;
     padding: 28px;
@@ -494,54 +506,42 @@
         <span>Options Education</span>
         <span class="article-meta-sep" aria-hidden="true">·</span>
         <span>Premium Per Day (PPD)</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>September 1, 2026</span>
       </div>
     </header>
 
     <!-- Article body -->
     <article class="article-body">
 
-      <div class="disclaimer-box">
-        <p><strong style="color:var(--fg-secondary);font-style:normal;">Educational only.</strong> This describes a position-level indicator the author uses in personal trading. It is not a recommendation to buy or sell any security.</p>
-      </div>
-
-      <p>After nearly a year of trading short options, cash-secured puts and covered calls, and executing more than four thousand trades against roughly twenty million dollars in notional capital over that year, I kept encountering the same analytical blind spot. Traders instinctively reach for theta, assuming daily decay will reveal what they are collecting per day. It does not. Theta tracks the option's current market value, and current market value is different from premium collected.</p>
+      <p>I have executed more than 3,700 short-option trades over the past thirteen months, split between cash-secured puts and covered calls. I kept encountering the same analytical blind spot. Traders instinctively reach for theta, assuming daily decay will reveal what they are collecting per day. It does not. Theta tracks the option's current market value, and current market value is different from premium collected.</p>
 
       <p>I needed something simpler: a number that would tell me, every day, how much premium I was actually collecting on a given position, without factoring in capital, efficiency, or hedging math. So, I built PPD, or Premium Per Day, and I have used it on every trade since.</p>
 
-      <p>Before building this metric, I searched for a published treatment at this level of practical detail and found little. The closest is Markus Heitkoetter's piece on PPD, which is worth reading if you have not seen it. What follows is how I define the term.</p>
+      <p>Before building this metric, I searched for a published treatment at this level of practical detail and found little. The closest is Markus Heitkoetter's piece on PPD, <a href="https://tinyurl.com/y7jt2bt7" target="_blank" rel="noopener">"When to Take Profits on Options: Let Options Expire? Take Profits Early?"</a>, which is worth reading if you have not seen it. What follows is how I define the term.</p>
 
       <h2 class="article-section-heading">The Problem</h2>
 
-      <p>Every short-option trader eventually asks the same question: how much am I collecting per day on this position? The usual answers, including theta, daily decay, and a column that divides today's mark by the days remaining, all share one weakness. Each tracks the option's current market value, and current market value is different from premium collected.</p>
+      <p>Every short-option trader eventually asks the same question: how much am I collecting per day on this position? The usual answers, theta, daily decay, a column that divides today's mark by days remaining, all share one weakness: they track the option's current market value, not what was actually collected. That distinction is invisible when a trade is going well. It becomes costly the moment the trade turns.</p>
 
-      <p>That distinction is invisible when a trade is going well. It becomes costly the moment the trade turns against you.</p>
-
-      <h2 class="article-section-heading">Why Current Methods Fail</h2>
-
-      <p>Consider a cash-secured put sold for one dollar. A week later, the stock drops and the option is now worth fifty dollars. Daily theta at that moment might read fifteen cents a day, the highest reading of the week. This number suggests you are earning more than ever.</p>
-
-      <p>You are not; you are losing. Theta is a Greek: it describes how the option's price moves with time, not how much premium you collected. When the stock drops, theta can rise because the option's value is rising against you. The number increases exactly when your position is at its worst. That is not a quirk; it is how the Greek is constructed.</p>
-
-      <p>Any metric built on current premium behaves this way. It rewards you, on paper, at the exact moment your position is weakest. A column that divides today's mark by days remaining climbs precisely when you should be focused on risk, not celebrating collection.</p>
-
-      <p>That is the underlying gap. The Greeks describe the option's behavior; they do not describe your collection. For a trader managing an open short position in real time, that distinction is not a minor technicality. It is a weakness in the analysis.</p>
+      <p>Consider a cash-secured put sold for one dollar. A week later, the stock drops and the option is now worth a dollar fifty. Daily theta at that moment might read fifteen cents a day, the highest reading of the week, suggesting you are earning more than ever. You are not; you are losing. Theta describes how the option's price moves with time, not how much premium you collected. It rises exactly when your position is at its worst because it is tracking the mark, not your collection. That is the underlying gap: the Greeks describe the option's behavior, not what you have actually taken in.</p>
 
       <h2 class="article-section-heading">The Four Inputs</h2>
 
-      <p>PPD relies on only four figures, all already present on the trade ticket. Keep the units consistent, either per share or per contract, never mixed.</p>
+      <p>PPD relies on only four figures, already on the trade ticket. Keep the units consistent, per share or per contract, never mixed.</p>
 
       <ul>
         <li><strong>Opening premium:</strong> the premium collected when the option was sold.</li>
-        <li><strong>Current premium:</strong> the cost to close the position today, using the asking price you would actually pay to buy it back, not the midpoint.</li>
-        <li><strong>DTE:</strong> the number of days remaining until expiry.</li>
-        <li><strong>Tenor:</strong> the total number of days between the day the position was opened and the expiry date.</li>
+        <li><strong>Current premium:</strong> the cost to close the position today, using the ask you would actually pay, not the midpoint.</li>
+        <li><strong>DTE:</strong> days remaining until expiry.</li>
+        <li><strong>Tenor:</strong> total days between open and expiry.</li>
       </ul>
 
-      <p>PPD does not require the strike, the capital, the hedge, or the portfolio. Those inputs belong to later KPIs.</p>
+      <p>PPD does not require the strike, the capital, the hedge, or the portfolio. Those belong to later KPIs.</p>
 
       <h2 class="article-section-heading">The Definition</h2>
 
-      <p>These four figures produce two cases. The applicable case depends on a single comparison: is the option cheaper to buy back today than it was on the day it was sold?</p>
+      <p>These four figures produce two cases, decided by one comparison: is the option cheaper to buy back today than it was on the day it was sold?</p>
 
       <div class="article-img-wrap">
         <img
@@ -551,21 +551,25 @@
         />
       </div>
 
-      <p>Case 1 is the winning case: current premium has fallen below the amount collected. The remaining value in the option is what the trader is still working against each day, so that remaining value is the correct numerator, and DTE is the correct denominator.</p>
+      <p class="ppd-formula-label">Case 1: Winning — current premium is less than opening premium.</p>
+      <p class="ppd-formula-code">PPD = current premium ÷ DTE</p>
 
-      <p>Case 2 covers everything else: the moment the position opens, the moment the mark is unchanged, and every moment the position is underwater. A trader cannot collect more than the amount taken in, so the original credit becomes the ceiling. Dividing by tenor, the full life of the trade from open to expiry, keeps that ceiling honest. Using DTE instead while underwater would inflate the number as days pass, even though no additional premium has been collected. Tenor does not shrink with the calendar, which is why it belongs in Case 2.</p>
+      <p class="ppd-formula-label">Case 2: Flat or losing — current premium is greater than or equal to opening premium.</p>
+      <p class="ppd-formula-code">PPD = opening premium ÷ tenor</p>
 
-      <p>The distinction between the two cases is the entire point. When a position is winning, the live mark shows what remains on the table. When a position is losing, the live mark shows the damage sustained. PPD does not count that damage as income.</p>
+      <p>Case 1 is the winning case: current premium has fallen below the amount collected, so the remaining value is the correct numerator and DTE the correct denominator. Case 2 covers everything else: every moment the mark stands at or above opening premium, from the instant the position opens through every moment it spends underwater. A trader cannot collect more than the amount taken in, so the original credit becomes the ceiling, and dividing by tenor, the full life of the trade, keeps that ceiling honest. Using DTE instead while underwater would inflate the number as days pass, even though nothing more has been collected; tenor does not shrink with the calendar, which is why it belongs in Case 2.</p>
+
+      <p>The distinction is the entire point. When winning, the live mark shows what remains on the table. When losing, it shows the damage sustained. PPD does not count that damage as income.</p>
 
       <h2 class="article-section-heading">A Worked Example</h2>
 
       <p>Consider a thirty-day put sold for one dollar, with a tenor of thirty days.</p>
 
-      <p>On day one, immediately after opening, current premium equals opening premium at one dollar. This does not satisfy Case 1, so Case 2 applies: PPD equals one dollar divided by thirty, or approximately $0.033 per day.</p>
+      <p>On day one, current premium equals opening premium at one dollar. This does not satisfy Case 1, so Case 2 applies: PPD = $1.00 ÷ 30 ≈ $0.033 per day.</p>
 
-      <p>On day ten, assuming the position is winning, the option is now worth $0.40. Because current premium is less than opening premium, Case 1 applies: PPD equals $0.40 divided by twenty days remaining, or $0.020 per day. That is lower than day one's reading, and the reason is worth spelling out: dividing by fewer days, twenty instead of thirty, would on its own push PPD higher, not lower. What actually drives the drop is the numerator. The option has given up sixty percent of its value while only a third of the tenor has elapsed, so the collapse in remaining premium outweighs the shrinking denominator, and the per-day figure still falls.</p>
+      <p>On day ten, assuming the position is winning, the option is now worth $0.40. Current premium is less than opening premium, so Case 1 applies: PPD = $0.40 ÷ 20 days remaining = $0.020 per day. That is lower than day one, and the reason is worth spelling out: dividing by fewer days, 20 instead of 30, would on its own push PPD higher, not lower. What drives the drop is the numerator: the option has given up sixty percent of its value while only a third of the tenor has elapsed, so the collapse in remaining premium outweighs the shrinking denominator.</p>
 
-      <p>On day ten, assuming instead the position is losing, the option is now worth $1.40. Because current premium exceeds opening premium, Case 2 applies: PPD remains the original one dollar divided by thirty, or approximately $0.033 per day, unchanged from day one. The market shows a loss of $0.40, and PPD does not disguise that fact; it simply holds the line at the amount actually collected.</p>
+      <p>On day ten, assuming instead the position is losing, the option is now worth $1.40. Current premium exceeds opening premium, so Case 2 applies: PPD remains $1.00 ÷ 30 ≈ $0.033 per day, unchanged. The market shows a loss of $0.40, and PPD does not disguise that; it simply holds the line at what was actually collected.</p>
 
       <div class="article-table-wrap">
         <table class="article-table">
@@ -610,16 +614,14 @@
       <div class="article-img-wrap">
         <img
           src="../../assets/img/articles/ppd-premium-per-day/img-02-theta-vs-ppd-chart.jpg"
-          alt="Line chart: The Life of a Trade, Theta vs. PPD. Theta rises during the days 8 through 14 drawdown, the exact period the position is losing money, then falls for the rest of the trade. PPD stays flat during the drawdown and steps down slightly once the position recovers after day 15, staying flat afterward."
+          alt="Line chart: The Life of a Trade, Theta vs. PPD. Theta rises during the days 8 through 14 drawdown, the exact period the position is losing money, then falls for the rest of the trade. PPD stays flat during the drawdown and steps down once the position recovers after day 14, staying flat afterward."
           loading="lazy"
         />
       </div>
 
-      <h2 class="article-section-heading">What PPD Is, and What It Is Not</h2>
+      <h2 class="article-section-heading">What PPD Is, and How to Use It</h2>
 
-      <p>PPD is a pure position-level figure. It does not account for capital, hedging, portfolio composition, or efficiency. It answers a single question: on this position, today, how much premium per day is actually available?</p>
-
-      <p>That narrow scope is intentional. PPD is the first step in a larger stack of metrics, not the entire stack. It ranks and manages positions based on raw per-day premium. A second layer, covering efficiency, return on capital, and risk-adjusted comparison, takes PPD as an input and answers the harder question: was that premium worth the capital and risk behind it?</p>
+      <p>PPD is a pure position-level figure. It does not account for capital, hedging, portfolio composition, or efficiency; it answers one question: on this position, today, how much premium per day is actually available? That narrow scope is intentional. PPD is the first step in a larger stack of metrics, not the entire stack: it ranks and manages positions on raw per-day premium, while a second layer, covering efficiency, return on capital, and risk-adjusted comparison, takes PPD as an input and answers the harder question of whether that premium was worth the capital and risk behind it. A trader cannot move to efficiency calculations without a clean per-day figure underneath them.</p>
 
       <div class="article-img-wrap">
         <img
@@ -629,31 +631,21 @@
         />
       </div>
 
-      <p>A trader cannot move to efficiency calculations without a clean per-day figure underneath them, since flawed inputs produce flawed outputs. PPD forms that foundation. The efficiency KPIs come later.</p>
+      <p>On a watchlist, PPD serves as the first sort, not the final word: it identifies which candidate is collecting the most premium per day, but it does not indicate whether the name is approved, whether earnings fall within the position's window, or whether the trader already holds too much exposure to that sector. Those filters apply first; PPD then ranks what survives them.</p>
 
-      <h2 class="article-section-heading">How to Use It</h2>
-
-      <p>On a watchlist of approved trades, PPD serves as the first sort, not the final word. It identifies which candidate is collecting the most premium per day on a position basis. It does not indicate whether the underlying name is approved, whether earnings fall within the position's window, or whether the trader already holds too much exposure to that sector. Those filters apply first; PPD then ranks what survives them.</p>
-
-      <p>On an open position, PPD functions as a management signal. When Case 1 applies and the figure is falling, the remaining collection per remaining day is shrinking, often signaling that it is time to ask whether the leftover premium still justifies the leftover risk. When Case 2 applies, the figure remains frozen at the original credit divided by tenor. That freeze is itself the signal: the trader is no longer collecting premium and is instead holding risk against a credit already received.</p>
-
-      <p>PPD does not size a trade. A high PPD on a name that should not be held remains a poor trade. Size the position according to risk, and rank it using PPD.</p>
+      <p>On an open position, PPD is a management signal. When Case 1 applies and the figure is falling, the remaining collection per remaining day is shrinking, often signaling that it is time to ask whether the leftover premium still justifies the leftover risk. When Case 2 applies, the figure stays frozen at the original credit divided by tenor; that freeze is itself the signal that the trader is no longer collecting and is instead holding risk against a credit already received. PPD does not size a trade. A high PPD on a name that should not be held remains a poor trade. Size from risk; rank with PPD.</p>
 
       <h2 class="article-section-heading">Common Mistakes</h2>
 
       <ul>
-        <li><strong>Do not treat theta as collection.</strong> Theta is a sensitivity measure; it moves with the underlying price, implied volatility, and time, while PPD moves only with premium and dates.</li>
-        <li><strong>Do not use the full tenor when Case 1 applies.</strong> When current premium falls below opening premium, the denominator is DTE, not tenor; mixing the two denominators undermines the calculation.</li>
-        <li><strong>Do not compute planned PPD from the midpoint price.</strong> The realized fill reflects the bid a trader actually receives, so current premium should reflect the ask a trader would pay to close the position.</li>
-        <li><strong>Do not read PPD as permission to trade.</strong> A high PPD functions as a ranking input, not a green light; filters apply first, and PPD ranks second.</li>
-        <li><strong>Do not treat multiple high-PPD positions as independent bets.</strong> Positions that share a sector or an expiration date function as a single bet spread across several tickets.</li>
-        <li><strong>Do not annualize a short-dated figure and present it as a system.</strong> For very short-dated positions, raw PPD combined with maximum loss provides the honest read, while an annualized headline figure is largely theatrical.</li>
-        <li><strong>Do not forget that the figure remains theoretical until the position closes.</strong> Slippage, early assignment, and dividends all affect the realized result, so traders should log realized collection after every close and compare it to the PPD observed while the position was open.</li>
+        <li><strong>Do not treat theta as collection.</strong> It moves with price, volatility, and time; PPD moves only with premium and dates.</li>
+        <li><strong>Do not use full tenor when Case 1 applies.</strong> The denominator there is DTE, not tenor.</li>
+        <li><strong>Do not compute planned PPD from the midpoint.</strong> Current premium should reflect the ask you would actually pay to close.</li>
+        <li><strong>Do not read PPD as permission to trade.</strong> It ranks; it does not approve. Filters apply first.</li>
+        <li><strong>Do not treat multiple high-PPD positions as independent bets</strong> if they share a sector or expiration date; that is one bet spread across several tickets.</li>
+        <li><strong>Do not annualize a short-dated figure and call it a system.</strong> For very short-dated positions, raw PPD plus max loss is the honest read.</li>
+        <li><strong>Do not forget the figure is theoretical until the position closes.</strong> Slippage, early assignment, and dividends move the realized result, so log realized collection after every close and compare it to the PPD you were watching.</li>
       </ul>
-
-      <div class="pull-quote">
-        <p>Same positions. Different analysis. PPD provides a clearer, apples-to-apples view of daily edge.</p>
-      </div>
 
       <div class="article-img-wrap">
         <img
@@ -665,21 +657,11 @@
 
       <h2 class="article-section-heading">Where PPD Sits</h2>
 
-      <p>PPD does not determine whether to enter a trade. It does not size a position, hedge it, or rank it against the broader portfolio. It reports, every day, the single figure that matters for that position: premium per day, measured in a way that does not increase simply because the trade is losing.</p>
-
-      <p>Use PPD to monitor how a position behaves over time. Use it to judge when a winning position has stopped justifying the remaining risk. Use it as the clean input for whatever efficiency calculations follow.</p>
-
-      <h2 class="article-section-heading">Scope of This Piece</h2>
-
-      <p>This article addresses PPD alone. Capital, efficiency, hedging, strike selection, and portfolio construction are deliberately omitted. Each matters, but none constitutes this particular metric. PPD represents one layer of a broader system; the remaining layers are addressed elsewhere.</p>
+      <p>PPD does not determine whether to enter a trade, size a position, hedge it, or rank it against the broader portfolio; capital, efficiency, hedging, strike selection, and portfolio construction are deliberately left to other layers. It reports, every day, the one figure that matters for that position: premium per day, measured in a way that does not increase simply because the trade is losing. Use it to monitor how a position behaves over time, to judge when a winning position has stopped justifying the remaining risk, and as the clean input for whatever efficiency calculations follow.</p>
 
       <h2 class="article-section-heading">The Bottom Line</h2>
 
-      <p>Every short-option position carries a per-day premium, though most traders never observe it clearly, because the tools they rely on are built on current market value, and current market value is most misleading at the exact moment a trade turns. PPD does not follow that market value off a cliff. When a position is winning, PPD measures what remains against the days that remain. When a position is losing, PPD caps the figure at the amount actually collected and spreads that ceiling across the full tenor.</p>
-
-      <p>The framework reduces to two cases, two formulas, and one figure that remains honest.</p>
-
-      <p>That is the core KPI. Every additional layer, including efficiency, risk-adjusted return, and portfolio construction, builds on top of it.</p>
+      <p>Every short-option position carries a per-day premium, though most traders never observe it clearly, because the tools they rely on are built on current market value, and current market value is most misleading at the exact moment a trade turns. PPD does not follow that market value off a cliff: when winning, it measures what remains against the days that remain; when losing, it caps the figure at the amount actually collected and spreads that ceiling across the full tenor. Two cases, two formulas, one figure that remains honest. That is the core KPI. Every additional layer, efficiency, risk-adjusted return, portfolio construction, builds on top of it.</p>
 
       <!-- PDF download -->
       <div class="pdf-download-wrap">
