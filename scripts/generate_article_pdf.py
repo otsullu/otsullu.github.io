@@ -75,6 +75,8 @@ PRINT_CSS = """
   .article-topnav,
   .pdf-download-wrap,
   .breadcrumb,
+  .breadcrumb-row,
+  .article-share-btn,
   .series-badge {
     display: none !important;
   }

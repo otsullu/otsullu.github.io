@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'PPD: A Cleaner Way to Measure What You\'re Actually Collecting Per Day',
+    excerpt: 'Theta and daily-decay columns reward you on paper at the exact moment your short option position is at its worst. A practitioner\'s definition of Premium Per Day (PPD): two cases, two formulas, and one figure that stays honest whether the trade is winning or losing.',
+    series: 'OTS Ullu · Options Education',
+    url: '/articles/ppd-premium-per-day/',
+  },
+  {
     title: 'AI CapEx 2026: Scale, Structure, and Return Paths',
     excerpt: 'Four hyperscalers have guided to roughly $720-765B in combined 2026 CapEx. A practical map of the build-out for retail investors: the four economic models, quarterly cash-flow impact, interdependence risk across hyperscalers and frontier labs, and the observable signals worth tracking each quarter.',
     series: 'OTS Ullu · Capital Allocation Series',
