@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "86",
     "totalViews": "5529",
-    "videoCount": "127",
-    "updated": "2026-09-02T19:18:15.783859+00:00"
+    "videoCount": "129",
+    "updated": "2026-09-03T03:51:11.137522+00:00"
   },
   "engagement": {
-    "totalViews": 5533,
-    "totalLikes": 207,
-    "totalComments": 84,
-    "engagementRate": 5.26,
+    "totalViews": 5539,
+    "totalLikes": 208,
+    "totalComments": 85,
+    "engagementRate": 5.29,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/ziOuq3ZNjPs/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -70,6 +70,30 @@
     }
   ],
   "videos": [
+    {
+      "id": "LctuP9cqI-E",
+      "title": "Is 𝗧𝗵𝗲𝘁𝗮 Lying to You? The 𝗣𝗣𝗗 Metric for Real Options Income 🎧💸",
+      "thumb": "https://i.ytimg.com/vi/LctuP9cqI-E/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-09-03",
+      "india": true
+    },
+    {
+      "id": "ziOuq3ZNjPs",
+      "title": "Why 𝗧𝗵𝗲𝘁𝗮 𝗟𝗶𝗲𝘀 About Your 𝗢𝗽𝘁𝗶𝗼𝗻 𝗜𝗻𝗰𝗼𝗺𝗲! (Measure Actual Collection with 𝗣𝗣𝗗) 📈💸",
+      "thumb": "https://i.ytimg.com/vi/ziOuq3ZNjPs/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-09-02",
+      "india": true
+    },
     {
       "id": "Mpw3jm5pIzQ",
       "title": "🚨 𝗡𝗩𝗜𝗗𝗜𝗔 𝗤𝟮 𝗙𝗬𝟮𝟳 𝗥𝗲𝘀𝘂𝗹𝘁𝘀: $𝟵𝟲.𝟮𝗕 𝗔𝗜 𝗘𝘅𝗽𝗹𝗼𝘀𝗶𝗼𝗻! (But Is a Gross Margin Reset Coming?)",
@@ -160,7 +184,7 @@
       "thumb": "https://i.ytimg.com/vi/82njVx9ZZ9k/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "45",
+      "views": "46",
       "likes": "3",
       "comments": "1",
       "published": "2026-08-01",
@@ -184,7 +208,7 @@
       "thumb": "https://i.ytimg.com/vi/dqsKX9PNIvk/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "12",
+      "views": "13",
       "likes": "1",
       "comments": "1",
       "published": "2026-07-23",
@@ -232,7 +256,7 @@
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "34",
+      "views": "35",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -1540,7 +1564,7 @@
       "thumb": "https://i.ytimg.com/vi/sxmLg3pc5oA/maxresdefault.jpg",
       "playlist": "wealth-academy",
       "lang": "English",
-      "views": "23",
+      "views": "24",
       "likes": "1",
       "comments": "0",
       "published": "2026-04-10",
