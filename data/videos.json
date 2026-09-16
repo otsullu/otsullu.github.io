@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "88",
-    "totalViews": "5712",
-    "videoCount": "130",
-    "updated": "2026-09-16T04:13:30.095444+00:00"
+    "totalViews": "5794",
+    "videoCount": "131",
+    "updated": "2026-09-16T13:17:47.784665+00:00"
   },
   "engagement": {
-    "totalViews": 5949,
-    "totalLikes": 218,
-    "totalComments": 86,
-    "engagementRate": 5.11,
+    "totalViews": 5960,
+    "totalLikes": 219,
+    "totalComments": 87,
+    "engagementRate": 5.13,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -58,7 +58,7 @@
       "ytId": "PLZEDE8n1EZ0QFan242PpKNi7PodQX55ot",
       "color": "#ff9933",
       "desc": "Indian market intelligence in 10+ languages — Hindi, Tamil, Telugu, Marathi, Gujarati and more.",
-      "thumb": "https://i.ytimg.com/vi/kSWqSqrEskI/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/6L_6bWe5mso/maxresdefault.jpg"
     },
     {
       "id": "infomercials",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "6L_6bWe5mso",
+      "title": "🚀 The 4 Doors to Wall Street: A US Investing Matrix for Indians | 🇮🇳➔🇺🇸 How to Buy US Stocks",
+      "thumb": "https://i.ytimg.com/vi/6L_6bWe5mso/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-09-16",
+      "india": true
+    },
+    {
       "id": "kSWqSqrEskI",
       "title": "🚀 अमेरिकन बाजारात गुंतवणूक कशी करावी? | 𝟒 𝗗𝗼𝗼𝗿𝘀 𝘁𝗼 𝗜𝗻𝘃𝗲𝘀𝘁 𝗶𝗻 𝗨𝗦 𝗦𝘁𝗼𝗰𝗸𝘀 𝗳𝗿𝗼𝗺 𝗜𝗻𝗱𝗶𝗮 🇮🇳➔🇺🇸",
       "thumb": "https://i.ytimg.com/vi/kSWqSqrEskI/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "304",
+      "views": "312",
       "likes": "3",
       "comments": "1",
       "published": "2026-09-12",
@@ -1564,7 +1576,7 @@
       "thumb": "https://i.ytimg.com/vi/2ofTeTKsg8Q/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "269",
+      "views": "270",
       "likes": "4",
       "comments": "0",
       "published": "2026-04-15",
