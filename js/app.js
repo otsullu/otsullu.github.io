@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'PPD Part Two: Putting the Number to Work',
+    excerpt: 'Part One explained the idea; Part Two locks the definition so two people computing PPD get the same number. PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)): the +1, the pace line, what a zero means, and the edge cases, with a worked ten-day example.',
+    series: 'OTS Ullu · Options Education',
+    url: '/articles/ppd-part-two-putting-the-number-to-work/',
+  },
+  {
     title: 'PPD: A Cleaner Way to Measure What You\'re Actually Collecting Per Day',
     excerpt: 'Theta and daily-decay columns reward you on paper at the exact moment your short option position is at its worst. A practitioner\'s definition of Premium Per Day (PPD): two cases, two formulas, and one figure that stays honest whether the trade is winning or losing.',
     series: 'OTS Ullu · Options Education',
