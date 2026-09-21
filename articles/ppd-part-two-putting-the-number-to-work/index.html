@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>PPD Part Two: Putting the Number to Work | OTS Ullu</title>
+  <meta name="description" content="The exact definition of Premium Per Day (PPD) for an open short option: PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)), why the +1, the pace line, and how to handle zeros and edge cases, so two people computing PPD get the same number." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PPD Part Two: Putting the Number to Work" />
+  <meta property="og:description" content="The exact definition of Premium Per Day (PPD) for an open short option: PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)), why the +1, the pace line, and how to handle zeros and edge cases, so two people computing PPD get the same number." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/ppd-part-two-putting-the-number-to-work/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/ppd-part-two-putting-the-number-to-work/img-03-ppd-follows-smaller-number.jpg" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Education" />
+  <meta property="article:tag" content="PPD, Premium Per Day, Short Options, Options KPI, Pace Line, DTE, Tenor" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PPD Part Two: Putting the Number to Work" />
+  <meta name="twitter:description" content="The exact definition of Premium Per Day (PPD) for an open short option: PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)), why the +1, the pace line, and how to handle zeros and edge cases, so two people computing PPD get the same number." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/ppd-part-two-putting-the-number-to-work/img-03-ppd-follows-smaller-number.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/ppd-part-two-putting-the-number-to-work/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "PPD Part Two: Putting the Number to Work",
+    "description": "The exact definition of Premium Per Day (PPD) for an open short option: PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)), why the +1, the pace line, and how to handle zeros and edge cases, so two people computing PPD get the same number.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "PPD Part Two: Putting the Number to Work"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-body {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .example-callout {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .example-callout .example-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .example-callout p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.5em !important;
+  }
+  .example-callout p:last-child { margin-bottom: 0 !important; }
+  .example-callout strong { color: var(--fg); }
+
+  .article-body ul {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+    list-style: disc;
+  }
+  .article-body ul li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong {
+    color: var(--fg);
+  }
+
+  /* ── DATA TABLE ── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    table-layout: auto;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 14px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th,
+  .article-table td {
+    text-align: left;
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+  }
+  .article-img-caption {
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    text-align: center;
+    margin: 10px 0 0 !important;
+    line-height: 1.5 !important;
+  }
+  .ppd-hl { background: var(--accent-tint-10); font-weight: 600; }
+  .ppd-formula-label {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .ppd-formula-code {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .article-references ul { list-style: none; padding: 0; margin: 0; }
+  .ref-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-card:last-child { border-bottom: none; }
+  .ref-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 84px;
+  }
+  .ref-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  .ref-body a { color: var(--accent); }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.7rem !important; }
+    .article-table th, .article-table td { padding: 5px 8px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-row">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/#observatory">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/">Articles</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/ppd-part-two-putting-the-number-to-work/" aria-current="page">PPD Part Two: Putting the Number to Work</a>
+      </nav>
+      <button type="button" class="pdf-share-btn article-share-btn"
+              data-share-url="https://otsullu.com/articles/ppd-part-two-putting-the-number-to-work/"
+              title="Copy a shareable link to this article"
+              aria-label="Copy a shareable link to this article">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span class="pdf-share-label">Copy link</span>
+      </button>
+    </div>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">PPD Part Two: Putting the Number to Work</h1>
+      <p class="article-lede">
+        The exact definition of Premium Per Day for an open short option
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Education</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Premium Per Day (PPD) · Part Two</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>September 21, 2026</span>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <p><a href="/articles/ppd-premium-per-day/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Start with Part One</a> if you have not read it.</p>
+
+      <h2 class="article-section-heading">What This Piece Is</h2>
+
+      <p>Part One explained the idea. This piece locks the definition so two people computing PPD get the same number. No trade advice. No sizing. No entry or exit rules. Just the metric.</p>
+
+      <h2 class="article-section-heading">The Rule</h2>
+
+      <p>PPD is the smaller of two rates: what you collected per day of the trade's life, and what is left per day that remains.</p>
+
+      <p class="ppd-formula-code">PPD = MIN( Opening/(Tenor+1), Current/(DTE+1) )</p>
+
+      <p>Call the first term the <strong>baseline</strong>. PPD can fall below it. It cannot rise above it.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/ppd-part-two-putting-the-number-to-work/img-01-min-rule.jpg"
+          alt="Diagram: two boxes, What you sold per day (Opening / (Tenor+1)) and What is left per day (Current / (DTE+1)), feed into a MIN circle, which outputs PPD."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 1. PPD takes the smaller of the two daily rates.</p>
+      </div>
+
+      <h2 class="article-section-heading">The Four Inputs</h2>
+
+      <ul>
+        <li><strong>Opening</strong> is the cash you collected when you sold, per share. It does not change.</li>
+        <li><strong>Current</strong> is today's ask, per share — the price you would actually pay to buy it back.</li>
+        <li><strong>Tenor</strong> is calendar days from open date to expiry date. It does not change.</li>
+        <li><strong>DTE</strong> is calendar days left to expiry. It counts down.</li>
+      </ul>
+
+      <p>Opening and Tenor are fixed. Current and DTE move.</p>
+
+      <h2 class="article-section-heading">Why the +1</h2>
+
+      <p>We count the days the position is alive, including today. On expiry day DTE is 0, but you still hold it, so we divide by 1. A 30-day put therefore has 31 counted days. Both sides of the MIN use the same count, so the comparison stays fair. Versus Part One's plain-day math, a 30-day trade only moves in the third decimal. Short trades move more.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/ppd-part-two-putting-the-number-to-work/img-02-counted-days.jpg"
+          alt="Eight calendar boxes from Wednesday 1 to Wednesday 8. The first three, Wed 1, Thu 2 and Fri 3, are highlighted. Text in the image: Distance is 2 days. Counted life is 3."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 2. Distance is 2 days. Counted life is 3.</p>
+      </div>
+
+      <h2 class="article-section-heading">How the Number Moves</h2>
+
+      <p>A falling PPD means decay is running ahead of the original schedule. The number is not a straight slide down. Premium can bounce, so PPD can bounce — up to the baseline, never past it.</p>
+
+      <p>Separate 10-day example. You collected $1.00. Baseline = $1.00 / 11 = <strong>$0.0909 a day</strong>.</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Ten-day example, opening premium $1.00</caption>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>DTE</th>
+              <th>Ask</th>
+              <th>Ask / (DTE+1)</th>
+              <th>PPD</th>
+              <th>Read</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">1</td><td class="num">10</td><td class="num">$1.00</td><td class="num">$0.0909</td><td class="num">$0.0909</td><td>Just opened — at baseline</td></tr>
+            <tr><td class="num">2</td><td class="num">9</td><td class="num">$0.50</td><td class="num">$0.0500</td><td class="num ppd-hl">$0.0500</td><td>Ask halved — PPD drops</td></tr>
+            <tr><td class="num">5</td><td class="num">6</td><td class="num">$0.50</td><td class="num">$0.0714</td><td class="num ppd-hl">$0.0714</td><td>Same ask, fewer days — PPD rises</td></tr>
+            <tr><td class="num">8</td><td class="num">3</td><td class="num">$1.10</td><td class="num">$0.2750</td><td class="num ppd-hl">$0.0909</td><td>Ask above opening — capped at baseline</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Day 8 is the easy misread. The position got worse — the ask is above what you collected. PPD does not print $0.2750. It prints the baseline. PPD is a collection pace, not a P&amp;L.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/ppd-part-two-putting-the-number-to-work/img-03-ppd-follows-smaller-number.jpg"
+          alt="Line chart titled PPD follows the smaller number. PPD is 0.0909 on day 1, falls to 0.0500 on day 2, rises to 0.0714 on day 5 and returns to the 0.0909 baseline ceiling on day 8. The uncapped day-8 value of 0.2750 is marked as not used."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 3. The ceiling holds. The uncapped day-8 value is not used.</p>
+      </div>
+
+      <h2 class="article-section-heading">Two Useful Lines</h2>
+
+      <p>The <strong>pace line</strong> is the remaining premium that would keep you exactly on schedule: Opening × (DTE+1) / (Tenor+1). On day 10 of the $1.00 / 30-day put (DTE 20), that line is $0.68.</p>
+
+      <p>If the ask is below the pace line, PPD uses Current / (DTE+1). Otherwise PPD stays at baseline. Part One's "winning" case was any ask below the opening price. The exact rule is tighter: the ask must also be below the pace line. Between opening and the pace line, PPD does not drop.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/ppd-part-two-putting-the-number-to-work/img-04-pace-line.jpg"
+          alt="Vertical price scale for the $1.00 / 30-day put on day 10: $1.40, ask above opening, baseline; $1.00 opening premium; a band reading ask fell but not enough, still baseline; $0.68 pace line; $0.40, ahead of pace, use remaining premium; $0.00."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 4. Below the pace line, use remaining premium. Otherwise stay at baseline.</p>
+      </div>
+
+      <h2 class="article-section-heading">What 0.00 Means</h2>
+
+      <p>Zero can mean two different things. If the position is not short, or it has already expired (DTE below 0), treat 0.00 as not applicable and leave it out of averages. If the ask itself is $0.00, that zero is real — nothing left to collect — and it stays in the column.</p>
+
+      <h2 class="article-section-heading">A Few Edges</h2>
+
+      <p>Expiry day uses DTE = 0, so PPD is the smaller of the ask and the baseline. Weekends count; DTE follows the calendar the way brokers quote it. A wide ask near expiry can leave a leftover floor — that is the cost of using the real buyback price. A roll is a new trade with its own Opening and Tenor. Units are per share, rounded to four decimals. This spec is for single-leg short puts and calls that are already open. Spreads and unsold candidates are not covered here.</p>
+
+      <h2 class="article-section-heading">Same Examples as Part One</h2>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Part One versus this definition</caption>
+          <thead>
+            <tr><th>Example</th><th>Part One</th><th>This spec</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Day 1, ask $1.00</td><td class="num">$0.0333</td><td class="num">$0.0323</td></tr>
+            <tr><td>Day 10 (DTE 20), ask $0.40</td><td class="num">$0.0200</td><td class="num">$0.0190</td></tr>
+            <tr><td>Day 10 (DTE 20), ask $1.40</td><td class="num">$0.0333</td><td class="num">$0.0323</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The small shift is counted days. Part One did not show the in-between case: day 10, ask $0.99. That ask is below $1.00 but still above the $0.68 pace line, so this spec stays at $0.0323.</p>
+
+      <h2 class="article-section-heading">Keep This Card</h2>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/ppd-part-two-putting-the-number-to-work/img-05-definition-card.jpg"
+          alt="Definition card: PPD = MIN( Opening/(Tenor+1), Current/(DTE+1) ). PPD is Premium Per Day, what a short option is collecting per day. Opening is cash collected when the option was sold, per share. Current is today's ask price to buy the option back, per share. Tenor is calendar days from open date to expiry date. DTE is calendar days remaining until expiry. MIN uses the smaller of the two daily rates."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 5. The one-page definition.</p>
+      </div>
+
+      <h2 class="article-section-heading">Watch and Listen</h2>
+
+      <ul>
+        <li>Part One video — <a href="https://youtu.be/LctuP9cqI-E" target="_blank" rel="noopener" style="color:var(--accent);"><em>Is Theta Lying to You?</em></a></li>
+        <li>Part One companion video — <a href="https://youtu.be/ziOuq3ZNjPs" target="_blank" rel="noopener" style="color:var(--accent);"><em>Why Theta Lies About Your Option Income</em></a></li>
+      </ul>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/ppd-part-two-putting-the-number-to-work-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>This article is educational. It describes a position-level indicator the author uses in personal trading. It does not constitute a recommendation to buy or sell any security, nor a claim that any particular result is repeatable. Short options can produce losses larger than the premium received. Traders should understand the product and the margin requirements at their broker before use.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about the rules that actually govern their positions.</p>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js"></script>
+</body>
+</html>
