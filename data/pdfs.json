@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "ppd-framework",
+      "file": "The_PPD_Framework.pdf",
+      "title": "Premium Per Day (PPD): A Practitioner's Framework",
+      "description": "A slide walkthrough of Premium Per Day, a cleaner way to measure the actual daily premium of short option positions, built from 3,700+ short-option trades over 13 months. Covers why theta misleads exactly when a position is bleeding, the four inputs, the two-case definition, and how PPD fits into a wider KPI stack.",
+      "tags": ["options", "ppd", "premium-per-day", "theta", "short-options"],
+      "date": "2026-09-02",
+      "featured": true
+    },
+    {
       "id": "decoding-the-vix",
       "file": "Cboe-VIX-Index-Calculation-Methodology.pdf",
       "title": "Decoding the VIX: How the Cboe Volatility Index Is Actually Calculated",
