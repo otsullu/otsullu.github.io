@@ -166,6 +166,12 @@ async def generate():
             document.body.style.background = '#ffffff';
         }""")
 
+        # Lazy images below the viewport never load in print — force them eager and wait
+        await page.evaluate("""() => Promise.all([...document.images].map(img => {
+            img.loading = 'eager';
+            return img.complete ? null : new Promise(r => { img.onload = img.onerror = r; });
+        }))""")
+
         # Inject print CSS overrides (with the dynamic credit line)
         await page.add_style_tag(content=PRINT_CSS.replace("%CREDIT_LINE%", CREDIT_LINE))
 

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>What's Really at Stake When You Sell an Option | OTS Ullu</title>
+  <meta name="description" content="Why the strike price isn't the capital you're actually risking on a cash-secured put or covered call, and what to measure instead: capital at stake, a snapshot of real exposure at today's stock price." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="What's Really at Stake When You Sell an Option" />
+  <meta property="og:description" content="Why the strike price isn't the capital you're actually risking on a cash-secured put or covered call, and what to measure instead: capital at stake, a snapshot of real exposure at today's stock price." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/short-options-capital-at-stake/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/short-options-capital-at-stake/img-01-same-stock-opposite-error.jpg" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Education" />
+  <meta property="article:tag" content="Capital at Stake, Cash-Secured Puts, Covered Calls, Short Options, Strike Price, Options KPI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What's Really at Stake When You Sell an Option" />
+  <meta name="twitter:description" content="Why the strike price isn't the capital you're actually risking on a cash-secured put or covered call, and what to measure instead: capital at stake, a snapshot of real exposure at today's stock price." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/short-options-capital-at-stake/img-01-same-stock-opposite-error.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/short-options-capital-at-stake/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What's Really at Stake When You Sell an Option",
+    "description": "Why the strike price isn't the capital you're actually risking on a cash-secured put or covered call, and what to measure instead: capital at stake, a snapshot of real exposure at today's stock price.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://otsullu.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "What's Really at Stake When You Sell an Option"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-body {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .example-callout {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .example-callout .example-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .example-callout p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.5em !important;
+  }
+  .example-callout p:last-child { margin-bottom: 0 !important; }
+  .example-callout strong { color: var(--fg); }
+
+  .article-body ul {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+    list-style: disc;
+  }
+  .article-body ul li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong {
+    color: var(--fg);
+  }
+
+  /* ── DATA TABLE ── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    table-layout: auto;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 14px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th,
+  .article-table td {
+    text-align: left;
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+  }
+  .article-img-caption {
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    text-align: center;
+    margin: 10px 0 0 !important;
+    line-height: 1.5 !important;
+  }
+  .cas-hl { background: var(--accent-tint-10); font-weight: 600; }
+  .formula-label { margin-bottom: 0.4em !important; }
+  .formula-code {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .article-references ul { list-style: none; padding: 0; margin: 0; }
+  .ref-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-card:last-child { border-bottom: none; }
+  .ref-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 84px;
+  }
+  .ref-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  .ref-body a { color: var(--accent); }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.7rem !important; }
+    .article-table th, .article-table td { padding: 5px 8px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-row">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/#observatory">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/">Articles</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/short-options-capital-at-stake/" aria-current="page">What's Really at Stake When You Sell an Option</a>
+      </nav>
+      <button type="button" class="pdf-share-btn article-share-btn"
+              data-share-url="https://otsullu.com/articles/short-options-capital-at-stake/"
+              title="Copy a shareable link to this article"
+              aria-label="Copy a shareable link to this article">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span class="pdf-share-label">Copy link</span>
+      </button>
+    </div>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">What's Really at Stake When You Sell an Option</h1>
+      <p class="article-lede">
+        Why the strike price isn't the capital you're actually risking
+      </p>
+      <div class="article-meta">
+        <span><strong>Sam Vishwas</strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Education</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Capital at Stake</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>September 24, 2026</span>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <h2 class="article-section-heading">The Number I Never Questioned</h2>
+
+      <p>When I came back to selling cash-secured puts and covered calls, I did what everyone else does. I measured each trade against one number: the strike price.</p>
+
+      <p>Sell a $145 put? That's $145 of capital per share. Sell a $105 call against shares I own? That's $105 of capital.</p>
+
+      <p>And like most sellers, I didn't stop at the strike. I folded in the premium. For a cash-secured put, I'd subtract it: sell a $145 put for $3 and my "real" number was $142, my break-even. For a covered call, I'd add it: sell a $105 call for $3 and I was effectively selling my shares at $108. It felt precise. Every screener, spreadsheet and broker screen I used worked the same way, so I followed along.</p>
+
+      <p>Hold on to that habit for a moment. I'll come back to the premium later and explain why my new number leaves it out.</p>
+
+      <p>It hasn't been a long road: about fourteen months and nearly 3,900 short-option trades, split between cash-secured puts and covered calls. The number isn't the point. The repetition is. Somewhere along the way, it does its work, and you start noticing when a number doesn't quite add up.</p>
+
+      <p>For me, that happened one afternoon when I looked at two SpaceX positions side by side, and the strike price stopped making sense.</p>
+
+      <p>If you've read my two articles on Premium Per Day, <a href="/articles/ppd-premium-per-day/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day</a> and <a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">PPD Part Two: Putting the Number to Work</a>, this is the other half of the picture. PPD measures what you collect, and it leaves capital out on purpose. This article is about the capital. And just as theta can look best at the very moment a position is at its worst, the strike price overstates what you have at stake in exactly the puts that are doing best.</p>
+
+      <h2 class="article-section-heading">One Stock, One Day, Ten Positions</h2>
+
+      <p>Here's the setup. SpaceX (SPCX) is trading at <strong>$147.47</strong>. The options expire on <strong>October 23, 2026</strong>, 29 days away.</p>
+
+      <p>Now picture ten sellers. Five sell cash-secured puts and five sell covered calls, each at a different strike. Some strikes are far below the stock price, some are close to it, and some are far above it. When each trade was opened doesn't matter here. What matters is where the stock is today.</p>
+
+      <p>On the strike-price method, each of them has exactly the strike at stake. But ask a simpler question: <em>if you were assigned at the strike today, what would you actually be putting on the line?</em> The answers are very different.</p>
+
+      <h2 class="article-section-heading">The Idea: Capital Actually at Stake</h2>
+
+      <p>Capital at stake is a <strong>snapshot</strong>. It's what you would really have tied up if the contract were settled at the strike against today's stock price.</p>
+
+      <p>It needs only two inputs, both per share:</p>
+
+      <ul>
+        <li><strong>Strike:</strong> the price in the contract. It doesn't change.</li>
+        <li><strong>Stock price:</strong> the last traded price of the stock right now. It moves.</li>
+      </ul>
+
+      <p>It applies to single-leg cash-secured puts and covered calls that are already open. Spreads aren't covered here.</p>
+
+      <p class="formula-label"><strong>For a cash-secured put,</strong> you've promised to buy shares at the strike.</p>
+
+      <ul>
+        <li>If the stock is <strong>below</strong> the strike, you'd pay the full strike. Your capital at stake is the strike.</li>
+        <li>If the stock is <strong>above</strong> the strike, you'd buy at the strike and could sell straight away at the higher market price. That built-in gain comes off what you have at stake.</li>
+      </ul>
+
+      <p class="formula-code">Capital at stake = MIN( Strike, MAX( 0, 2 × Strike − Stock price ) )</p>
+
+      <p>In words: never more than the strike, never less than zero, and in between, the strike minus the built-in gain.</p>
+
+      <p class="formula-label"><strong>For a covered call,</strong> you've promised to hand over your shares at the strike.</p>
+
+      <ul>
+        <li>If the stock is <strong>below</strong> the strike, your commitment is the strike price. Your capital at stake is the strike.</li>
+        <li>If the stock is <strong>above</strong> the strike, the shares you'd give up are worth the market price, not the strike. Your capital at stake is the stock price.</li>
+      </ul>
+
+      <p class="formula-code">Capital at stake = MAX( Stock price, Strike )</p>
+
+      <p>In words: whichever is higher, the strike or what the shares are worth today.</p>
+
+      <p>That's it. Let's see what it does to our ten sellers.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/short-options-capital-at-stake/img-01-same-stock-opposite-error.jpg"
+          alt="Two panels, SpaceX at $147.47 and a $105 strike. Left, cash-secured put with stock above strike: a bracket marks the $42.47 built-in gain from strike to stock; the strike bar is $105 and the capital-at-stake bar is $62.53. Strike overstates a winning put. Right, covered call with stock above strike: a bracket marks the shares you'd hand over, worth $147.47; the strike bar is $105 and the capital-at-stake bar is $147.47. Strike understates an in-the-money call."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 1. Same stock. Opposite error.</p>
+      </div>
+
+      <h2 class="article-section-heading">The Put Sellers</h2>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Cash-secured puts, SpaceX at $147.47</caption>
+          <thead>
+            <tr>
+              <th>Strike</th>
+              <th>Strike vs. stock</th>
+              <th>Capital by strike</th>
+              <th>Capital actually at stake</th>
+              <th>Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">$105.00</td><td class="num">28.80% below stock</td><td class="num">$105.00</td><td class="num cas-hl">$62.53</td><td class="num">−$42.47 (−40.45%)</td></tr>
+            <tr><td class="num">$145.00</td><td class="num">1.67% below stock</td><td class="num">$145.00</td><td class="num cas-hl">$142.53</td><td class="num">−$2.47 (−1.70%)</td></tr>
+            <tr><td class="num">$147.00</td><td class="num">At the money</td><td class="num">$147.00</td><td class="num cas-hl">$146.53</td><td class="num">−$0.47 (−0.32%)</td></tr>
+            <tr><td class="num">$149.00</td><td class="num">1.04% above stock</td><td class="num">$149.00</td><td class="num">$149.00</td><td class="num">$0.00</td></tr>
+            <tr><td class="num">$190.00</td><td class="num">28.84% above stock</td><td class="num">$190.00</td><td class="num">$190.00</td><td class="num">$0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>The best situation: the $105 put.</strong> SpaceX is about $42.50 above the strike. If this seller were assigned today, they'd buy at $105.00 and could sell at $147.47 right away. Their real exposure is <strong>$62.53</strong> per share, not $105.00. The strike-price method overstates what they have at stake by $42.47, about 40% of the strike.</p>
+
+      <p><strong>Closer to the money: $145 and $147.</strong> The stock is just above the strike, so there's a small cushion: $2.47 and $0.47. The strike method is off, but only slightly.</p>
+
+      <p><strong>The worst situation: the $190 put.</strong> SpaceX has fallen well below the strike. This seller would pay the full $190.00 for shares trading at $147.47. Here the strike price <em>is</em> the capital at stake, and the old method happens to be right. The $149 put, just past the line, is the same.</p>
+
+      <p>So for put sellers, <strong>the better the position is doing, the more the strike method overstates what you have at risk.</strong></p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/short-options-capital-at-stake/img-02-put-sellers.jpg"
+          alt="Bar chart titled Put sellers: SpaceX at $147.47. Grey strike bars and navy capital-at-stake bars for five strikes: $105 strike, $62.53 at stake, overstated by $42.47 (40%); $145, $142.53; $147, $146.53; $149, $149.00; $190, $190.00."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 2. Put sellers: the better the position, the more the strike overstates what is at risk.</p>
+      </div>
+
+      <h2 class="article-section-heading">The Call Sellers</h2>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Covered calls, SpaceX at $147.47</caption>
+          <thead>
+            <tr>
+              <th>Strike</th>
+              <th>Strike vs. stock</th>
+              <th>Capital by strike</th>
+              <th>Capital actually at stake</th>
+              <th>Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">$105.00</td><td class="num">28.80% below stock</td><td class="num">$105.00</td><td class="num cas-hl">$147.47</td><td class="num">+$42.47 (+40.45%)</td></tr>
+            <tr><td class="num">$145.00</td><td class="num">1.67% below stock</td><td class="num">$145.00</td><td class="num cas-hl">$147.47</td><td class="num">+$2.47 (+1.70%)</td></tr>
+            <tr><td class="num">$147.00</td><td class="num">At the money</td><td class="num">$147.00</td><td class="num cas-hl">$147.47</td><td class="num">+$0.47 (+0.32%)</td></tr>
+            <tr><td class="num">$149.00</td><td class="num">1.04% above stock</td><td class="num">$149.00</td><td class="num">$149.00</td><td class="num">$0.00</td></tr>
+            <tr><td class="num">$190.00</td><td class="num">28.84% above stock</td><td class="num">$190.00</td><td class="num">$190.00</td><td class="num">$0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The covered calls are the mirror image.</p>
+
+      <p><strong>The most misleading situation: the $105 call.</strong> SpaceX has run far past the strike. The strike method says this seller has $105.00 at stake. But the shares they'd hand over are worth <strong>$147.47</strong> each. That's what they're really committing, and it's $42.47 more than the screen shows.</p>
+
+      <p><strong>Near the money: $145 and $147.</strong> The shares are worth a little more than the strike, so the capital at stake is a little higher: $2.47 and $0.47.</p>
+
+      <p><strong>Where the old method holds: $149 and $190.</strong> The stock is below the strike, so the seller's commitment is the strike, and the two methods agree.</p>
+
+      <p>So for call sellers, <strong>the further the stock runs past your strike, the more the strike method understates what you're putting on the line.</strong></p>
+
+      <h2 class="article-section-heading">What the Two Tables Tell Us</h2>
+
+      <p>Put them side by side and a pattern jumps out:</p>
+
+      <ul>
+        <li><strong>The strike price is right only when the stock is at or below the strike,</strong> for puts and calls alike. That's where assignment would cost you the full strike, or where the strike is exactly what you've agreed to.</li>
+        <li><strong>When the stock is above the strike, it's wrong in opposite directions.</strong> It overstates the capital in a winning put and understates it in an in-the-money call.</li>
+        <li><strong>The gap grows with distance.</strong> It's under half a percent at the money and over 40% of the strike when the strike sits about 29% below the stock.</li>
+        <li><strong>The strike never changes, but capital at stake does.</strong> The strike was fixed the day you opened the trade. Capital at stake moves every time the stock does.</li>
+        <li><strong>The two sides treat a built-in gain differently.</strong> On the put side, it reduces what's at stake. On the call side, capital at stake never drops below the strike you've committed to, until the stock trades through it.</li>
+      </ul>
+
+      <p>If you've been comparing positions by the strike, you've been comparing them on a number that ignores where the stock is today.</p>
+
+      <h2 class="article-section-heading">What Capital at Stake Is, and What It Isn't</h2>
+
+      <p><strong>It is</strong> a snapshot of your real exposure right now: what you'd be putting on the line if assignment happened today.</p>
+
+      <p><strong>It is</strong> a fair way to compare positions against each other, on what each one really risks at this moment rather than on a price you picked weeks ago.</p>
+
+      <p><strong>It isn't your margin or collateral.</strong> Your broker still holds the full strike for a cash-secured put. The $105 put still ties up $10,500 in cash per contract, even though only $62.53 per share ($6,253 per contract) is really at stake. Capital at stake measures exposure, not the cash your broker sets aside.</p>
+
+      <p><strong>It isn't your maximum loss.</strong> It tells you what's on the line today, not how far the stock could fall or what you could lose if it does.</p>
+
+      <p><strong>It isn't your cost basis.</strong> For a covered call, what you paid for the shares doesn't enter into it. What matters is what they're worth today, because that's what you'd hand over. In my <a href="/articles/life360-covered-call-case-study/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Life360 case study</a>, the shares I bought at $102.64 fell 43.9%, while premium cut my net cost basis to $47.97. Neither number is what the shares are worth today.</p>
+
+      <p><strong>It isn't fixed.</strong> It changes every time the stock moves, and that's the point. Check it again as the stock moves; it isn't a number you set once.</p>
+
+      <p>One extreme worth knowing: if the stock rises to twice a put's strike or more (SpaceX at $210 or higher for the $105 put), nothing is left at stake at all. Assignment at that moment would come with a gain at least as large as the strike itself.</p>
+
+      <h2 class="article-section-heading">Why I Leave the Premium Out</h2>
+
+      <p>Earlier I admitted I used to fold the premium into the strike. You may be thinking the same thing right now: <em>"Adjust the strike by the premium, subtracting it for a put and adding it for a call, and you get your real number."</em></p>
+
+      <p>It's a fair question, and I left the premium out on purpose. Here's why.</p>
+
+      <p><strong>Premium is what you earn, not what you risk.</strong> Capital at stake and premium do different jobs. PPD tracks the premium side; capital at stake tracks the capital side. When we get to returns, the premium goes on top of the fraction and capital at stake goes on the bottom. Subtract the premium from the capital first and you count it twice: once as income, and again as less exposure. Your return would look better than it really is.</p>
+
+      <p><strong>Premium-adjusted prices answer a different question.</strong> For a cash-secured put, strike minus premium is your break-even: the price below which you start losing money at expiry. For a covered call, strike plus premium is your effective selling price: the most you can get for your shares. Capital at stake tells you <em>what's on the line right now</em>. All of them matter, but they aren't the same number. Take the $105 put: its break-even sits a little below $105 and stays there however far SpaceX rises, yet what that seller really has at stake today is $62.53. The $105 call is the mirror image: if it was sold back when SpaceX was near $105, its effective selling price is a little above $105, yet the shares being handed over are worth $147.47.</p>
+
+      <p><strong>Premium is already yours.</strong> Once it's collected, you keep it whatever the stock does. It doesn't grow or shrink what you still have exposed.</p>
+
+      <p><strong>Covered calls make this obvious.</strong> If SpaceX is at $147.47, the shares you'd hand over are worth $147.47, whatever you collected for the call.</p>
+
+      <p>So the premium isn't ignored. It just has a different job: it's the return, and that's where it comes in.</p>
+
+      <h2 class="article-section-heading">Coming Next: What You're Really Earning</h2>
+
+      <p>Knowing what you actually have at stake is the foundation. The obvious next question is what you're really <em>earning</em> on it.</p>
+
+      <p>In my next article, <strong>What You're Really Earning When You Sell an Option</strong>, I'll bring the two halves together: the premium you collect, the same premium PPD tracks day by day, measured against the capital actually at stake instead of the strike. For some positions the change is small. For others, it flips which trade looks better.</p>
+
+      <p>That completes the stack: PPD for what you collect, capital at stake for what you risk, and return for what one earns on the other.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/short-options-capital-at-stake/img-03-the-stack.jpg"
+          alt="Three boxes linked by arrows. PPD, what you collect, marked done, labelled PPD Parts 1 to 2. Capital at stake, what you risk, highlighted, labelled This article. Return, what one earns on the other, dashed outline, labelled Next article."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 3. The stack.</p>
+      </div>
+
+      <h2 class="article-section-heading">Related</h2>
+
+      <ul>
+        <li><a href="/articles/ppd-premium-per-day/" style="color:var(--accent);">PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day</a></li>
+        <li><a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);">PPD Part Two: Putting the Number to Work</a></li>
+        <li><a href="/articles/life360-covered-call-case-study/" style="color:var(--accent);">I Bought Life360 Near the Top. I Was Ready for the Fall.</a></li>
+      </ul>
+
+      <h2 class="article-section-heading">Watch and Listen</h2>
+
+      <ul>
+        <li><a href="https://youtu.be/LctuP9cqI-E" target="_blank" rel="noopener" style="color:var(--accent);"><em>Is Theta Lying to You? The PPD Metric for Real Options Income</em></a></li>
+        <li><a href="https://youtu.be/ziOuq3ZNjPs" target="_blank" rel="noopener" style="color:var(--accent);"><em>Why Theta Lies About Your Option Income</em></a></li>
+      </ul>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/short-options-capital-at-stake-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>Prices as of September 24, 2026. The trading period and trade count in each article are as of its publication date. They grow from article to article, so earlier pieces show smaller figures. Examples are illustrative and exclude premium, commissions, fees and taxes. This article is educational. It describes a position-level measure the author uses in personal trading. It does not constitute a recommendation to buy or sell any security, nor a claim that any particular result is repeatable. Short options can produce losses larger than the premium received. Traders should understand the product and the margin requirements at their broker before use.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about the rules that actually govern their positions.</p>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/app.js"></script>
+</body>
+</html>
