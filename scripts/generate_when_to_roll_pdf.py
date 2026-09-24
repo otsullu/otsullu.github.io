@@ -55,6 +55,8 @@ PRINT_CSS = """
   .config-scrim,
   .pdf-download-wrap,
   .breadcrumb,
+  .breadcrumb-row,
+  .article-share-btn,
   .disclaimer-box,
   .site-footer {
     display: none !important;
@@ -131,6 +133,12 @@ async def generate():
             document.documentElement.setAttribute('data-palette', 'gold');
             document.body.style.background = '#ffffff';
         }""")
+
+        # Lazy images below the viewport never load in print — force them eager and wait
+        await page.evaluate("""() => Promise.all([...document.images].map(img => {
+            img.loading = 'eager';
+            return img.complete ? null : new Promise(r => { img.onload = img.onerror = r; });
+        }))""")
 
         await page.add_style_tag(content=PRINT_CSS)
         await page.wait_for_timeout(2000)
