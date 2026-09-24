@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'What\'s Really at Stake When You Sell an Option',
+    excerpt: 'Why the strike price isn\'t the capital you\'re actually risking, and what to measure instead. Ten SpaceX positions show the strike overstating what\'s at stake in a winning put and understating it in an in-the-money call.',
+    series: 'Options Education · Capital at Stake',
+    url: '/articles/short-options-capital-at-stake/',
+  },
+  {
     title: 'PPD Part Two: Putting the Number to Work',
     excerpt: 'Part One explained the idea; Part Two locks the definition so two people computing PPD get the same number. PPD = MIN(Opening/(Tenor+1), Current/(DTE+1)): the +1, the pace line, what a zero means, and the edge cases, with a worked ten-day example.',
     series: 'OTS Ullu · Options Education',
