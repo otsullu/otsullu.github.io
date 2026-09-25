@@ -154,7 +154,7 @@ const FOUNDER_QUOTES = [
 const DISPATCH_DATA = [
   {
     title: 'What\'s Really at Stake When You Sell an Option',
-    excerpt: 'Why the strike price isn\'t the capital you\'re actually risking, and what to measure instead. Ten SpaceX positions show the strike overstating what\'s at stake in a winning put and understating it in an in-the-money call.',
+    excerpt: 'Why the strike price isn\'t the capital you\'re actually risking, and what to measure instead. Ten positions on one stock show the strike overstating what\'s at stake in a winning put and understating it in an in-the-money call.',
     series: 'Options Education · Capital at Stake',
     url: '/articles/short-options-capital-at-stake/',
   },
