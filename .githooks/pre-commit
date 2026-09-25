@@ -9,7 +9,7 @@
 staged=$(git diff --cached --name-only)
 
 # Only act when the shell or hand-authored assets actually changed.
-echo "$staged" | grep -Eq '^(index\.html|css/style\.css|js/app\.js)$' || exit 0
+echo "$staged" | grep -Eq '^(index\.html|css/style\.css|js/app\.js|js/feedback(-config)?\.js)$' || exit 0
 
 ts=$(powershell.exe -NoProfile -Command "Get-Date -Format 'MMMM d, yyyy, h:mm tt'" | tr -d '\r')
 ver=$(powershell.exe -NoProfile -Command "Get-Date -Format 'yyyyMMdd'" | tr -d '\r')
@@ -20,12 +20,20 @@ if [ -z "$ts" ] || [ -z "$ver" ] || [ -z "$abbr" ]; then
   exit 1
 fi
 
-# Rewrite footer timestamp and the two hand-authored asset versions.
+# Second+ release on the same day: 20260925 -> 20260925b -> 20260925c ...
+cur=$(grep -oE 'js/app\.js\?v=[0-9A-Za-z]+' index.html | head -1 | sed 's/.*v=//')
+case "$cur" in
+  "$ver")  ver="${ver}b" ;;
+  "$ver"?) ver="${ver}$(printf '%s' "${cur#"$ver"}" | tr 'a-y' 'b-z')" ;;
+esac
+
+# Rewrite footer timestamp and the hand-authored asset versions.
 # pdf.min.js / pdf.worker.min.js are vendored and intentionally left alone.
 sed -E -i \
   -e "s|(Last updated: ).*P[DS]T|\1${ts} ${abbr}|" \
   -e "s|(style\.css\?v=)[0-9A-Za-z]+|\1${ver}|" \
   -e "s|(js/app\.js\?v=)[0-9A-Za-z]+|\1${ver}|" \
+  -e "s|(js/feedback(-config)?\.js\?v=)[0-9A-Za-z]+|\1${ver}|g" \
   index.html
 
 git add index.html

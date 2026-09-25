@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260925" />
+  <link rel="stylesheet" href="css/style.css?v=20260925b" />
   <script>
   (function(){
     try {
@@ -852,6 +852,11 @@
       <p class="risk-modal-heading">AI-Assisted Content</p>
       <p class="risk-modal-body">OTS Ullu uses artificial intelligence tools to research, analyse, summarise, and present financial information. AI systems can and do make errors — including factual inaccuracies, outdated data, and flawed analysis. We strongly encourage all viewers and users to conduct their own independent research and verify any information before acting on it.</p>
     </div>
+
+    <div class="risk-modal-section">
+      <p class="risk-modal-heading">Comments, Ratings &amp; Visitor Counts</p>
+      <p class="risk-modal-body">To count views and unique visitors and to remember your thumbs-up or thumbs-down, your browser stores a random, anonymous ID. It carries no name or personal information, and we use no advertising or cross-site tracking. Commenting requires signing in with Google or Microsoft. We receive your name, profile photo and email address: your name and photo appear publicly with your comments, and your email is never shown. Comments are public. We keep a record of every edit and deletion for moderation, and we remove abusive, threatening or spam comments.</p>
+    </div>
   </div>
 </div>
 
@@ -874,7 +879,9 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: September 25, 2026, 10:31 AM PDT</p>
+    <p class="fb-site-stats" id="fbSiteStats" hidden></p>
+
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; Last updated: September 25, 2026, 1:43 PM PDT</p>
   </div>
 </footer>
 
@@ -884,7 +891,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/app.js?v=20260925"></script>
+<script src="js/feedback-config.js?v=20260925b"></script>
+<script src="js/feedback.js?v=20260925b"></script>
+<script src="js/app.js?v=20260925b"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

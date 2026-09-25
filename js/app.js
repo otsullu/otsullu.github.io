@@ -648,6 +648,18 @@ function renderResources() {
   }
 }
 
+/* ── READER FEEDBACK HOOKS (js/feedback.js; inert until configured) ── */
+function feedback() {
+  return window.OTSFeedback && window.OTSFeedback.enabled ? window.OTSFeedback : null;
+}
+
+function feedbackSlotHtml(id, title, label) {
+  if (!feedback()) return '';
+  const attr = v => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  return `<div class="fb-slot" data-fb-slot="panel" data-fb-id="${attr(id)}"
+               data-fb-title="${attr(title)}" data-fb-url="/#observatory" data-fb-label="${label}"></div>`;
+}
+
 /* ── PDF SHELF LOADER ───────────────────────────────────────────── */
 const AGI_PDF_ID = 'agi-blueprint';
 const WM_PDF_ID  = 'wealth-mgmt-tech-trends';
@@ -684,6 +696,7 @@ function renderShelfPdfs(pdfs, baseUrl) {
         <p class="resource-title">${pdf.title}</p>
         <p class="resource-desc">${pdf.description}</p>
         <div class="pdf-tags">${tags}</div>
+        ${feedbackSlotHtml('deck:' + pdf.id, pdf.title, 'views')}
       </div>
     `;
   });
@@ -796,7 +809,7 @@ function initShelfCarousel(wrap) {
   update();
 }
 
-function openPdfModal(url, title) {
+function openPdfModal(url, title, fbItem) {
   const existing = document.getElementById('pdfModalOverlay');
   if (existing) existing.remove();
 
@@ -828,6 +841,10 @@ function openPdfModal(url, title) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             <span class="pdf-share-label">Copy link</span>
           </button>
+          ${feedback() && fbItem ? `<button type="button" class="pdf-share-btn pdf-modal-feedback" title="Rate this deck or leave a comment">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span class="pdf-share-label">Rate &amp; comment</span>
+          </button>` : ''}
         </div>
         <div class="pdf-nav" aria-label="Page navigation">
           <button class="pdf-nav-btn" id="pdfFirst" title="First page" disabled>
@@ -852,7 +869,7 @@ function openPdfModal(url, title) {
   overlay.querySelector('.pdf-modal-close').addEventListener('click', close);
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
 
-  const modalCopyBtn = overlay.querySelector('.pdf-share-btn');
+  const modalCopyBtn = overlay.querySelector('.pdf-modal-copy');
   if (modalCopyBtn) {
     modalCopyBtn.addEventListener('click', e => {
       e.preventDefault();
@@ -860,6 +877,16 @@ function openPdfModal(url, title) {
       copyShareLink(modalCopyBtn.dataset.shareUrl, modalCopyBtn);
     });
   }
+
+  const modalFeedbackBtn = overlay.querySelector('.pdf-modal-feedback');
+  if (modalFeedbackBtn) {
+    modalFeedbackBtn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      feedback().openPanel(fbItem);
+    });
+  }
+  if (feedback() && fbItem) feedback().trackView(fbItem);
 
   document.body.appendChild(overlay);
 
@@ -926,6 +953,10 @@ function openPdfModal(url, title) {
   });
 }
 
+function cardFeedbackItem(card) {
+  return feedback() ? feedback().itemFromSlot(card.querySelector('[data-fb-slot]')) : null;
+}
+
 function loadShelf() {
   fetch('data/pdfs.json')
     .then(r => r.json())
@@ -936,6 +967,7 @@ function loadShelf() {
       if (pdfCards.length > 0) {
         grid.insertAdjacentHTML('afterbegin', buildCarousel(pdfCards, 'Research &amp; Reference'));
         initShelfCarousel(grid.querySelector('.shelf-carousel-wrap'));
+        if (feedback()) feedback().mountBars(grid);
       }
 
       grid.addEventListener('click', e => {
@@ -947,7 +979,7 @@ function loadShelf() {
           return;
         }
         const card = e.target.closest('[data-pdf-url]');
-        if (card) openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle);
+        if (card) openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle, cardFeedbackItem(card));
       });
       grid.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -959,7 +991,7 @@ function loadShelf() {
             return;
           }
           const card = e.target.closest('[data-pdf-url]');
-          if (card) { e.preventDefault(); openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle); }
+          if (card) { e.preventDefault(); openPdfModal(card.dataset.pdfUrl, card.dataset.pdfTitle, cardFeedbackItem(card)); }
         }
       });
 
@@ -1152,6 +1184,7 @@ function parsePodcastFeed(items) {
     const age   = pub ? now - pub.getTime() : Infinity;
     return {
       title:    item.title    || 'Untitled',
+      guid:     item.guid || item.link || item.enclosure?.link || item.title || '',
       pub,
       duration: item.enclosure?.duration || item.duration || '',
       audioUrl: item.enclosure?.link || '',
@@ -1231,6 +1264,20 @@ function renderPodcastEpisodes(episodes) {
 
       audio.addEventListener('ended', () => { resetBtn(btn); });
 
+      // A "play" counts once someone has actually listened for 30 seconds.
+      const fbItem = feedback() && feedback().itemFromSlot(btn.closest('.podcast-card').querySelector('[data-fb-slot]'));
+      if (fbItem) {
+        const countPlay = () => {
+          let heard = 0;
+          for (let r = 0; r < audio.played.length; r++) heard += audio.played.end(r) - audio.played.start(r);
+          if (heard >= 30) {
+            feedback().trackView(fbItem);
+            audio.removeEventListener('timeupdate', countPlay);
+          }
+        };
+        audio.addEventListener('timeupdate', countPlay);
+      }
+
       if (bar) {
         function scrub(e) {
           if (!audio.duration) return;
@@ -1307,6 +1354,7 @@ function renderPodcastEpisodes(episodes) {
         <div class="podcast-card-body">
           <div class="resource-card-pdf-top">${badge}<span class="podcast-duration">${fmtDuration(ep.duration)}</span><span class="resource-card-date">${dateStr}</span></div>
           <p class="resource-title">${ep.title}</p>
+          ${ep.guid ? feedbackSlotHtml('podcast:' + ep.guid.replace(/[\s<>"]+/g, '-').slice(0, 300), ep.title, 'plays') : ''}
         </div>
       </div>
     `;
@@ -1315,6 +1363,7 @@ function renderPodcastEpisodes(episodes) {
   el.innerHTML = buildCarousel(cards, 'Episodes');
   initShelfCarousel(el.querySelector('.shelf-carousel-wrap'));
   wirePodcastPlayers();
+  if (feedback()) feedback().mountBars(el);
 }
 
 function loadPodcast() {

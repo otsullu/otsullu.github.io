@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Moderation | OTS Ullu</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+    } catch (e) {}
+  })();
+  </script>
+  <style>
+    body { background: var(--bg); color: var(--fg); font-family: var(--font-sans); margin: 0; }
+    .adm { max-width: 980px; margin: 0 auto; padding: 28px 16px 60px; }
+    .adm h1 { font-size: 1.4rem; margin: 0 0 4px; }
+    .adm-sub { color: var(--fg-meta); font-size: 0.85rem; margin: 0 0 24px; }
+    .adm-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+    .adm-tabs { margin: 18px 0 14px; border-bottom: 1px solid var(--border-strong); }
+    .adm-tab, .adm-filter {
+      padding: 8px 14px; font: inherit; font-size: 0.85rem; font-weight: 600;
+      color: var(--fg-secondary); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer;
+    }
+    .adm-tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+    .adm-filter { border: 1px solid var(--border-strong); border-radius: var(--r-full); padding: 5px 12px; font-size: 0.78rem; }
+    .adm-filter[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-tint-10); }
+    .adm-card { border: 1px solid var(--border-strong); border-radius: var(--r-md); padding: 14px 16px; margin: 12px 0; background: var(--bg-alt); }
+    .adm-card.st-hidden, .adm-card.st-removed { border-style: dashed; opacity: 0.8; }
+    .adm-card.st-deleted { opacity: 0.6; }
+    .adm-meta { font-size: 0.78rem; color: var(--fg-meta); }
+    .adm-meta a { color: var(--accent); }
+    .adm-body { margin: 8px 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
+    .adm-pill { display: inline-block; padding: 1px 8px; border-radius: var(--r-full); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid currentColor; }
+    .pill-visible { color: #4FA86B; } .pill-hidden { color: #E0A030; } .pill-removed { color: #D9534F; } .pill-deleted { color: var(--fg-meta); }
+    .adm-btn { padding: 5px 12px; font: inherit; font-size: 0.78rem; font-weight: 600; border-radius: var(--r-sm); border: 1px solid var(--border-strong); background: var(--bg); color: var(--fg); cursor: pointer; }
+    .adm-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .adm-btn.danger:hover { border-color: #D9534F; color: #D9534F; }
+    .adm-history { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; font-size: 0.8rem; }
+    .adm-history li { margin: 6px 0; }
+    .adm-history pre { white-space: pre-wrap; font-family: inherit; margin: 2px 0 0; color: var(--fg-secondary); }
+    table.adm-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .adm-table th, .adm-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .adm-table td.n, .adm-table th.n { text-align: right; font-variant-numeric: tabular-nums; }
+    .adm-table-wrap { overflow-x: auto; }
+    .adm-msg { color: var(--fg-meta); margin: 16px 0; }
+    .adm-err { color: #D9534F; }
+  </style>
+</head>
+<body>
+<main class="adm">
+  <h1>🦉 Moderation</h1>
+  <p class="adm-sub">Comments, ratings and view counts across otsullu.com.</p>
+  <div id="app"><p class="adm-msg">Loading…</p></div>
+</main>
+
+<script src="../js/feedback-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  'use strict';
+  const CFG = window.OTS_FEEDBACK_CONFIG || {};
+  const app = document.getElementById('app');
+  const PROVIDERS = { google: 'Google', azure: 'Microsoft', linkedin_oidc: 'LinkedIn' };
+  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const when = iso => iso ? new Date(iso).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) : '';
+  const num = n => (Number(n) || 0).toLocaleString('en-US');
+
+  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey || !window.supabase) {
+    app.innerHTML = '<p class="adm-msg">Feedback is not configured yet. Fill in js/feedback-config.js (see supabase/README.md).</p>';
+    return;
+  }
+
+  const sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {
+    auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true, storageKey: 'ots-fb-auth' },
+  });
+
+  let state = { tab: 'comments', status: null, rows: [], openHistory: {} };
+
+  async function call(fn, args) {
+    const { data, error } = await sb.rpc(fn, args || {});
+    if (error) throw new Error(error.message);
+    return data;
+  }
+
+  function signInView(msg) {
+    app.innerHTML = `
+      ${msg ? `<p class="adm-msg adm-err">${esc(msg)}</p>` : ''}
+      <p class="adm-msg">Sign in with the account that has moderator access.</p>
+      <div class="adm-row">${(CFG.providers || ['google']).filter(p => PROVIDERS[p]).map(p =>
+        `<button class="adm-btn" data-provider="${p}">Sign in with ${PROVIDERS[p]}</button>`).join('')}</div>`;
+    app.querySelectorAll('[data-provider]').forEach(b => b.addEventListener('click', () => {
+      const options = { redirectTo: location.origin + location.pathname };
+      if (b.dataset.provider === 'azure') options.scopes = 'email';
+      sb.auth.signInWithOAuth({ provider: b.dataset.provider, options });
+    }));
+  }
+
+  async function start() {
+    const { data } = await sb.auth.getSession();
+    if (!data.session) return signInView();
+    let me;
+    try { me = (await call('get_me'))[0]; } catch (e) { return signInView(e.message); }
+    if (!me || !me.is_admin) {
+      app.innerHTML = `<p class="adm-msg">Signed in as ${esc(me ? me.display_name : 'unknown')}, but this account does not have moderator access.
+        See supabase/README.md, step "Make yourself the moderator".</p>
+        <button class="adm-btn" id="out">Sign out</button>`;
+      document.getElementById('out').onclick = () => sb.auth.signOut().then(() => location.reload());
+      return;
+    }
+    shell(me);
+  }
+
+  function shell(me) {
+    app.innerHTML = `
+      <div class="adm-row adm-meta">Signed in as <strong>${esc(me.display_name)}</strong>
+        <button class="adm-btn" id="out">Sign out</button></div>
+      <div class="adm-tabs adm-row" role="tablist">
+        <button class="adm-tab" role="tab" data-tab="comments">Comments</button>
+        <button class="adm-tab" role="tab" data-tab="items">Views &amp; ratings</button>
+      </div>
+      <div id="view"></div>`;
+    document.getElementById('out').onclick = () => sb.auth.signOut().then(() => location.reload());
+    app.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => { state.tab = b.dataset.tab; render(); }));
+    render();
+  }
+
+  async function render() {
+    app.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === state.tab)));
+    const view = document.getElementById('view');
+    view.innerHTML = '<p class="adm-msg">Loading…</p>';
+    try {
+      if (state.tab === 'items') return renderItems(view, await call('admin_item_stats'));
+      state.rows = await call('admin_list_comments', { p_status: state.status, p_limit: 200 });
+      renderComments(view);
+    } catch (e) {
+      view.innerHTML = `<p class="adm-msg adm-err">${esc(e.message)}</p>`;
+    }
+  }
+
+  function renderItems(view, rows) {
+    const label = { article: 'Article', deck: 'Deck', podcast: 'Podcast', page: 'Page' };
+    view.innerHTML = `<div class="adm-table-wrap"><table class="adm-table">
+      <thead><tr><th>Item</th><th>Type</th><th class="n">Views</th><th class="n">Unique</th><th class="n">👍</th><th class="n">👎</th><th class="n">Comments</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener" style="color:var(--accent)">${esc(r.title || r.item_id)}</a>` : esc(r.title || r.item_id)}</td>
+        <td>${label[r.kind] || esc(r.kind)}</td>
+        <td class="n">${num(r.views)}</td><td class="n">${num(r.uniques)}</td>
+        <td class="n">${num(r.up)}</td><td class="n">${num(r.down)}</td><td class="n">${num(r.comments)}</td></tr>`).join('')}
+      </tbody></table></div>
+      ${rows.length ? '' : '<p class="adm-msg">No activity yet.</p>'}`;
+  }
+
+  function renderComments(view) {
+    const filters = [[null, 'All'], ['visible', 'Visible'], ['hidden', 'Hidden'], ['removed', 'Removed'], ['deleted', 'Deleted by author']];
+    view.innerHTML = `
+      <div class="adm-row">${filters.map(([v, l]) =>
+        `<button class="adm-filter" data-status="${v || ''}" aria-pressed="${String(state.status === v)}">${l}</button>`).join('')}</div>
+      ${state.rows.length ? '' : '<p class="adm-msg">No comments here.</p>'}
+      ${state.rows.map(card).join('')}`;
+    view.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
+      state.status = b.dataset.status || null; render();
+    }));
+    view.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => act(b)));
+  }
+
+  function card(c) {
+    const who = c.as_official ? `OTS Ullu <span class="adm-meta">(by ${esc(c.author_name)})</span>` : esc(c.author_name || 'Unknown');
+    const hist = state.openHistory[c.id];
+    return `<div class="adm-card st-${esc(c.status)}">
+      <div class="adm-row">
+        <span class="adm-pill pill-${esc(c.status)}">${esc(c.status)}</span>
+        <strong>${who}</strong>
+        <span class="adm-meta">${esc(c.author_email || '')}${c.author_blocked ? ' · <span class="adm-err">blocked</span>' : ''}</span>
+      </div>
+      <div class="adm-meta" style="margin-top:4px">
+        #${c.id}${c.parent_id ? ` · reply to #${c.parent_id}` : ''} · ${esc(when(c.created_at))}
+        ${c.edited_at ? ` · edited ${esc(when(c.edited_at))}` : ''} · on
+        ${c.item_url ? `<a href="${esc(c.item_url)}" target="_blank" rel="noopener">${esc(c.item_title || c.item_id)}</a>` : esc(c.item_title || c.item_id)}
+      </div>
+      <div class="adm-body">${esc(c.body)}</div>
+      <div class="adm-row">
+        ${c.status === 'visible' ? `<button class="adm-btn" data-act="hidden" data-id="${c.id}">Hide</button>
+                                    <button class="adm-btn danger" data-act="removed" data-id="${c.id}">Remove</button>` : ''}
+        ${c.status === 'hidden' || c.status === 'removed' ? `<button class="adm-btn" data-act="visible" data-id="${c.id}">Restore</button>` : ''}
+        ${c.history_count > 1 ? `<button class="adm-btn" data-act="history" data-id="${c.id}">${hist ? 'Hide' : 'Show'} history (${c.history_count})</button>` : ''}
+        ${c.author_id && !c.as_official ? `<button class="adm-btn danger" data-act="block" data-user="${esc(c.author_id)}" data-blocked="${c.author_blocked}">
+          ${c.author_blocked ? 'Unblock user' : 'Block user'}</button>` : ''}
+      </div>
+      ${hist ? `<ol class="adm-history">${hist.map(h => `<li><strong>${esc(h.action)}</strong>
+        <span class="adm-meta">${esc(when(h.created_at))}${h.actor_name ? ' · ' + esc(h.actor_name) : ''}</span>
+        ${h.body != null ? `<pre>${esc(h.body)}</pre>` : ''}</li>`).join('')}</ol>` : ''}
+    </div>`;
+  }
+
+  async function act(b) {
+    const id = Number(b.dataset.id);
+    try {
+      if (b.dataset.act === 'history') {
+        state.openHistory[id] = state.openHistory[id] ? null : await call('admin_comment_history', { p_id: id });
+        return renderComments(document.getElementById('view'));
+      }
+      if (b.dataset.act === 'block') {
+        const blocking = b.dataset.blocked !== 'true';
+        if (blocking && !confirm('Block this user from posting any more comments? Existing comments stay as they are.')) return;
+        await call('admin_set_blocked', { p_user: b.dataset.user, p_blocked: blocking });
+        return render();
+      }
+      if (b.dataset.act === 'removed' && !confirm('Remove this comment from the site? It stays in this archive and can be restored.')) return;
+      await call('admin_set_comment_status', { p_id: id, p_status: b.dataset.act });
+      render();
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  sb.auth.onAuthStateChange(event => {
+    if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') setTimeout(start, 0);
+  });
+  start();
+})();
+</script>
+</body>
+</html>
