@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "90",
     "totalViews": "6331",
-    "videoCount": "131",
-    "updated": "2026-09-25T13:28:37.021359+00:00"
+    "videoCount": "132",
+    "updated": "2026-09-25T19:55:59.650830+00:00"
   },
   "engagement": {
-    "totalViews": 6341,
+    "totalViews": 6343,
     "totalLikes": 226,
-    "totalComments": 87,
-    "engagementRate": 4.94,
+    "totalComments": 88,
+    "engagementRate": 4.95,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/ziOuq3ZNjPs/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/T5LBPPPWeT8/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -70,6 +70,18 @@
     }
   ],
   "videos": [
+    {
+      "id": "T5LBPPPWeT8",
+      "title": "💥 𝗧𝗵𝗲 𝗦𝘁𝗿𝗶𝗸𝗲 𝗣𝗿𝗶𝗰𝗲 𝗙𝗮𝗹𝗹𝗮𝗰𝘆: 𝗪𝗵𝘆 𝗬𝗼𝘂’𝗿𝗲 𝗠𝗶𝘀𝗰𝗮𝗹𝗰𝘂𝗹𝗮𝘁𝗶𝗻𝗴 𝗦𝗵𝗼𝗿𝘁 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗥𝗶𝘀𝗸 📈",
+      "thumb": "https://i.ytimg.com/vi/T5LBPPPWeT8/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-09-25",
+      "india": true
+    },
     {
       "id": "6L_6bWe5mso",
       "title": "🚀 The 4 Doors to Wall Street: A US Investing Matrix for Indians | 🇮🇳➔🇺🇸 How to Buy US Stocks",
@@ -1600,7 +1612,7 @@
       "thumb": "https://i.ytimg.com/vi/sxmLg3pc5oA/maxresdefault.jpg",
       "playlist": "wealth-academy",
       "lang": "English",
-      "views": "25",
+      "views": "26",
       "likes": "2",
       "comments": "0",
       "published": "2026-04-10",
