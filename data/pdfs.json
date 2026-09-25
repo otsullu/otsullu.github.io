@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "great-lie-of-the-strike-price",
+      "file": "Measuring-Capital-at-Stake-Short-Options-Risk.pdf",
+      "title": "The Great Lie of the Strike Price: What Is Actually at Stake When You Sell an Option?",
+      "description": "A slide walkthrough of the Capital at Stake framework for short options. Ten positions on one stock (ORBD at $147.47) show why the strike price is the wrong measure of risk. For put sellers it overstates exposure more and more as the position wins; for call sellers it understates exposure as the stock runs past the strike. Covers the snapshot definition, the put bound MIN(Strike, MAX(0, 2 × Strike − Stock)), the call bound MAX(Stock, Strike), how the gap grows with distance, and what the metric is not (margin, max loss, cost basis, or a settlement forecast). Also covers why premium is left out, and how Capital at Stake becomes the denominator under Premium Per Day.",
+      "tags": ["options", "capital-at-stake", "short-options", "risk", "cash-secured puts", "covered calls"],
+      "date": "2026-09-25",
+      "featured": true
+    },
+    {
       "id": "ppd-framework",
       "file": "The_PPD_Framework.pdf",
       "title": "Premium Per Day (PPD): A Practitioner's Framework",
