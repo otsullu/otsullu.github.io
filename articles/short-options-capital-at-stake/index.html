@@ -529,13 +529,13 @@
 
       <p>It hasn't been a long road: about fourteen months and nearly 3,900 short-option trades, split between cash-secured puts and covered calls. The number isn't the point. The repetition is. Somewhere along the way, it does its work, and you start noticing when a number doesn't quite add up.</p>
 
-      <p>For me, that happened one afternoon when I looked at two SpaceX positions side by side, and the strike price stopped making sense.</p>
+      <p>For me, that happened one afternoon when I looked at two positions on the same stock side by side, and the strike price stopped making sense.</p>
 
       <p>If you've read my two articles on Premium Per Day, <a href="/articles/ppd-premium-per-day/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day</a> and <a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">PPD Part Two: Putting the Number to Work</a>, this is the other half of the picture. PPD measures what you collect, and it leaves capital out on purpose. This article is about the capital. And just as theta can look best at the very moment a position is at its worst, the strike price overstates what you have at stake in exactly the puts that are doing best.</p>
 
       <h2 class="article-section-heading">One Stock, One Day, Ten Positions</h2>
 
-      <p>Here's the setup. SpaceX (SPCX) is trading at <strong>$147.47</strong>. The options expire on <strong>October 23, 2026</strong>, 29 days away.</p>
+      <p>Here's the setup, using a hypothetical company, Orbital Dynamics (ORBD). It is trading at <strong>$147.47</strong>. The options expire on <strong>October 23, 2026</strong>, 29 days away.</p>
 
       <p>Now picture ten sellers. Five sell cash-secured puts and five sell covered calls, each at a different strike. Some strikes are far below the stock price, some are close to it, and some are far above it. When each trade was opened doesn't matter here. What matters is where the stock is today.</p>
 
@@ -581,7 +581,7 @@
       <div class="article-img-wrap">
         <img
           src="../../assets/img/articles/short-options-capital-at-stake/img-01-same-stock-opposite-error.jpg"
-          alt="Two panels, SpaceX at $147.47 and a $105 strike. Left, cash-secured put with stock above strike: a bracket marks the $42.47 built-in gain from strike to stock; the strike bar is $105 and the capital-at-stake bar is $62.53. Strike overstates a winning put. Right, covered call with stock above strike: a bracket marks the shares you'd hand over, worth $147.47; the strike bar is $105 and the capital-at-stake bar is $147.47. Strike understates an in-the-money call."
+          alt="Two panels, ORBD at $147.47 and a $105 strike. Left, cash-secured put with stock above strike: a bracket marks the $42.47 built-in gain from strike to stock; the strike bar is $105 and the capital-at-stake bar is $62.53. Strike overstates a winning put. Right, covered call with stock above strike: a bracket marks the shares you'd hand over, worth $147.47; the strike bar is $105 and the capital-at-stake bar is $147.47. Strike understates an in-the-money call."
           loading="lazy"
         />
         <p class="article-img-caption">Figure 1. Same stock. Opposite error.</p>
@@ -591,7 +591,7 @@
 
       <div class="article-table-wrap">
         <table class="article-table">
-          <caption>Cash-secured puts, SpaceX at $147.47</caption>
+          <caption>Cash-secured puts, ORBD at $147.47</caption>
           <thead>
             <tr>
               <th>Strike</th>
@@ -611,18 +611,18 @@
         </table>
       </div>
 
-      <p><strong>The best situation: the $105 put.</strong> SpaceX is about $42.50 above the strike. If this seller were assigned today, they'd buy at $105.00 and could sell at $147.47 right away. Their real exposure is <strong>$62.53</strong> per share, not $105.00. The strike-price method overstates what they have at stake by $42.47, about 40% of the strike.</p>
+      <p><strong>The best situation: the $105 put.</strong> ORBD is about $42.50 above the strike. If this seller were assigned today, they'd buy at $105.00 and could sell at $147.47 right away. Their real exposure is <strong>$62.53</strong> per share, not $105.00. The strike-price method overstates what they have at stake by $42.47, about 40% of the strike.</p>
 
       <p><strong>Closer to the money: $145 and $147.</strong> The stock is just above the strike, so there's a small cushion: $2.47 and $0.47. The strike method is off, but only slightly.</p>
 
-      <p><strong>The worst situation: the $190 put.</strong> SpaceX has fallen well below the strike. This seller would pay the full $190.00 for shares trading at $147.47. Here the strike price <em>is</em> the capital at stake, and the old method happens to be right. The $149 put, just past the line, is the same.</p>
+      <p><strong>The worst situation: the $190 put.</strong> ORBD has fallen well below the strike. This seller would pay the full $190.00 for shares trading at $147.47. Here the strike price <em>is</em> the capital at stake, and the old method happens to be right. The $149 put, just past the line, is the same.</p>
 
       <p>So for put sellers, <strong>the better the position is doing, the more the strike method overstates what you have at risk.</strong></p>
 
       <div class="article-img-wrap">
         <img
           src="../../assets/img/articles/short-options-capital-at-stake/img-02-put-sellers.jpg"
-          alt="Bar chart titled Put sellers: SpaceX at $147.47. Grey strike bars and navy capital-at-stake bars for five strikes: $105 strike, $62.53 at stake, overstated by $42.47 (40%); $145, $142.53; $147, $146.53; $149, $149.00; $190, $190.00."
+          alt="Bar chart titled Put sellers: ORBD at $147.47. Grey strike bars and navy capital-at-stake bars for five strikes: $105 strike, $62.53 at stake, overstated by $42.47 (40%); $145, $142.53; $147, $146.53; $149, $149.00; $190, $190.00."
           loading="lazy"
         />
         <p class="article-img-caption">Figure 2. Put sellers: the better the position, the more the strike overstates what is at risk.</p>
@@ -632,7 +632,7 @@
 
       <div class="article-table-wrap">
         <table class="article-table">
-          <caption>Covered calls, SpaceX at $147.47</caption>
+          <caption>Covered calls, ORBD at $147.47</caption>
           <thead>
             <tr>
               <th>Strike</th>
@@ -654,7 +654,7 @@
 
       <p>The covered calls are the mirror image.</p>
 
-      <p><strong>The most misleading situation: the $105 call.</strong> SpaceX has run far past the strike. The strike method says this seller has $105.00 at stake. But the shares they'd hand over are worth <strong>$147.47</strong> each. That's what they're really committing, and it's $42.47 more than the screen shows.</p>
+      <p><strong>The most misleading situation: the $105 call.</strong> ORBD has run far past the strike. The strike method says this seller has $105.00 at stake. But the shares they'd hand over are worth <strong>$147.47</strong> each. That's what they're really committing, and it's $42.47 more than the screen shows.</p>
 
       <p><strong>Near the money: $145 and $147.</strong> The shares are worth a little more than the strike, so the capital at stake is a little higher: $2.47 and $0.47.</p>
 
@@ -692,7 +692,7 @@
 
       <p><strong>It isn't a settlement forecast.</strong> Capital at stake is computed at a single instant and assumes assignment settles at that instant's stock price. In practice, an assignment or exercise notice can arrive a business day later (T+1), and the stock may have moved materially in between. The exposure you actually face can differ from the snapshot. Capital at stake is today's exposure, not tomorrow's.</p>
 
-      <p>One extreme worth knowing: if the stock rises to twice a put's strike or more (SpaceX at $210 or higher for the $105 put), nothing is left at stake at all. Assignment at that moment would come with a gain at least as large as the strike itself.</p>
+      <p>One extreme worth knowing: if the stock rises to twice a put's strike or more (ORBD at $210 or higher for the $105 put), nothing is left at stake at all. Assignment at that moment would come with a gain at least as large as the strike itself.</p>
 
       <h2 class="article-section-heading">Why I Leave the Premium Out</h2>
 
@@ -702,11 +702,11 @@
 
       <p><strong>Premium is what you earn, not what you risk.</strong> Capital at stake and premium do different jobs. PPD tracks the premium side; capital at stake tracks the capital side. When we get to returns, the premium goes on top of the fraction and capital at stake goes on the bottom. Subtract the premium from the capital first and you count it twice: once as income, and again as less exposure. Your return would look better than it really is.</p>
 
-      <p><strong>Premium-adjusted prices answer a different question.</strong> For a cash-secured put, strike minus premium is your break-even: the price below which you start losing money at expiry. For a covered call, strike plus premium is your effective selling price: the most you can get for your shares. Capital at stake tells you <em>what's on the line right now</em>. All of them matter, but they aren't the same number. Take the $105 put: its break-even sits a little below $105 and stays there however far SpaceX rises, yet what that seller really has at stake today is $62.53. The $105 call is the mirror image: if it was sold back when SpaceX was near $105, its effective selling price is a little above $105, yet the shares being handed over are worth $147.47.</p>
+      <p><strong>Premium-adjusted prices answer a different question.</strong> For a cash-secured put, strike minus premium is your break-even: the price below which you start losing money at expiry. For a covered call, strike plus premium is your effective selling price: the most you can get for your shares. Capital at stake tells you <em>what's on the line right now</em>. All of them matter, but they aren't the same number. Take the $105 put: its break-even sits a little below $105 and stays there however far ORBD rises, yet what that seller really has at stake today is $62.53. The $105 call is the mirror image: if it was sold back when ORBD was near $105, its effective selling price is a little above $105, yet the shares being handed over are worth $147.47.</p>
 
       <p><strong>Premium is already yours.</strong> Once it's collected, you keep it whatever the stock does. It doesn't grow or shrink what you still have exposed.</p>
 
-      <p><strong>Covered calls make this obvious.</strong> If SpaceX is at $147.47, the shares you'd hand over are worth $147.47, whatever you collected for the call.</p>
+      <p><strong>Covered calls make this obvious.</strong> If ORBD is at $147.47, the shares you'd hand over are worth $147.47, whatever you collected for the call.</p>
 
       <p>So the premium isn't ignored. It just has a different job: it's the return, and that's where it comes in.</p>
 
@@ -759,7 +759,7 @@
 
       <!-- Disclaimer -->
       <div class="disclaimer-box">
-        <p>Prices as of September 24, 2026. The trading period and trade count in each article are as of its publication date. They grow from article to article, so earlier pieces show smaller figures. Examples are illustrative and exclude premium, commissions, fees and taxes. This article is educational. It describes a position-level measure the author uses in personal trading. It does not constitute a recommendation to buy or sell any security, nor a claim that any particular result is repeatable. Short options can produce losses larger than the premium received. Traders should understand the product and the margin requirements at their broker before use.</p>
+        <p>Orbital Dynamics (ORBD) is a hypothetical company, and its prices are illustrative. The trading period and trade count in each article are as of its publication date. They grow from article to article, so earlier pieces show smaller figures. Examples are illustrative and exclude premium, commissions, fees and taxes. This article is educational. It describes a position-level measure the author uses in personal trading. It does not constitute a recommendation to buy or sell any security, nor a claim that any particular result is repeatable. Short options can produce losses larger than the premium received. Traders should understand the product and the margin requirements at their broker before use.</p>
       </div>
 
       <!-- Author card -->
