@@ -552,7 +552,7 @@
         <li><strong>Stock price:</strong> the last traded price of the stock right now. It moves.</li>
       </ul>
 
-      <p>It applies to single-leg cash-secured puts and covered calls that are already open. Spreads aren't covered here.</p>
+      <p>It applies to single-leg cash-secured puts and covered calls that are already open. Spreads aren't covered here. Once a position has expired (DTE below zero), capital at stake no longer applies: treat it as zero and leave it out of any averages, the same rule the <a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">PPD guide</a> uses for expired positions.</p>
 
       <p class="formula-label"><strong>For a cash-secured put,</strong> you've promised to buy shares at the strike.</p>
 
@@ -563,7 +563,7 @@
 
       <p class="formula-code">Capital at stake = MIN( Strike, MAX( 0, 2 × Strike − Stock price ) )</p>
 
-      <p>In words: never more than the strike, never less than zero, and in between, the strike minus the built-in gain.</p>
+      <p>In words: never more than the strike, never less than zero, and in between, the strike minus the built-in gain. Capital at stake can never read below zero, and a stock's price can never fall below zero either, so the worst case for a cash-secured put is always the full strike, never more.</p>
 
       <p class="formula-label"><strong>For a covered call,</strong> you've promised to hand over your shares at the strike.</p>
 
@@ -689,6 +689,8 @@
       <p><strong>It isn't your cost basis.</strong> For a covered call, what you paid for the shares doesn't enter into it. What matters is what they're worth today, because that's what you'd hand over. In my <a href="/articles/life360-covered-call-case-study/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Life360 case study</a>, the shares I bought at $102.64 fell 43.9%, while premium cut my net cost basis to $47.97. Neither number is what the shares are worth today.</p>
 
       <p><strong>It isn't fixed.</strong> It changes every time the stock moves, and that's the point. Check it again as the stock moves; it isn't a number you set once.</p>
+
+      <p><strong>It isn't a settlement forecast.</strong> Capital at stake is computed at a single instant and assumes assignment settles at that instant's stock price. In practice, an assignment or exercise notice can arrive a business day later (T+1), and the stock may have moved materially in between. The exposure you actually face can differ from the snapshot. Capital at stake is today's exposure, not tomorrow's.</p>
 
       <p>One extreme worth knowing: if the stock rises to twice a put's strike or more (SpaceX at $210 or higher for the $105 put), nothing is left at stake at all. Assignment at that moment would come with a gain at least as large as the strike itself.</p>
 
