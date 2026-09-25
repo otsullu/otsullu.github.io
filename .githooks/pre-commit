@@ -27,14 +27,17 @@ case "$cur" in
   "$ver"?) ver="${ver}$(printf '%s' "${cur#"$ver"}" | tr 'a-y' 'b-z')" ;;
 esac
 
-# Rewrite footer timestamp and the hand-authored asset versions.
-# pdf.min.js / pdf.worker.min.js are vendored and intentionally left alone.
-sed -E -i \
-  -e "s|(Last updated: ).*P[DS]T|\1${ts} ${abbr}|" \
-  -e "s|(style\.css\?v=)[0-9A-Za-z]+|\1${ver}|" \
-  -e "s|(js/app\.js\?v=)[0-9A-Za-z]+|\1${ver}|" \
-  -e "s|(js/feedback(-config)?\.js\?v=)[0-9A-Za-z]+|\1${ver}|g" \
-  index.html
+# Rewrite footer timestamp (homepage only).
+sed -E -i -e "s|(Last updated: ).*P[DS]T|\1${ts} ${abbr}|" index.html
 
-git add index.html
+# Version the hand-authored assets on every live page (homepage, articles,
+# privacy, admin), adding ?v= where missing, so no browser keeps a stale copy.
+# pdf.min.js / pdf.worker.min.js are vendored and intentionally left alone;
+# archived v1-v4 snapshots and india.html are not touched.
+pages=$(ls index.html privacy/index.html admin/index.html 2>/dev/null; find articles -name index.html 2>/dev/null)
+sed -E -i \
+  -e "s#(css/style\.css|js/app\.js|js/feedback\.js|js/feedback-config\.js)(\?v=[0-9A-Za-z]+)?\"#\1?v=${ver}\"#g" \
+  $pages
+
+git add $pages
 echo "pre-commit: stamped footer '${ts} ${abbr}' and asset version '${ver}'." >&2

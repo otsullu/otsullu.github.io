@@ -577,6 +577,13 @@
           if (kind === 'reply') { t.replyTo = null; t.replyDraft = ''; }
           else t.draft = '';
           refreshStats([t.item.id]);
+          // In the deck/podcast panel, a new comment or reply closes the panel.
+          if (t.inPanel) {
+            t.busy = false;
+            closePanel();
+            toast(kind === 'reply' ? 'Reply posted.' : 'Comment posted.');
+            return;
+          }
         }
         t.busy = false;
         await loadComments(t);
