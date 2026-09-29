@@ -301,6 +301,63 @@
     margin: 10px 0 0 !important;
     line-height: 1.5 !important;
   }
+
+  /* ── FIGURE 2: PAYOFF CHART ── */
+  .payoff-figure {
+    --pf-a: #2a78d6; --pf-b: #eb6834;
+    margin: 40px 0;
+    padding: 18px 18px 14px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  [data-theme="dark"] .payoff-figure { --pf-a: #3987e5; --pf-b: #d95926; }
+  .payoff-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.78rem; color: var(--fg-secondary); margin-bottom: 8px; }
+  .payoff-legend span, .pf-tip span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { display: inline-block; width: 16px; height: 0; border-top: 2px solid; }
+  .sw-a { border-color: var(--pf-a); border-top-style: dashed; }
+  .sw-b { border-color: var(--pf-b); }
+  .sw-prem { height: 10px; border: none; border-radius: 2px; background: color-mix(in srgb, var(--pf-b) 35%, transparent); }
+  .payoff-plot { position: relative; }
+  .payoff-plot svg { display: block; width: 100%; height: auto; overflow: visible; font-family: Inter, system-ui, sans-serif; }
+  .pf-grid line { stroke: var(--border); stroke-width: 1; }
+  .pf-zero { stroke: var(--fg-meta); stroke-width: 1; }
+  .pf-tick { font-size: 11px; fill: var(--fg-meta); font-variant-numeric: tabular-nums; }
+  .pf-axis { font-size: 12px; fill: var(--fg-secondary); font-weight: 600; }
+  .pf-strike { stroke: var(--fg-meta); stroke-width: 1; stroke-dasharray: 3 4; }
+  .pf-prem { fill: var(--pf-b); fill-opacity: 0.35; }
+  .pf-sold { fill: var(--pf-a); fill-opacity: 0.12; }
+  .pf-a { stroke: var(--pf-a); stroke-width: 2; stroke-dasharray: 7 4; fill: none; }
+  .pf-b { stroke: var(--pf-b); stroke-width: 2.5; fill: none; stroke-linejoin: round; }
+  .pf-label, .pf-note, .pf-value { paint-order: stroke; stroke: var(--bg-elev); stroke-width: 4px; stroke-linejoin: round; }
+  .pf-label { font-size: 13px; font-weight: 600; fill: var(--fg); }
+  .pf-note { font-size: 12px; fill: var(--fg-secondary); }
+  .pf-value { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+  .pf-leader { stroke: var(--fg-meta); stroke-width: 1; }
+  .pf-dot { stroke: var(--bg-elev); stroke-width: 2; }
+  .pf-dot-a { fill: var(--pf-a); }
+  .pf-dot-b { fill: var(--pf-b); }
+  .pf-hover { display: none; pointer-events: none; }
+  .pf-cross { stroke: var(--fg-meta); stroke-width: 1; }
+  .pf-hit { fill: transparent; cursor: crosshair; touch-action: pan-y; }
+  .pf-tip {
+    display: none; position: absolute; top: 0; transform: translateX(-50%);
+    flex-direction: column; gap: 2px; pointer-events: none;
+    padding: 6px 10px; font-size: 0.78rem; line-height: 1.4;
+    background: var(--bg); color: var(--fg); border: 1px solid var(--border);
+    border-radius: var(--r-md); box-shadow: var(--shadow-md); white-space: nowrap;
+  }
+  .payoff-table { margin-top: 8px; font-size: 0.8rem; color: var(--fg-meta); }
+  .payoff-table summary { cursor: pointer; }
+  .payoff-table .article-table-wrap { margin: 10px 0 4px; }
+  .payoff-figure .article-img-caption { margin-top: 12px !important; }
+  @media (max-width: 560px) {
+    .payoff-figure { padding: 14px 8px 12px; }
+    .pf-tick { font-size: 15px; }
+    .pf-axis { font-size: 15px; }
+    .pf-label { font-size: 15px; }
+    .pf-note, .pf-value { font-size: 14px; }
+  }
   .cas-hl { background: var(--accent-tint-10); font-weight: 600; }
   .formula-label { margin-bottom: 0.4em !important; }
   .formula-code {
@@ -443,7 +500,10 @@
 
   @media print {
     .article-body { max-width: 100% !important; }
-    .article-body .article-img-wrap img { width: auto !important; max-width: 100% !important; max-height: 380px !important; margin: 0 auto !important; }
+    .payoff-table, .pf-hover, .pf-tip { display: none !important; }
+    .payoff-figure { padding: 10px 14px !important; margin: 16px 0 !important; }
+    .payoff-plot svg { max-height: 330px; }
+    .article-body .article-img-wrap img { width: auto !important; max-width: 100% !important; max-height: 320px !important; margin: 0 auto !important; }
     .article-table-wrap { overflow: visible !important; }
     .article-table { font-size: 0.7rem !important; }
     .article-table th, .article-table td { padding: 5px 8px !important; }
@@ -451,7 +511,7 @@
     .article-table-wrap, .article-table tr {
       break-inside: avoid !important; page-break-inside: avoid !important;
     }
-    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box, .article-references {
+    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box, .article-references, .payoff-figure {
       break-inside: avoid !important; page-break-inside: avoid !important;
     }
   }
@@ -584,14 +644,109 @@
 
       <p>The stock is still stock. The option is still an option. Their prices move for different reasons: the share price, time, implied volatility, rates. Binding them together does not make them the same instrument. It creates a third thing: a combined payoff with a ceiling.</p>
 
-      <div class="article-img-wrap">
-        <img
-          src="../../assets/img/articles/what-really-changes-when-you-trade-options/img-02-covered-call-payoff.jpg"
-          alt="Payoff at expiration chart. Horizontal axis: underlying price at expiration, with the strike marked. Vertical axis: payoff. A blue line rises without limit. An orange line rises with it, then turns flat near the strike. An amber band sits beneath the flat orange line."
-          loading="lazy"
-        />
-        <p class="article-img-caption">Figure 2. Payoff at expiration: Blue is Universe A, uncapped. Orange is Universe B, rising with the stock, then flat at the strike. The amber band is the premium.</p>
-      </div>
+      <figure class="payoff-figure" id="payoffFigure">
+        <div class="payoff-legend" aria-hidden="true">
+          <span><i class="sw sw-a"></i>Universe A · 100 shares</span>
+          <span><i class="sw sw-b"></i>Universe B · 100 shares + sold $120 call</span>
+          <span><i class="sw sw-prem"></i>Premium</span>
+        </div>
+        <div class="payoff-plot">
+          <svg viewBox="0 0 520 360" role="img" aria-labelledby="payoffTitle payoffDesc">
+            <title id="payoffTitle">Profit or loss per share at expiration: stock alone versus covered call</title>
+            <desc id="payoffDesc">Shares bought at $100. The stock-only line rises one for one with no ceiling. The covered-call line, with a $120 strike and an illustrative $4 premium, sits $4 above the stock line up to the strike, then stays flat at a $24 profit. The lines cross at $124. At $150 the stock alone is up $50 and the covered call is up $24.</desc>
+            <!-- grid + y ticks -->
+            <g class="pf-grid">
+              <line x1="52" x2="504" y1="20" y2="20"/><line x1="52" x2="504" y1="77.6" y2="77.6"/>
+              <line x1="52" x2="504" y1="135.2" y2="135.2"/><line x1="52" x2="504" y1="250.4" y2="250.4"/>
+              <line x1="52" x2="504" y1="308" y2="308"/>
+            </g>
+            <line class="pf-zero" x1="52" x2="504" y1="192.8" y2="192.8"/>
+            <g class="pf-tick" text-anchor="end">
+              <text x="46" y="24">+$60</text><text x="46" y="81.6">+$40</text><text x="46" y="139.2">+$20</text>
+              <text x="46" y="196.8">$0</text><text x="46" y="254.4">−$20</text><text x="46" y="312">−$40</text>
+            </g>
+            <g class="pf-tick" text-anchor="middle">
+              <text x="52" y="328">$60</text><text x="142.4" y="328">$80</text><text x="232.8" y="328">$100</text>
+              <text x="323.2" y="328">$120</text><text x="413.6" y="328">$140</text><text x="504" y="328">$160</text>
+            </g>
+            <text class="pf-axis" x="278" y="352" text-anchor="middle">Stock price at expiration</text>
+            <text class="pf-axis" transform="translate(13,164) rotate(-90)" text-anchor="middle">Profit / loss per share</text>
+            <!-- strike -->
+            <line class="pf-strike" x1="323.2" x2="323.2" y1="20" y2="308"/>
+            <text class="pf-note" x="317" y="34" text-anchor="end">Strike $120</text>
+            <!-- regions -->
+            <polygon class="pf-prem" points="52,296.48 323.2,123.68 341.28,123.68 52,308"/>
+            <polygon class="pf-sold" points="341.28,123.68 504,20 504,123.68"/>
+            <!-- series -->
+            <line class="pf-a" x1="52" y1="308" x2="504" y2="20"/>
+            <polyline class="pf-b" points="52,296.48 323.2,123.68 504,123.68"/>
+            <!-- direct labels -->
+            <text class="pf-label" x="400" y="74" text-anchor="end">A: stock alone, no ceiling</text>
+            <text class="pf-label" x="498" y="144" text-anchor="end">B: flat above the strike</text>
+            <text class="pf-note" x="498" y="106" text-anchor="end">Upside sold</text>
+            <line class="pf-leader" x1="168" y1="228" x2="186" y2="252"/>
+            <text class="pf-note" x="190" y="264">Premium: B sits $4 above A</text>
+            <!-- the $150 example -->
+            <circle class="pf-dot pf-dot-a" cx="458.8" cy="48.8" r="5"/>
+            <circle class="pf-dot pf-dot-b" cx="458.8" cy="123.68" r="5"/>
+            <text class="pf-value" x="450" y="44" text-anchor="end">+$50</text>
+            <text class="pf-value" x="452" y="164" text-anchor="middle">+$24 at $150</text>
+            <!-- hover layer -->
+            <g class="pf-hover" aria-hidden="true">
+              <line class="pf-cross" x1="0" x2="0" y1="20" y2="308"/>
+              <circle class="pf-dot pf-dot-a" r="5"/>
+              <circle class="pf-dot pf-dot-b" r="5"/>
+            </g>
+            <rect class="pf-hit" x="52" y="20" width="452" height="288"/>
+          </svg>
+          <div class="pf-tip" role="status" aria-live="polite"></div>
+        </div>
+        <details class="payoff-table">
+          <summary>Show as table</summary>
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead><tr><th>Stock at expiration</th><th>A: stock alone</th><th>B: covered call</th><th>B minus A</th></tr></thead>
+              <tbody>
+                <tr><td class="num">$80</td><td class="num">−$20</td><td class="num">−$16</td><td class="num">+$4</td></tr>
+                <tr><td class="num">$100</td><td class="num">$0</td><td class="num">+$4</td><td class="num">+$4</td></tr>
+                <tr><td class="num">$120</td><td class="num">+$20</td><td class="num">+$24</td><td class="num">+$4</td></tr>
+                <tr><td class="num">$124</td><td class="num">+$24</td><td class="num">+$24</td><td class="num">$0</td></tr>
+                <tr><td class="num">$150</td><td class="num">+$50</td><td class="num">+$24</td><td class="num">−$26</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <figcaption class="article-img-caption">Figure 2. Profit or loss per share at expiration, for shares bought at $100. Blue is Universe A, uncapped. Orange is Universe B, rising with the stock, then flat at the $120 strike. The shaded strip between them is the premium, $4 here for illustration. Above $124, A pulls ahead: that is the upside B sold for the premium.</figcaption>
+      </figure>
+      <script>
+      (function(){
+        var fig = document.getElementById('payoffFigure');
+        if (!fig) return;
+        var svg = fig.querySelector('svg'), hit = fig.querySelector('.pf-hit'), hov = fig.querySelector('.pf-hover');
+        var cross = hov.querySelector('.pf-cross'), da = hov.querySelector('.pf-dot-a'), db = hov.querySelector('.pf-dot-b');
+        var tip = fig.querySelector('.pf-tip'), plot = fig.querySelector('.payoff-plot');
+        function y(v){ return 20 + (60 - v) * 2.88; }
+        function fmt(v){ return (v > 0 ? '+$' : v < 0 ? '−$' : '$') + Math.abs(v); }
+        function show(evt){
+          var pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY;
+          var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+          var price = Math.round(60 + (Math.min(504, Math.max(52, p.x)) - 52) / 4.52);
+          var x = 52 + (price - 60) * 4.52, a = price - 100, b = Math.min(price, 120) - 100 + 4;
+          cross.setAttribute('x1', x); cross.setAttribute('x2', x);
+          da.setAttribute('cx', x); da.setAttribute('cy', y(a));
+          db.setAttribute('cx', x); db.setAttribute('cy', y(b));
+          hov.style.display = 'block';
+          tip.innerHTML = '<strong>Stock $' + price + '</strong><span><i class="sw sw-a"></i>A ' + fmt(a) + '</span><span><i class="sw sw-b"></i>B ' + fmt(b) + '</span>';
+          var r = plot.getBoundingClientRect(), left = (x / 520) * r.width;
+          tip.style.left = Math.min(Math.max(left, 70), r.width - 70) + 'px';
+          tip.style.display = 'flex';
+        }
+        function hide(){ hov.style.display = 'none'; tip.style.display = 'none'; }
+        hit.addEventListener('pointermove', show);
+        hit.addEventListener('pointerdown', show);
+        hit.addEventListener('pointerleave', hide);
+      })();
+      </script>
 
       <h2 class="article-section-heading">The Myth of "Lost Upside"</h2>
 
@@ -608,10 +763,10 @@
       <div class="article-img-wrap">
         <img
           src="../../assets/img/articles/what-really-changes-when-you-trade-options/img-03-lease-with-purchase-option.jpg"
-          alt="One hand holds out a house key tagged $250,000 while another hand offers a stack of banknotes across a wooden table. The outline of a house glows in the background."
+          alt="One hand holds out a house key tagged $250,000, the agreed price, while another hand offers a stack of banknotes, the payment for the right. The outline of a house glows in the background."
           loading="lazy"
         />
-        <p class="article-img-caption">Figure 3. Lease with a purchase option: You keep the house. You sell a defined right at a defined price, for a defined payment. That is closer to a covered call than a simple swap of assets.</p>
+        <p class="article-img-caption">Figure 3. A defined right at a defined price: You keep the house. The tag is the price the buyer may pay later; the cash is what they pay now for that right. That is closer to a covered call than a simple swap of assets.</p>
       </div>
 
       <h2 class="article-section-heading">Investor and Trader Are Not Interchangeable</h2>
@@ -704,6 +859,12 @@
         <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
         <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
         <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about the rules that actually govern their positions.</p>
+      </div>
+
+      <!-- Credits -->
+      <div class="article-meta-section">
+        <h3>Credits</h3>
+        <p>Article illustrations (Figures 1 and 3) were created using Grok Imagine (xAI). Figure 2 was drawn for this article from the worked example.</p>
       </div>
 
       <!-- Legal Disclaimer -->
