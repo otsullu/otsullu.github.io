@@ -616,9 +616,9 @@
 
       <p>The Options Clearing Corporation, the central clearinghouse for U.S. listed options, defines an option this way: "An option is a financial contract between a buyer (holder) and a seller (writer) that gives the buyer the right, but not the obligation, to buy or sell a specified amount of an underlying asset at a predetermined price within a set time frame." A call gives the right to buy. A put gives the right to sell. The agreed-upon price is the exercise price, or strike. The price the buyer pays and the seller receives is the premium. The last date the option can be exercised is the expiration date, after which the contract ceases to exist.</p>
 
-      <p>Most listed options carry standardized terms: the underlying interest, the expiration date, the exercise price, whether the option is a call or a put, whether it is physical delivery or cash-settled, the multiplier, the exercise style, automatic exercise provisions, and adjustment provisions. Options with identical standardized terms are identical and form an options series. That standardization is what makes a liquid secondary market possible, so holders and writers can close out positions by offsetting trades.</p>
+      <p>Most listed options carry standardized terms: the underlying interest, the expiration date, the exercise price, whether the option is a call or a put, whether it is physical delivery or cash-settled, the multiplier, the exercise style, automatic exercise provisions, and adjustment provisions. Options with identical standardized terms are identical and form an options series. That standardization is what makes a liquid secondary market possible, so holders and writers can close out positions by offsetting trades, although a liquid market is not guaranteed for every option at every moment.</p>
 
-      <p>The risks are real and specific. An option is a wasting asset. It can expire worthless, and the holder loses the entire premium paid. A writer of a covered call forgoes the appreciation of the underlying above the strike, yet continues to bear the risk of a decline in the shares. Assignment, the process by which a writer is required to fulfill the contract, can occur at any time while the option is exercisable. These are not side effects. They are the terms of the contract.</p>
+      <p>The risks are real and specific. An option is a wasting asset. It can expire worthless, and the holder loses the entire premium paid. A writer of a covered call forgoes the appreciation of the underlying above the strike, yet continues to bear the risk of a decline in the shares. Assignment, the process by which a writer is required to fulfill the contract, can occur at any time while an American-style option, the usual style for listed stock options, is exercisable. These are not side effects. They are the terms of the contract.</p>
 
       <p class="source-note">The quoted definition is from the Options Clearing Corporation's <em>Options 101</em> primer. The rest of this section is drawn from the OCC's <em>Characteristics and Risks of Standardized Options</em>, also called the Options Disclosure Document.</p>
 
@@ -725,7 +725,7 @@
             </table>
           </div>
         </details>
-        <figcaption class="article-img-caption">Figure 2. Profit or loss per share at expiration, for shares bought at $100. Blue is Universe A, uncapped. Orange is Universe B: the same shares with a $120 call sold for an illustrative $4 premium. Below the strike, the orange strip is that premium: B sits $4 above A. Above the strike, B stays flat at +$24 and the blue area is the upside sold. At $150, A is up $50 and B is up $24: the $30 above the strike went to the call buyer, and $4 of it came back as premium.</figcaption>
+        <figcaption class="article-img-caption">Figure 2. Profit or loss per share at expiration, for shares bought at $100. Blue is Universe A, uncapped. Orange is Universe B: the same shares with a $120 call sold for an illustrative $4 premium. Below the strike, the orange strip is that premium: B sits $4 above A. Above the strike, B stays flat at +$24 and the blue area is the upside sold. At $150, A is up $50 and B is up $24. The $30 above the strike went to the call buyer; the $4 premium, collected up front, offsets part of it, leaving a $26 gap.</figcaption>
       </figure>
       <script>
       (function(){
@@ -775,7 +775,7 @@
           alt="One hand holds out a house key tagged $250,000, the agreed price, while another hand offers a stack of banknotes, the payment for the right. The outline of a house glows in the background."
           loading="lazy"
         />
-        <p class="article-img-caption">Figure 3. A defined right at a defined price: You keep the house. The tag is the price the buyer may pay later; the cash is what they pay now for that right. That is closer to a covered call than a simple swap of assets.</p>
+        <p class="article-img-caption">Figure 3. A defined right at a defined price: You keep the house unless the buyer uses the right. The tag is the price the buyer may pay later; the cash is what they pay now for that right. That is closer to a covered call than a simple swap of assets.</p>
       </div>
 
       <h2 class="article-section-heading">Investor and Trader Are Not Interchangeable</h2>
