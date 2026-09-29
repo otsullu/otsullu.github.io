@@ -153,7 +153,7 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
-    title: 'Apples, Oranges, Gold and Silver',
+    title: 'What Really Changes When You Trade Options',
     excerpt: 'Sell a covered call, watch the stock run, and someone says you "lost the upside." But a stock and a stock-plus-sold-call are different instruments with different terms, payoffs and clocks. What a derivative really is, what changes when you write the call, and four questions to ask before judging the outcome.',
     series: 'Options Education · Covered Calls',
     url: '/articles/what-really-changes-when-you-trade-options/',
