@@ -6,35 +6,35 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day | OTS Ullu</title>
-  <meta name="description" content="A practitioner's definition of Premium Per Day (PPD) for short option positions: why theta and daily-decay columns lie about what you're actually collecting, the two-case formula that stays honest whether a position is winning or losing, and how to use it to rank and manage short options." />
+  <title>Apples, Oranges, Gold and Silver | OTS Ullu</title>
+  <meta name="description" content="Why selling a covered call doesn't &quot;lose the upside&quot;: it moves you from owning a stock to holding a different instrument with its own terms, payoff and clock. What a derivative is, what really changes, and four questions to ask before judging the outcome." />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day" />
-  <meta property="og:description" content="A practitioner's definition of Premium Per Day (PPD) for short option positions: why theta and daily-decay columns lie about what you're actually collecting, the two-case formula that stays honest whether a position is winning or losing, and how to use it to rank and manage short options." />
+  <meta property="og:title" content="Apples, Oranges, Gold and Silver" />
+  <meta property="og:description" content="Why selling a covered call doesn't &quot;lose the upside&quot;: it moves you from owning a stock to holding a different instrument with its own terms, payoff and clock. What a derivative is, what really changes, and four questions to ask before judging the outcome." />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://otsullu.com/articles/ppd-premium-per-day/" />
-  <meta property="og:image" content="https://otsullu.com/assets/img/articles/ppd-premium-per-day/img-02-theta-vs-ppd-chart.jpg" />
+  <meta property="og:url" content="https://otsullu.com/articles/what-really-changes-when-you-trade-options/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/what-really-changes-when-you-trade-options/img-01-two-universes.jpg" />
   <meta property="article:author" content="Sam Vishwas" />
   <meta property="article:section" content="Options Education" />
-  <meta property="article:tag" content="PPD, Premium Per Day, Theta, Short Options, Cash-Secured Puts, Covered Calls, Options KPI" />
+  <meta property="article:tag" content="Covered Calls, Derivatives, Options Basics, Opportunity Cost, Assignment, Payoff Diagrams" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day" />
-  <meta name="twitter:description" content="A practitioner's definition of Premium Per Day (PPD) for short option positions: why theta and daily-decay columns lie about what you're actually collecting, the two-case formula that stays honest whether a position is winning or losing." />
-  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/ppd-premium-per-day/img-02-theta-vs-ppd-chart.jpg" />
+  <meta name="twitter:title" content="Apples, Oranges, Gold and Silver" />
+  <meta name="twitter:description" content="Why selling a covered call doesn't &quot;lose the upside&quot;: it moves you from owning a stock to holding a different instrument with its own terms, payoff and clock. What a derivative is, what really changes, and four questions to ask before judging the outcome." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/what-really-changes-when-you-trade-options/img-01-two-universes.jpg" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://otsullu.com/articles/ppd-premium-per-day/" />
+  <link rel="canonical" href="https://otsullu.com/articles/what-really-changes-when-you-trade-options/" />
 
   <!-- Schema.org Article -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day",
-    "description": "A practitioner's definition of Premium Per Day (PPD) for short option positions: why theta and daily-decay columns lie about what you're actually collecting, the two-case formula that stays honest whether a position is winning or losing, and how to use it to rank and manage short options.",
+    "headline": "Apples, Oranges, Gold and Silver",
+    "description": "Why selling a covered call doesn't \"lose the upside\": it moves you from owning a stock to holding a different instrument with its own terms, payoff and clock. What a derivative is, what really changes, and four questions to ask before judging the outcome.",
     "author": {
       "@type": "Person",
       "name": "Sam Vishwas",
@@ -56,7 +56,7 @@
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
       {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
-      {"@type": "ListItem", "position": 3, "name": "PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day"}
+      {"@type": "ListItem", "position": 3, "name": "Apples, Oranges, Gold and Silver"}
     ]
   }
   </script>
@@ -218,6 +218,25 @@
     color: var(--fg);
     margin-bottom: 0.8em;
   }
+  .article-body ol {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+    list-style: decimal;
+  }
+  .article-body ol li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.6em;
+  }
+  .article-body ol li::marker { color: var(--accent); font-weight: 700; }
+  .source-note {
+    font-size: 0.85rem !important;
+    font-style: italic;
+    color: var(--fg-meta) !important;
+    padding-left: 14px;
+    border-left: 2px solid var(--border);
+  }
   .article-body ul li strong {
     color: var(--fg);
   }
@@ -275,13 +294,16 @@
     display: block;
     box-shadow: var(--shadow-md);
   }
-  .ppd-formula-label {
-    font-style: italic;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 4px;
+  .article-img-caption {
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    text-align: center;
+    margin: 10px 0 0 !important;
+    line-height: 1.5 !important;
   }
-  .ppd-formula-code {
+  .cas-hl { background: var(--accent-tint-10); font-weight: 600; }
+  .formula-label { margin-bottom: 0.4em !important; }
+  .formula-code {
     font-family: 'SFMono-Regular', Consolas, monospace;
     font-weight: 700;
     color: var(--fg);
@@ -421,6 +443,7 @@
 
   @media print {
     .article-body { max-width: 100% !important; }
+    .article-body .article-img-wrap img { width: auto !important; max-width: 100% !important; max-height: 380px !important; margin: 0 auto !important; }
     .article-table-wrap { overflow: visible !important; }
     .article-table { font-size: 0.7rem !important; }
     .article-table th, .article-table td { padding: 5px 8px !important; }
@@ -428,7 +451,7 @@
     .article-table-wrap, .article-table tr {
       break-inside: avoid !important; page-break-inside: avoid !important;
     }
-    .article-img-wrap, .pull-quote, .example-callout, .author-card, .disclaimer-box {
+    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box, .article-references {
       break-inside: avoid !important; page-break-inside: avoid !important;
     }
   }
@@ -483,10 +506,10 @@
         <span class="breadcrumb-sep" aria-hidden="true">›</span>
         <a href="/articles/">Articles</a>
         <span class="breadcrumb-sep" aria-hidden="true">›</span>
-        <a href="/articles/ppd-premium-per-day/" aria-current="page">PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day</a>
+        <a href="/articles/what-really-changes-when-you-trade-options/" aria-current="page">Apples, Oranges, Gold and Silver</a>
       </nav>
       <button type="button" class="pdf-share-btn article-share-btn"
-              data-share-url="https://otsullu.com/articles/ppd-premium-per-day/"
+              data-share-url="https://otsullu.com/articles/what-really-changes-when-you-trade-options/"
               title="Copy a shareable link to this article"
               aria-label="Copy a shareable link to this article">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -496,188 +519,167 @@
 
     <!-- Article header -->
     <header class="article-header">
-      <h1 class="article-title">PPD: A Cleaner Way to Measure What You're Actually Collecting Per Day</h1>
+      <h1 class="article-title">Apples, Oranges, Gold and Silver</h1>
       <p class="article-lede">
-        A Practitioner's Definition of Premium Per Day (PPD) for Short Option Positions
+        A simpler way to understand what really changes when you trade options
       </p>
       <div class="article-meta">
         <span><strong><a href="https://www.linkedin.com/in/samvishwas/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;">Sam Vishwas</a></strong></span>
         <span class="article-meta-sep" aria-hidden="true">·</span>
         <span>Options Education</span>
         <span class="article-meta-sep" aria-hidden="true">·</span>
-        <span>Premium Per Day (PPD)</span>
+        <span>Covered Calls</span>
         <span class="article-meta-sep" aria-hidden="true">·</span>
-        <span>September 1, 2026</span>
+        <span>September 29, 2026</span>
       </div>
     </header>
 
     <!-- Article body -->
     <article class="article-body">
 
-      <p>I have executed more than 3,700 short-option trades over the past thirteen months, split between cash-secured puts and covered calls. I kept encountering the same analytical blind spot. Traders instinctively reach for theta, assuming daily decay will reveal what they are collecting per day. It does not. Theta tracks the option's current market value, and current market value is different from premium collected.</p>
+      <p>There is a recurring theme in options discussions that has always bothered me. Someone sells a covered call on a stock they own. The stock subsequently rises sharply. The conversation becomes: "You gave up the upside." Then comes the next question: "Was the option premium enough to compensate you for the opportunity cost of that lost upside?"</p>
 
-      <p>I needed something simpler: a number that would tell me, every day, how much premium I was actually collecting on a given position, without factoring in capital, efficiency, or hedging math. So, I built PPD, or Premium Per Day, and I have used it on every trade since.</p>
+      <p>It sounds reasonable. But we are starting the discussion from the wrong place, comparing two entirely different financial instruments and treating the variance in their outcomes as though something went wrong. Before we can judge any outcome, we need to understand what we are actually trading. That is what this piece is about.</p>
 
-      <p>Before building this metric, I searched for a published treatment at this level of practical detail and found little. The closest is Markus Heitkoetter's piece on PPD, <a href="https://tinyurl.com/y7jt2bt7" target="_blank" rel="noopener">"When to Take Profits on Options: Let Options Expire? Take Profits Early?"</a>, which is worth reading if you have not seen it. What follows is how I define the term.</p>
+      <h2 class="article-section-heading">What a Derivative Actually Is</h2>
 
-      <h2 class="article-section-heading">The Problem</h2>
+      <p>A derivative is a financial contract whose value is derived from, and depends on, an underlying asset. The underlying is the base: a stock, an ETF, an index, a currency. The derivative is built on top of it. It does not replace the base. It references it.</p>
 
-      <p>Every short-option trader eventually asks the same question: how much am I collecting per day on this position? The usual answers, theta, daily decay, a column that divides today's mark by days remaining, all share one weakness: they track the option's current market value, not what was actually collected. That distinction is invisible when a trade is going well. It becomes costly the moment the trade turns.</p>
+      <p>The Options Clearing Corporation, the central clearinghouse for U.S. listed options, defines an option this way: "An option is a financial contract between a buyer (holder) and a seller (writer) that gives the buyer the right, but not the obligation, to buy or sell a specified amount of an underlying asset at a predetermined price within a set time frame." A call gives the right to buy. A put gives the right to sell. The agreed-upon price is the exercise price, or strike. The price the buyer pays and the seller receives is the premium. The last date the option can be exercised is the expiration date, after which the contract ceases to exist.</p>
 
-      <p>Consider a cash-secured put sold for one dollar. A week later, the stock drops and the option is now worth a dollar fifty. Daily theta at that moment might read fifteen cents a day, the highest reading of the week, suggesting you are earning more than ever. You are not; you are losing. Theta describes how the option's price moves with time, not how much premium you collected. It rises exactly when your position is at its worst because it is tracking the mark, not your collection. That is the underlying gap: the Greeks describe the option's behavior, not what you have actually taken in.</p>
+      <p>Most listed options carry standardized terms: the underlying interest, the expiration date, the exercise price, whether the option is a call or a put, whether it is physical delivery or cash-settled, the multiplier, the exercise style, automatic exercise provisions, and adjustment provisions. Options with identical standardized terms are identical and form an options series. That standardization is what makes a liquid secondary market possible, so holders and writers can close out positions by offsetting trades.</p>
 
-      <h2 class="article-section-heading">The Four Inputs</h2>
+      <p>The risks are real and specific. An option is a wasting asset. It can expire worthless, and the holder loses the entire premium paid. A writer of a covered call forgoes the appreciation of the underlying above the strike, yet continues to bear the risk of a decline in the shares. Assignment, the process by which a writer is required to fulfill the contract, can occur at any time while the option is exercisable. These are not side effects. They are the terms of the contract.</p>
 
-      <p>PPD relies on only four figures, already on the trade ticket. Keep the units consistent, per share or per contract, never mixed.</p>
+      <p class="source-note">Drawn from the Options Clearing Corporation's <em>Characteristics and Risks of Standardized Options</em>, also called the Options Disclosure Document.</p>
+
+      <h2 class="article-section-heading">Every Instrument Lives in Its Own Universe</h2>
+
+      <p>Every instrument lives in its own universe. The stock has one. The option has another. Each has its own rules, its own payoff, its own clock. You choose which universe to inhabit, and once you have chosen, you do not borrow the scorecard from the other. You do not judge one universe by the rules of the other.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/what-really-changes-when-you-trade-options/img-01-two-universes.jpg"
+          alt="Two planets separated by a vertical line of light. On the left, a pale blue planet beneath a share certificate. On the right, a darker planet beneath a contract document with a payoff curve and a strike marker labelled K."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 1. Two universes: Universe A holds the stock. Universe B holds the contract. The line between them is the point of the article.</p>
+      </div>
+
+      <h2 class="article-section-heading">Universe A: The Underlying</h2>
+
+      <p>You own 100 shares of XYZ. That is Universe A.</p>
+
+      <p>The asset can rise, fall, or go nowhere. Nobody holds a contractual right to take it from you at a pre-agreed price on a pre-agreed date. If XYZ goes from $100 to $150, that $50 is yours. That is not a strategy. It is the nature of unencumbered ownership.</p>
+
+      <h2 class="article-section-heading">Universe B: The Derivative Structure</h2>
+
+      <p>Now you keep the same 100 shares and sell a $120 call. You have entered Universe B.</p>
+
+      <p>You did not sprinkle "extra income" onto the old position. You built a new one: stock plus a sold call. The strike is a binding, time-bounded claim on the shares. In exchange for that claim, and the risk of assignment, you receive a premium.</p>
+
+      <div class="pull-quote">
+        <p>The premium is not a bonus. It is the market price of the obligation you sold.</p>
+      </div>
+
+      <p>The stock is still stock. The option is still an option. Their prices move for different reasons: the share price, time, implied volatility, rates. Binding them together does not make them the same instrument. It creates a third thing: a combined payoff with a ceiling.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/what-really-changes-when-you-trade-options/img-02-covered-call-payoff.jpg"
+          alt="Payoff at expiration chart. Horizontal axis: underlying price at expiration, with the strike marked. Vertical axis: payoff. A blue line rises without limit. An orange line rises with it, then turns flat near the strike. An amber band sits beneath the flat orange line."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 2. Payoff at expiration: Blue is Universe A, uncapped. Orange is Universe B, rising with the stock, then flat at the strike. The amber band is the premium.</p>
+      </div>
+
+      <h2 class="article-section-heading">The Myth of "Lost Upside"</h2>
+
+      <p>XYZ goes to $150. Someone says you "lost $30 of upside."</p>
+
+      <p>Compared with what?</p>
+
+      <p>Compared with Universe A, yes. The paths diverge. That is not evidence that the covered call failed. It is evidence you chose Universe B.</p>
+
+      <p>We do not talk this way about ordinary contracts. If you rent your house for a year, and sale prices in the neighborhood jump 20 percent, you did not "lose the upside of living in an empty house you could have flipped next month." You sold occupancy for rent. Gold and silver make the same point in another register: if you exchange one for the other, later performance is not a refund claim. Different assets. Different terms.</p>
+
+      <p>A covered call is closer to the lease than to the swap. You still own the shares. You sold a slice of their future, the appreciation above the strike, for a defined window, and you were paid for that slice. Derived from the stock is not identical to the stock.</p>
+
+      <div class="article-img-wrap">
+        <img
+          src="../../assets/img/articles/what-really-changes-when-you-trade-options/img-03-lease-with-purchase-option.jpg"
+          alt="One hand holds out a house key tagged $250,000 while another hand offers a stack of banknotes across a wooden table. The outline of a house glows in the background."
+          loading="lazy"
+        />
+        <p class="article-img-caption">Figure 3. Lease with a purchase option: You keep the house. You sell a defined right at a defined price, for a defined payment. That is closer to a covered call than a simple swap of assets.</p>
+      </div>
+
+      <h2 class="article-section-heading">Investor and Trader Are Not Interchangeable</h2>
+
+      <p>There is nothing inferior about long-term ownership. There is nothing inferior about trading defined contracts. Mixing both in one portfolio is ordinary.</p>
+
+      <p>They are still different jobs.</p>
+
+      <p>An investor lives with the open-ended path of the underlying.</p>
+
+      <p>A derivatives trader lives with terms: strike, expiry, premium, assignment, and a payoff that was known in advance.</p>
+
+      <p>The moment you write a call against shares, five things change at once: the instrument, the objective, the payoff, the risks, and the clock. Evaluation has to change with them. Judging Universe B with Universe A's scorecard is how "lost upside" becomes a moral, not a calculation.</p>
+
+      <h2 class="article-section-heading">Ask These Four Questions First</h2>
+
+      <p>Before "How much upside did I give up?"</p>
+
+      <ol>
+        <li>What position did I actually choose?</li>
+        <li>What contractual exposure did I accept?</li>
+        <li>What did I receive in exchange?</li>
+        <li>How did that position perform against the alternative I could have chosen, not the one I now wish I had kept?</li>
+      </ol>
+
+      <p>Answer those, and the arithmetic is no longer mysterious. A $120 covered call on $100 stock, later at $150, did not secretly lose $30. It delivered the contracted cap plus the premium. Universe A would have delivered something else. That is a comparison. It is not a defect.</p>
+
+      <div class="pull-quote">
+        <p>Do not compare apples and oranges before you know why they are different. Instrument first. Outcomes second.</p>
+      </div>
+
+      <p><strong>Let the math decide.</strong> 🦉</p>
+
+      <p><em>— <a href="https://www.linkedin.com/in/samvishwas/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;">Sam Vishwas</a>, Founder, OTS Ullu | Pleasanton, CA | 29 September 2026</em></p>
+
+      <!-- References -->
+      <div class="article-references">
+        <h2>Sources</h2>
+        <ul>
+          <li class="ref-card">
+            <span class="ref-year">OCC</span>
+            <p class="ref-body">The Options Clearing Corporation. <a href="https://prd-web-deploy.theocc.com/getmedia/3e02a6d0-c770-49bd-ab0e-09ec6cc3bb73/OCC-Primer-Options-101-Terminology-F.pdf" target="_blank" rel="noopener"><em>Options 101: Basic Concepts and Terminology</em></a>. Source of the option definition quoted above.</p>
+          </li>
+          <li class="ref-card">
+            <span class="ref-year">OCC</span>
+            <p class="ref-body">The Options Clearing Corporation. <a href="https://www.theocc.com/company-information/documents-and-archives/options-disclosure-document" target="_blank" rel="noopener"><em>Characteristics and Risks of Standardized Options</em></a> (the Options Disclosure Document). Standardized terms, exercise and assignment, and the risks of buying and writing options.</p>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="article-section-heading">Related</h2>
 
       <ul>
-        <li><strong>Opening premium:</strong> the premium collected when the option was sold.</li>
-        <li><strong>Current premium:</strong> the cost to close the position today, using the ask you would actually pay, not the midpoint.</li>
-        <li><strong>DTE:</strong> days remaining until expiry.</li>
-        <li><strong>Tenor:</strong> total days between open and expiry.</li>
+        <li><a href="/articles/short-options-capital-at-stake/" style="color:var(--accent);">What's Really at Stake When You Sell an Option</a></li>
+        <li><a href="/articles/when-to-roll-or-stop/" style="color:var(--accent);">The Rule I Never Believed: Why Counting Rolls Is the Wrong Way to Manage Short Options</a></li>
+        <li><a href="/articles/option-adjustments-guide/" style="color:var(--accent);">The Trader's Guide to Option Adjustments</a></li>
+        <li><a href="/articles/life360-covered-call-case-study/" style="color:var(--accent);">I Bought Life360 Near the Top. I Was Ready for the Fall.</a></li>
       </ul>
 
-      <p>PPD does not require the strike, the capital, the hedge, or the portfolio. Those belong to later KPIs.</p>
-
-      <h2 class="article-section-heading">The Definition</h2>
-
-      <p>These four figures produce two cases, decided by one comparison: is the option cheaper to buy back today than it was on the day it was sold?</p>
-
-      <div class="article-img-wrap">
-        <img
-          src="../../assets/img/articles/ppd-premium-per-day/img-01-decision-flow.jpg"
-          alt="Decision flowchart: is current premium less than opening premium? Yes leads to Case 1, winning, PPD equals current premium divided by DTE. No leads to Case 2, flat or losing, PPD equals opening premium divided by tenor."
-          loading="lazy"
-        />
-      </div>
-
-      <p class="ppd-formula-label">Case 1: Winning — current premium is less than opening premium.</p>
-      <p class="ppd-formula-code">PPD = current premium ÷ DTE</p>
-
-      <p class="ppd-formula-label">Case 2: Flat or losing — current premium is greater than or equal to opening premium.</p>
-      <p class="ppd-formula-code">PPD = opening premium ÷ tenor</p>
-
-      <p>Case 1 is the winning case: current premium has fallen below the amount collected, so the remaining value is the correct numerator and DTE the correct denominator. Case 2 covers everything else: every moment the mark stands at or above opening premium, from the instant the position opens through every moment it spends underwater. A trader cannot collect more than the amount taken in, so the original credit becomes the ceiling, and dividing by tenor, the full life of the trade, keeps that ceiling honest. Using DTE instead while underwater would inflate the number as days pass, even though nothing more has been collected; tenor does not shrink with the calendar, which is why it belongs in Case 2.</p>
-
-      <p>The distinction is the entire point. When winning, the live mark shows what remains on the table. When losing, it shows the damage sustained. PPD does not count that damage as income.</p>
-
-      <p>This is the working definition. The exact, reproducible rule, which counts days inclusively and adds a pace-line test to Case 1, is in <a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Part Two: Putting the Number to Work</a>.</p>
-
-      <h2 class="article-section-heading">A Worked Example</h2>
-
-      <p>Consider a thirty-day put sold for one dollar, with a tenor of thirty days.</p>
-
-      <p>On day one, current premium equals opening premium at one dollar. This does not satisfy Case 1, so Case 2 applies: PPD = $1.00 ÷ 30 ≈ $0.033 per day.</p>
-
-      <p>On day ten, assuming the position is winning, the option is now worth $0.40. Current premium is less than opening premium, so Case 1 applies: PPD = $0.40 ÷ 20 days remaining = $0.020 per day. That is lower than day one, and the reason is worth spelling out: dividing by fewer days, 20 instead of 30, would on its own push PPD higher, not lower. What drives the drop is the numerator: the option has given up sixty percent of its value while only a third of the tenor has elapsed, so the collapse in remaining premium outweighs the shrinking denominator.</p>
-
-      <p>On day ten, assuming instead the position is losing, the option is now worth $1.40. Current premium exceeds opening premium, so Case 2 applies: PPD remains $1.00 ÷ 30 ≈ $0.033 per day, unchanged. The market shows a loss of $0.40, and PPD does not disguise that; it simply holds the line at what was actually collected.</p>
-
-      <div class="article-table-wrap">
-        <table class="article-table">
-          <caption>Same thirty-day put, three states</caption>
-          <thead>
-            <tr>
-              <th>State</th>
-              <th>Current Premium</th>
-              <th>Case</th>
-              <th>PPD</th>
-              <th>What Theta Can Do</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Day 1, opened</td>
-              <td class="num">$1.00</td>
-              <td>2 (current = open)</td>
-              <td class="num">$0.033/day</td>
-              <td>Roughly matches PPD</td>
-            </tr>
-            <tr>
-              <td>Day 10, winning</td>
-              <td class="num">$0.40</td>
-              <td>1 (current &lt; open)</td>
-              <td class="num">$0.020/day</td>
-              <td>Falls with remaining value</td>
-            </tr>
-            <tr>
-              <td>Day 10, losing</td>
-              <td class="num">$1.40</td>
-              <td>2 (current &gt; open)</td>
-              <td class="num">$0.033/day</td>
-              <td>Can rise: the misleading read</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>When the position recovers and current premium falls back below opening premium, PPD automatically reverts to Case 1, without any manual reset.</p>
-
-      <div class="article-img-wrap">
-        <img
-          src="../../assets/img/articles/ppd-premium-per-day/img-02-theta-vs-ppd-chart.jpg"
-          alt="Line chart: The Life of a Trade, Theta vs. PPD. Theta rises during the days 8 through 14 drawdown, the exact period the position is losing money, then falls for the rest of the trade. PPD stays flat during the drawdown and steps down once the position recovers after day 14, staying flat afterward."
-          loading="lazy"
-        />
-      </div>
-
-      <h2 class="article-section-heading">What PPD Is, and How to Use It</h2>
-
-      <p>PPD is a pure position-level figure. It does not account for capital, hedging, portfolio composition, or efficiency; it answers one question: on this position, today, how much premium per day is actually available? That narrow scope is intentional. PPD is the first step in a larger stack of metrics, not the entire stack: it ranks and manages positions on raw per-day premium, while a second layer, covering efficiency, return on capital, and risk-adjusted comparison, takes PPD as an input and answers the harder question of whether that premium was worth the capital and risk behind it. A trader cannot move to efficiency calculations without a clean per-day figure underneath them.</p>
-
-      <div class="article-img-wrap">
-        <img
-          src="../../assets/img/articles/ppd-premium-per-day/img-03-kpi-pyramid.jpg"
-          alt="Three-tier pyramid: PPD, Premium Per Day, Position Level at the base; Efficiency, Return on Capital, Risk-Adjusted in the middle; Portfolio Construction at the top."
-          loading="lazy"
-        />
-      </div>
-
-      <p>On a watchlist, PPD serves as the first sort, not the final word: it identifies which candidate is collecting the most premium per day, but it does not indicate whether the name is approved, whether earnings fall within the position's window, or whether the trader already holds too much exposure to that sector. Those filters apply first; PPD then ranks what survives them.</p>
-
-      <p>On an open position, PPD is a management signal. When Case 1 applies and the figure is falling, the remaining collection per remaining day is shrinking, often signaling that it is time to ask whether the leftover premium still justifies the leftover risk. When Case 2 applies, the figure stays frozen at the original credit divided by tenor; that freeze is itself the signal that the trader is no longer collecting and is instead holding risk against a credit already received. PPD does not size a trade. A high PPD on a name that should not be held remains a poor trade. Size from risk; rank with PPD.</p>
-
-      <h2 class="article-section-heading">Common Mistakes</h2>
+      <h2 class="article-section-heading">Watch and Listen</h2>
 
       <ul>
-        <li><strong>Do not treat theta as collection.</strong> It moves with price, volatility, and time; PPD moves only with premium and dates.</li>
-        <li><strong>Do not use full tenor when Case 1 applies.</strong> The denominator there is DTE, not tenor.</li>
-        <li><strong>Do not compute planned PPD from the midpoint.</strong> Current premium should reflect the ask you would actually pay to close.</li>
-        <li><strong>Do not read PPD as permission to trade.</strong> It ranks; it does not approve. Filters apply first.</li>
-        <li><strong>Do not treat multiple high-PPD positions as independent bets</strong> if they share a sector or expiration date; that is one bet spread across several tickets.</li>
-        <li><strong>Do not annualize a short-dated figure and call it a system.</strong> For very short-dated positions, raw PPD plus max loss is the honest read.</li>
-        <li><strong>Do not forget the figure is theoretical until the position closes.</strong> Slippage, early assignment, and dividends move the realized result, so log realized collection after every close and compare it to the PPD you were watching.</li>
+        <li><a href="https://youtu.be/QC1mcMHNxts" target="_blank" rel="noopener" style="color:var(--accent);"><em>The Stop-Loss Fallacy: How to Turn a 44% Loss Into Profit With Covered Calls</em></a></li>
       </ul>
-
-      <div class="article-img-wrap">
-        <img
-          src="../../assets/img/articles/ppd-premium-per-day/img-04-comparison-table.jpg"
-          alt="Side-by-side comparison of the same five-position watchlist rendered two ways. The Current Premium column ranks an underwater TSLA put as most favorable by daily P&L, at plus $1.32. The PPD column shows the same TSLA put correctly capped at plus $0.35 per day."
-          loading="lazy"
-        />
-      </div>
-
-      <h2 class="article-section-heading">Where PPD Sits</h2>
-
-      <p>PPD does not determine whether to enter a trade, size a position, hedge it, or rank it against the broader portfolio; capital, efficiency, hedging, strike selection, and portfolio construction are deliberately left to other layers. It reports, every day, the one figure that matters for that position: premium per day, measured in a way that does not increase simply because the trade is losing. Use it to monitor how a position behaves over time, to judge when a winning position has stopped justifying the remaining risk, and as the clean input for whatever efficiency calculations follow.</p>
-
-      <h2 class="article-section-heading">The Bottom Line</h2>
-
-      <p>Every short-option position carries a per-day premium, though most traders never observe it clearly, because the tools they rely on are built on current market value, and current market value is most misleading at the exact moment a trade turns. PPD does not follow that market value off a cliff: when winning, it measures what remains against the days that remain; when losing, it caps the figure at the amount actually collected and spreads that ceiling across the full tenor. Two cases, two formulas, one figure that remains honest. That is the core KPI. Every additional layer, efficiency, risk-adjusted return, portfolio construction, builds on top of it.</p>
-
-      <div class="example-callout">
-        <span class="example-label">Next: Part Two</span>
-        <p><a href="/articles/ppd-part-two-putting-the-number-to-work/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;"><strong>PPD Part Two: Putting the Number to Work</strong></a> locks the exact definition so two people computing PPD get the same number. It counts days inclusively (the "+1") and tightens the Case 1 test above: an ask below the opening premium is not enough on its own. It must also be below the pace line.</p>
-      </div>
-
-      <div class="example-callout">
-        <span class="example-label">Then: Capital at Stake</span>
-        <p><a href="/articles/short-options-capital-at-stake/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;"><strong>What's Really at Stake When You Sell an Option</strong></a> is the other half of the picture. PPD measures what you collect and leaves capital out on purpose. Capital at stake measures what you actually have on the line at today's stock price, and why the strike price overstates it in a winning put and understates it in an in-the-money call.</p>
-      </div>
 
       <!-- PDF download -->
       <div class="pdf-download-wrap">
-        <a href="../../pdfs/ppd-premium-per-day-ots-ullu.pdf"
+        <a href="../../pdfs/what-really-changes-when-you-trade-options-ots-ullu.pdf"
            class="btn-pdf-download"
            download
            aria-label="Download PDF version of this article">
@@ -693,7 +695,7 @@
 
       <!-- Disclaimer -->
       <div class="disclaimer-box">
-        <p>This article is educational. It describes a position-level indicator the author uses in personal trading. It does not constitute a recommendation to buy or sell any security, nor a claim that any particular result is repeatable. Short options can produce losses larger than the premium received. Traders should understand the product and the margin requirements at their broker before use.</p>
+        <p>XYZ is a hypothetical ticker, and its prices and strikes are illustrative. Examples exclude commissions, fees and taxes. This article is educational. It explains how a covered call changes the position you hold and how to evaluate it; it does not constitute a recommendation to buy or sell any security or to use any particular strategy. Options involve risk and are not suitable for all investors. A covered call caps the upside of the shares above the strike while leaving the full downside of the shares in place, and assignment can occur at any time while the option is exercisable. Before trading options, read <em>Characteristics and Risks of Standardized Options</em>, available from your broker or The Options Clearing Corporation.</p>
       </div>
 
       <!-- Author card -->
