@@ -12,6 +12,7 @@ Usage:
 
 import argparse
 import asyncio
+import html
 from pathlib import Path
 from playwright.async_api import async_playwright
 
@@ -25,6 +26,8 @@ parser.add_argument("--output", default="pdfs/the-stock-kept-rising-after-i-sold
 parser.add_argument("--credit",
                     default="The Mind Against the Market  ·  Article 1  ·  Published May 2026  ·  © 2026 OTS Ullu. All rights reserved.",
                     help="Footer credit line injected at the end of the article.")
+parser.add_argument("--page-note", default="",
+                    help="Optional short note printed beside the page number on every page (e.g. a disclaimer).")
 args = parser.parse_args()
 
 ARTICLE_HTML = REPO_ROOT / args.html
@@ -190,7 +193,7 @@ async def generate():
             footer_template="""
                 <div style="width:100%; font-family:'Inter',Arial,sans-serif; font-size:8px;
                             color:#bbb; text-align:center; line-height:1;">
-                    <span class="pageNumber"></span> of <span class="totalPages"></span>
+                    """ + (html.escape(args.page_note) + " &nbsp;·&nbsp; " if args.page_note else "") + """<span class="pageNumber"></span> of <span class="totalPages"></span>
                 </div>
             """,
         )

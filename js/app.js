@@ -153,6 +153,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'Wash Away Wash Sale Worries',
+    excerpt: 'Guest article by Abhi Vishwas. What IRS Publication 550 and the tax code actually say about wash sales, in plain English: the 61-day window that looks backward too, partial wash sales, IRAs, spouses, RSUs, dividend reinvestment and options, and what really happens to the loss. Educational only, not tax advice.',
+    series: 'Guest Article · Tax Education',
+    url: '/articles/wash-away-wash-sale-worries/',
+  },
+  {
     title: 'What Really Changes When You Trade Options',
     excerpt: 'Sell a covered call, watch the stock run, and someone says you "lost the upside." But a stock and a stock-plus-sold-call are different instruments with different terms, payoffs and clocks. What a derivative really is, what changes when you write the call, and four questions to ask before judging the outcome.',
     series: 'Options Education · Covered Calls',
