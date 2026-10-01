@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "90",
-    "totalViews": "6504",
-    "videoCount": "132",
-    "updated": "2026-09-30T20:40:27.251003+00:00"
+    "totalViews": "6517",
+    "videoCount": "133",
+    "updated": "2026-10-01T05:10:22.887685+00:00"
   },
   "engagement": {
-    "totalViews": 6528,
-    "totalLikes": 227,
-    "totalComments": 88,
-    "engagementRate": 4.83,
+    "totalViews": 6534,
+    "totalLikes": 228,
+    "totalComments": 89,
+    "engagementRate": 4.85,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/T5LBPPPWeT8/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/yfzPf6lYkx4/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "yfzPf6lYkx4",
+      "title": "What Really Changes When You Trade Options 📈 | 𝗧𝗵𝗲 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹 𝗠𝘆𝘁𝗵 𝗘𝘅𝗽𝗼𝘀𝗲𝗱! 🚨",
+      "thumb": "https://i.ytimg.com/vi/yfzPf6lYkx4/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "3",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-09-30",
+      "india": true
+    },
+    {
       "id": "T5LBPPPWeT8",
       "title": "💥 𝗧𝗵𝗲 𝗦𝘁𝗿𝗶𝗸𝗲 𝗣𝗿𝗶𝗰𝗲 𝗙𝗮𝗹𝗹𝗮𝗰𝘆: 𝗪𝗵𝘆 𝗬𝗼𝘂’𝗿𝗲 𝗠𝗶𝘀𝗰𝗮𝗹𝗰𝘂𝗹𝗮𝘁𝗶𝗻𝗴 𝗦𝗵𝗼𝗿𝘁 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗥𝗶𝘀𝗸 📈",
       "thumb": "https://i.ytimg.com/vi/T5LBPPPWeT8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "137",
+      "views": "140",
       "likes": "1",
       "comments": "1",
       "published": "2026-09-25",
