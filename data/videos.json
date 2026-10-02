@@ -7,11 +7,11 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "90",
     "totalViews": "6534",
-    "videoCount": "133",
-    "updated": "2026-10-01T20:54:45.816122+00:00"
+    "videoCount": "134",
+    "updated": "2026-10-02T04:59:31.542581+00:00"
   },
   "engagement": {
-    "totalViews": 6557,
+    "totalViews": 6563,
     "totalLikes": 228,
     "totalComments": 89,
     "engagementRate": 4.83,
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "Q5bc119PHRA",
+      "title": "What Really Changes When You Trade Options 🎧 | 𝗧𝗵𝗲 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹 𝗠𝘆𝘁𝗵 𝗘𝘅𝗽𝗼𝘀𝗲𝗱! 📈",
+      "thumb": "https://i.ytimg.com/vi/Q5bc119PHRA/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "2",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-10-02",
+      "india": true
+    },
+    {
       "id": "yfzPf6lYkx4",
       "title": "What Really Changes When You Trade Options 📈 | 𝗧𝗵𝗲 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹 𝗠𝘆𝘁𝗵 𝗘𝘅𝗽𝗼𝘀𝗲𝗱! 🚨",
       "thumb": "https://i.ytimg.com/vi/yfzPf6lYkx4/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "10",
+      "views": "12",
       "likes": "1",
       "comments": "1",
       "published": "2026-09-30",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/T5LBPPPWeT8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "147",
+      "views": "148",
       "likes": "1",
       "comments": "1",
       "published": "2026-09-25",
@@ -232,7 +244,7 @@
       "thumb": "https://i.ytimg.com/vi/82njVx9ZZ9k/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "55",
+      "views": "56",
       "likes": "4",
       "comments": "1",
       "published": "2026-08-01",
