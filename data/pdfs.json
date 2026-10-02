@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "what-really-changes-when-you-trade-options",
+      "file": "what-really-changes-when-you-trade-options-ots-ullu.pdf",
+      "title": "What Really Changes When You Trade Options",
+      "description": "Why a covered call isn't your stock plus extra income, and how to judge it on its own terms. Sell a covered call, watch the stock run, and someone says you \"lost the upside.\" But owning 100 shares (Universe A) and owning them with a sold $120 call (Universe B) are different instruments with different terms, payoffs and clocks. Covers what a derivative actually is (per the OCC), the payoff chart that shows the ceiling and the premium, the myth of \"lost upside,\" why investor and trader are different jobs, and four questions to ask before judging the outcome.",
+      "tags": ["options", "covered calls", "derivatives", "options basics", "assignment"],
+      "date": "2026-09-29",
+      "featured": true
+    },
+    {
       "id": "great-lie-of-the-strike-price",
       "file": "Measuring-Capital-at-Stake-Short-Options-Risk.pdf",
       "title": "The Great Lie of the Strike Price: What Is Actually at Stake When You Sell an Option?",
