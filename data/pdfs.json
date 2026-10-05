@@ -2,10 +2,19 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "hidden-web-of-wash-sales",
+      "file": "The_Hidden_Web_of_Wash_Sales.pdf",
+      "title": "The Hidden Web of Wash Sales",
+      "description": "A slide walkthrough of why \"just wait 30 days\" is a trap under IRC §1091. Based on the guest article \"Wash Away Wash Sale Worries\" by Abhi Vishwas. Covers how a disallowed loss moves into the replacement shares' basis, the 61-day window that looks backward as well as forward, partial wash sales and the matching rule, the silent acquisitions (spouse accounts, controlled corporations, DRIPs, RSU and ESPP deliveries, automated investing), the IRA black hole where the loss is lost for good, calls, warrants and short puts, the \"substantially identical\" spectrum, investor vs. trader vs. dealer status, money-market and crypto edge cases, Form 8949 Code W reporting, and a decision workflow. Educational only, not tax advice.",
+      "tags": ["taxes", "wash sales", "IRS", "tax-loss harvesting", "options", "IRA"],
+      "date": "2026-10-02",
+      "featured": true
+    },
+    {
       "id": "what-really-changes-when-you-trade-options",
       "file": "what-really-changes-when-you-trade-options.pdf",
       "title": "What Really Changes When You Trade Options",
-      "description": "Why a covered call isn't your stock plus extra income, and how to judge it on its own terms. Sell a covered call, watch the stock run, and someone says you \"lost the upside.\" But owning 100 shares (Universe A) and owning them with a sold $120 call (Universe B) are different instruments with different terms, payoffs and clocks. Covers what a derivative actually is (per the OCC), the payoff chart that shows the ceiling and the premium, the myth of \"lost upside,\" why investor and trader are different jobs, and four questions to ask before judging the outcome.",
+      "description": "A slide walkthrough of why a covered call isn't your stock plus extra income. Owning 100 shares (Universe A) and owning them with a sold $120 call (Universe B) are different instruments with different terms, payoffs and clocks. Covers the OCC definition of a derivative as an overlay on the underlying, the premium as the market price of the obligation you sold, the \"third thing\" created by binding stock and call, the real-estate lease analogy, the payoff chart and the $124 point of departure, the anatomy of a $150 outcome ($20 kept, $4 premium, $30 to the buyer), the five variables that change at once, and four pre-trade questions to ask instead of \"how much upside did I give up?\"",
       "tags": ["options", "covered calls", "derivatives", "options basics", "assignment"],
       "date": "2026-09-29",
       "featured": true
