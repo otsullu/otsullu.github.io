@@ -65,7 +65,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/style.css?v=20261006b" />
+  <link rel="stylesheet" href="../../css/style.css?v=20261006d" />
 
   <!-- Inline theme flash prevention -->
   <script>
@@ -517,6 +517,11 @@
     <!-- Article body -->
     <article class="article-body">
 
+      <div class="example-callout">
+        <span class="example-label">What this measures</span>
+        <p><strong>Capital at stake captures your exposure at this moment, for monitoring and comparing positions right now: it is not a forecast, not a portfolio risk measure, and not your maximum loss.</strong></p>
+      </div>
+
       <h2 class="article-section-heading">The Number I Never Questioned</h2>
 
       <p>When I came back to selling cash-secured puts and covered calls, I did what everyone else does. I measured each trade against one number: the strike price.</p>
@@ -680,33 +685,25 @@
 
       <p><strong>It is</strong> a snapshot of your real exposure right now: what you'd be putting on the line if assignment happened today.</p>
 
-      <p><strong>It is</strong> a fair way to compare positions against each other, on what each one really risks at this moment rather than on a price you picked weeks ago.</p>
+      <p><strong>It is</strong> a fair way to compare positions against each other, on what each one really risks at this moment rather than on a price you picked weeks ago. When you're deciding whether to roll an out-of-the-money put, it shows what you'd really have on the line if you were assigned at today's price, after the built-in gain you'd lock in by selling the shares immediately, which the strike never shows.</p>
 
       <p><strong>It isn't your margin or collateral.</strong> Your broker still holds the full strike for a cash-secured put. The $105 put still ties up $10,500 in cash per contract, even though only $62.53 per share ($6,253 per contract) is really at stake. Capital at stake measures exposure, not the cash your broker sets aside.</p>
 
       <p><strong>It isn't your maximum loss.</strong> It tells you what's on the line today, not how far the stock could fall or what you could lose if it does.</p>
 
-      <p><strong>It isn't your cost basis.</strong> For a covered call, what you paid for the shares doesn't enter into it. What matters is what they're worth today, because that's what you'd hand over. In my <a href="/articles/life360-covered-call-case-study/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Life360 case study</a>, the shares I bought at $102.64 fell 43.9%, while premium cut my net cost basis to $47.97. Neither number is what the shares are worth today.</p>
-
-      <p><strong>It isn't fixed.</strong> It changes every time the stock moves, and that's the point. Check it again as the stock moves; it isn't a number you set once.</p>
-
-      <p><strong>It isn't a settlement forecast.</strong> Capital at stake is computed at a single instant and assumes assignment settles at that instant's stock price. In practice, an assignment or exercise notice can arrive a business day later (T+1), and the stock may have moved materially in between. The exposure you actually face can differ from the snapshot. Capital at stake is today's exposure, not tomorrow's.</p>
+      <p>Beyond that, it's a snapshot that moves with the stock: not a forecast (an assignment notice can arrive a business day later, T+1, at a different price), not a cost basis, and not a portfolio number.</p>
 
       <p>One extreme worth knowing: if the stock rises to twice a put's strike or more (ORBD at $210 or higher for the $105 put), nothing is left at stake at all. Assignment at that moment would come with a gain at least as large as the strike itself.</p>
 
       <h2 class="article-section-heading">Why I Leave the Premium Out</h2>
 
-      <p>Earlier I admitted I used to fold the premium into the strike. You may be thinking the same thing right now: <em>"Adjust the strike by the premium, subtracting it for a put and adding it for a call, and you get your real number."</em></p>
+      <p>Earlier I admitted I used to fold the premium into the strike, subtracting it for a put and adding it for a call. I left it out of capital at stake on purpose.</p>
 
-      <p>It's a fair question, and I left the premium out on purpose. Here's why.</p>
+      <p><strong>Premium is income; capital at stake is exposure.</strong> Once the premium is collected, it's yours whatever the stock does, so it doesn't grow or shrink what you still have on the line. Covered calls make this obvious: with ORBD at $147.47, the shares you'd hand over are worth $147.47, whatever you collected for the call.</p>
 
-      <p><strong>Premium is what you earn, not what you risk.</strong> Capital at stake and premium do different jobs. PPD tracks the premium side; capital at stake tracks the capital side. When we get to returns, the premium goes on top of the fraction and capital at stake goes on the bottom. Subtract the premium from the capital first and you count it twice: once as income, and again as less exposure. Your return would look better than it really is.</p>
+      <p><strong>Mixing them double-counts.</strong> When we get to returns, the premium goes on top of the fraction and capital at stake goes on the bottom. Subtract the premium from the capital first and you count it twice: once as income, and again as less exposure. Your return would look better than it really is.</p>
 
-      <p><strong>Premium-adjusted prices answer a different question.</strong> For a cash-secured put, strike minus premium is your break-even: the price below which you start losing money at expiry. For a covered call, strike plus premium is your effective selling price: the most you can get for your shares. Capital at stake tells you <em>what's on the line right now</em>. All of them matter, but they aren't the same number. Take the $105 put: its break-even sits a little below $105 and stays there however far ORBD rises, yet what that seller really has at stake today is $62.53. The $105 call is the mirror image: if it was sold back when ORBD was near $105, its effective selling price is a little above $105, yet the shares being handed over are worth $147.47.</p>
-
-      <p><strong>Premium is already yours.</strong> Once it's collected, you keep it whatever the stock does. It doesn't grow or shrink what you still have exposed.</p>
-
-      <p><strong>Covered calls make this obvious.</strong> If ORBD is at $147.47, the shares you'd hand over are worth $147.47, whatever you collected for the call.</p>
+      <p><strong>Premium-adjusted prices answer a different question.</strong> Strike minus premium is a put's break-even, and strike plus premium is a call's effective selling price. Capital at stake is what's on the line right now. Take the $105 put: its break-even stays a little below $105 however far ORBD rises, yet what's at stake today is $62.53. The $105 call is the mirror: its effective selling price stays a little above $105, yet the shares being handed over are worth $147.47.</p>
 
       <p>So the premium isn't ignored. It just has a different job: it's the return, and that's where it comes in.</p>
 
@@ -796,8 +793,8 @@
   </div>
 </footer>
 
-<script src="../../js/feedback-config.js?v=20261006b"></script>
-<script src="../../js/feedback.js?v=20261006b"></script>
-<script src="../../js/app.js?v=20261006b"></script>
+<script src="../../js/feedback-config.js?v=20261006d"></script>
+<script src="../../js/feedback.js?v=20261006d"></script>
+<script src="../../js/app.js?v=20261006d"></script>
 </body>
 </html>
