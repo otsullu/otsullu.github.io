@@ -1,7 +1,8 @@
 -- ═══════════════════════════════════════════════════════════════════
 -- OTS Ullu — reader feedback: comments, 👍/👎, view counts, moderation
 -- Run once in Supabase → SQL Editor → New query → paste → Run.
--- Safe to re-run: tables use IF NOT EXISTS, functions use CREATE OR REPLACE.
+-- Safe to re-run: tables use IF NOT EXISTS, functions use CREATE OR REPLACE
+-- (or DROP + CREATE where a return type changed).
 --
 -- Design:
 --   * All tables live in the private `fb` schema, which the public API
@@ -222,6 +223,11 @@ end $$;
 
 -- ── PUBLIC API: views, votes, counts (no sign-in needed) ───────────
 
+create or replace function fb.pacific_day_start() returns timestamptz
+language sql stable set search_path = '' as $$
+  select date_trunc('day', now() at time zone 'America/Los_Angeles') at time zone 'America/Los_Angeles'
+$$;
+
 create or replace function public.record_view(p_item text, p_visitor text,
                                                p_title text default null, p_url text default null)
 returns void
@@ -233,10 +239,10 @@ begin
     return;
   end if;
   perform fb.ensure_item(p_item, p_title, p_url);
-  -- Same visitor re-opening the same item within 30 minutes is one view.
+  -- One view per visitor per item per calendar day (Pacific time).
   if exists (select 1 from fb.views v
               where v.item_id = p_item and v.visitor_id = p_visitor
-                and v.created_at > now() - interval '30 minutes') then
+                and v.created_at >= fb.pacific_day_start()) then
     return;
   end if;
   -- Crude flood guard per network.
@@ -247,13 +253,14 @@ begin
   insert into fb.views (item_id, visitor_id, ip_hash) values (p_item, p_visitor, h);
 end $$;
 
-create or replace function public.get_item_stats(p_items text[], p_visitor text default null)
-returns table (item_id text, views bigint, uniques bigint, up bigint, down bigint,
+-- Unique-visitor counts are admin-only (see admin_item_stats / admin_site_stats).
+drop function if exists public.get_item_stats(text[], text);
+create function public.get_item_stats(p_items text[], p_visitor text default null)
+returns table (item_id text, views bigint, up bigint, down bigint,
                comments bigint, my_vote smallint)
 language sql stable security definer set search_path = '' as $$
   select i.id,
-         (select count(*)                   from fb.views v    where v.item_id = i.id),
-         (select count(distinct v.visitor_id) from fb.views v  where v.item_id = i.id),
+         (select count(*) from fb.views v    where v.item_id = i.id),
          (select count(*) from fb.votes o    where o.item_id = i.id and o.value = 1),
          (select count(*) from fb.votes o    where o.item_id = i.id and o.value = -1),
          (select count(*) from fb.comments c where c.item_id = i.id and c.status = 'visible'),
@@ -262,10 +269,11 @@ language sql stable security definer set search_path = '' as $$
 $$;
 
 -- Site-wide traffic = all page:* views.
-create or replace function public.get_site_stats()
-returns table (views bigint, uniques bigint)
+drop function if exists public.get_site_stats();
+create function public.get_site_stats()
+returns table (views bigint)
 language sql stable security definer set search_path = '' as $$
-  select count(*), count(distinct v.visitor_id) from fb.views v where v.item_id like 'page:%'
+  select count(*) from fb.views v where v.item_id like 'page:%'
 $$;
 
 -- p_value: 1 = 👍, -1 = 👎, 0 = clear my vote.
@@ -551,6 +559,15 @@ begin
      limit 500;
 end $$;
 
+create or replace function public.admin_site_stats()
+returns table (views bigint, uniques bigint)
+language plpgsql security definer set search_path = '' as $$
+begin
+  perform fb.require_admin();
+  return query
+    select count(*), count(distinct v.visitor_id) from fb.views v where v.item_id like 'page:%';
+end $$;
+
 -- ── NOTIFICATION PAYLOAD (service role only — used by the email function) ──
 
 create or replace function public.notify_payload(p_comment_id bigint) returns json
@@ -596,6 +613,7 @@ revoke all on function public.admin_set_comment_status(bigint, text)            
 revoke all on function public.admin_comment_history(bigint)                               from public;
 revoke all on function public.admin_set_blocked(uuid, boolean)                            from public;
 revoke all on function public.admin_item_stats()                                          from public;
+revoke all on function public.admin_site_stats()                                          from public;
 revoke all on function public.notify_payload(bigint)                         from public, anon, authenticated;
 
 -- Anyone (signed in or not)
@@ -616,6 +634,7 @@ revoke all on function public.admin_set_comment_status(bigint, text)            
 revoke all on function public.admin_comment_history(bigint)                         from anon;
 revoke all on function public.admin_set_blocked(uuid, boolean)                      from anon;
 revoke all on function public.admin_item_stats()                                    from anon;
+revoke all on function public.admin_site_stats()                                    from anon;
 grant execute on function public.get_me()                                              to authenticated;
 grant execute on function public.update_display_name(text)                             to authenticated;
 grant execute on function public.post_comment(text, text, bigint, boolean, text, text) to authenticated;
@@ -626,5 +645,6 @@ grant execute on function public.admin_set_comment_status(bigint, text)         
 grant execute on function public.admin_comment_history(bigint)                         to authenticated;
 grant execute on function public.admin_set_blocked(uuid, boolean)                      to authenticated;
 grant execute on function public.admin_item_stats()                                    to authenticated;
+grant execute on function public.admin_site_stats()                                    to authenticated;
 
 grant execute on function public.notify_payload(bigint) to service_role;

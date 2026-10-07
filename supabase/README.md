@@ -134,9 +134,9 @@ If the email doesn't arrive, look at **Edge Functions → notify-comment → Log
 
 ## How it behaves
 
-- **Views:** one per visitor per item every 30 minutes. A podcast "play" counts after 30 seconds of listening.
+- **Views:** one per visitor per item per day (Pacific time). A podcast "play" counts after 30 seconds of listening.
   Site-wide visits (homepage footer) are all page views added together.
-  Unique counts come from a random ID stored in the visitor's browser, so a person using two devices counts twice.
+  Unique-visitor counts are shown only on `/admin/`. They come from a random ID stored in the visitor's browser, so a person using two devices counts twice.
 - **Bots:** crawlers and headless browsers aren't counted, which includes the Playwright PDF generator.
   The widget is also hidden when a page is printed.
 - **Limits:** 5 comments per 10 minutes and 40 per day per person.

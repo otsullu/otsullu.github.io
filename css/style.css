@@ -3528,7 +3528,6 @@ html[data-theme="light"][data-palette="ots"]     { --accent:#0969DA; --accent-di
 }
 .fb-stat { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .fb-stat b { color: var(--fg-secondary); font-weight: 600; }
-.fb-sep { margin: 0 2px; }
 .fb-actions { display: inline-flex; align-items: center; gap: 6px; }
 .fb-btn {
   display: inline-flex; align-items: center; gap: 5px;

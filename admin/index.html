@@ -10,7 +10,7 @@
   <title>Moderation | OTS Ullu</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=20261005" />
+  <link rel="stylesheet" href="../css/style.css?v=20261006" />
   <script>
   (function(){
     try {
@@ -63,7 +63,7 @@
   <div id="app"><p class="adm-msg">Loading…</p></div>
 </main>
 
-<script src="../js/feedback-config.js?v=20261005"></script>
+<script src="../js/feedback-config.js?v=20261006"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
 <script>
 (function () {
@@ -139,7 +139,10 @@
     const view = document.getElementById('view');
     view.innerHTML = '<p class="adm-msg">Loading…</p>';
     try {
-      if (state.tab === 'items') return renderItems(view, await call('admin_item_stats'));
+      if (state.tab === 'items') {
+        const [rows, site] = await Promise.all([call('admin_item_stats'), call('admin_site_stats').catch(() => null)]);
+        return renderItems(view, rows, site && site[0]);
+      }
       state.rows = await call('admin_list_comments', { p_status: state.status, p_limit: 200 });
       renderComments(view);
     } catch (e) {
@@ -147,9 +150,10 @@
     }
   }
 
-  function renderItems(view, rows) {
+  function renderItems(view, rows, site) {
     const label = { article: 'Article', deck: 'Deck', podcast: 'Podcast', page: 'Page' };
-    view.innerHTML = `<div class="adm-table-wrap"><table class="adm-table">
+    view.innerHTML = `${site ? `<p class="adm-row adm-meta">Whole site: <strong>${num(site.views)}</strong> visits · <strong>${num(site.uniques)}</strong> unique visitors</p>` : ''}
+      <div class="adm-table-wrap"><table class="adm-table">
       <thead><tr><th>Item</th><th>Type</th><th class="n">Views</th><th class="n">Unique</th><th class="n">👍</th><th class="n">👎</th><th class="n">Comments</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener" style="color:var(--accent)">${esc(r.title || r.item_id)}</a>` : esc(r.title || r.item_id)}</td>
