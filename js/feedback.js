@@ -186,12 +186,12 @@
   }
 
   /* ── stats: batching, cache, painting ────────────────────────────── */
-  const stats    = new Map();   // id -> { views, uniques, up, down, comments, my_vote }
+  const stats    = new Map();   // id -> { views, up, down, comments, my_vote }
   const bars     = new Map();   // id -> Set<HTMLElement>
   const wanted   = new Set();
   let statsTimer = null;
 
-  function blankStats() { return { views: 0, uniques: 0, up: 0, down: 0, comments: 0, my_vote: null }; }
+  function blankStats() { return { views: 0, up: 0, down: 0, comments: 0, my_vote: null }; }
 
   function refreshStats(ids) {
     ids.forEach(id => wanted.add(id));
@@ -206,7 +206,7 @@
         const rows = await rpc('get_item_stats', { p_items: ids.slice(i, i + 200), p_visitor: visitorId() });
         (rows || []).forEach(r => {
           stats.set(r.item_id, {
-            views: +r.views, uniques: +r.uniques, up: +r.up, down: +r.down,
+            views: +r.views, up: +r.up, down: +r.down,
             comments: +r.comments, my_vote: r.my_vote,
           });
           paint(r.item_id);
@@ -224,7 +224,6 @@
       bar.classList.add('is-loaded');
       bar.querySelector('.fb-views-n').textContent = fmtNum(s.views);
       bar.querySelector('.fb-noun').textContent    = s.views === 1 ? bar.dataset.noun.slice(0, -1) : bar.dataset.noun;
-      bar.querySelector('.fb-uniq-n').textContent  = fmtNum(s.uniques);
       bar.querySelector('.fb-up-n').textContent    = fmtNum(s.up);
       bar.querySelector('.fb-down-n').textContent  = fmtNum(s.down);
       const up = bar.querySelector('.fb-up'), down = bar.querySelector('.fb-down');
@@ -235,16 +234,15 @@
     });
   }
 
-  /* ── stat bar: views · unique · 👍 · 👎 · 💬 ─────────────────────── */
+  /* ── stat bar: views · 👍 · 👎 · 💬 ─────────────────────── */
   function createBar(item, withCommentsButton) {
     const bar = document.createElement('div');
     bar.className = 'fb-bar';
     const noun = item.label === 'plays' ? 'plays' : 'views';
     bar.dataset.noun = noun;
     bar.innerHTML = `
-      <span class="fb-stat" title="Total ${noun} · unique visitors">
+      <span class="fb-stat" title="${noun === 'plays' ? 'Plays' : 'Views'}, counted once per visitor per day">
         ${ICON.eye}<b class="fb-views-n">–</b><span class="fb-lbl fb-noun">${noun}</span>
-        <span class="fb-sep" aria-hidden="true">·</span><b class="fb-uniq-n">–</b><span class="fb-lbl">unique</span>
       </span>
       <span class="fb-actions">
         <button type="button" class="fb-btn fb-up" aria-pressed="false" title="Helpful">
@@ -751,7 +749,7 @@
       const rows = await rpc('get_site_stats');
       const r = rows && rows[0];
       if (!r) return;
-      el.textContent = `${fmtNum(r.views)} visits · ${fmtNum(r.uniques)} unique visitors`;
+      el.textContent = `${fmtNum(r.views)} visits`;
       el.hidden = false;
     } catch (e) {}
   }
