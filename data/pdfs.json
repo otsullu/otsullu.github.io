@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "directional-options-playbook",
+      "file": "Directional_Options_Playbook.pdf",
+      "title": "The Directional Investor's Options Playbook",
+      "description": "Practical strategies for volatility, yield enhancement and portfolio protection, synthesized from Trading Volatility by Colin Bennett. Covers the two drivers of option value (intrinsic vs. time value), why delta is not the probability of expiring in-the-money (N(d1) vs. N(d2)), stock replacement via calls or put underwriting, when early exercise of American options is required, the buy-write engine and the implied-vs-realized volatility premium, optimizing overwrite strike and maturity, the protection spectrum (put, put spread, collar, put spread collar) and the 1x2 put spread trap, calendar collars, bullish structures (long call, call spread, risk reversal), and a strategy map that pairs a market view with a volatility view.",
+      "tags": ["options", "volatility", "covered calls", "buy-write", "collars", "hedging", "delta"],
+      "date": "2026-10-18",
+      "featured": true
+    },
+    {
       "id": "hidden-web-of-wash-sales",
       "file": "The_Hidden_Web_of_Wash_Sales.pdf",
       "title": "The Hidden Web of Wash Sales",
