@@ -7,11 +7,11 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "95",
     "totalViews": "6810",
-    "videoCount": "136",
-    "updated": "2026-10-18T12:31:42.074454+00:00"
+    "videoCount": "138",
+    "updated": "2026-10-18T18:32:01.764695+00:00"
   },
   "engagement": {
-    "totalViews": 6813,
+    "totalViews": 6816,
     "totalLikes": 235,
     "totalComments": 90,
     "engagementRate": 4.77,
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/yfzPf6lYkx4/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/pYod8uXN6Rk/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -70,6 +70,30 @@
     }
   ],
   "videos": [
+    {
+      "id": "RxvlwbAMovQ",
+      "title": "🎧 𝗛𝗼𝘄 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗛𝗲𝗱𝗴𝗶𝗻𝗴 𝗗𝗿𝗶𝘃𝗲𝘀 𝗦𝘁𝗼𝗰𝗸 𝗣𝗿𝗶𝗰𝗲𝘀: 𝗗𝗲𝗹𝘁𝗮, 𝗚𝗮𝗺𝗺𝗮 & 𝗠𝗮𝗿𝗸𝗲𝘁 𝗜𝗺𝗽𝗮𝗰𝘁 📈🚀",
+      "thumb": "https://i.ytimg.com/vi/RxvlwbAMovQ/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-10-18",
+      "india": true
+    },
+    {
+      "id": "pYod8uXN6Rk",
+      "title": "🎬 𝗟𝗲𝗮𝗸𝗶𝗻𝗴 𝗔𝗹𝗽𝗵𝗮: 𝗧𝗵𝗲 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝗰𝘀 𝗼𝗳 𝗖𝗼𝗻𝘃𝗲𝘅𝗶𝘁𝘆 𝗮𝗻𝗱 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 | 𝗢𝗽𝘁𝗶𝗼𝗻𝘀𝗔𝗰𝗮𝗱𝗲𝗺𝘆.𝗔𝗜 📉⚡",
+      "thumb": "https://i.ytimg.com/vi/pYod8uXN6Rk/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-10-18",
+      "india": true
+    },
     {
       "id": "R9YLbagAUkU",
       "title": "🎥 𝗪𝗮𝘀𝗵 𝗔𝘄𝗮𝘆 𝗪𝗮𝘀𝗵 𝗦𝗮𝗹𝗲 𝗪𝗼𝗿𝗿𝗶𝗲𝘀",
@@ -1516,7 +1540,7 @@
       "thumb": "https://i.ytimg.com/vi/lH0nf-PKWFM/hqdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "7",
+      "views": "9",
       "likes": "1",
       "comments": "1",
       "published": "2026-04-23",
