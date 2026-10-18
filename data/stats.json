@@ -1,7 +1,7 @@
 {
   "trade": {
-    "underlyings": 26,
-    "tradingDays": 178,
+    "underlyings": 25,
+    "tradingDays": 254,
     "topTickers": [
       {
         "sym": "TSLA"
@@ -16,37 +16,81 @@
         "sym": "PLTR"
       },
       {
-        "sym": "META"
+        "sym": "SPCX"
       },
       {
         "sym": "AMZN"
       },
       {
-        "sym": "GOOGL"
+        "sym": "META"
       },
       {
         "sym": "MSFT"
+      },
+      {
+        "sym": "GOOGL"
       },
       {
         "sym": "QQQ"
       },
       {
         "sym": "AAPL"
+      },
+      {
+        "sym": "AMD"
+      },
+      {
+        "sym": "INTC"
+      },
+      {
+        "sym": "NFLX"
+      },
+      {
+        "sym": "GOOG"
       }
     ],
-    "ccPct": 88,
-    "cspPct": 12
+    "ccPct": 81,
+    "cspPct": 19
   },
   "surveillance": {
-    "rowsPerCycle": 31398,
-    "fieldsTracked": 78,
-    "evaluationsPerCycle": 847665,
-    "evaluationsPerDay": 22039290,
+    "rowsPerCycle": 32857,
+    "fieldsTracked": 74,
+    "evaluationsPerCycle": 821397,
+    "evaluationsPerDay": 21356322,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-06-01T23:45:33.690",
+    "generatedAt": "2026-10-18T18:13:31.993",
     "source": "usp_q_WebsiteStats"
-  }
+  },
+  "dtePhases": [
+    {
+      "key": "early",
+      "label": "Early: short DTE",
+      "from": "2025-06",
+      "to": "2025-09",
+      "avgDte": 47,
+      "pctUpTo30": 57,
+      "pctOver90": 21
+    },
+    {
+      "key": "long",
+      "label": "Long-DTE era",
+      "from": "2025-10",
+      "to": "2026-08",
+      "avgDte": 222,
+      "pctUpTo30": 22,
+      "pctOver90": 63
+    },
+    {
+      "key": "now",
+      "label": "Now: short DTE",
+      "from": "2026-09",
+      "to": "2026-10",
+      "avgDte": 42,
+      "pctUpTo30": 76,
+      "pctOver90": 11
+    }
+  ]
 }

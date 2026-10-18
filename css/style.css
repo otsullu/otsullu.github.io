@@ -1202,6 +1202,78 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   margin-bottom: 72px;
 }
 
+.dte-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.dte-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.dte-phase--now { box-shadow: inset 0 0 0 1px var(--accent); }
+
+.dte-phase-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dte-phase-range,
+.dte-phase-sub {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+}
+
+.dte-phase-num {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.dte-phase-num small {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--product-fg-muted);
+}
+
+.dte-phase-bar {
+  height: 6px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dte-phase-bar > div {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.dte-note {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--product-fg-muted);
+}
+
+@media (max-width: 720px) {
+  .dte-phases { grid-template-columns: 1fr; }
+}
+
 .ticker-shelf-label {
   font-size: 0.72rem;
   font-weight: 600;
