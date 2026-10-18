@@ -104,6 +104,10 @@ const TIMELINE_DATA = [
 ];
 
 
+/* Tickers never shown in "Most Traded Underlyings" (still counted in Others). */
+const HIDDEN_TICKERS = [];
+const TOP_TICKER_COUNT = 11;   /* 11 + Others = 12 tiles = two full rows of 5 + 2 */
+
 const TICKER_DATA = [
   { sym: 'TSLA',  contracts: 3311 },
   { sym: 'NVDA',  contracts: 1068 },
@@ -1150,6 +1154,35 @@ function applyStats(s) {
     velNums[2].textContent = t.tradingDays;
   }
 
+  /* DTE evolution */
+  const dteShelf = document.getElementById('dteShelf');
+  const dteWrap  = document.getElementById('dtePhases');
+  if (dteShelf && dteWrap && Array.isArray(s.dtePhases) && s.dtePhases.length) {
+    const mon = ym => new Date(ym + '-01T00:00:00').toLocaleString('en-US', { month: 'short', year: 'numeric' });
+    const maxDte = Math.max(...s.dtePhases.map(p => p.avgDte));
+    dteWrap.innerHTML = s.dtePhases.map(p => `
+      <div class="dte-phase dte-phase--${p.key}">
+        <span class="dte-phase-label">${p.label}</span>
+        <span class="dte-phase-range">${mon(p.from)} – ${p.key === 'now' ? 'today' : mon(p.to)}</span>
+        <span class="dte-phase-num">${p.avgDte}<small> days</small></span>
+        <div class="dte-phase-bar"><div style="width:${Math.max(4, Math.round(p.avgDte / maxDte * 100))}%"></div></div>
+        <span class="dte-phase-sub">${p.pctUpTo30}% ≤ 30 DTE · ${p.pctOver90}% &gt; 90 DTE</span>
+        <span class="dte-phase-sub">${Number(p.contracts).toLocaleString()} contracts</span>
+      </div>`).join('');
+    dteShelf.hidden = false;
+  }
+
+  /* velocity quote + body copy */
+  set('vqAvgEvents',    t.avgEventsPerDay + '+');
+  set('vqPeakEvents',   t.peakEventsPerDay);
+  document.querySelectorAll('.vbTradingDays').forEach(el => { el.textContent = t.tradingDays; });
+  set('vbTransactions', Number(t.transactions).toLocaleString());
+  set('vbContracts',    Number(t.contracts).toLocaleString());
+  set('vbUnderlyings',  t.underlyings);
+  set('vbAccounts',     t.accounts);
+  set('vbCumEvals',     (v.evaluationsPerDay * t.tradingDays / 1e9).toFixed(1) + ' billion');
+  set('vbEvalsPerDay',  Math.round(v.evaluationsPerDay / 1e6) + ' million');
+
   /* refreshed-at timestamp */
   const refreshedEl = document.getElementById('statsRefreshedAt');
   if (refreshedEl && s.meta && s.meta.generatedAt) {
@@ -1157,10 +1190,11 @@ function applyStats(s) {
     refreshedEl.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
   }
 
-  /* tickers */
-  const others = t.contracts - t.topTickers.reduce((a, x) => a + x.contracts, 0);
+  /* tickers — hidden symbols drop out; their contracts fall into Others */
+  const top = t.topTickers.filter(x => !HIDDEN_TICKERS.includes(x.sym)).slice(0, TOP_TICKER_COUNT);
+  const others = t.contracts - top.reduce((a, x) => a + x.contracts, 0);
   TICKER_DATA.length = 0;
-  t.topTickers.forEach(x => TICKER_DATA.push(x));
+  top.forEach(x => TICKER_DATA.push(x));
   TICKER_DATA.push({ sym: 'Others', contracts: others });
   renderTickers();
 

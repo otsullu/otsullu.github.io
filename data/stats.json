@@ -1,68 +1,120 @@
 {
   "trade": {
-    "grossNotional": 293091800,
-    "contracts": 8765,
-    "transactions": 3353,
-    "underlyings": 26,
-    "accounts": 6,
-    "tradingDays": 178,
-    "avgEventsPerDay": 18,
-    "peakEventsPerDay": 145,
-    "ccContracts": 7704,
-    "cspContracts": 1061,
+    "grossNotional": 323433250,
+    "contracts": 10109,
+    "transactions": 4184,
+    "underlyings": 25,
+    "accounts": 5,
+    "tradingDays": 254,
+    "avgEventsPerDay": 16,
+    "peakEventsPerDay": 139,
+    "ccContracts": 8205,
+    "cspContracts": 1904,
     "topTickers": [
       {
         "sym": "TSLA",
-        "contracts": 3315
+        "contracts": 3532
       },
       {
         "sym": "NVDA",
-        "contracts": 1068
+        "contracts": 1128
       },
       {
         "sym": "COIN",
-        "contracts": 874
+        "contracts": 987
       },
       {
         "sym": "PLTR",
-        "contracts": 703
+        "contracts": 789
       },
       {
-        "sym": "META",
-        "contracts": 511
+        "sym": "SPCX",
+        "contracts": 713
       },
       {
         "sym": "AMZN",
-        "contracts": 495
+        "contracts": 559
+      },
+      {
+        "sym": "META",
+        "contracts": 521
+      },
+      {
+        "sym": "MSFT",
+        "contracts": 461
       },
       {
         "sym": "GOOGL",
         "contracts": 430
       },
       {
-        "sym": "MSFT",
-        "contracts": 417
-      },
-      {
         "sym": "QQQ",
-        "contracts": 196
+        "contracts": 208
       },
       {
         "sym": "AAPL",
-        "contracts": 137
+        "contracts": 196
+      },
+      {
+        "sym": "AMD",
+        "contracts": 117
+      },
+      {
+        "sym": "INTC",
+        "contracts": 108
+      },
+      {
+        "sym": "NFLX",
+        "contracts": 75
+      },
+      {
+        "sym": "GOOG",
+        "contracts": 67
       }
     ]
   },
   "surveillance": {
-    "rowsPerCycle": 31398,
-    "fieldsTracked": 78,
-    "evaluationsPerCycle": 847665,
-    "evaluationsPerDay": 22039290,
+    "rowsPerCycle": 32857,
+    "fieldsTracked": 74,
+    "evaluationsPerCycle": 821397,
+    "evaluationsPerDay": 21356322,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-06-01T23:45:33.690",
+    "generatedAt": "2026-10-18T18:13:31.993",
     "source": "usp_q_WebsiteStats"
-  }
+  },
+  "dtePhases": [
+    {
+      "key": "early",
+      "label": "Early: short DTE",
+      "from": "2025-06",
+      "to": "2025-09",
+      "contracts": 1423,
+      "avgDte": 47,
+      "pctUpTo30": 57,
+      "pctOver90": 21
+    },
+    {
+      "key": "long",
+      "label": "Long-DTE era",
+      "from": "2025-10",
+      "to": "2026-08",
+      "contracts": 3308,
+      "avgDte": 222,
+      "pctUpTo30": 22,
+      "pctOver90": 63
+    },
+    {
+      "key": "now",
+      "label": "Now: short DTE",
+      "from": "2026-09",
+      "to": "2026-10",
+      "contracts": 418,
+      "avgDte": 42,
+      "pctUpTo30": 76,
+      "pctOver90": 11
+    }
+  ]
 }

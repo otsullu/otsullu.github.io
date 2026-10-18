@@ -48,6 +48,51 @@ def get_connection_string():
     )
 
 
+# DTE phases shown on the site: (key, label, first month, last month or None = to date).
+# Boundaries are editorial: move them here when the strategy shifts again.
+DTE_PHASES = [
+    ("early", "Early: short DTE",  "2025-06", "2025-09"),
+    ("long",  "Long-DTE era",      "2025-10", "2026-08"),
+    ("now",   "Now: short DTE",    "2026-09", None),
+]
+
+
+def fetch_dte_phases(cursor):
+    """Contract-weighted DTE-at-open per phase. Open legs weigh by remaining qty."""
+    cursor.execute("""
+        WITH [cteSrc] AS (
+            SELECT FORMAT([OpnDT], 'yyyy-MM')                 AS [Mon],
+                   DATEDIFF(day, [OpnDT], [ExprDT])            AS [DTE],
+                   ABS(COALESCE(NULLIF([MtchQty], 0), [RemOpnQty], [OpnQty], 0)) AS [Qty]
+            FROM [trade].[vwOptionTrade]
+            WHERE [IsShort] = 1
+        )
+        SELECT [Mon], SUM([Qty]),
+               SUM([DTE] * [Qty]),
+               SUM(CASE WHEN [DTE] <= 30 THEN [Qty] ELSE 0 END),
+               SUM(CASE WHEN [DTE] >  90 THEN [Qty] ELSE 0 END)
+        FROM [cteSrc] GROUP BY [Mon]
+    """)
+    months = cursor.fetchall()
+    phases = []
+    for key, label, first, last in DTE_PHASES:
+        rows = [r for r in months if r[0] >= first and (last is None or r[0] <= last)]
+        qty = sum(r[1] for r in rows)
+        if not qty:
+            continue
+        phases.append({
+            "key":       key,
+            "label":     label,
+            "from":      min(r[0] for r in rows),
+            "to":        max(r[0] for r in rows),
+            "contracts": int(qty),
+            "avgDte":    round(sum(r[2] for r in rows) / qty),
+            "pctUpTo30": round(sum(r[3] for r in rows) * 100 / qty),
+            "pctOver90": round(sum(r[4] for r in rows) * 100 / qty),
+        })
+    return phases
+
+
 def fetch_stats():
     print(f"Connecting to {DB_SERVER}/{DB_NAME}...")
     conn = pyodbc.connect(get_connection_string(), timeout=30)
@@ -62,6 +107,19 @@ def fetch_stats():
 
     raw_json = row[0]
     data = json.loads(raw_json)
+
+    # Top 15 (not 10) so the site can hide tickers (HIDDEN_TICKERS in app.js)
+    # and still fill 10 slots.
+    cursor.execute(
+        "SELECT TOP 15 [SYM], SUM(ABS([Quantity])) "
+        "FROM [trade].[vwOptionsTransaction] "
+        "GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
+    )
+    data["trade"]["topTickers"] = [
+        {"sym": sym, "contracts": int(qty)} for sym, qty in cursor.fetchall()
+    ]
+
+    data["dtePhases"] = fetch_dte_phases(cursor)
     conn.close()
     return data
 

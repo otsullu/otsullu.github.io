@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261006d" />
+  <link rel="stylesheet" href="css/style.css?v=20261018f" />
   <script>
   (function(){
     try {
@@ -561,8 +561,8 @@
 
       <!-- Velocity Callout -->
       <div class="velocity-callout reveal-up">
-        <p class="velocity-quote">"19+ trade events tracked every trading day. Peak tempo: 145 per day. At that velocity, a spreadsheet does not slow you down. It breaks you."</p>
-        <p class="velocity-body">Across 172 trading days, OTS Ullu processed 3,352 transactions covering 8,767 contracts across 26 underlyings and 8 broker accounts. Cumulatively across those 172 days, the surveillance engine ran <strong>3.6 billion data evaluations</strong>; 21 million field-level data points scanned every single trading day to monitor expiry risk, roll triggers, and assignment exposure in real time. This is the scale at which manual tracking becomes statistically impossible.</p>
+        <p class="velocity-quote">"<span id="vqAvgEvents">16+</span> trade events tracked every trading day. Peak tempo: <span id="vqPeakEvents">139</span> per day. At that velocity, a spreadsheet does not slow you down. It breaks you."</p>
+        <p class="velocity-body">Across <span class="vbTradingDays">254</span> trading days, OTS Ullu processed <span id="vbTransactions">4,184</span> transactions covering <span id="vbContracts">10,109</span> contracts across <span id="vbUnderlyings">25</span> underlyings and <span id="vbAccounts">5</span> broker accounts. Cumulatively across those <span class="vbTradingDays">254</span> days, the surveillance engine ran <strong><span id="vbCumEvals">5.4 billion</span> data evaluations</strong>; <span id="vbEvalsPerDay">21 million</span> field-level data points scanned every single trading day to monitor expiry risk, roll triggers, and assignment exposure in real time. This is the scale at which manual tracking becomes statistically impossible.</p>
         <p class="velocity-punch">OTS Ullu exists precisely because it had to.</p>
         <div class="theta-strip">
           <div class="theta-icon" aria-hidden="true">
@@ -608,6 +608,13 @@
       <div class="ticker-shelf reveal-up">
         <p class="ticker-shelf-label">Most Traded Underlyings</p>
         <div class="ticker-list" id="tickerList"></div>
+      </div>
+
+      <!-- DTE Evolution (filled from data/stats.json dtePhases; hidden if absent) -->
+      <div class="ticker-shelf reveal-up" id="dteShelf" hidden>
+        <p class="ticker-shelf-label">Strategy Evolution · Days to Expiry at Open</p>
+        <div class="dte-phases" id="dtePhases"></div>
+        <p class="dte-note">Contract-weighted days to expiry when each short option was opened. The engine now favours short-dated contracts, where time decay is fastest.</p>
       </div>
 
       <!-- Engineering Timeline -->
@@ -881,7 +888,7 @@
 
     <p class="fb-site-stats" id="fbSiteStats" hidden></p>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: October 6, 2026, 9:47 PM PDT</p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: October 18, 2026, 11:17 AM PDT</p>
   </div>
 </footer>
 
@@ -891,9 +898,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261006d"></script>
-<script src="js/feedback.js?v=20261006d"></script>
-<script src="js/app.js?v=20261006d"></script>
+<script src="js/feedback-config.js?v=20261018f"></script>
+<script src="js/feedback.js?v=20261018f"></script>
+<script src="js/app.js?v=20261018f"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {
