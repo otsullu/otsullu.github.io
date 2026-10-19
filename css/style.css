@@ -3020,6 +3020,24 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   transition: color var(--t-theme) var(--ease-out);
 }
 
+/* Title link stretches over the whole card so anywhere is clickable;
+   the Read and Copy-link pills sit above it and keep their own actions. */
+.dispatch-card { position: relative; }
+.dispatch-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+.dispatch-title-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.dispatch-card:has(.dispatch-title-link) { cursor: pointer; }
+.dispatch-card:has(.dispatch-title-link:hover) .dispatch-title,
+.dispatch-title-link:focus-visible { color: var(--accent); }
+.dispatch-title-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.dispatch-right > * { position: relative; z-index: 1; }
+
 .dispatch-excerpt {
   font-size: 0.88rem;
   line-height: 1.6;
