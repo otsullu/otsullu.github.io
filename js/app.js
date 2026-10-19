@@ -1054,7 +1054,7 @@ function dispatchCardHtml(d, reveal = true) {
     <article class="dispatch-card dispatch-card-live${reveal ? ' reveal-up' : ''}">
       <div class="dispatch-left">
         ${d.series ? `<span class="dispatch-source-badge">${d.series}</span>` : ''}
-        <h3 class="dispatch-title">${d.title}</h3>
+        <h3 class="dispatch-title"><a href="${d.url}" class="dispatch-title-link">${d.title}</a></h3>
         <p class="dispatch-excerpt">${d.excerpt}</p>
       </div>
       <div class="dispatch-right">
@@ -1075,7 +1075,7 @@ function renderDispatches() {
     <article class="dispatch-card dispatch-card-live reveal-up">
       <div class="dispatch-left">
         <span class="dispatch-source-badge">Medium · Sam Vishwas</span>
-        <h3 class="dispatch-title">${mediumPick.title}</h3>
+        <h3 class="dispatch-title"><a href="${mediumPick.url}" target="_blank" rel="noopener noreferrer" class="dispatch-title-link">${mediumPick.title}</a></h3>
         <p class="dispatch-excerpt">${mediumPick.excerpt}</p>
       </div>
       <div class="dispatch-right">
