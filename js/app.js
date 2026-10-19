@@ -157,6 +157,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'What Derivative Trading Actually Requires',
+    excerpt: 'Why options are a serious discipline, not a shortcut. The history and mathematics behind the instrument, the seven areas a disciplined trader has to master, what SEBI\'s data shows about undisciplined trading, and the careers that pay for this same knowledge.',
+    series: 'Options Education',
+    url: '/articles/what-derivative-trading-actually-requires/',
+  },
+  {
     title: 'Wash Away Wash Sale Worries',
     excerpt: 'Guest article by Abhi Vishwas. What IRS Publication 550 and the tax code actually say about wash sales, in plain English: the 61-day window that looks backward too, partial wash sales, IRAs, spouses, RSUs, dividend reinvestment and options, and what really happens to the loss. Educational only, not tax advice.',
     series: 'Guest Article · Tax Education',

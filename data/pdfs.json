@@ -2,6 +2,23 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "delta-masterclass",
+      "file": "The_Delta_Masterclass.pdf",
+      "title": "The Delta Masterclass",
+      "description": "Beyond the directional proxy: a slide playbook on delta for equity exposure, dynamic hedging and surface mechanics. Covers delta as a stock-equivalent unit of exposure (N(d1) and N(d1) - 1), the buyer vs. seller directional matrix, why delta is not the probability of expiring in-the-money (N(d1) vs. N(d2)), hidden dividend and borrow-cost exposures, delta as a synthetic and the convexity advantage, hedging a straddle to zero delta, gamma scalping, why hedges should use expected realized volatility rather than implied, the Lehman 2008 SX5E straddle cautionary tale, vanna, sticky-strike vs. sticky-delta regimes, hedging skew as hedging gamma, shadow Greeks and the anchor delta, and the delta master equation.",
+      "tags": [
+        "options",
+        "delta",
+        "greeks",
+        "hedging",
+        "gamma",
+        "volatility",
+        "vanna"
+      ],
+      "date": "2026-10-18",
+      "featured": true
+    },
+    {
       "id": "directional-options-playbook",
       "file": "Directional_Options_Playbook.pdf",
       "title": "The Directional Investor's Options Playbook",
