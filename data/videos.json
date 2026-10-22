@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "95",
     "totalViews": "6852",
-    "videoCount": "138",
-    "updated": "2026-10-21T19:59:10.999944+00:00"
+    "videoCount": "139",
+    "updated": "2026-10-22T04:06:12.414727+00:00"
   },
   "engagement": {
-    "totalViews": 6897,
+    "totalViews": 6905,
     "totalLikes": 236,
-    "totalComments": 90,
-    "engagementRate": 4.73,
+    "totalComments": 91,
+    "engagementRate": 4.74,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/Mpw3jm5pIzQ/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/zY-njNL9YMw/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "zY-njNL9YMw",
+      "title": "🚀 𝗦𝗽𝗮𝗰𝗲𝗫 𝗤𝟯 𝟮𝟬𝟮𝟲: 𝗔 𝗧𝗲𝗰𝗵 𝗝𝘂𝗴𝗴𝗲𝗿𝗻𝗮𝘂𝘁 𝗘𝗺𝗲𝗿𝗴𝗲𝘀 | $𝟭𝟰.𝟲𝗕 𝗥𝗲𝘃𝗲𝗻𝘂𝗲, 𝗔𝗜 & 𝗦𝘁𝗮𝗿𝘀𝗵𝗶𝗽 🚀",
+      "thumb": "https://i.ytimg.com/vi/zY-njNL9YMw/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-10-21",
+      "india": true
+    },
+    {
       "id": "RxvlwbAMovQ",
       "title": "🎧 𝗛𝗼𝘄 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗛𝗲𝗱𝗴𝗶𝗻𝗴 𝗗𝗿𝗶𝘃𝗲𝘀 𝗦𝘁𝗼𝗰𝗸 𝗣𝗿𝗶𝗰𝗲𝘀: 𝗗𝗲𝗹𝘁𝗮, 𝗚𝗮𝗺𝗺𝗮 & 𝗠𝗮𝗿𝗸𝗲𝘁 𝗜𝗺𝗽𝗮𝗰𝘁 📈🚀",
       "thumb": "https://i.ytimg.com/vi/RxvlwbAMovQ/maxresdefault.jpg",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/pYod8uXN6Rk/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "40",
+      "views": "45",
       "likes": "1",
       "comments": "0",
       "published": "2026-10-18",
@@ -208,7 +220,7 @@
       "thumb": "https://i.ytimg.com/vi/Mpw3jm5pIzQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "37",
+      "views": "39",
       "likes": "2",
       "comments": "1",
       "published": "2026-08-27",
