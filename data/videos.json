@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "95",
     "totalViews": "6908",
-    "videoCount": "139",
-    "updated": "2026-10-22T19:51:42.874537+00:00"
+    "videoCount": "140",
+    "updated": "2026-10-23T04:09:35.148880+00:00"
   },
   "engagement": {
-    "totalViews": 6912,
+    "totalViews": 6915,
     "totalLikes": 237,
-    "totalComments": 91,
-    "engagementRate": 4.75,
+    "totalComments": 92,
+    "engagementRate": 4.76,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/zY-njNL9YMw/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "dxgWhSOvOsQ",
+      "title": "⚡ 𝗧𝗲𝘀𝗹𝗮 𝗤𝟯 𝟮𝟬𝟮𝟲 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱: 𝗪𝗵𝗮𝘁 𝘁𝗵𝗲 𝗛𝗲𝗮𝗱𝗹𝗶𝗻𝗲 𝗡𝘂𝗺𝗯𝗲𝗿𝘀 𝗗𝗼 𝗡𝗼𝘁 𝗧𝗲𝗹𝗹 𝗬𝗼𝘂 📊",
+      "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "0",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-10-23",
+      "india": true
+    },
+    {
       "id": "zY-njNL9YMw",
       "title": "🚀 𝗦𝗽𝗮𝗰𝗲𝗫 𝗤𝟯 𝟮𝟬𝟮𝟲: 𝗔 𝗧𝗲𝗰𝗵 𝗝𝘂𝗴𝗴𝗲𝗿𝗻𝗮𝘂𝘁 𝗘𝗺𝗲𝗿𝗴𝗲𝘀 | $𝟭𝟰.𝟲𝗕 𝗥𝗲𝘃𝗲𝗻𝘂𝗲, 𝗔𝗜 & 𝗦𝘁𝗮𝗿𝘀𝗵𝗶𝗽 🚀",
       "thumb": "https://i.ytimg.com/vi/zY-njNL9YMw/maxresdefault.jpg",
@@ -100,7 +112,7 @@
       "thumb": "https://i.ytimg.com/vi/pYod8uXN6Rk/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "48",
+      "views": "49",
       "likes": "1",
       "comments": "0",
       "published": "2026-10-18",
@@ -412,7 +424,7 @@
       "thumb": "https://i.ytimg.com/vi/dwK9d6h1W5Y/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "Hindi",
-      "views": "97",
+      "views": "98",
       "likes": "4",
       "comments": "1",
       "published": "2026-07-13",
@@ -772,7 +784,7 @@
       "thumb": "https://i.ytimg.com/vi/Jd5j0_WCiqM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "25",
+      "views": "26",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-31",
