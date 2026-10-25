@@ -3800,7 +3800,7 @@ form.fb-reply-box { display: block; }
 }
 .fb-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
 
-.fb-site-stats { margin: 6px 0 0; font-size: 0.72rem; color: var(--fg-meta); }
+.fb-site-stats[hidden] { display: none; }
 
 @media print {
   .fb-article, .fb-slot, .fb-overlay, .fb-toast, .fb-site-stats, .pdf-modal-feedback { display: none !important; }

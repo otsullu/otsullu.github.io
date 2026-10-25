@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "anatomy-of-itm-yield",
+      "file": "the_anatomy_of_itm_options_yield_covered_calls_and_cash_secured_puts.pdf",
+      "title": "The Anatomy of ITM Yield: Navigating the Quantitative Iceberg",
+      "description": "A diagnostic slide briefing on the structural benefits and operational traps of deep in-the-money covered calls and cash-secured puts. Covers the risk-reward duality of deep ITM structures, how an ITM covered call builds an immediate downside buffer (sell a $90 call on a $100 stock for $12: $10 intrinsic, $2 time value, an $88 floor), how an ITM cash-secured put works as a discounted entry engine compared with a plain limit order, synthetic forward exposure as delta approaches 1, the intrinsic value vulnerability, the dividend ex-date assignment trap and the math of early call exercise (Dividend NPV - K x r > Time Value), why high interest rates invite early put assignment, the liquidity mirage of wide bid-ask spreads on deep ITM strikes, an ITM calls vs. ITM puts comparison table, and a three-point execution checklist.",
+      "tags": ["options", "covered calls", "cash-secured puts", "early assignment", "dividends", "liquidity"],
+      "date": "2026-10-24",
+      "featured": true
+    },
+    {
       "id": "delta-masterclass",
       "file": "The_Delta_Masterclass.pdf",
       "title": "The Delta Masterclass",
