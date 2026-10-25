@@ -1,7 +1,7 @@
 {
   "trade": {
-    "underlyings": 25,
-    "tradingDays": 254,
+    "underlyings": 26,
+    "tradingDays": 259,
     "topTickers": [
       {
         "sym": "TSLA"
@@ -13,10 +13,10 @@
         "sym": "COIN"
       },
       {
-        "sym": "PLTR"
+        "sym": "SPCX"
       },
       {
-        "sym": "SPCX"
+        "sym": "PLTR"
       },
       {
         "sym": "AMZN"
@@ -53,15 +53,15 @@
     "cspPct": 19
   },
   "surveillance": {
-    "rowsPerCycle": 32857,
+    "rowsPerCycle": 31394,
     "fieldsTracked": 74,
-    "evaluationsPerCycle": 821397,
-    "evaluationsPerDay": 21356322,
+    "evaluationsPerCycle": 784821,
+    "evaluationsPerDay": 20405346,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-10-18T18:13:31.993",
+    "generatedAt": "2026-10-25T00:29:10.863",
     "source": "usp_q_WebsiteStats"
   },
   "dtePhases": [
@@ -88,9 +88,9 @@
       "label": "Now: short DTE",
       "from": "2026-09",
       "to": "2026-10",
-      "avgDte": 42,
-      "pctUpTo30": 76,
-      "pctOver90": 11
+      "avgDte": 50,
+      "pctUpTo30": 72,
+      "pctOver90": 13
     }
   ]
 }

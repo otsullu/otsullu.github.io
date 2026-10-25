@@ -1192,7 +1192,9 @@ function applyStats(s) {
   /* refreshed-at timestamp */
   const refreshedEl = document.getElementById('statsRefreshedAt');
   if (refreshedEl && s.meta && s.meta.generatedAt) {
-    const d = new Date(s.meta.generatedAt);
+    // SQL emits UTC without a zone suffix; without 'Z' the browser reads it as local time.
+    const raw = String(s.meta.generatedAt);
+    const d = new Date(/[zZ]|[+-]\d\d:?\d\d$/.test(raw) ? raw : raw + 'Z');
     refreshedEl.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
   }
 
