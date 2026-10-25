@@ -749,7 +749,7 @@
       const rows = await rpc('get_site_stats');
       const r = rows && rows[0];
       if (!r) return;
-      el.textContent = `${fmtNum(r.views)} visits`;
+      (el.querySelector('.fb-site-stats-n') || el).textContent = `${fmtNum(r.views)} visits`;
       el.hidden = false;
     } catch (e) {}
   }
