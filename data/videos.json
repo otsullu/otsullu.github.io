@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "96",
     "totalViews": "7033",
-    "videoCount": "141",
-    "updated": "2026-10-24T18:40:44.271303+00:00"
+    "videoCount": "142",
+    "updated": "2026-10-25T04:03:22.913338+00:00"
   },
   "engagement": {
-    "totalViews": 7039,
+    "totalViews": 7055,
     "totalLikes": 239,
-    "totalComments": 92,
-    "engagementRate": 4.7,
+    "totalComments": 93,
+    "engagementRate": 4.71,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/xbwb246JUPY/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/dgzbjF7Bhng/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "dgzbjF7Bhng",
+      "title": "🎬 𝗜𝗧𝗠 𝗢𝗽𝘁𝗶𝗼𝗻𝘀: 𝗛𝗶𝗱𝗱𝗲𝗻 𝗥𝗶𝘀𝗸𝘀, 𝗗𝗲𝗹𝘁𝗮 𝗧𝗿𝗮𝗽𝘀 & 𝗘𝗮𝗿𝗹𝘆 𝗔𝘀𝘀𝗶𝗴𝗻𝗺𝗲𝗻𝘁 📉⚠️",
+      "thumb": "https://i.ytimg.com/vi/dgzbjF7Bhng/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "2",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-10-24",
+      "india": true
+    },
+    {
       "id": "xbwb246JUPY",
       "title": "🎬 𝗪𝗵𝘆 𝗦𝗲𝗹𝗹 𝗜𝗧𝗠 𝗢𝗽𝘁𝗶𝗼𝗻𝘀? 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹𝘀 & 𝗖𝗮𝘀𝗵-𝗦𝗲𝗰𝘂𝗿𝗲𝗱 𝗣𝘂𝘁𝘀 📈⚡s",
       "thumb": "https://i.ytimg.com/vi/xbwb246JUPY/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "4",
+      "views": "17",
       "likes": "1",
       "comments": "0",
       "published": "2026-10-23",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "83",
+      "views": "84",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-23",
