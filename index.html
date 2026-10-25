@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261024b" />
+  <link rel="stylesheet" href="css/style.css?v=20261024c" />
   <script>
   (function(){
     try {
@@ -368,17 +368,17 @@
   <div class="stats-bar" id="statsBar">
     <div class="stats-inner">
       <div class="stat-item reveal-up">
-        <span class="stat-value" id="statNotional">$293M</span>
+        <span class="stat-value" id="statNotional">$328M</span>
         <span class="stat-label">Total Notional</span>
       </div>
       <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item reveal-up">
-        <span class="stat-value" id="statContracts">8,765</span>
+        <span class="stat-value" id="statContracts">10,290</span>
         <span class="stat-label">Contracts Traded</span>
       </div>
       <div class="stat-divider" aria-hidden="true"></div>
       <div class="stat-item reveal-up">
-        <span class="stat-value" id="statTransactions">3,353</span>
+        <span class="stat-value" id="statTransactions">4,303</span>
         <span class="stat-label">Trades Executed</span>
       </div>
       <div class="stat-divider" aria-hidden="true"></div>
@@ -562,7 +562,7 @@
       <!-- Velocity Callout -->
       <div class="velocity-callout reveal-up">
         <p class="velocity-quote">"<span id="vqAvgEvents">16+</span> trade events tracked every trading day. Peak tempo: <span id="vqPeakEvents">139</span> per day. At that velocity, a spreadsheet does not slow you down. It breaks you."</p>
-        <p class="velocity-body">Across <span class="vbTradingDays">254</span> trading days, OTS Ullu processed <span id="vbTransactions">4,184</span> transactions covering <span id="vbContracts">10,109</span> contracts across <span id="vbUnderlyings">25</span> underlyings and <span id="vbAccounts">5</span> broker accounts. Cumulatively across those <span class="vbTradingDays">254</span> days, the surveillance engine ran <strong><span id="vbCumEvals">5.4 billion</span> data evaluations</strong>; <span id="vbEvalsPerDay">21 million</span> field-level data points scanned every single trading day to monitor expiry risk, roll triggers, and assignment exposure in real time. This is the scale at which manual tracking becomes statistically impossible.</p>
+        <p class="velocity-body">Across <span class="vbTradingDays">259</span> trading days, OTS Ullu processed <span id="vbTransactions">4,303</span> transactions covering <span id="vbContracts">10,290</span> contracts across <span id="vbUnderlyings">26</span> underlyings and <span id="vbAccounts">5</span> broker accounts. Cumulatively across those <span class="vbTradingDays">259</span> days, the surveillance engine ran <strong><span id="vbCumEvals">5.3 billion</span> data evaluations</strong>; <span id="vbEvalsPerDay">20 million</span> field-level data points scanned every single trading day to monitor expiry risk, roll triggers, and assignment exposure in real time. This is the scale at which manual tracking becomes statistically impossible.</p>
         <p class="velocity-punch">OTS Ullu exists precisely because it had to.</p>
         <div class="theta-strip">
           <div class="theta-icon" aria-hidden="true">
@@ -578,9 +578,9 @@
           </div>
         </div>
         <div class="velocity-stats">
-          <div class="vel-stat"><span class="vel-num">19+</span><span class="vel-label">Trade events<br/>per trading day</span></div>
-          <div class="vel-stat"><span class="vel-num">145</span><span class="vel-label">Peak daily<br/>transactions</span></div>
-          <div class="vel-stat"><span class="vel-num">172</span><span class="vel-label">Trading days<br/>in operation</span></div>
+          <div class="vel-stat"><span class="vel-num">16+</span><span class="vel-label">Trade events<br/>per trading day</span></div>
+          <div class="vel-stat"><span class="vel-num">139</span><span class="vel-label">Peak daily<br/>transactions</span></div>
+          <div class="vel-stat"><span class="vel-num">259</span><span class="vel-label">Trading days<br/>in operation</span></div>
           <div class="vel-stat"><span class="vel-num">0</span><span class="vel-label">Spreadsheets<br/>still in use</span></div>
         </div>
         <p class="velocity-meta">These figures reflect historical trading activity and do not update in real time. Data last refreshed <span id="statsRefreshedAt">—</span>.</p>
@@ -591,15 +591,15 @@
         <div class="split-row">
           <div class="split-item">
             <span class="split-label">Short Covered Call</span>
-            <div class="split-bar-wrap"><div class="split-bar split-bar-cc" style="width:88%"></div></div>
-            <span class="split-pct">88%</span>
-            <span class="split-sub">7,708 contracts</span>
+            <div class="split-bar-wrap"><div class="split-bar split-bar-cc" style="width:81%"></div></div>
+            <span class="split-pct">81%</span>
+            <span class="split-sub">8,293 contracts</span>
           </div>
           <div class="split-item">
             <span class="split-label">Short Cash-Secured Put</span>
-            <div class="split-bar-wrap"><div class="split-bar split-bar-csp" style="width:12%"></div></div>
-            <span class="split-pct">12%</span>
-            <span class="split-sub">1,059 contracts</span>
+            <div class="split-bar-wrap"><div class="split-bar split-bar-csp" style="width:19%"></div></div>
+            <span class="split-pct">19%</span>
+            <span class="split-sub">1,997 contracts</span>
           </div>
         </div>
       </div>
@@ -632,10 +632,10 @@
       <h2 class="section-heading reveal-up">The owl never blinks.</h2>
       <p class="section-subtext reveal-up">Every open position is re-evaluated every 15 minutes across three synchronized market data streams. Not periodically. Not on demand. Continuously — from market open to close, 26 times a day, without exception.</p>
       <div class="surveillance-grid reveal-up">
-        <div class="surv-stat"><span class="surv-num" id="survRowsPerCycle">29,969</span><span class="surv-label">Market rows evaluated<br/>per cycle</span></div>
-        <div class="surv-stat"><span class="surv-num" id="survFieldsTracked">78</span><span class="surv-label">Fields tracked<br/>across 3 data streams</span></div>
-        <div class="surv-stat"><span class="surv-num" id="survEvalsPerCycle">809K</span><span class="surv-label">Data point evaluations<br/>per monitoring cycle</span></div>
-        <div class="surv-stat"><span class="surv-num" id="survEvalsPerDay">21M</span><span class="surv-label">Evaluations executed<br/>every trading day</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survRowsPerCycle">31,394</span><span class="surv-label">Market rows evaluated<br/>per cycle</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survFieldsTracked">74</span><span class="surv-label">Fields tracked<br/>across 3 data streams</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survEvalsPerCycle">785K</span><span class="surv-label">Data point evaluations<br/>per monitoring cycle</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survEvalsPerDay">20M</span><span class="surv-label">Evaluations executed<br/>every trading day</span></div>
         <div class="surv-stat"><span class="surv-num" id="survCyclesPerDay">26</span><span class="surv-label">Monitoring cycles<br/>every trading day</span></div>
         <div class="surv-stat"><span class="surv-num" id="survDataStreams">3</span><span class="surv-label">Synchronized streams:<br/>Chain · Quote · Market</span></div>
       </div>
@@ -886,7 +886,7 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a><span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span> &nbsp;·&nbsp; Last updated: October 24, 2026, 5:28 PM PDT</p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a><span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span> &nbsp;·&nbsp; Last updated: October 24, 2026, 5:30 PM PDT</p>
   </div>
 </footer>
 
@@ -896,9 +896,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261024b"></script>
-<script src="js/feedback.js?v=20261024b"></script>
-<script src="js/app.js?v=20261024b"></script>
+<script src="js/feedback-config.js?v=20261024c"></script>
+<script src="js/feedback.js?v=20261024c"></script>
+<script src="js/app.js?v=20261024c"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

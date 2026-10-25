@@ -1,35 +1,35 @@
 {
   "trade": {
-    "grossNotional": 323433250,
-    "contracts": 10109,
-    "transactions": 4184,
-    "underlyings": 25,
+    "grossNotional": 327837350,
+    "contracts": 10290,
+    "transactions": 4303,
+    "underlyings": 26,
     "accounts": 5,
-    "tradingDays": 254,
+    "tradingDays": 259,
     "avgEventsPerDay": 16,
     "peakEventsPerDay": 139,
-    "ccContracts": 8205,
-    "cspContracts": 1904,
+    "ccContracts": 8293,
+    "cspContracts": 1997,
     "topTickers": [
       {
         "sym": "TSLA",
-        "contracts": 3532
+        "contracts": 3588
       },
       {
         "sym": "NVDA",
-        "contracts": 1128
+        "contracts": 1135
       },
       {
         "sym": "COIN",
-        "contracts": 987
+        "contracts": 1001
+      },
+      {
+        "sym": "SPCX",
+        "contracts": 806
       },
       {
         "sym": "PLTR",
         "contracts": 789
-      },
-      {
-        "sym": "SPCX",
-        "contracts": 713
       },
       {
         "sym": "AMZN",
@@ -37,7 +37,7 @@
       },
       {
         "sym": "META",
-        "contracts": 521
+        "contracts": 523
       },
       {
         "sym": "MSFT",
@@ -65,24 +65,24 @@
       },
       {
         "sym": "NFLX",
-        "contracts": 75
+        "contracts": 79
       },
       {
         "sym": "GOOG",
-        "contracts": 67
+        "contracts": 69
       }
     ]
   },
   "surveillance": {
-    "rowsPerCycle": 32857,
+    "rowsPerCycle": 31394,
     "fieldsTracked": 74,
-    "evaluationsPerCycle": 821397,
-    "evaluationsPerDay": 21356322,
+    "evaluationsPerCycle": 784821,
+    "evaluationsPerDay": 20405346,
     "cyclesPerDay": 26,
     "dataStreams": 3
   },
   "meta": {
-    "generatedAt": "2026-10-18T18:13:31.993",
+    "generatedAt": "2026-10-25T00:29:10.863",
     "source": "usp_q_WebsiteStats"
   },
   "dtePhases": [
@@ -111,10 +111,10 @@
       "label": "Now: short DTE",
       "from": "2026-09",
       "to": "2026-10",
-      "contracts": 418,
-      "avgDte": 42,
-      "pctUpTo30": 76,
-      "pctOver90": 11
+      "contracts": 510,
+      "avgDte": 50,
+      "pctUpTo30": 72,
+      "pctOver90": 13
     }
   ]
 }
