@@ -1246,6 +1246,31 @@ function parsePodcastFeed(items) {
   });
 }
 
+// Map raw RSS XML onto the rss2json item shape parsePodcastFeed expects.
+function xmlToFeedItems(text) {
+  const doc = new DOMParser().parseFromString(text, 'application/xml');
+  if (doc.querySelector('parsererror')) throw new Error('feed parse error');
+  const ITUNES = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
+  const txt = (node, tag) => node.getElementsByTagName(tag)[0]?.textContent.trim() || '';
+  return Array.from(doc.getElementsByTagName('item')).map(item => {
+    const enc = item.getElementsByTagName('enclosure')[0];
+    const img = item.getElementsByTagNameNS(ITUNES, 'image')[0];
+    const dur = item.getElementsByTagNameNS(ITUNES, 'duration')[0]?.textContent.trim() || '';
+    return {
+      title:   txt(item, 'title'),
+      guid:    txt(item, 'guid'),
+      link:    txt(item, 'link'),
+      pubDate: txt(item, 'pubDate'),
+      enclosure: {
+        link:     enc ? enc.getAttribute('url') : '',
+        image:    img ? img.getAttribute('href') : '',
+        // itunes:duration is "hh:mm:ss", "mm:ss" or plain seconds
+        duration: dur.includes(':') ? String(dur.split(':').reduce((t, p) => t * 60 + (parseInt(p, 10) || 0), 0)) : dur,
+      },
+    };
+  });
+}
+
 function fmtDuration(raw) {
   if (!raw) return '';
   const secs = parseInt(raw, 10);
@@ -1422,12 +1447,18 @@ function loadPodcast() {
   const el = document.getElementById('podcastEpisodes');
   if (!el) return;
 
-  fetch(RSS2JSON_API + encodeURIComponent(PODCAST_RSS))
-    .then(r => r.json())
-    .then(data => {
-      if (data.status !== 'ok') throw new Error('feed error');
-      renderPodcastEpisodes(parsePodcastFeed(data.items || []));
-    })
+  // Anchor serves the feed with CORS (*), so read it directly. rss2json now sits
+  // behind a Cloudflare challenge (403), so it is only a fallback.
+  fetch(PODCAST_RSS)
+    .then(r => { if (!r.ok) throw new Error('feed ' + r.status); return r.text(); })
+    .then(xmlToFeedItems)
+    .catch(() => fetch(RSS2JSON_API + encodeURIComponent(PODCAST_RSS))
+      .then(r => r.json())
+      .then(data => {
+        if (data.status !== 'ok') throw new Error('feed error');
+        return data.items || [];
+      }))
+    .then(items => renderPodcastEpisodes(parsePodcastFeed(items)))
     .catch(() => {
       el.innerHTML = '<div class="podcast-episodes-loading">Could not load episodes. <a href="' + PODCAST_RSS + '" target="_blank" rel="noopener" style="color:var(--accent)">Open RSS feed</a></div>';
     });
