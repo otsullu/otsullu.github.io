@@ -157,6 +157,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'I Just Need to Get Back to Even',
+    excerpt: 'Mike had learned to distrust his research. What he had not learned was to stop keeping score. Fifteen thousand dollars was his normal size; twenty-eight thousand was the number that made his "Recovery" tab disappear. The trade worked, and that was the problem. A story about the break-even effect and mental accounting.',
+    series: 'The Mind Against the Market · Part 5',
+    url: '/articles/the-mind-against-the-market/article-5/',
+  },
+  {
     title: 'What Derivative Trading Actually Requires',
     excerpt: 'Why options are a serious discipline, not a shortcut. The history and mathematics behind the instrument, the seven areas a disciplined trader has to master, what SEBI\'s data shows about undisciplined trading, and the careers that pay for this same knowledge.',
     series: 'Options Education',
