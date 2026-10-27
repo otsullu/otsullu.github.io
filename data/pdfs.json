@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "surviving-the-break-even-trap",
+      "file": "break-even-effect-trading-psychology-loss-aversion.pdf",
+      "title": "Surviving the Break-Even Trap",
+      "description": "A visual case file from The Mind Against the Market series. Mike sells a broad-market ETF to fund a losing idea, opens a 'Recovery' tab to track the $9,200 gap, then sizes his next trade at $28,000 instead of his normal $15,000 because that is what the math needs to close the gap. The trade works, and that is the danger: the process was broken. The deck sets a rational trade beside a contaminated one, shows the asymmetry of the blind spot ($7,000 vs. $3,750 on a 25% drop), and grounds the break-even effect in Thaler's mental accounting, Kahneman and Tversky's reference-dependent thinking, and the realization effect (Imas; Coval and Shumway). It closes with three tools: the Clean Slate Test, closing the mental ledger, and a drawdown circuit breaker, plus a pre-trade checklist. The market has no memory.",
+      "tags": ["behavioral finance", "break-even effect", "loss aversion", "position sizing", "mind against the market"],
+      "date": "2026-10-26",
+      "featured": true
+    },
+    {
       "id": "anatomy-of-itm-yield",
       "file": "the_anatomy_of_itm_options_yield_covered_calls_and_cash_secured_puts.pdf",
       "title": "The Anatomy of ITM Yield: Navigating the Quantitative Iceberg",
