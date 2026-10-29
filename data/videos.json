@@ -7,14 +7,14 @@
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "99",
     "totalViews": "7282",
-    "videoCount": "144",
-    "updated": "2026-10-29T05:10:30.113245+00:00"
+    "videoCount": "145",
+    "updated": "2026-10-29T15:05:33.078476+00:00"
   },
   "engagement": {
-    "totalViews": 7286,
+    "totalViews": 7293,
     "totalLikes": 241,
-    "totalComments": 94,
-    "engagementRate": 4.6,
+    "totalComments": 95,
+    "engagementRate": 4.61,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/2w2Xv1lIyO0/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,12 +71,24 @@
   ],
   "videos": [
     {
+      "id": "2w2Xv1lIyO0",
+      "title": "𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗤𝟭 𝗙𝗬𝟮𝟳 𝗘𝗮𝗿𝗻𝗶𝗻𝗴𝘀: The $92.3B Profit Waterfall 🚀 | MSFT Financial Teardown",
+      "thumb": "https://i.ytimg.com/vi/2w2Xv1lIyO0/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "3",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-10-29",
+      "india": true
+    },
+    {
       "id": "dgkFDvbU_mE",
       "title": "🎧 𝗛𝗼𝘄 𝗪𝗮𝗹𝗹 𝗦𝘁𝗿𝗲𝗲𝘁 𝗠𝗼𝗻𝗲𝘁𝗶𝘇𝗲𝘀 𝗛𝘂𝗺𝗮𝗻 𝗙𝗲𝗮𝗿: 𝗧𝗵𝗲 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 𝗥𝗶𝘀𝗸 𝗣𝗿𝗲𝗺𝗶𝘂𝗺 📈🚀",
       "thumb": "https://i.ytimg.com/vi/dgkFDvbU_mE/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "2",
+      "views": "3",
       "likes": "0",
       "comments": "0",
       "published": "2026-10-28",
@@ -112,7 +124,7 @@
       "thumb": "https://i.ytimg.com/vi/xbwb246JUPY/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "60",
+      "views": "61",
       "likes": "1",
       "comments": "0",
       "published": "2026-10-23",
@@ -124,7 +136,7 @@
       "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "123",
+      "views": "125",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-23",
