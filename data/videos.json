@@ -8,12 +8,12 @@
     "subscribers": "101",
     "totalViews": "7413",
     "videoCount": "147",
-    "updated": "2026-11-03T16:02:02.270306+00:00"
+    "updated": "2026-11-03T21:44:57.982060+00:00"
   },
   "engagement": {
-    "totalViews": 7440,
-    "totalLikes": 244,
-    "totalComments": 98,
+    "totalViews": 7428,
+    "totalLikes": 245,
+    "totalComments": 97,
     "engagementRate": 4.6,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
@@ -136,7 +136,7 @@
       "thumb": "https://i.ytimg.com/vi/dgzbjF7Bhng/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "117",
+      "views": "118",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-24",
@@ -160,7 +160,7 @@
       "thumb": "https://i.ytimg.com/vi/dxgWhSOvOsQ/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "125",
+      "views": "126",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-23",
@@ -484,7 +484,7 @@
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "39",
+      "views": "40",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -539,6 +539,18 @@
       "india": true
     },
     {
+      "id": "_fpZlIWzD68",
+      "title": "🏛️ 𝗧𝗵𝗲 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗚𝗹𝗼𝗯𝗮𝗹 𝗗𝗼𝗹𝗹𝗮𝗿 𝗧𝗿𝘂𝘀𝘁: 𝗙𝗿𝗼𝗺 𝗚𝗼𝗹𝗱 𝗦𝘁𝗮𝗻𝗱𝗮𝗿𝗱 𝘁𝗼 𝗗𝗶𝗴𝗶𝘁𝗮𝗹 𝗙𝘂𝘁𝘂𝗿𝗲",
+      "thumb": "https://i.ytimg.com/vi/_fpZlIWzD68/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "3",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-07-07",
+      "india": true
+    },
+    {
       "id": "FHjsZvj4888",
       "title": "🚨 𝗢𝗖𝗖 𝗢𝗽𝘁𝗶𝗼𝗻 𝗔𝗱𝗷𝘂𝘀𝘁𝗺𝗲𝗻𝘁𝘀 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱: What Happens During Splits, Dividends & Mergers? 📉",
       "thumb": "https://i.ytimg.com/vi/FHjsZvj4888/maxresdefault.jpg",
@@ -556,7 +568,7 @@
       "thumb": "https://i.ytimg.com/vi/UXqxhFtcJZ8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "25",
+      "views": "27",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-06",
@@ -656,18 +668,6 @@
       "likes": "2",
       "comments": "2",
       "published": "2026-06-23",
-      "india": true
-    },
-    {
-      "id": "KlHx_TiiZHo",
-      "title": "𝗧𝗵𝗲 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻 𝗼𝗳 𝗖𝗲𝗿𝘁𝗮𝗶𝗻𝘁𝘆: 𝗪𝗵𝘆 𝗦𝗺𝗮𝗿𝘁 𝗜𝗻𝘃𝗲𝘀𝘁𝗼𝗿𝘀 𝗟𝗼𝘀𝗲 𝗕𝗶𝗴 🧠💸",
-      "thumb": "https://i.ytimg.com/vi/KlHx_TiiZHo/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "20",
-      "likes": "0",
-      "comments": "1",
-      "published": "2026-06-22",
       "india": true
     },
     {
