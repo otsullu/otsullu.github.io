@@ -1274,6 +1274,124 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   .dte-phases { grid-template-columns: 1fr; }
 }
 
+/* ── TRADING CALENDAR HEATMAP ───────────────────────────────────── */
+.cal-shelf {
+  position: relative;
+  padding: 24px 24px 18px;
+  background: var(--product-card-bg);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--product-border);
+}
+
+.cal-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.cal-stat { display: flex; flex-direction: column; gap: 6px; }
+
+.cal-num {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-family: var(--font-mono);
+  color: var(--product-fg);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cal-num-hot { color: var(--accent); }
+
+.cal-label {
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--product-fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cal-grid-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.cal-band {
+  display: grid;
+  gap: 3px;
+  /* columns set inline: weekday label column + one per week */
+}
+
+.cal-month,
+.cal-wd {
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+  line-height: 1;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.cal-wd { padding-right: 6px; }
+
+.cal-cell,
+.cal-key {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--product-fg) 4%, transparent);
+}
+
+.cal-cell { transform: scale(0.4); opacity: 0; transition: transform 420ms var(--ease-out), opacity 420ms var(--ease-out), background-color 420ms; transition-delay: calc(var(--i, 0) * 22ms); }
+.cal-grid-wrap.is-live .cal-cell { transform: scale(1); opacity: 1; }
+
+.cal-weekend { background: color-mix(in srgb, var(--product-fg) 4%, transparent); }
+.cal-open    { background: color-mix(in srgb, var(--product-fg) 14%, transparent); }
+.cal-traded  { background: var(--accent); }
+.cal-holiday {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--product-fg) 22%, transparent);
+}
+.cal-blank   { visibility: hidden; }
+
+/* traded squares start muted, then light up in the sweep */
+.cal-grid-wrap:not(.is-live) .cal-traded { background: color-mix(in srgb, var(--product-fg) 14%, transparent); }
+
+.cal-cell:hover { outline: 1px solid var(--product-fg); outline-offset: 1px; }
+
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 16px;
+  font-size: 0.7rem;
+  color: var(--product-fg-muted);
+}
+
+.cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.cal-key { width: 11px; height: 11px; }
+
+.cal-tip {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  padding: 6px 9px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  color: var(--bg);
+  background: var(--product-fg);
+  border-radius: var(--r-sm);
+  transform: translate(-50%, calc(-100% - 8px));
+}
+
+@media (max-width: 600px) {
+  .cal-shelf { padding: 18px 14px 14px; }
+  .cal-stats { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cal-cell { transition: none; transform: none; opacity: 1; }
+}
+
 .ticker-shelf-label {
   font-size: 0.72rem;
   font-weight: 600;

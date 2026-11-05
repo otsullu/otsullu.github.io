@@ -1134,8 +1134,179 @@ function setFooterYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
+/* ── TRADING CALENDAR HEATMAP ───────────────────────────────────── */
+// One square per day from first trade to today, in week columns (Mon–Sun rows).
+// Splits into stacked bands when all weeks won't fit at a readable size,
+// so it never needs sideways scrolling.
+const CAL_MIN_CELL = 9;    // px, smallest square before a band split
+const CAL_GAP      = 3;
+const CAL_WD_COL   = 30;   // px, weekday label column
+const CAL_DAY_MS   = 86400000;
+let calData = null;
+let calAnimated = false;
+
+function calIso(t) { return new Date(t).toISOString().slice(0, 10); }
+
+function renderCalendar() {
+  const wrap = document.getElementById('calGrid');
+  if (!wrap || !calData) return;
+  const c = calData;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const start = Date.parse(c.start + 'T00:00:00Z');
+  const end   = Date.parse(c.end   + 'T00:00:00Z');
+  const holidays = new Set(c.holidays || []);
+  const traded   = c.traded || {};
+  // Monday on or before the first day
+  const mon0 = start - ((new Date(start).getUTCDay() + 6) % 7) * CAL_DAY_MS;
+  const weeks = Math.floor((end - mon0) / CAL_DAY_MS / 7) + 1;
+
+  const width   = wrap.clientWidth || 1000;
+  const perBand = Math.max(8, Math.floor((width - CAL_WD_COL) / (CAL_MIN_CELL + CAL_GAP)));
+  const bands   = Math.ceil(weeks / perBand);
+  const cols    = Math.ceil(weeks / bands);     // even out band widths
+
+  const WD = ['Mon', '', 'Wed', '', 'Fri', '', 'Sun'];
+  const fmt = t => new Date(t).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  let html = '';
+
+  for (let b = 0; b < bands; b++) {
+    const w0 = b * cols, w1 = Math.min(weeks, w0 + cols);
+    let cells = '';
+    // month labels: first column of each month in the band; a partial month at the
+    // band start gives way when the next month begins within 3 columns
+    const labels = [];
+    let lastMonth = -1;
+    for (let w = w0; w < w1; w++) {
+      const wkStart = Math.max(mon0 + w * 7 * CAL_DAY_MS, start);
+      const d = new Date(wkStart), m = d.getUTCMonth();
+      if (m === lastMonth) continue;
+      lastMonth = m;
+      const prev = labels[labels.length - 1];
+      let withYear = m === 0 || w === 0;
+      if (prev && w - w0 + 2 - prev.col < 3) {
+        if (labels.length !== 1) continue;
+        labels.pop();
+        withYear = withYear || prev.withYear;   // keep the year when the start label gives way
+      }
+      const text = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
+        + (withYear ? ' ’' + String(d.getUTCFullYear()).slice(2) : '');
+      labels.push({ col: w - w0 + 2, text, withYear });
+    }
+    labels.forEach(l => { cells += `<span class="cal-month" style="grid-row:1;grid-column:${l.col} / span 3">${l.text}</span>`; });
+    WD.forEach((d, r) => { if (d) cells += `<span class="cal-wd" style="grid-row:${r + 2};grid-column:1">${d}</span>`; });
+
+    for (let w = w0; w < w1; w++) {
+      for (let r = 0; r < 7; r++) {
+        const t = mon0 + (w * 7 + r) * CAL_DAY_MS;
+        const pos = `grid-row:${r + 2};grid-column:${w - w0 + 2};--i:${w}`;
+        if (t < start || t > end) { cells += `<span class="cal-cell cal-blank" style="${pos}"></span>`; continue; }
+        const iso = calIso(t);
+        let cls, tip;
+        if (traded[iso] != null) {
+          cls = 'cal-traded';
+          tip = `${fmt(t)} · Traded · ${traded[iso]} event${traded[iso] === 1 ? '' : 's'}`;
+        } else if (r >= 5) {
+          cls = 'cal-weekend'; tip = `${fmt(t)} · Weekend`;
+        } else if (holidays.has(iso)) {
+          cls = 'cal-holiday'; tip = `${fmt(t)} · Market holiday`;
+        } else {
+          cls = 'cal-open'; tip = `${fmt(t)} · Market open, no trade`;
+        }
+        cells += `<span class="cal-cell ${cls}" style="${pos}" data-tip="${tip}"></span>`;
+      }
+    }
+    html += `<div class="cal-band" style="grid-template-columns:${CAL_WD_COL - 6}px repeat(${cols}, minmax(0, 1fr))" aria-hidden="true">${cells}</div>`;
+  }
+
+  wrap.innerHTML = html;
+  if (calAnimated || reduce) wrap.classList.add('is-live');
+}
+
+function calCountUp() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  ['calDays', 'calSessions', 'calTraded', 'calPct'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const target = Number(el.dataset.target) || 0;
+    const suffix = el.dataset.suffix || '';
+    if (reduce) { el.textContent = target.toLocaleString() + suffix; return; }
+    const delay = i * 350, dur = 1300;
+    el.textContent = '0' + suffix;
+    const t0 = performance.now() + delay;
+    const step = now => {
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+function setupCalendar(c) {
+  const shelf = document.getElementById('calShelf');
+  const wrap  = document.getElementById('calGrid');
+  if (!shelf || !wrap || !c) return;
+  calData = c;
+
+  const pct = c.marketSessions ? Math.round(c.tradedDays / c.marketSessions * 100) : 0;
+  const vals = { calDays: c.calendarDays, calSessions: c.marketSessions, calTraded: c.tradedDays, calPct: pct };
+  Object.entries(vals).forEach(([id, v]) => {
+    const el = document.getElementById(id);
+    if (el) { el.dataset.target = v; el.textContent = Number(v).toLocaleString() + (el.dataset.suffix || ''); }
+  });
+  const fmt = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  wrap.setAttribute('aria-label', `Trading calendar from ${fmt(c.start)} to ${fmt(c.end)}: ${c.calendarDays} calendar days, ${c.marketSessions} NYSE market sessions, ${c.tradedDays} days traded (${pct}% of sessions).`);
+  const note = document.getElementById('calNote');
+  if (note) note.textContent = `Every square is one day, from the first live trade on ${fmt(c.start)} to ${fmt(c.end)}. Market sessions follow the official NYSE calendar. A day counts as traded when at least one option transaction was recorded.`;
+
+  renderCalendar();
+
+  // Sweep + count-up once, when the grid scrolls into view
+  if (!calAnimated) {
+    const io = new IntersectionObserver(entries => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      calAnimated = true;
+      calCountUp();
+      requestAnimationFrame(() => wrap.classList.add('is-live'));
+    }, { threshold: 0.3 });
+    io.observe(wrap);
+  }
+
+  // Re-band when the grid's width changes, including when its hidden tab opens (0 → real width)
+  let lastW = wrap.clientWidth, timer;
+  new ResizeObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const w = wrap.clientWidth;
+      if (w && w !== lastW) { lastW = w; renderCalendar(); }
+    }, 100);
+  }).observe(wrap);
+
+  // Tooltip (pointer + tap)
+  const tip = document.getElementById('calTip');
+  const show = e => {
+    const cell = e.target.closest('.cal-cell[data-tip]');
+    if (!cell || !tip) { if (tip) tip.hidden = true; return; }
+    const sr = shelf.getBoundingClientRect(), cr = cell.getBoundingClientRect();
+    tip.textContent = cell.dataset.tip;
+    tip.hidden = false;
+    const half = tip.offsetWidth / 2;
+    const x = Math.min(Math.max(cr.left + cr.width / 2 - sr.left, half + 4), sr.width - half - 4);
+    tip.style.left = x + 'px';
+    tip.style.top  = (cr.top - sr.top) + 'px';
+  };
+  wrap.addEventListener('pointerover', show);
+  wrap.addEventListener('pointerdown', show);
+  wrap.addEventListener('pointerleave', () => { if (tip) tip.hidden = true; });
+}
+
 /* ── STATS FROM JSON ────────────────────────────────────────────── */
 function applyStats(s) {
+  setupCalendar(s.calendar);
+
   const t = s.trade;
   const v = s.surveillance;
 

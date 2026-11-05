@@ -7,7 +7,7 @@ Usage:
     python scripts/refresh-stats.py
 
 Requirements:
-    pip install pyodbc
+    pip install pyodbc exchange_calendars
 
 Configuration:
     Set the DB_* variables below to match your SQL Server connection.
@@ -17,12 +17,18 @@ import json
 import os
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 try:
     import pyodbc
 except ImportError:
     print("ERROR: pyodbc not installed. Run: pip install pyodbc")
+    sys.exit(1)
+
+try:
+    import exchange_calendars
+except ImportError:
+    print("ERROR: exchange_calendars not installed. Run: pip install exchange_calendars")
     sys.exit(1)
 
 # ── CONNECTION CONFIG ────────────────────────────────────────────────
@@ -93,6 +99,45 @@ def fetch_dte_phases(cursor):
     return phases
 
 
+def fetch_calendar(cursor):
+    """Calendar days vs NYSE sessions vs days traded, first trade through today.
+
+    Market sessions come from the official NYSE (XNYS) calendar, not a
+    hand-typed holiday list. 'traded' maps each trade date to its event count
+    (same COUNT(*) basis as avgEventsPerDay / peakEventsPerDay).
+    """
+    cursor.execute(
+        "SELECT [TransactionDate], COUNT(*) "
+        "FROM [trade].[vwOptionsTransaction] "
+        "GROUP BY [TransactionDate] ORDER BY [TransactionDate]"
+    )
+    traded = {str(d): int(n) for d, n in cursor.fetchall()}
+    if not traded:
+        return None
+    start = date.fromisoformat(min(traded))
+    end = max(date.today(), date.fromisoformat(max(traded)))
+
+    xnys = exchange_calendars.get_calendar("XNYS")
+    sessions = {d.date() for d in xnys.sessions_in_range(start.isoformat(), end.isoformat())}
+    # Weekday market closures (holidays, special closures) in the span.
+    holidays = []
+    d = start
+    while d <= end:
+        if d.weekday() < 5 and d not in sessions:
+            holidays.append(d.isoformat())
+        d = date.fromordinal(d.toordinal() + 1)
+
+    return {
+        "start":          start.isoformat(),
+        "end":            end.isoformat(),
+        "calendarDays":   (end - start).days + 1,
+        "marketSessions": len(sessions),
+        "tradedDays":     len(traded),
+        "holidays":       holidays,
+        "traded":         traded,
+    }
+
+
 def fetch_stats():
     print(f"Connecting to {DB_SERVER}/{DB_NAME}...")
     conn = pyodbc.connect(get_connection_string(), timeout=30)
@@ -120,6 +165,7 @@ def fetch_stats():
     ]
 
     data["dtePhases"] = fetch_dte_phases(cursor)
+    data["calendar"] = fetch_calendar(cursor)
     conn.close()
     return data
 
