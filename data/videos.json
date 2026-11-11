@@ -8,13 +8,13 @@
     "subscribers": "102",
     "totalViews": "7482",
     "videoCount": "149",
-    "updated": "2026-11-10T16:17:42.822335+00:00"
+    "updated": "2026-11-11T05:34:11.408263+00:00"
   },
   "engagement": {
-    "totalViews": 7468,
-    "totalLikes": 245,
-    "totalComments": 98,
-    "engagementRate": 4.59,
+    "totalViews": 7522,
+    "totalLikes": 250,
+    "totalComments": 100,
+    "engagementRate": 4.65,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -220,7 +220,7 @@
       "thumb": "https://i.ytimg.com/vi/pYod8uXN6Rk/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "61",
+      "views": "62",
       "likes": "1",
       "comments": "0",
       "published": "2026-10-18",
@@ -508,7 +508,7 @@
       "thumb": "https://i.ytimg.com/vi/-0j6FFZm4Us/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "40",
+      "views": "41",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-17",
@@ -580,7 +580,7 @@
       "thumb": "https://i.ytimg.com/vi/FHjsZvj4888/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "43",
+      "views": "45",
       "likes": "3",
       "comments": "1",
       "published": "2026-07-07",
@@ -667,18 +667,6 @@
       "views": "27",
       "likes": "3",
       "comments": "1",
-      "published": "2026-06-24",
-      "india": true
-    },
-    {
-      "id": "RBhwEuFhsas",
-      "title": "🚀 𝗧𝗵𝗲 $700𝗕 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗔𝗜 𝗥𝗮𝗰𝗲: Q1 2026 Big Tech Earnings & CapEx Breakdown",
-      "thumb": "https://i.ytimg.com/vi/RBhwEuFhsas/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "3",
-      "likes": "0",
-      "comments": "0",
       "published": "2026-06-24",
       "india": true
     },
@@ -1091,18 +1079,6 @@
       "india": true
     },
     {
-      "id": "0kDb7Qnjx9E",
-      "title": "📊 શેર બજાર શું છે? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗚𝘂𝗷𝗮𝗿𝗮𝘁𝗶 🚀",
-      "thumb": "https://i.ytimg.com/vi/0kDb7Qnjx9E/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "Gujarati",
-      "views": "93",
-      "likes": "0",
-      "comments": "1",
-      "published": "2026-05-19",
-      "india": true
-    },
-    {
       "id": "gcKGy-36_qQ",
       "title": "📊 ਸ਼ੇਅਰ ਮਾਰਕੀਟ ਕੀ ਹੈ? | 𝗜𝗻𝗱𝗶𝗮𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗕𝗮𝘀𝗶𝗰𝘀 𝗶𝗻 𝗣𝘂𝗻𝗷𝗮𝗯𝗶 🚀",
       "thumb": "https://i.ytimg.com/vi/gcKGy-36_qQ/maxresdefault.jpg",
@@ -1268,6 +1244,30 @@
       "likes": "1",
       "comments": "0",
       "published": "2026-05-13",
+      "india": true
+    },
+    {
+      "id": "lupz2oDPn1A",
+      "title": "𝗛𝗲𝗮𝗱 𝘃𝘀. 𝗛𝗲𝗮𝗿𝘁: The Ultimate 𝗟𝘂𝗺𝗽-𝗦𝘂𝗺 vs. 𝗗𝗖𝗔 Investing Showdown 📈⚖️",
+      "thumb": "https://i.ytimg.com/vi/lupz2oDPn1A/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "86",
+      "likes": "3",
+      "comments": "2",
+      "published": "2026-05-12",
+      "india": true
+    },
+    {
+      "id": "8xCXUzU2uNc",
+      "title": "⚡ 𝗖𝗕𝗗𝗖: पैसे का भविष्य | क्या 𝗲-𝗥𝘂𝗽𝗲𝗲 बदलेगा भारत की अर्थव्यवस्था?",
+      "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "Hindi",
+      "views": "60",
+      "likes": "2",
+      "comments": "1",
+      "published": "2026-05-10",
       "india": true
     },
     {
