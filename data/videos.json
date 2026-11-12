@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "102",
-    "totalViews": "7498",
-    "videoCount": "149",
-    "updated": "2026-11-11T22:36:59.926621+00:00"
+    "totalViews": "7504",
+    "videoCount": "150",
+    "updated": "2026-11-12T06:39:38.836322+00:00"
   },
   "engagement": {
-    "totalViews": 7483,
+    "totalViews": 7488,
     "totalLikes": 245,
-    "totalComments": 98,
-    "engagementRate": 4.58,
+    "totalComments": 99,
+    "engagementRate": 4.59,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -26,7 +26,7 @@
       "ytId": "PLZEDE8n1EZ0RsCQiYsyKsClEivyHjhrvy",
       "color": "#ef4444",
       "desc": "Real-time market intelligence — earnings, macro events, and breaking financial news decoded for investors.",
-      "thumb": "https://i.ytimg.com/vi/kYAhk8SJ3J0/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/4jQ_vM6RK80/maxresdefault.jpg"
     },
     {
       "id": "knowledge-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "4jQ_vM6RK80",
+      "title": "Anthropic IPO Exposed: $17B Quarterly Revenue, Claude AI & The ANT S-1 Breakdown 🚀",
+      "thumb": "https://i.ytimg.com/vi/4jQ_vM6RK80/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "4",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-11-12",
+      "india": true
+    },
+    {
       "id": "G4diTw6K2lc",
       "title": "📈 𝗪𝗵𝗲𝗻 𝘁𝗼 𝗘𝘅𝗲𝗿𝗰𝗶𝘀𝗲 𝗔𝗺𝗲𝗿𝗶𝗰𝗮𝗻 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗘𝗮𝗿𝗹𝘆? (𝗖𝗮𝗹𝗹𝘀 𝘃𝘀. 𝗣𝘂𝘁𝘀 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝗰𝘀) 🚀",
       "thumb": "https://i.ytimg.com/vi/G4diTw6K2lc/maxresdefault.jpg",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/wLY8w0wIL5k/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "16",
+      "views": "17",
       "likes": "1",
       "comments": "0",
       "published": "2026-11-04",
