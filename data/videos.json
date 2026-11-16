@@ -8,13 +8,13 @@
     "subscribers": "103",
     "totalViews": "7703",
     "videoCount": "150",
-    "updated": "2026-11-16T05:45:29.739094+00:00"
+    "updated": "2026-11-16T18:11:23.286668+00:00"
   },
   "engagement": {
-    "totalViews": 7686,
-    "totalLikes": 248,
-    "totalComments": 99,
-    "engagementRate": 4.51,
+    "totalViews": 7756,
+    "totalLikes": 249,
+    "totalComments": 100,
+    "engagementRate": 4.5,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -244,7 +244,7 @@
       "thumb": "https://i.ytimg.com/vi/R9YLbagAUkU/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "62",
+      "views": "63",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-05",
@@ -532,7 +532,7 @@
       "thumb": "https://i.ytimg.com/vi/XcdOckzXUx4/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "43",
+      "views": "44",
       "likes": "2",
       "comments": "1",
       "published": "2026-07-14",
@@ -668,30 +668,6 @@
       "likes": "1",
       "comments": "1",
       "published": "2026-06-26",
-      "india": true
-    },
-    {
-      "id": "rr2jvLntUkA",
-      "title": "🧠 𝗧𝗿𝗶𝗴𝗴𝗲𝗿𝘀 𝗼𝗳 𝗙𝗮𝗹𝘀𝗲 𝗖𝗼𝗻𝗳𝗶𝗱𝗲𝗻𝗰𝗲: 𝗧𝗵𝗲 𝗜𝗹𝗹𝘂𝘀𝗶𝗼𝗻 𝗼𝗳 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗶𝗻 𝗦𝘁𝗼𝗰𝗸 𝗠𝗮𝗿𝗸𝗲𝘁 𝗧𝗿𝗮𝗱𝗶𝗻𝗴 📉",
-      "thumb": "https://i.ytimg.com/vi/rr2jvLntUkA/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "27",
-      "likes": "3",
-      "comments": "1",
-      "published": "2026-06-24",
-      "india": true
-    },
-    {
-      "id": "RBhwEuFhsas",
-      "title": "🚀 𝗧𝗵𝗲 $700𝗕 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗔𝗜 𝗥𝗮𝗰𝗲: Q1 2026 Big Tech Earnings & CapEx Breakdown",
-      "thumb": "https://i.ytimg.com/vi/RBhwEuFhsas/maxresdefault.jpg",
-      "playlist": "indian-radar",
-      "lang": "English",
-      "views": "3",
-      "likes": "0",
-      "comments": "0",
-      "published": "2026-06-24",
       "india": true
     },
     {
@@ -1295,6 +1271,30 @@
       "india": true
     },
     {
+      "id": "B8Fkw-uhN6I",
+      "title": "𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗖𝗼𝗺𝗯𝗶𝗻𝗮𝘁𝗶𝗼𝗻𝘀: Mastering 𝗖𝗮𝘀𝗵-𝗦𝗲𝗰𝘂𝗿𝗲𝗱 𝗣𝘂𝘁𝘀 & 𝗖𝗼𝘃𝗲𝗿𝗲𝗱 𝗖𝗮𝗹𝗹𝘀 🔄📈",
+      "thumb": "https://i.ytimg.com/vi/B8Fkw-uhN6I/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "11",
+      "likes": "1",
+      "comments": "0",
+      "published": "2026-05-13",
+      "india": true
+    },
+    {
+      "id": "lupz2oDPn1A",
+      "title": "𝗛𝗲𝗮𝗱 𝘃𝘀. 𝗛𝗲𝗮𝗿𝘁: The Ultimate 𝗟𝘂𝗺𝗽-𝗦𝘂𝗺 vs. 𝗗𝗖𝗔 Investing Showdown 📈⚖️",
+      "thumb": "https://i.ytimg.com/vi/lupz2oDPn1A/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "86",
+      "likes": "3",
+      "comments": "2",
+      "published": "2026-05-12",
+      "india": true
+    },
+    {
       "id": "8xCXUzU2uNc",
       "title": "⚡ 𝗖𝗕𝗗𝗖: पैसे का भविष्य | क्या 𝗲-𝗥𝘂𝗽𝗲𝗲 बदलेगा भारत की अर्थव्यवस्था?",
       "thumb": "https://i.ytimg.com/vi/8xCXUzU2uNc/maxresdefault.jpg",
@@ -1372,7 +1372,7 @@
       "thumb": "https://i.ytimg.com/vi/pL2Q_aXRjBc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "188",
+      "views": "189",
       "likes": "5",
       "comments": "5",
       "published": "2026-05-07",
