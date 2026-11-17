@@ -1,7 +1,10 @@
 """
 refresh-stats.py
-Calls [api].[usp_q_WebsiteStats] on the MVP1 database,
-writes the result to data/stats.json, then commits and pushes to GitHub.
+Reads the MVP1 database, writes data/stats.json, then commits and pushes to GitHub.
+
+data/stats.json is PUBLIC. It describes the system (what the monitoring engine
+refreshes, how consistently it runs) and never the owner's book: no dollar
+amounts, contract/transaction/account counts, or per-day trade counts.
 
 Usage:
     python scripts/refresh-stats.py
@@ -64,7 +67,10 @@ DTE_PHASES = [
 
 
 def fetch_dte_phases(cursor):
-    """Contract-weighted DTE-at-open per phase. Open legs weigh by remaining qty."""
+    """Contract-weighted DTE-at-open per phase. Open legs weigh by remaining qty.
+
+    Public output carries only averages and percentages, never contract counts.
+    """
     cursor.execute("""
         WITH [cteSrc] AS (
             SELECT FORMAT([OpnDT], 'yyyy-MM')                 AS [Mon],
@@ -91,7 +97,6 @@ def fetch_dte_phases(cursor):
             "label":     label,
             "from":      min(r[0] for r in rows),
             "to":        max(r[0] for r in rows),
-            "contracts": int(qty),
             "avgDte":    round(sum(r[2] for r in rows) / qty),
             "pctUpTo30": round(sum(r[3] for r in rows) * 100 / qty),
             "pctOver90": round(sum(r[4] for r in rows) * 100 / qty),
@@ -103,19 +108,18 @@ def fetch_calendar(cursor):
     """Calendar days vs NYSE sessions vs days traded, first trade through today.
 
     Market sessions come from the official NYSE (XNYS) calendar, not a
-    hand-typed holiday list. 'traded' maps each trade date to its event count
-    (same COUNT(*) basis as avgEventsPerDay / peakEventsPerDay).
+    hand-typed holiday list. Only the traded DATES are published, never how
+    many trades happened on a day.
     """
     cursor.execute(
-        "SELECT [TransactionDate], COUNT(*) "
-        "FROM [trade].[vwOptionsTransaction] "
-        "GROUP BY [TransactionDate] ORDER BY [TransactionDate]"
+        "SELECT DISTINCT [TransactionDate] "
+        "FROM [trade].[vwOptionsTransaction] ORDER BY [TransactionDate]"
     )
-    traded = {str(d): int(n) for d, n in cursor.fetchall()}
+    traded = [str(r[0]) for r in cursor.fetchall()]
     if not traded:
         return None
-    start = date.fromisoformat(min(traded))
-    end = max(date.today(), date.fromisoformat(max(traded)))
+    start = date.fromisoformat(traded[0])
+    end = max(date.today(), date.fromisoformat(traded[-1]))
 
     xnys = exchange_calendars.get_calendar("XNYS")
     sessions = {d.date() for d in xnys.sessions_in_range(start.isoformat(), end.isoformat())}
@@ -134,7 +138,92 @@ def fetch_calendar(cursor):
         "marketSessions": len(sessions),
         "tradedDays":     len(traded),
         "holidays":       holidays,
-        "traded":         traded,
+        "tradedDates":    traded,
+    }
+
+
+def fetch_activity(cursor):
+    """Trading activity, published only as counts of days/symbols and percentages.
+
+    PRIVACY: never add dollar amounts, contract or transaction counts, account
+    counts or per-ticker quantities here. data/stats.json is public.
+    """
+    cursor.execute("""
+        SELECT COUNT(DISTINCT [SYM]),
+               COUNT(DISTINCT [TransactionDate]),
+               SUM(CASE WHEN [OT] = 'C' THEN ABS([Quantity]) ELSE 0 END),
+               SUM(ABS([Quantity]))
+        FROM [trade].[vwOptionsTransaction]
+    """)
+    underlyings, trading_days, cc, total = cursor.fetchone()
+    cc_pct = round(cc * 100 / total) if total else 0
+
+    # Ranked symbols only (no quantities). Extra rows let the site hide tickers.
+    cursor.execute(
+        "SELECT TOP 15 [SYM] FROM [trade].[vwOptionsTransaction] "
+        "GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
+    )
+    return {
+        "underlyings":    int(underlyings),
+        "tradingDays":    int(trading_days),
+        "ccPct":          cc_pct,
+        "cspPct":         100 - cc_pct if total else 0,
+        "topUnderlyings": [r[0] for r in cursor.fetchall()],
+    }
+
+
+# Columns that are bookkeeping, not market data. They are not counted as fields.
+AUDIT_COLUMNS = ("TimeCreated", "TimeUpdated")
+# The monitoring loop waits 15 min between runs
+# (03-A-mvp1-etl-quote-and-options-synch.cmd, WAIT_SECS=900).
+REFRESH_MINUTES = 15
+
+
+def fetch_surveillance(cursor):
+    """What the LATEST monitoring cycle actually refreshed.
+
+    The cycle is anchored on the [mkt].[OptionChain] rows written by the most
+    recent chain run. Rows left over from symbols no longer held, or from
+    earlier runs, are not counted. Market data is written just before the
+    chain, so its window opens 10 minutes earlier.
+    """
+    cursor.execute(f"""
+        SET NOCOUNT ON;
+        DECLARE @Last DATETIME2 = (SELECT MAX([TimeUpdated]) FROM [mkt].[OptionChain]);
+        DECLARE @Start DATETIME2 = (SELECT MIN([TimeUpdated]) FROM [mkt].[OptionChain]
+                                    WHERE [TimeUpdated] > DATEADD(minute, -{REFRESH_MINUTES}, @Last));
+        SELECT
+            (SELECT COUNT(*) FROM [mkt].[OptionChain] WHERE [TimeUpdated] >= @Start),
+            (SELECT COUNT(DISTINCT [SYM]) FROM [mkt].[OptionChain] WHERE [TimeUpdated] >= @Start),
+            (SELECT COUNT(*) FROM [mkt].[OptionsQuote]
+              WHERE [TimeUpdated] BETWEEN DATEADD(minute, -1, @Start) AND DATEADD(minute, 1, @Last)),
+            (SELECT COUNT(*) FROM [mkt].[MarketData]
+              WHERE [TimeUpdated] BETWEEN DATEADD(minute, -10, @Start) AND DATEADD(minute, 1, @Last)),
+            @Start, @Last
+    """)
+    chain, symbols, quotes, market, cycle_start, cycle_end = cursor.fetchone()
+
+    def fields(table):
+        marks = ",".join("?" * len(AUDIT_COLUMNS))
+        cursor.execute(
+            "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS "
+            f"WHERE TABLE_SCHEMA = 'mkt' AND TABLE_NAME = ? AND COLUMN_NAME NOT IN ({marks})",
+            (table, *AUDIT_COLUMNS),
+        )
+        return cursor.fetchone()[0]
+
+    option_fields = fields("OptionChain")
+    quote_fields  = fields("OptionsQuote")
+    market_fields = fields("MarketData")
+    return {
+        "symbolsMonitored":   int(symbols),
+        "rowsPerCycle":       int(chain + quotes + market),
+        "optionFields":       option_fields,
+        "stockFields":        market_fields,
+        "dataPointsPerCycle": int(chain * option_fields + quotes * quote_fields + market * market_fields),
+        "refreshMinutes":     REFRESH_MINUTES,
+        "dataStreams":        3,
+        "cycleDate":          cycle_end.date().isoformat() if cycle_end else None,
     }
 
 
@@ -143,29 +232,16 @@ def fetch_stats():
     conn = pyodbc.connect(get_connection_string(), timeout=30)
     cursor = conn.cursor()
 
-    print("Executing [api].[usp_q_WebsiteStats]...")
-    cursor.execute("EXEC [api].[usp_q_WebsiteStats]")
-    row = cursor.fetchone()
-
-    if not row:
-        raise RuntimeError("Stored procedure returned no results.")
-
-    raw_json = row[0]
-    data = json.loads(raw_json)
-
-    # Top 15 (not 10) so the site can hide tickers (HIDDEN_TICKERS in app.js)
-    # and still fill 10 slots.
-    cursor.execute(
-        "SELECT TOP 15 [SYM], SUM(ABS([Quantity])) "
-        "FROM [trade].[vwOptionsTransaction] "
-        "GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
-    )
-    data["trade"]["topTickers"] = [
-        {"sym": sym, "contracts": int(qty)} for sym, qty in cursor.fetchall()
-    ]
-
-    data["dtePhases"] = fetch_dte_phases(cursor)
-    data["calendar"] = fetch_calendar(cursor)
+    data = {
+        "activity":     fetch_activity(cursor),
+        "surveillance": fetch_surveillance(cursor),
+        "dtePhases":    fetch_dte_phases(cursor),
+        "calendar":     fetch_calendar(cursor),
+        "meta": {
+            "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+            "source":      "refresh-stats.py",
+        },
+    }
     conn.close()
     return data
 

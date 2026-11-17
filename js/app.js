@@ -106,21 +106,10 @@ const TIMELINE_DATA = [
 
 /* Tickers never shown in "Most Traded Underlyings" (still counted in Others). */
 const HIDDEN_TICKERS = [];
-const TOP_TICKER_COUNT = 11;   /* 11 + Others = 12 tiles = two full rows of 5 + 2 */
+const TOP_TICKER_COUNT = 12;   /* 12 tiles = two full rows of 5 + 2 */
 
-const TICKER_DATA = [
-  { sym: 'TSLA',  contracts: 0 },
-  { sym: 'NVDA',  contracts: 0 },
-  { sym: 'COIN',  contracts:  0 },
-  { sym: 'PLTR',  contracts:  0 },
-  { sym: 'META',  contracts:  0 },
-  { sym: 'AMZN',  contracts:  0 },
-  { sym: 'GOOGL', contracts:  0 },
-  { sym: 'MSFT',  contracts:  0 },
-  { sym: 'QQQ',   contracts:  0 },
-  { sym: 'AAPL',  contracts:  0 },
-  { sym: 'Others', contracts:  0 },
-];
+/* Ranked by contracts traded. Symbols only: quantities stay private. */
+const TICKER_DATA = ['TSLA', 'NVDA', 'COIN', 'SPCX', 'PLTR', 'AMZN', 'META', 'MSFT', 'GOOGL', 'QQQ', 'AAPL', 'AMD'];
 
 const VIDEO_DATA = [
   { id: 'o-1VRq2GCmo', lang: 'Bengali',   title: 'Indian Stock Market Basics — Bengali' },
@@ -515,23 +504,16 @@ function renderTickers() {
   const list = document.getElementById('tickerList');
   if (!list) return;
 
-  list.innerHTML = TICKER_DATA.map((t) => {
-    const isOther = t.sym === 'Others';
-    const inner = `
-      <span class="ticker-sym">${t.sym}</span>
-      <span class="ticker-contracts">${t.contracts.toLocaleString()} contracts</span>
-    `;
-    if (isOther) {
-      return `<div class="ticker-chip ticker-chip-other">${inner}</div>`;
-    }
-    return `<a
+  list.innerHTML = TICKER_DATA.map((sym, i) => `<a
       class="ticker-chip ticker-chip-link"
-      href="https://finance.yahoo.com/quote/${t.sym}"
+      href="https://finance.yahoo.com/quote/${sym}"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="${t.sym} on Yahoo Finance"
-    >${inner}</a>`;
-  }).join('');
+      aria-label="${sym}, rank ${i + 1}, on Yahoo Finance"
+    >
+      <span class="ticker-sym">${sym}</span>
+      <span class="ticker-contracts">#${i + 1}</span>
+    </a>`).join('');
 }
 
 
@@ -1156,7 +1138,7 @@ function renderCalendar() {
   const start = Date.parse(c.start + 'T00:00:00Z');
   const end   = Date.parse(c.end   + 'T00:00:00Z');
   const holidays = new Set(c.holidays || []);
-  const traded   = c.traded || {};
+  const traded   = new Set(c.tradedDates || Object.keys(c.traded || {}));
   // Monday on or before the first day
   const mon0 = start - ((new Date(start).getUTCDay() + 6) % 7) * CAL_DAY_MS;
   const weeks = Math.floor((end - mon0) / CAL_DAY_MS / 7) + 1;
@@ -1203,9 +1185,9 @@ function renderCalendar() {
         if (t < start || t > end) { cells += `<span class="cal-cell cal-blank" style="${pos}"></span>`; continue; }
         const iso = calIso(t);
         let cls, tip;
-        if (traded[iso] != null) {
+        if (traded.has(iso)) {
           cls = 'cal-traded';
-          tip = `${fmt(t)} · Traded · ${traded[iso]} event${traded[iso] === 1 ? '' : 's'}`;
+          tip = `${fmt(t)} · Traded`;
         } else if (r >= 5) {
           cls = 'cal-weekend'; tip = `${fmt(t)} · Weekend`;
         } else if (holidays.has(iso)) {
@@ -1305,39 +1287,43 @@ function setupCalendar(c) {
 
 /* ── STATS FROM JSON ────────────────────────────────────────────── */
 function applyStats(s) {
+  // PRIVACY: stats.json is public. It carries system numbers, days and
+  // percentages only; never dollar amounts, contract/trade/account counts.
   setupCalendar(s.calendar);
 
-  const t = s.trade;
-  const v = s.surveillance;
+  const a = s.activity || {};
+  const v = s.surveillance || {};
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val != null) el.textContent = val; };
+  const num = x => Number(x).toLocaleString();
+  const fmtDate = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  const kilo = x => Math.round(x / 1000).toLocaleString() + 'K';
 
   /* stat bar */
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  const n = t.grossNotional || 0;
-  const notionalFmt = n >= 1e9 ? `$${(n/1e9).toFixed(2)}B` : n >= 1e6 ? `$${Math.round(n/1e6)}M` : `$${Number(n).toLocaleString()}`;
-  set('statNotional',     notionalFmt);
-  set('statContracts',    Number(t.contracts).toLocaleString());
-  set('statTransactions', Number(t.transactions).toLocaleString());
-  set('statUnderlyings',  t.underlyings);
-  set('statAccounts',     t.accounts);
+  set('statTradingDays', a.tradingDays);
+  set('statUnderlyings', a.underlyings);
+  set('statSymbols',     v.symbolsMonitored);
+  set('statRefresh',     v.refreshMinutes != null ? v.refreshMinutes + ' min' : null);
 
-  /* strategy split */
-  const total = t.ccContracts + t.cspContracts;
-  const ccPct  = Math.round((t.ccContracts  / total) * 100);
-  const cspPct = 100 - ccPct;
-  const ccBar  = document.querySelector('.split-bar-cc');
-  const cspBar = document.querySelector('.split-bar-csp');
-  if (ccBar)  { ccBar.style.width  = ccPct  + '%'; ccBar.closest('.split-item').querySelector('.split-pct').textContent  = ccPct  + '%'; ccBar.closest('.split-item').querySelector('.split-sub').textContent  = Number(t.ccContracts).toLocaleString()  + ' contracts'; }
-  if (cspBar) { cspBar.style.width = cspPct + '%'; cspBar.closest('.split-item').querySelector('.split-pct').textContent = cspPct + '%'; cspBar.closest('.split-item').querySelector('.split-sub').textContent = Number(t.cspContracts).toLocaleString() + ' contracts'; }
-
-  /* velocity stats */
-  const velNums = document.querySelectorAll('.vel-num');
-  if (velNums.length >= 4) {
-    velNums[0].textContent = t.avgEventsPerDay + '+';
-    velNums[1].textContent = t.peakEventsPerDay;
-    velNums[2].textContent = t.tradingDays;
+  /* strategy split (percentages only) */
+  if (a.ccPct != null) {
+    [['.split-bar-cc', a.ccPct], ['.split-bar-csp', a.cspPct]].forEach(([sel, pct]) => {
+      const bar = document.querySelector(sel);
+      if (!bar) return;
+      bar.style.width = pct + '%';
+      bar.closest('.split-item').querySelector('.split-pct').textContent = pct + '%';
+    });
   }
 
-  /* DTE evolution */
+  /* velocity callout */
+  document.querySelectorAll('.vbTradingDays').forEach(el => { el.textContent = a.tradingDays; });
+  document.querySelectorAll('.vbRefresh').forEach(el => { el.textContent = v.refreshMinutes; });
+  set('vbUnderlyings',   a.underlyings);
+  set('vbDataPoints',    v.dataPointsPerCycle != null ? num(Math.round(v.dataPointsPerCycle / 1000) * 1000) : null);
+  set('velTradingDays',  a.tradingDays);
+  set('velSymbols',      v.symbolsMonitored);
+  set('velOptionFields', v.optionFields);
+
+  /* DTE evolution (averages and percentages only) */
   const dteShelf = document.getElementById('dteShelf');
   const dteWrap  = document.getElementById('dtePhases');
   if (dteShelf && dteWrap && Array.isArray(s.dtePhases) && s.dtePhases.length) {
@@ -1350,49 +1336,35 @@ function applyStats(s) {
         <span class="dte-phase-num">${p.avgDte}<small> days</small></span>
         <div class="dte-phase-bar"><div style="width:${Math.max(4, Math.round(p.avgDte / maxDte * 100))}%"></div></div>
         <span class="dte-phase-sub">${p.pctUpTo30}% ≤ 30 DTE · ${p.pctOver90}% &gt; 90 DTE</span>
-        <span class="dte-phase-sub">${Number(p.contracts).toLocaleString()} contracts</span>
       </div>`).join('');
     dteShelf.hidden = false;
   }
 
-  /* velocity quote + body copy */
-  set('vqAvgEvents',    t.avgEventsPerDay + '+');
-  set('vqPeakEvents',   t.peakEventsPerDay);
-  document.querySelectorAll('.vbTradingDays').forEach(el => { el.textContent = t.tradingDays; });
-  set('vbTransactions', Number(t.transactions).toLocaleString());
-  set('vbContracts',    Number(t.contracts).toLocaleString());
-  set('vbUnderlyings',  t.underlyings);
-  set('vbAccounts',     t.accounts);
-  set('vbCumEvals',     (v.evaluationsPerDay * t.tradingDays / 1e9).toFixed(1) + ' billion');
-  set('vbEvalsPerDay',  Math.round(v.evaluationsPerDay / 1e6) + ' million');
-
   /* refreshed-at timestamp */
   const refreshedEl = document.getElementById('statsRefreshedAt');
   if (refreshedEl && s.meta && s.meta.generatedAt) {
-    // SQL emits UTC without a zone suffix; without 'Z' the browser reads it as local time.
+    // Older files carried UTC without a zone suffix; without 'Z' the browser reads it as local time.
     const raw = String(s.meta.generatedAt);
     const d = new Date(/[zZ]|[+-]\d\d:?\d\d$/.test(raw) ? raw : raw + 'Z');
     refreshedEl.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
   }
 
-  /* tickers — hidden symbols drop out; their contracts fall into Others */
-  const top = t.topTickers.filter(x => !HIDDEN_TICKERS.includes(x.sym)).slice(0, TOP_TICKER_COUNT);
-  const others = t.contracts - top.reduce((a, x) => a + x.contracts, 0);
-  TICKER_DATA.length = 0;
-  top.forEach(x => TICKER_DATA.push(x));
-  TICKER_DATA.push({ sym: 'Others', contracts: others });
-  renderTickers();
-
-  /* surveillance stats */
-  const survNums = document.querySelectorAll('.surv-num');
-  if (survNums.length >= 6) {
-    survNums[0].textContent = Number(v.rowsPerCycle).toLocaleString();
-    survNums[1].textContent = v.fieldsTracked;
-    survNums[2].textContent = Math.round(v.evaluationsPerCycle / 1000) + 'K';
-    survNums[3].textContent = Math.round(v.evaluationsPerDay / 1000000) + 'M';
-    survNums[4].textContent = v.cyclesPerDay;
-    survNums[5].textContent = v.dataStreams;
+  /* tickers: ranked symbols only, hidden symbols drop out */
+  if (Array.isArray(a.topUnderlyings) && a.topUnderlyings.length) {
+    TICKER_DATA.length = 0;
+    a.topUnderlyings.filter(sym => !HIDDEN_TICKERS.includes(sym)).slice(0, TOP_TICKER_COUNT)
+      .forEach(sym => TICKER_DATA.push(sym));
+    renderTickers();
   }
+
+  /* surveillance: measured from the latest monitoring cycle */
+  set('survRowsPerCycle', v.rowsPerCycle != null ? num(v.rowsPerCycle) : null);
+  set('survDataPoints',   v.dataPointsPerCycle != null ? kilo(v.dataPointsPerCycle) : null);
+  set('survSymbols',      v.symbolsMonitored);
+  set('survFields',       v.optionFields != null ? `${v.optionFields} · ${v.stockFields}` : null);
+  set('survRefresh',      v.refreshMinutes != null ? v.refreshMinutes + ' min' : null);
+  set('survDataStreams',  v.dataStreams);
+  if (v.cycleDate) set('survMeasured', `Measured from the most recent monitoring cycle (${fmtDate(v.cycleDate)}). Rows left over from symbols no longer held are not counted.`);
 }
 
 function loadStats() {

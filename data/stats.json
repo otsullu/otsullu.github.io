@@ -1,68 +1,37 @@
 {
-  "trade": {
+  "activity": {
     "underlyings": 26,
-    "tradingDays": 267,
-    "topTickers": [
-      {
-        "sym": "TSLA"
-      },
-      {
-        "sym": "NVDA"
-      },
-      {
-        "sym": "COIN"
-      },
-      {
-        "sym": "SPCX"
-      },
-      {
-        "sym": "PLTR"
-      },
-      {
-        "sym": "AMZN"
-      },
-      {
-        "sym": "META"
-      },
-      {
-        "sym": "MSFT"
-      },
-      {
-        "sym": "GOOGL"
-      },
-      {
-        "sym": "QQQ"
-      },
-      {
-        "sym": "AAPL"
-      },
-      {
-        "sym": "AMD"
-      },
-      {
-        "sym": "INTC"
-      },
-      {
-        "sym": "NFLX"
-      },
-      {
-        "sym": "GOOG"
-      }
-    ],
+    "tradingDays": 275,
     "ccPct": 80,
-    "cspPct": 20
+    "cspPct": 20,
+    "topUnderlyings": [
+      "TSLA",
+      "NVDA",
+      "COIN",
+      "SPCX",
+      "PLTR",
+      "AMZN",
+      "META",
+      "MSFT",
+      "GOOGL",
+      "QQQ",
+      "AAPL",
+      "AMD",
+      "INTC",
+      "NFLX",
+      "GOOG"
+    ]
   },
   "surveillance": {
-    "rowsPerCycle": 30642,
-    "fieldsTracked": 74,
-    "evaluationsPerCycle": 766021,
-    "evaluationsPerDay": 19916546,
-    "cyclesPerDay": 26,
-    "dataStreams": 3
-  },
-  "meta": {
-    "generatedAt": "2026-11-05T00:17:23.993",
-    "source": "usp_q_WebsiteStats"
+    "symbolsMonitored": 16,
+    "rowsPerCycle": 21937,
+    "optionFields": 23,
+    "stockFields": 22,
+    "dataPointsPerCycle": 504536,
+    "refreshMinutes": 15,
+    "dataStreams": 3,
+    "cycleStart": "2026-11-16T13:14:51",
+    "cycleEnd": "2026-11-16T13:20:07"
   },
   "dtePhases": [
     {
@@ -88,17 +57,17 @@
       "label": "Now: short DTE",
       "from": "2026-09",
       "to": "2026-11",
-      "avgDte": 52,
+      "avgDte": 58,
       "pctUpTo30": 72,
       "pctOver90": 13
     }
   ],
   "calendar": {
     "start": "2025-06-26",
-    "end": "2026-11-04",
-    "calendarDays": 497,
-    "marketSessions": 343,
-    "tradedDays": 267,
+    "end": "2026-11-16",
+    "calendarDays": 509,
+    "marketSessions": 351,
+    "tradedDays": 275,
     "holidays": [
       "2025-07-04",
       "2025-09-01",
@@ -380,7 +349,19 @@
       "2026-10-30",
       "2026-11-02",
       "2026-11-03",
-      "2026-11-04"
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13",
+      "2026-11-16"
     ]
+  },
+  "meta": {
+    "generatedAt": "2026-11-17T02:26:39Z",
+    "source": "refresh-stats.py"
   }
 }
