@@ -82,7 +82,8 @@ def fetch_dte_phases(cursor):
         SELECT [Mon], SUM([Qty]),
                SUM([DTE] * [Qty]),
                SUM(CASE WHEN [DTE] <= 30 THEN [Qty] ELSE 0 END),
-               SUM(CASE WHEN [DTE] >  90 THEN [Qty] ELSE 0 END)
+               SUM(CASE WHEN [DTE] >  90 THEN [Qty] ELSE 0 END),
+               SUM(CASE WHEN [DTE] <= 40 THEN [Qty] ELSE 0 END)
         FROM [cteSrc] GROUP BY [Mon]
     """)
     months = cursor.fetchall()
@@ -100,8 +101,14 @@ def fetch_dte_phases(cursor):
             "avgDte":    round(sum(r[2] for r in rows) / qty),
             "pctUpTo30": round(sum(r[3] for r in rows) * 100 / qty),
             "pctOver90": round(sum(r[4] for r in rows) * 100 / qty),
+            # Ideal zone = FIRE + MANAGE + HARVEST (<= 40 days), the owner's
+            # target; 41-90 (RAMP) is borderline; > 90 is beyond.
+            "pctIdeal":  round(sum(r[5] for r in rows) * 100 / qty),
             "months": [
-                {"month": r[0], "avgDte": round(r[2] / r[1])}
+                {"month": r[0], "avgDte": round(r[2] / r[1]),
+                 "pctIdeal": round(r[5] * 100 / r[1]),
+                 "pctRamp": round((r[1] - r[5] - r[4]) * 100 / r[1]),
+                 "pctBeyond": round(r[4] * 100 / r[1])}
                 for r in sorted(rows) if r[1]
             ],
         })

@@ -1304,9 +1304,9 @@ function setupCalendar(c) {
 
 /* ── WHERE TIME VALUE EARNS (DTE bands) ─────────────────────────── */
 const DTE_ERA_WHY = {
-  early: 'Started short-dated, close to expiry.',
-  long:  'Went long-dated: more capital tied up in slow decay.',
-  now:   'Back to short-dated, where time decay is fastest.',
+  early: 'Started close to expiry, then began drifting further out.',
+  long:  'Tried long-dated options. They tied up capital in slow decay.',
+  now:   'Applied the lesson: most contracts back in the ideal zone.',
 };
 /* Name each period by what we did, not by when. */
 const DTE_ERA_NAME = { early: 'Short-dated', long: 'Long-dated', now: 'Short-dated again' };
@@ -1319,7 +1319,6 @@ function renderDteEras(phases) {
   if (!shelf || !chart || !Array.isArray(phases) || !phases.length || !phases[0].months) return;
 
   const months = phases.flatMap(p => p.months.map(m => ({ ...m, era: p.key })));
-  const max = Math.max(...months.map(m => m.avgDte), 1);
   const monTxt = (ym, withYear) => new Date(ym + '-01T00:00:00Z')
     .toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC', ...(withYear ? { year: '2-digit' } : {}) });
   const inMonths = d => d < 45 ? `about ${Math.round(d / 7)} weeks` : `about ${Math.round(d / 30)} months`;
@@ -1331,11 +1330,16 @@ function renderDteEras(phases) {
     eraRow += `<span class="dte-tl-era dte-tl-era--${p.key}" style="grid-column:${col} / span ${n}">${DTE_ERA_NAME[p.key] || p.label}</span>`;
     col += n;
   });
+  // 100% stacked: ideal (<=40d) at the bottom, borderline (41-90d), beyond (>90d) on top.
   const bars = months.map((m, i) => {
-    const h = Math.max(3, Math.round(m.avgDte / max * 100));
-    const label = `${monTxt(m.month, true)}: ${m.avgDte} days`;
+    const label = `${monTxt(m.month, true)}: ${m.pctIdeal}% ideal, ${m.pctRamp}% borderline, ${m.pctBeyond}% beyond 90 days`;
     return `<div class="dte-tl-col dte-tl-col--${m.era}" style="grid-column:${i + 1}" title="${label}" aria-label="${label}">
-      <span class="dte-tl-val">${m.avgDte}</span><div class="dte-tl-bar" style="height:${h}%"></div></div>`;
+      <span class="dte-tl-val">${m.pctIdeal}%</span>
+      <div class="dte-tl-stack">
+        <div class="dte-tl-seg dte-tl-seg--beyond" style="height:${m.pctBeyond}%"></div>
+        <div class="dte-tl-seg dte-tl-seg--ramp" style="height:${m.pctRamp}%"></div>
+        <div class="dte-tl-seg dte-tl-seg--ideal" style="height:${m.pctIdeal}%"></div>
+      </div></div>`;
   }).join('');
   // Every third month (plus the last); the year appears whenever it changes.
   let lastYear = '';
@@ -1350,19 +1354,28 @@ function renderDteEras(phases) {
     return `<span class="dte-tl-mon" style="grid-column:${i + 1}">${txt}</span>`;
   }).join('');
   chart.style.setProperty('--n', months.length);
-  chart.innerHTML = `<div class="dte-tl-grid">${eraRow}${bars}${labels}</div>`;
+  chart.innerHTML = `<div class="dte-tl-grid">${eraRow}${bars}${labels}</div>
+    <div class="dte-tl-legend" aria-hidden="true">
+      <span><i class="dte-tl-key dte-tl-seg--ideal"></i>Ideal: 40 days or less (FIRE · MANAGE · HARVEST)</span>
+      <span><i class="dte-tl-key dte-tl-seg--ramp"></i>Borderline: 41–90 days (RAMP)</span>
+      <span><i class="dte-tl-key dte-tl-seg--beyond"></i>Beyond 90 days</span>
+    </div>`;
 
   const mon = ym => monTxt(ym, true);
   if (notes) notes.innerHTML = phases.map(p => `
     <div class="dte-era-note dte-era-note--${p.key}">
       <span class="dte-era-name">${DTE_ERA_NAME[p.key] || p.label} · ${mon(p.from)} – ${p.key === 'now' ? 'today' : mon(p.to)}</span>
-      <span class="dte-era-avg">${p.avgDte} days on average · ${p.pctUpTo30}% opened with a month or less to expiry</span>
+      <span class="dte-era-avg">${p.pctIdeal}% of contracts opened in the ideal zone · ${p.avgDte} days on average</span>
       <span class="dte-era-why">${DTE_ERA_WHY[p.key] || ''}</span>
     </div>`).join('');
 
   const now = phases.find(p => p.key === 'now'), long = phases.find(p => p.key === 'long');
   const lead = document.getElementById('dteEraLead');
-  if (lead && now && long) lead.innerHTML = `We now sell options <b>${inMonths(now.avgDte)}</b> out. For most of the past year we sold them <b>${inMonths(long.avgDte)}</b> out, but long-dated options earned too little per day, so we came back.`;
+  if (lead && now && long) {
+    const low = Math.min(...long.months.map(m => m.pctIdeal));
+    const share = n => n >= 75 ? 'About 4 in 5' : n >= 60 ? 'About 2 in 3' : n >= 45 ? 'About half' : `${n}%`;
+    lead.innerHTML = `We now sell options <b>${inMonths(now.avgDte)}</b> out. For most of the past year we sold them <b>${inMonths(long.avgDte)}</b> out, but long-dated options earned too little per day, so we came back. The system and the people building it keep improving from real trades: <b>${share(now.pctIdeal).toLowerCase()}</b> contracts now open in the ideal zone (40 days or less to expiry), up from as low as <b>${low}%</b> in the long-dated period.`;
+  }
   shelf.hidden = false;
 }
 /* Same thresholds as the MVP1 DTE Map (>=28% earning, <10.5% low). */

@@ -84,10 +84,10 @@
   },
   "surveillance": {
     "symbolsMonitored": 16,
-    "rowsPerCycle": 21054,
+    "rowsPerCycle": 21053,
     "optionFields": 23,
     "stockFields": 22,
-    "dataPointsPerCycle": 484226,
+    "dataPointsPerCycle": 484204,
     "refreshMinutes": 15,
     "dataStreams": 3,
     "cycleDate": "2026-11-16"
@@ -179,22 +179,35 @@
       "avgDte": 47,
       "pctUpTo30": 57,
       "pctOver90": 21,
+      "pctIdeal": 63,
       "months": [
         {
           "month": "2025-06",
-          "avgDte": 15
+          "avgDte": 15,
+          "pctIdeal": 100,
+          "pctRamp": 0,
+          "pctBeyond": 0
         },
         {
           "month": "2025-07",
-          "avgDte": 18
+          "avgDte": 18,
+          "pctIdeal": 100,
+          "pctRamp": 0,
+          "pctBeyond": 0
         },
         {
           "month": "2025-08",
-          "avgDte": 29
+          "avgDte": 29,
+          "pctIdeal": 85,
+          "pctRamp": 2,
+          "pctBeyond": 13
         },
         {
           "month": "2025-09",
-          "avgDte": 50
+          "avgDte": 50,
+          "pctIdeal": 59,
+          "pctRamp": 18,
+          "pctBeyond": 23
         }
       ]
     },
@@ -206,50 +219,84 @@
       "avgDte": 222,
       "pctUpTo30": 22,
       "pctOver90": 63,
+      "pctIdeal": 27,
       "months": [
         {
           "month": "2025-10",
-          "avgDte": 156
+          "avgDte": 156,
+          "pctIdeal": 22,
+          "pctRamp": 11,
+          "pctBeyond": 67
         },
         {
           "month": "2025-11",
-          "avgDte": 271
+          "avgDte": 271,
+          "pctIdeal": 23,
+          "pctRamp": 7,
+          "pctBeyond": 69
         },
         {
           "month": "2025-12",
-          "avgDte": 211
+          "avgDte": 211,
+          "pctIdeal": 52,
+          "pctRamp": 6,
+          "pctBeyond": 42
         },
         {
           "month": "2026-01",
-          "avgDte": 213
+          "avgDte": 213,
+          "pctIdeal": 29,
+          "pctRamp": 11,
+          "pctBeyond": 60
         },
         {
           "month": "2026-02",
-          "avgDte": 307
+          "avgDte": 307,
+          "pctIdeal": 12,
+          "pctRamp": 13,
+          "pctBeyond": 75
         },
         {
           "month": "2026-03",
-          "avgDte": 156
+          "avgDte": 156,
+          "pctIdeal": 24,
+          "pctRamp": 10,
+          "pctBeyond": 66
         },
         {
           "month": "2026-04",
-          "avgDte": 132
+          "avgDte": 132,
+          "pctIdeal": 16,
+          "pctRamp": 11,
+          "pctBeyond": 73
         },
         {
           "month": "2026-05",
-          "avgDte": 213
+          "avgDte": 213,
+          "pctIdeal": 17,
+          "pctRamp": 0,
+          "pctBeyond": 83
         },
         {
           "month": "2026-06",
-          "avgDte": 421
+          "avgDte": 421,
+          "pctIdeal": 13,
+          "pctRamp": 3,
+          "pctBeyond": 84
         },
         {
           "month": "2026-07",
-          "avgDte": 106
+          "avgDte": 106,
+          "pctIdeal": 56,
+          "pctRamp": 22,
+          "pctBeyond": 22
         },
         {
           "month": "2026-08",
-          "avgDte": 155
+          "avgDte": 155,
+          "pctIdeal": 57,
+          "pctRamp": 13,
+          "pctBeyond": 30
         }
       ]
     },
@@ -261,18 +308,28 @@
       "avgDte": 58,
       "pctUpTo30": 72,
       "pctOver90": 13,
+      "pctIdeal": 79,
       "months": [
         {
           "month": "2026-09",
-          "avgDte": 41
+          "avgDte": 41,
+          "pctIdeal": 85,
+          "pctRamp": 5,
+          "pctBeyond": 11
         },
         {
           "month": "2026-10",
-          "avgDte": 56
+          "avgDte": 56,
+          "pctIdeal": 77,
+          "pctRamp": 10,
+          "pctBeyond": 13
         },
         {
           "month": "2026-11",
-          "avgDte": 73
+          "avgDte": 73,
+          "pctIdeal": 79,
+          "pctRamp": 6,
+          "pctBeyond": 15
         }
       ]
     }
@@ -574,7 +631,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T04:25:37Z",
+    "generatedAt": "2026-11-17T04:38:51Z",
     "source": "refresh-stats.py"
   }
 }
