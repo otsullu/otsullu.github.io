@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261116c" />
+  <link rel="stylesheet" href="css/style.css?v=20261116d" />
   <script>
   (function(){
     try {
@@ -368,7 +368,7 @@
   <div class="stats-bar" id="statsBar">
     <div class="stats-inner">
       <div class="stat-item reveal-up">
-        <span class="stat-value" id="statTradingDays">275</span>
+        <span class="stat-value" id="statTradingDays">273</span>
         <span class="stat-label">Days Traded</span>
       </div>
       <div class="stat-divider" aria-hidden="true"></div>
@@ -562,7 +562,7 @@
       <!-- Velocity Callout -->
       <div class="velocity-callout reveal-up">
         <p class="velocity-quote">"On a busy day the trade log runs to dozens of events. At that pace, a spreadsheet stops helping and starts getting in the way."</p>
-        <p class="velocity-body">Across <span class="vbTradingDays">275</span> days of live trading in <span id="vbUnderlyings">26</span> underlyings, OTS Ullu has recorded every option trade from open to close. In each monitoring cycle it refreshes about <span id="vbDataPoints">505,000</span> market data points (option chains, position quotes and stock data) and checks them for expiry risk, roll triggers and assignment exposure. Doing that by hand every <span class="vbRefresh">15</span> minutes isn't realistic.</p>
+        <p class="velocity-body">Across <span class="vbTradingDays">273</span> days of live trading in <span id="vbUnderlyings">26</span> underlyings, OTS Ullu has recorded every option trade from open to close. In each monitoring cycle it refreshes about <span id="vbDataPoints">505,000</span> market data points (option chains, position quotes and stock data) and checks them for expiry risk, roll triggers and assignment exposure. Doing that by hand every <span class="vbRefresh">15</span> minutes isn't realistic.</p>
         <p class="velocity-punch">That's why OTS Ullu exists.</p>
         <div class="theta-strip">
           <div class="theta-icon" aria-hidden="true">
@@ -578,7 +578,7 @@
           </div>
         </div>
         <div class="velocity-stats">
-          <div class="vel-stat"><span class="vel-num" id="velTradingDays">275</span><span class="vel-label">Days traded<br/>in operation</span></div>
+          <div class="vel-stat"><span class="vel-num" id="velTradingDays">273</span><span class="vel-label">Days traded<br/>in operation</span></div>
           <div class="vel-stat"><span class="vel-num" id="velSymbols">16</span><span class="vel-label">Symbols<br/>under watch</span></div>
           <div class="vel-stat"><span class="vel-num" id="velOptionFields">23</span><span class="vel-label">Data fields per<br/>option contract</span></div>
           <div class="vel-stat"><span class="vel-num">0</span><span class="vel-label">Spreadsheets<br/>still in use</span></div>
@@ -592,17 +592,17 @@
         <div class="cal-stats">
           <div class="cal-stat"><span class="cal-num" id="calDays" data-target="509">509</span><span class="cal-label">Calendar<br/>days</span></div>
           <div class="cal-stat"><span class="cal-num" id="calSessions" data-target="351">351</span><span class="cal-label">Market<br/>sessions</span></div>
-          <div class="cal-stat"><span class="cal-num cal-num-hot" id="calTraded" data-target="275">275</span><span class="cal-label">Days<br/>traded</span></div>
+          <div class="cal-stat"><span class="cal-num cal-num-hot" id="calTraded" data-target="273">273</span><span class="cal-label">Days<br/>traded</span></div>
           <div class="cal-stat"><span class="cal-num cal-num-hot" id="calPct" data-target="78" data-suffix="%">78%</span><span class="cal-label">Of market<br/>sessions traded</span></div>
         </div>
-        <div class="cal-grid-wrap" id="calGrid" role="img" aria-label="Trading calendar: 509 calendar days, 351 NYSE market sessions, 275 days traded."></div>
+        <div class="cal-grid-wrap" id="calGrid" role="img" aria-label="Trading calendar: 509 calendar days, 351 NYSE market sessions, 273 days traded."></div>
         <div class="cal-legend" aria-hidden="true">
           <span><i class="cal-key cal-traded"></i>Traded</span>
           <span><i class="cal-key cal-open"></i>Market open, no trade</span>
           <span><i class="cal-key cal-holiday"></i>Market holiday</span>
           <span><i class="cal-key cal-weekend"></i>Weekend</span>
         </div>
-        <p class="dte-note" id="calNote">Every square is one day, from the first live trade on Jun 26, 2025 to today. Market sessions follow the official NYSE calendar. A day counts as traded when at least one option transaction was recorded.</p>
+        <p class="dte-note" id="calNote">Every square is one day, from the first live trade on Jun 26, 2025 to today. Market sessions follow the official NYSE calendar. A day counts as traded when at least one contract was sold to open or bought to close.</p>
         <div class="cal-tip" id="calTip" hidden></div>
       </div>
 
@@ -626,8 +626,9 @@
 
       <!-- Top Tickers -->
       <div class="ticker-shelf reveal-up">
-        <p class="ticker-shelf-label">Most Traded Underlyings · Contracts and Share of Total</p>
+        <p class="ticker-shelf-label">Most Traded Underlyings · Contracts Traded to Date</p>
         <div class="ticker-list" id="tickerList"></div>
+        <p class="dte-note">Contracts traded since the first live trade: every contract sold to open or bought to close, calls and puts. A roll counts both legs. Expirations and assignments are not trades, so they are not counted. The percentage is each symbol's share of all contracts traded.</p>
       </div>
 
       <!-- DTE Evolution (filled from data/stats.json dtePhases; hidden if absent) -->
@@ -906,7 +907,7 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 7:38 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 7:49 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
   </div>
 </footer>
 
@@ -916,9 +917,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261116c"></script>
-<script src="js/feedback.js?v=20261116c"></script>
-<script src="js/app.js?v=20261116c"></script>
+<script src="js/feedback-config.js?v=20261116d"></script>
+<script src="js/feedback.js?v=20261116d"></script>
+<script src="js/app.js?v=20261116d"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

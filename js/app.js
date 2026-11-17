@@ -110,17 +110,17 @@ const TOP_TICKER_COUNT = 12;   /* 12 tiles = two full rows of 5 + 2 */
 
 /* Ranked by contracts traded, with share of all contracts (fallback; replaced from stats.json). */
 const TICKER_DATA = [
-  { sym: 'TSLA',  contracts: 3684, pct: 33.2 },
-  { sym: 'NVDA',  contracts: 1207, pct: 10.9 },
-  { sym: 'COIN',  contracts: 1171, pct: 10.6 },
-  { sym: 'SPCX',  contracts: 1162, pct: 10.5 },
-  { sym: 'PLTR',  contracts:  823, pct:  7.4 },
-  { sym: 'AMZN',  contracts:  571, pct:  5.1 },
-  { sym: 'META',  contracts:  523, pct:  4.7 },
-  { sym: 'MSFT',  contracts:  469, pct:  4.2 },
-  { sym: 'GOOGL', contracts:  430, pct:  3.9 },
-  { sym: 'QQQ',   contracts:  208, pct:  1.9 },
-  { sym: 'AAPL',  contracts:  196, pct:  1.8 },
+  { sym: 'TSLA',  contracts: 3634, pct: 33.2 },
+  { sym: 'NVDA',  contracts: 1201, pct: 11.0 },
+  { sym: 'COIN',  contracts: 1163, pct: 10.6 },
+  { sym: 'SPCX',  contracts: 1127, pct: 10.3 },
+  { sym: 'PLTR',  contracts:  816, pct:  7.5 },
+  { sym: 'AMZN',  contracts:  567, pct:  5.2 },
+  { sym: 'META',  contracts:  521, pct:  4.8 },
+  { sym: 'MSFT',  contracts:  464, pct:  4.2 },
+  { sym: 'GOOGL', contracts:  420, pct:  3.8 },
+  { sym: 'QQQ',   contracts:  201, pct:  1.8 },
+  { sym: 'AAPL',  contracts:  193, pct:  1.8 },
   { sym: 'AMD',   contracts:  117, pct:  1.1 },
 ];
 
@@ -1258,7 +1258,7 @@ function setupCalendar(c) {
   const fmt = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   wrap.setAttribute('aria-label', `Trading calendar from ${fmt(c.start)} to ${fmt(c.end)}: ${c.calendarDays} calendar days, ${c.marketSessions} NYSE market sessions, ${c.tradedDays} days traded (${pct}% of sessions).`);
   const note = document.getElementById('calNote');
-  if (note) note.textContent = `Every square is one day, from the first live trade on ${fmt(c.start)} to ${fmt(c.end)}. Market sessions follow the official NYSE calendar. A day counts as traded when at least one option transaction was recorded.`;
+  if (note) note.textContent = `Every square is one day, from the first live trade on ${fmt(c.start)} to ${fmt(c.end)}. Market sessions follow the official NYSE calendar. A day counts as traded when at least one contract was sold to open or bought to close.`;
 
   renderCalendar();
 

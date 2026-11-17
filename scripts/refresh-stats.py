@@ -113,7 +113,7 @@ def fetch_calendar(cursor):
     """
     cursor.execute(
         "SELECT DISTINCT [TransactionDate] "
-        "FROM [trade].[vwOptionsTransaction] ORDER BY [TransactionDate]"
+        f"FROM [trade].[vwOptionsTransaction] WHERE {TRADED_ONLY} ORDER BY [TransactionDate]"
     )
     traded = [str(r[0]) for r in cursor.fetchall()]
     if not traded:
@@ -142,6 +142,15 @@ def fetch_calendar(cursor):
     }
 
 
+# "Traded" = a contract sold to open or bought to close (calls and puts; rolls
+# count both legs). Expirations, assignments and exercises are not trades.
+# Match on how each broker STARTS those records: ordinary trade text can
+# contain "EXPIRES <date>", so a contains-match would drop real trades.
+TRADED_ONLY = ("NOT ([Action] LIKE 'Option Expired%' OR [Action] LIKE 'Option Assigned%' "
+               "OR [Action] LIKE 'Option Exercised%' OR [Action] LIKE 'EXPIRED %' "
+               "OR [Action] LIKE 'ASSIGNED %' OR [Action] LIKE 'EXERCISED %')")
+
+
 def fetch_activity(cursor):
     """Trading activity, published only as counts of days/symbols and percentages.
 
@@ -149,21 +158,22 @@ def fetch_activity(cursor):
     account counts here. data/stats.json is public. The one exception, chosen
     by the owner on 2026-11-16: per-ticker contract counts with their share.
     """
-    cursor.execute("""
+    cursor.execute(f"""
         SELECT COUNT(DISTINCT [SYM]),
                COUNT(DISTINCT [TransactionDate]),
                SUM(CASE WHEN [OT] = 'C' THEN ABS([Quantity]) ELSE 0 END),
                SUM(ABS([Quantity]))
         FROM [trade].[vwOptionsTransaction]
+        WHERE {TRADED_ONLY}
     """)
     underlyings, trading_days, cc, total = cursor.fetchone()
     cc_pct = round(cc * 100 / total) if total else 0
 
-    # Contracts per ticker and share of all contracts traded.
+    # Contracts traded per ticker and share of all contracts traded.
     # Extra rows let the site hide tickers.
     cursor.execute(
         "SELECT TOP 15 [SYM], SUM(ABS([Quantity])) FROM [trade].[vwOptionsTransaction] "
-        "GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
+        f"WHERE {TRADED_ONLY} GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
     )
     top = [
         {"sym": sym, "contracts": int(qty), "pct": round(qty * 100 / total, 1) if total else 0}

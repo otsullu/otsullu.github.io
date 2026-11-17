@@ -1,63 +1,63 @@
 {
   "activity": {
     "underlyings": 26,
-    "tradingDays": 275,
+    "tradingDays": 273,
     "ccPct": 80,
     "cspPct": 20,
     "topUnderlyings": [
       {
         "sym": "TSLA",
-        "contracts": 3684,
+        "contracts": 3634,
         "pct": 33.2
       },
       {
         "sym": "NVDA",
-        "contracts": 1207,
-        "pct": 10.9
+        "contracts": 1201,
+        "pct": 11.0
       },
       {
         "sym": "COIN",
-        "contracts": 1171,
+        "contracts": 1163,
         "pct": 10.6
       },
       {
         "sym": "SPCX",
-        "contracts": 1162,
-        "pct": 10.5
+        "contracts": 1127,
+        "pct": 10.3
       },
       {
         "sym": "PLTR",
-        "contracts": 823,
-        "pct": 7.4
+        "contracts": 816,
+        "pct": 7.5
       },
       {
         "sym": "AMZN",
-        "contracts": 571,
-        "pct": 5.1
+        "contracts": 567,
+        "pct": 5.2
       },
       {
         "sym": "META",
-        "contracts": 523,
-        "pct": 4.7
+        "contracts": 521,
+        "pct": 4.8
       },
       {
         "sym": "MSFT",
-        "contracts": 469,
+        "contracts": 464,
         "pct": 4.2
       },
       {
         "sym": "GOOGL",
-        "contracts": 430,
-        "pct": 3.9
+        "contracts": 420,
+        "pct": 3.8
       },
       {
         "sym": "QQQ",
-        "contracts": 208,
-        "pct": 1.9
+        "contracts": 201,
+        "pct": 1.8
       },
       {
         "sym": "AAPL",
-        "contracts": 196,
+        "contracts": 193,
         "pct": 1.8
       },
       {
@@ -72,7 +72,7 @@
       },
       {
         "sym": "NFLX",
-        "contracts": 87,
+        "contracts": 85,
         "pct": 0.8
       },
       {
@@ -126,7 +126,7 @@
     "end": "2026-11-16",
     "calendarDays": 509,
     "marketSessions": 351,
-    "tradedDays": 275,
+    "tradedDays": 273,
     "holidays": [
       "2025-07-04",
       "2025-09-01",
@@ -144,7 +144,6 @@
     "tradedDates": [
       "2025-06-26",
       "2025-07-10",
-      "2025-07-11",
       "2025-07-14",
       "2025-07-25",
       "2025-07-31",
@@ -335,7 +334,6 @@
       "2026-07-10",
       "2026-07-13",
       "2026-07-14",
-      "2026-07-17",
       "2026-07-20",
       "2026-07-21",
       "2026-07-24",
@@ -420,7 +418,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T03:36:59Z",
+    "generatedAt": "2026-11-17T03:49:00Z",
     "source": "refresh-stats.py"
   }
 }
