@@ -84,10 +84,10 @@
   },
   "surveillance": {
     "symbolsMonitored": 16,
-    "rowsPerCycle": 21935,
+    "rowsPerCycle": 21054,
     "optionFields": 23,
     "stockFields": 22,
-    "dataPointsPerCycle": 504492,
+    "dataPointsPerCycle": 484226,
     "refreshMinutes": 15,
     "dataStreams": 3,
     "cycleDate": "2026-11-16"
@@ -178,7 +178,25 @@
       "to": "2025-09",
       "avgDte": 47,
       "pctUpTo30": 57,
-      "pctOver90": 21
+      "pctOver90": 21,
+      "months": [
+        {
+          "month": "2025-06",
+          "avgDte": 15
+        },
+        {
+          "month": "2025-07",
+          "avgDte": 18
+        },
+        {
+          "month": "2025-08",
+          "avgDte": 29
+        },
+        {
+          "month": "2025-09",
+          "avgDte": 50
+        }
+      ]
     },
     {
       "key": "long",
@@ -187,7 +205,53 @@
       "to": "2026-08",
       "avgDte": 222,
       "pctUpTo30": 22,
-      "pctOver90": 63
+      "pctOver90": 63,
+      "months": [
+        {
+          "month": "2025-10",
+          "avgDte": 156
+        },
+        {
+          "month": "2025-11",
+          "avgDte": 271
+        },
+        {
+          "month": "2025-12",
+          "avgDte": 211
+        },
+        {
+          "month": "2026-01",
+          "avgDte": 213
+        },
+        {
+          "month": "2026-02",
+          "avgDte": 307
+        },
+        {
+          "month": "2026-03",
+          "avgDte": 156
+        },
+        {
+          "month": "2026-04",
+          "avgDte": 132
+        },
+        {
+          "month": "2026-05",
+          "avgDte": 213
+        },
+        {
+          "month": "2026-06",
+          "avgDte": 421
+        },
+        {
+          "month": "2026-07",
+          "avgDte": 106
+        },
+        {
+          "month": "2026-08",
+          "avgDte": 155
+        }
+      ]
     },
     {
       "key": "now",
@@ -196,7 +260,21 @@
       "to": "2026-11",
       "avgDte": 58,
       "pctUpTo30": 72,
-      "pctOver90": 13
+      "pctOver90": 13,
+      "months": [
+        {
+          "month": "2026-09",
+          "avgDte": 41
+        },
+        {
+          "month": "2026-10",
+          "avgDte": 56
+        },
+        {
+          "month": "2026-11",
+          "avgDte": 73
+        }
+      ]
     }
   ],
   "calendar": {
@@ -496,7 +574,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T04:12:15Z",
+    "generatedAt": "2026-11-17T04:25:37Z",
     "source": "refresh-stats.py"
   }
 }

@@ -100,6 +100,10 @@ def fetch_dte_phases(cursor):
             "avgDte":    round(sum(r[2] for r in rows) / qty),
             "pctUpTo30": round(sum(r[3] for r in rows) * 100 / qty),
             "pctOver90": round(sum(r[4] for r in rows) * 100 / qty),
+            "months": [
+                {"month": r[0], "avgDte": round(r[2] / r[1])}
+                for r in sorted(rows) if r[1]
+            ],
         })
     return phases
 

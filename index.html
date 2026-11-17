@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261116e" />
+  <link rel="stylesheet" href="css/style.css?v=20261116f" />
   <script>
   (function(){
     try {
@@ -643,8 +643,10 @@
       <!-- DTE Evolution (filled from data/stats.json dtePhases; hidden if absent) -->
       <div class="ticker-shelf reveal-up" id="dteShelf" hidden>
         <p class="ticker-shelf-label">How Far Out We Sell · And Why We Came Back</p>
-        <div class="dte-phases" id="dtePhases"></div>
-        <p class="dte-note">Average days to expiry when each short option was opened, weighted by contracts. Long-dated options tie up capital in slow decay, so the engine has moved back to short-dated contracts, where time decay is fastest.</p>
+        <p class="dte-band-lead" id="dteEraLead"></p>
+        <div class="dte-timeline" id="dteTimeline"></div>
+        <div class="dte-era-notes" id="dtePhases"></div>
+        <p class="dte-note">Each bar is one month: the average number of days to expiry when we sold an option that month, weighted by contracts. Shaded areas mark the three eras.</p>
       </div>
 
       <!-- Engineering Timeline -->
@@ -916,7 +918,7 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 8:00 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 8:27 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
   </div>
 </footer>
 
@@ -926,9 +928,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261116e"></script>
-<script src="js/feedback.js?v=20261116e"></script>
-<script src="js/app.js?v=20261116e"></script>
+<script src="js/feedback-config.js?v=20261116f"></script>
+<script src="js/feedback.js?v=20261116f"></script>
+<script src="js/app.js?v=20261116f"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

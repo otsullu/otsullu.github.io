@@ -1283,6 +1283,97 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   .dte-phases { grid-template-columns: 1fr; }
 }
 
+/* ── HOW FAR OUT WE SELL (monthly DTE timeline) ─────────────────── */
+.dte-timeline { margin: 4px 0 14px; }
+.dte-tl-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 12), minmax(0, 1fr));
+  grid-template-rows: auto 170px auto;
+  column-gap: 0;
+}
+.dte-tl-era {
+  grid-row: 1;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 6px;
+  color: var(--product-fg-muted);
+  border-bottom: 2px solid var(--product-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dte-tl-era--now { color: var(--accent); border-bottom-color: var(--accent); }
+.dte-tl-col {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 3px;
+  min-width: 0;
+}
+.dte-tl-col--long { background: color-mix(in srgb, var(--product-border) 45%, transparent); }
+.dte-tl-col--now  { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.dte-tl-bar {
+  width: 70%;
+  max-width: 28px;
+  border-radius: 3px 3px 0 0;
+  background: var(--product-fg-dim);
+}
+.dte-tl-col--early .dte-tl-bar,
+.dte-tl-col--now .dte-tl-bar { background: var(--accent); }
+.dte-tl-val {
+  font-size: 0.62rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+  margin-bottom: 3px;
+}
+.dte-tl-mon {
+  grid-row: 3;
+  font-size: 0.64rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+  text-align: center;
+  padding-top: 4px;
+  white-space: nowrap;
+}
+.dte-era-notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.dte-era-note {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--product-card-bg);
+  border: 1px solid var(--product-border);
+  border-radius: 10px;
+}
+.dte-era-note--now { border-color: var(--accent); }
+.dte-era-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--product-fg);
+}
+.dte-era-avg {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+}
+.dte-era-why { font-size: 0.82rem; line-height: 1.4; color: var(--product-fg); }
+@media (max-width: 720px) {
+  .dte-era-notes { grid-template-columns: 1fr; }
+  .dte-tl-val { display: none; }
+  .dte-tl-grid { grid-template-rows: auto 140px auto; }
+}
+
 /* ── WHERE TIME VALUE EARNS (DTE bands) ─────────────────────────── */
 .dte-band-lead {
   font-size: 0.9rem;

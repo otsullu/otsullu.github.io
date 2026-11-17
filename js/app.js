@@ -1308,6 +1308,62 @@ const DTE_ERA_WHY = {
   long:  'Went long-dated: more capital tied up in slow decay.',
   now:   'Back to short-dated, where time decay is fastest.',
 };
+const DTE_ERA_NAME = { early: 'Early', long: 'Long-dated era', now: 'Now' };
+
+/* "How far out we sell": one bar per month, eras shaded behind. */
+function renderDteEras(phases) {
+  const shelf = document.getElementById('dteShelf');
+  const chart = document.getElementById('dteTimeline');
+  const notes = document.getElementById('dtePhases');
+  if (!shelf || !chart || !Array.isArray(phases) || !phases.length || !phases[0].months) return;
+
+  const months = phases.flatMap(p => p.months.map(m => ({ ...m, era: p.key })));
+  const max = Math.max(...months.map(m => m.avgDte), 1);
+  const monTxt = (ym, withYear) => new Date(ym + '-01T00:00:00Z')
+    .toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC', ...(withYear ? { year: '2-digit' } : {}) });
+  const inMonths = d => d < 45 ? `about ${Math.round(d / 7)} weeks` : `about ${Math.round(d / 30)} months`;
+
+  // Era labels row (each spans its months), then the bars, then month labels.
+  let col = 1, eraRow = '';
+  phases.forEach(p => {
+    const n = p.months.length;
+    eraRow += `<span class="dte-tl-era dte-tl-era--${p.key}" style="grid-column:${col} / span ${n}">${DTE_ERA_NAME[p.key] || p.label}</span>`;
+    col += n;
+  });
+  const bars = months.map((m, i) => {
+    const h = Math.max(3, Math.round(m.avgDte / max * 100));
+    const label = `${monTxt(m.month, true)}: ${m.avgDte} days`;
+    return `<div class="dte-tl-col dte-tl-col--${m.era}" style="grid-column:${i + 1}" title="${label}" aria-label="${label}">
+      <span class="dte-tl-val">${m.avgDte}</span><div class="dte-tl-bar" style="height:${h}%"></div></div>`;
+  }).join('');
+  // Every third month (plus the last); the year appears whenever it changes.
+  let lastYear = '';
+  const labels = months.map((m, i) => {
+    const show = i % 3 === 0 || (i === months.length - 1 && i % 3 === 2);
+    let txt = '';
+    if (show) {
+      const yr = m.month.slice(0, 4);
+      txt = monTxt(m.month, yr !== lastYear);
+      lastYear = yr;
+    }
+    return `<span class="dte-tl-mon" style="grid-column:${i + 1}">${txt}</span>`;
+  }).join('');
+  chart.style.setProperty('--n', months.length);
+  chart.innerHTML = `<div class="dte-tl-grid">${eraRow}${bars}${labels}</div>`;
+
+  const mon = ym => monTxt(ym, true);
+  if (notes) notes.innerHTML = phases.map(p => `
+    <div class="dte-era-note dte-era-note--${p.key}">
+      <span class="dte-era-name">${DTE_ERA_NAME[p.key] || p.label} · ${mon(p.from)} – ${p.key === 'now' ? 'today' : mon(p.to)}</span>
+      <span class="dte-era-avg">${p.avgDte} days on average · ${p.pctUpTo30}% opened with a month or less to expiry</span>
+      <span class="dte-era-why">${DTE_ERA_WHY[p.key] || ''}</span>
+    </div>`).join('');
+
+  const now = phases.find(p => p.key === 'now'), long = phases.find(p => p.key === 'long');
+  const lead = document.getElementById('dteEraLead');
+  if (lead && now && long) lead.innerHTML = `We now sell options <b>${inMonths(now.avgDte)}</b> out. For most of the past year we sold them <b>${inMonths(long.avgDte)}</b> out, but long-dated options earned too little per day, so we came back.`;
+  shelf.hidden = false;
+}
 /* Same thresholds as the MVP1 DTE Map (>=28% earning, <10.5% low). */
 const dteTier = y => y == null ? 'none' : y >= 28 ? 'earn' : y >= 10.5 ? 'mid' : 'low';
 const DTE_TIER_LABEL = { earn: 'Earning', mid: 'Moderate', low: 'Low yield', none: 'No positions' };
@@ -1395,25 +1451,8 @@ function applyStats(s) {
   set('velSymbols',      v.symbolsMonitored);
   set('velOptionFields', v.optionFields);
 
-  /* DTE evolution (averages and percentages only) */
-  const dteShelf = document.getElementById('dteShelf');
-  const dteWrap  = document.getElementById('dtePhases');
-  if (dteShelf && dteWrap && Array.isArray(s.dtePhases) && s.dtePhases.length) {
-    const mon = ym => new Date(ym + '-01T00:00:00').toLocaleString('en-US', { month: 'short', year: 'numeric' });
-    const maxDte = Math.max(...s.dtePhases.map(p => p.avgDte));
-    dteWrap.innerHTML = s.dtePhases.map(p => `
-      <div class="dte-phase dte-phase--${p.key}">
-        <span class="dte-phase-label">${p.label}</span>
-        <span class="dte-phase-range">${mon(p.from)} – ${p.key === 'now' ? 'today' : mon(p.to)}</span>
-        <span class="dte-phase-num">${p.avgDte}<small> days</small></span>
-        <div class="dte-phase-bar"><div style="width:${Math.max(4, Math.round(p.avgDte / maxDte * 100))}%"></div></div>
-        <span class="dte-phase-sub">${p.pctUpTo30}% ≤ 30 DTE · ${p.pctOver90}% &gt; 90 DTE</span>
-        <span class="dte-phase-why">${DTE_ERA_WHY[p.key] || ''}</span>
-      </div>`).join('');
-    dteShelf.hidden = false;
-  }
-
   renderDteBands(s.dteBands);
+  renderDteEras(s.dtePhases);
 
   /* refreshed-at timestamp */
   const refreshedEl = document.getElementById('statsRefreshedAt');
