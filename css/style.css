@@ -1272,8 +1272,130 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   color: var(--product-fg-muted);
 }
 
+.dte-phase-why {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--product-fg);
+  margin-top: 2px;
+}
+
 @media (max-width: 720px) {
   .dte-phases { grid-template-columns: 1fr; }
+}
+
+/* ── WHERE TIME VALUE EARNS (DTE bands) ─────────────────────────── */
+.dte-band-lead {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--product-fg);
+  margin: 0 0 14px;
+}
+.dte-band-lead b { color: var(--accent); }
+
+.dte-flow { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.dte-flow-row { display: flex; flex-direction: column; gap: 4px; }
+.dte-flow-lbl {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+}
+.dte-flow-bar {
+  display: flex;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--product-border);
+}
+.dte-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-right: 2px solid var(--product-card-bg);
+}
+.dte-seg:last-child { border-right: 0; }
+.dte-seg--earn { background: var(--accent); color: var(--product-bg); }
+.dte-seg--mid  { background: color-mix(in srgb, var(--accent) 45%, var(--product-border)); color: var(--product-fg); }
+.dte-seg--low  { background: var(--product-fg-dim); color: var(--product-bg); }
+.dte-seg--none { background: var(--product-border); }
+
+.dte-bands {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.dte-band {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--product-card-bg);
+  border: 1px solid var(--product-border);
+  border-left: 3px solid var(--product-border);
+  border-radius: 10px;
+  color: var(--product-fg);
+}
+.dte-band--earn { border-left-color: var(--accent); }
+.dte-band--mid  { border-left-color: color-mix(in srgb, var(--accent) 45%, var(--product-border)); }
+.dte-band--low  { border-left-color: var(--product-fg-dim); }
+.dte-band-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.dte-band-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+.dte-band-range {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+}
+.dte-band-yield {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+}
+.dte-band--mid .dte-band-yield { color: var(--product-fg); }
+.dte-band--low .dte-band-yield,
+.dte-band--none .dte-band-yield { color: var(--product-fg-muted); }
+.dte-band-yield small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--product-fg-muted);
+}
+.dte-band-sub {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--product-fg-muted);
+}
+.dte-band-tag {
+  align-self: flex-start;
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--product-border);
+  color: var(--product-fg-muted);
+}
+.dte-band--earn .dte-band-tag { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 720px) {
+  .dte-bands { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 420px) {
+  .dte-bands { grid-template-columns: 1fr; }
 }
 
 /* ── TRADING CALENDAR HEATMAP ───────────────────────────────────── */

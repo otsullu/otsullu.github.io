@@ -1302,6 +1302,61 @@ function setupCalendar(c) {
   wrap.addEventListener('pointerleave', () => { if (tip) tip.hidden = true; });
 }
 
+/* ── WHERE TIME VALUE EARNS (DTE bands) ─────────────────────────── */
+const DTE_ERA_WHY = {
+  early: 'Started short-dated, close to expiry.',
+  long:  'Went long-dated: more capital tied up in slow decay.',
+  now:   'Back to short-dated, where time decay is fastest.',
+};
+/* Same thresholds as the MVP1 DTE Map (>=28% earning, <10.5% low). */
+const dteTier = y => y == null ? 'none' : y >= 28 ? 'earn' : y >= 10.5 ? 'mid' : 'low';
+const DTE_TIER_LABEL = { earn: 'Earning', mid: 'Moderate', low: 'Low yield', none: 'No positions' };
+
+function renderDteBands(db) {
+  const shelf = document.getElementById('dteBandShelf');
+  if (!shelf || !db || !Array.isArray(db.bands) || !db.bands.length) return;
+  const bands = db.bands;
+  const sum = (keys, f) => bands.filter(b => keys.includes(b.key)).reduce((a, b) => a + (b[f] || 0), 0);
+  const r0 = x => Math.round(x);
+  const pctTxt = y => y == null ? '—' : (y >= 100 ? r0(y) : y.toFixed(1)) + '%';
+
+  const shortCap = sum(['fire', 'manage', 'harvest'], 'capitalPct');
+  const shortTpd = sum(['fire', 'manage', 'harvest'], 'tpdPct');
+  const leapCap  = sum(['leap1', 'leap2', 'leap3'], 'capitalPct');
+  const leapTpd  = sum(['leap1', 'leap2', 'leap3'], 'tpdPct');
+  const lead = document.getElementById('dteBandLead');
+  if (lead) lead.innerHTML = `Options with <b>40 days or less</b> to expiry hold <b>${r0(shortCap)}%</b> of the capital at stake and earn <b>${r0(shortTpd)}%</b> of the daily time value. Options more than a year out hold <b>${r0(leapCap)}%</b> and earn <b>${r0(leapTpd)}%</b>.`;
+
+  const seg = (b, f) => {
+    const w = b[f] || 0;
+    if (w <= 0) return '';
+    return `<span class="dte-seg dte-seg--${dteTier(b.yieldPct)}" style="width:${w}%" title="${b.name} (${b.range}): ${w}%">${w >= 7 ? r0(w) + '%' : ''}</span>`;
+  };
+  const flow = document.getElementById('dteFlow');
+  if (flow) flow.innerHTML = `
+    <div class="dte-flow-row"><span class="dte-flow-lbl">Share of capital at stake</span><div class="dte-flow-bar">${bands.map(b => seg(b, 'capitalPct')).join('')}</div></div>
+    <div class="dte-flow-row"><span class="dte-flow-lbl">Share of daily time value</span><div class="dte-flow-bar">${bands.map(b => seg(b, 'tpdPct')).join('')}</div></div>`;
+
+  const grid = document.getElementById('dteBands');
+  if (grid) grid.innerHTML = bands.map(b => {
+    const t = dteTier(b.yieldPct);
+    return `
+    <div class="dte-band dte-band--${t}">
+      <div class="dte-band-head"><span class="dte-band-name">${b.name}</span><span class="dte-band-range">${b.range}</span></div>
+      <span class="dte-band-yield">${pctTxt(b.yieldPct)}<small> yield</small></span>
+      <span class="dte-band-sub">${b.capitalPct}% of capital · ${b.tpdPct}% of time value</span>
+      <span class="dte-band-tag">${DTE_TIER_LABEL[t]}</span>
+    </div>`;
+  }).join('');
+
+  const note = document.getElementById('dteBandNote');
+  if (note && db.asOf) {
+    const d = new Date(db.asOf + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    note.textContent = `Open short options grouped by days left to expiry, measured ${d}. Yield is annualized time-decay yield: each group's daily time value on the capital it has at stake, compounded for a year${db.totalYieldPct != null ? ` (${pctTxt(db.totalYieldPct)} across all groups)` : ''}. It is a projection from today's positions, not a realized return, and it does not account for assignments or losses.`;
+  }
+  shelf.hidden = false;
+}
+
 /* ── STATS FROM JSON ────────────────────────────────────────────── */
 function applyStats(s) {
   // PRIVACY: stats.json is public. It carries system numbers, days and
@@ -1353,9 +1408,12 @@ function applyStats(s) {
         <span class="dte-phase-num">${p.avgDte}<small> days</small></span>
         <div class="dte-phase-bar"><div style="width:${Math.max(4, Math.round(p.avgDte / maxDte * 100))}%"></div></div>
         <span class="dte-phase-sub">${p.pctUpTo30}% ≤ 30 DTE · ${p.pctOver90}% &gt; 90 DTE</span>
+        <span class="dte-phase-why">${DTE_ERA_WHY[p.key] || ''}</span>
       </div>`).join('');
     dteShelf.hidden = false;
   }
+
+  renderDteBands(s.dteBands);
 
   /* refreshed-at timestamp */
   const refreshedEl = document.getElementById('statsRefreshedAt');

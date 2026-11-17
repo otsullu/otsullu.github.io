@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261116d" />
+  <link rel="stylesheet" href="css/style.css?v=20261116e" />
   <script>
   (function(){
     try {
@@ -631,11 +631,20 @@
         <p class="dte-note">Contracts traded since the first live trade: every contract sold to open or bought to close, calls and puts. A roll counts both legs. Expirations and assignments are not trades, so they are not counted. The percentage is each symbol's share of all contracts traded.</p>
       </div>
 
+      <!-- Where Time Value Earns (filled from data/stats.json dteBands; hidden if absent) -->
+      <div class="ticker-shelf reveal-up" id="dteBandShelf" hidden>
+        <p class="ticker-shelf-label">Where Time Value Earns · By Days to Expiry</p>
+        <p class="dte-band-lead" id="dteBandLead"></p>
+        <div class="dte-flow" id="dteFlow"></div>
+        <div class="dte-bands" id="dteBands"></div>
+        <p class="dte-note" id="dteBandNote">Open short options grouped by days left to expiry. Yield is annualized time-decay yield: each group's daily time value on the capital it has at stake, compounded for a year. It is a projection from today's positions, not a realized return, and it does not account for assignments or losses.</p>
+      </div>
+
       <!-- DTE Evolution (filled from data/stats.json dtePhases; hidden if absent) -->
       <div class="ticker-shelf reveal-up" id="dteShelf" hidden>
-        <p class="ticker-shelf-label">Strategy Evolution · Days to Expiry at Open</p>
+        <p class="ticker-shelf-label">How Far Out We Sell · And Why We Came Back</p>
         <div class="dte-phases" id="dtePhases"></div>
-        <p class="dte-note">Contract-weighted days to expiry when each short option was opened. The engine now favours short-dated contracts, where time decay is fastest.</p>
+        <p class="dte-note">Average days to expiry when each short option was opened, weighted by contracts. Long-dated options tie up capital in slow decay, so the engine has moved back to short-dated contracts, where time decay is fastest.</p>
       </div>
 
       <!-- Engineering Timeline -->
@@ -907,7 +916,7 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 7:49 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 8:00 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
   </div>
 </footer>
 
@@ -917,9 +926,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261116d"></script>
-<script src="js/feedback.js?v=20261116d"></script>
-<script src="js/app.js?v=20261116d"></script>
+<script src="js/feedback-config.js?v=20261116e"></script>
+<script src="js/feedback.js?v=20261116e"></script>
+<script src="js/app.js?v=20261116e"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

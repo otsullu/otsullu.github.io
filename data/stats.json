@@ -92,6 +92,84 @@
     "dataStreams": 3,
     "cycleDate": "2026-11-16"
   },
+  "dteBands": {
+    "asOf": "2026-11-16",
+    "bands": [
+      {
+        "key": "fire",
+        "name": "FIRE",
+        "range": "<6d",
+        "capitalPct": 1.9,
+        "tpdPct": 9.5,
+        "yieldPct": 246.0
+      },
+      {
+        "key": "manage",
+        "name": "MANAGE",
+        "range": "6\u201319d",
+        "capitalPct": 9.1,
+        "tpdPct": 21.5,
+        "yieldPct": 79.7
+      },
+      {
+        "key": "harvest",
+        "name": "HARVEST",
+        "range": "20\u201340d",
+        "capitalPct": 12.2,
+        "tpdPct": 17.1,
+        "yieldPct": 41.6
+      },
+      {
+        "key": "ramp",
+        "name": "RAMP",
+        "range": "41\u201390d",
+        "capitalPct": 1.6,
+        "tpdPct": 1.0,
+        "yieldPct": 16.2
+      },
+      {
+        "key": "slow",
+        "name": "SLOW",
+        "range": "91\u2013180d",
+        "capitalPct": 18.5,
+        "tpdPct": 19.0,
+        "yieldPct": 28.7
+      },
+      {
+        "key": "stale",
+        "name": "STALE",
+        "range": "181\u2013365d",
+        "capitalPct": 20.1,
+        "tpdPct": 14.2,
+        "yieldPct": 19.0
+      },
+      {
+        "key": "leap1",
+        "name": "LEAP 12\u201318mo",
+        "range": "366\u2013547d",
+        "capitalPct": 19.2,
+        "tpdPct": 11.1,
+        "yieldPct": 15.3
+      },
+      {
+        "key": "leap2",
+        "name": "LEAP 18\u201324mo",
+        "range": "548\u2013730d",
+        "capitalPct": 6.4,
+        "tpdPct": 2.9,
+        "yieldPct": 11.9
+      },
+      {
+        "key": "leap3",
+        "name": "LEAP >24mo",
+        "range": ">730d",
+        "capitalPct": 11.1,
+        "tpdPct": 3.8,
+        "yieldPct": 8.9
+      }
+    ],
+    "totalYieldPct": 28.0
+  },
   "dtePhases": [
     {
       "key": "early",
@@ -418,7 +496,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T03:49:00Z",
+    "generatedAt": "2026-11-17T03:57:56Z",
     "source": "refresh-stats.py"
   }
 }

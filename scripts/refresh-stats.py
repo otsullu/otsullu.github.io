@@ -243,6 +243,68 @@ def fetch_surveillance(cursor):
     }
 
 
+# DTE bands come from the MVP1 dashboard's own function, so the website and the
+# dashboard can never disagree. It scopes to a user via SESSION_CONTEXT.
+MVP1_DASHBOARD_REPO = r"D:\Work\OTSUllu\MVP1\src\app\web\dashboard\repo.py"
+DTE_OWNER_USER_RECID = 4000   # the dashboard login (5 accounts) the DTE Map shows
+DTE_BAND_META = [  # key, name, range; mirrors BANDS in MVP1 static/js/dte.js
+    ("fire",    "FIRE",         "<6d"),
+    ("manage",  "MANAGE",       "6–19d"),
+    ("harvest", "HARVEST",      "20–40d"),
+    ("ramp",    "RAMP",         "41–90d"),
+    ("slow",    "SLOW",         "91–180d"),
+    ("stale",   "STALE",        "181–365d"),
+    ("leap1",   "LEAP 12–18mo", "366–547d"),
+    ("leap2",   "LEAP 18–24mo", "548–730d"),
+    ("leap3",   "LEAP >24mo",   ">730d"),
+]
+
+
+def _band_yield(tpd, cptl):
+    """Same capital-weighted formula as bandCagr() in MVP1 dte.js: pool the
+    band (sum TPD / sum capital), compound daily for a year. A projection from
+    today's time value, not a realized return."""
+    if not cptl or cptl <= 0:
+        return None
+    r = tpd / cptl
+    if r > 6.0 or r < -0.99:
+        return None
+    return round(((1 + r) ** 365 - 1) * 100, 1)
+
+
+def fetch_dte_bands(conn):
+    """Public DTE band view: PERCENTAGES and projected yield only.
+
+    PRIVACY: no capital, TPD/PPD, premium, P&L or position counts are published.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("mvp1_dashboard_repo", MVP1_DASHBOARD_REPO)
+    repo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(repo)
+
+    cur = conn.cursor()
+    cur.execute("EXEC sp_set_session_context @key = N'UserRecId', @value = ?", DTE_OWNER_USER_RECID)
+    raw = {b["key"]: b for b in repo.get_dte_bands(conn)["bands"]}
+    cur.execute("EXEC sp_set_session_context @key = N'UserRecId', @value = NULL")
+
+    tot_cptl = sum(max(0.0, raw.get(k, {}).get("cptl", 0.0)) for k, _, _ in DTE_BAND_META)
+    tot_tpd  = sum(max(0.0, raw.get(k, {}).get("tpd_day", 0.0)) for k, _, _ in DTE_BAND_META)
+    bands = []
+    for key, name, rng in DTE_BAND_META:
+        b = raw.get(key, {})
+        cptl, tpd = b.get("cptl", 0.0), b.get("tpd_day", 0.0)
+        bands.append({
+            "key":        key,
+            "name":       name,
+            "range":      rng,
+            "capitalPct": round(max(0.0, cptl) * 100 / tot_cptl, 1) if tot_cptl else 0,
+            "tpdPct":     round(max(0.0, tpd) * 100 / tot_tpd, 1) if tot_tpd else 0,
+            "yieldPct":   _band_yield(tpd, cptl),
+        })
+    return {"asOf": date.today().isoformat(), "bands": bands,
+            "totalYieldPct": _band_yield(tot_tpd, tot_cptl)}
+
+
 def fetch_stats():
     print(f"Connecting to {DB_SERVER}/{DB_NAME}...")
     conn = pyodbc.connect(get_connection_string(), timeout=30)
@@ -251,6 +313,7 @@ def fetch_stats():
     data = {
         "activity":     fetch_activity(cursor),
         "surveillance": fetch_surveillance(cursor),
+        "dteBands":     fetch_dte_bands(conn),
         "dtePhases":    fetch_dte_phases(cursor),
         "calendar":     fetch_calendar(cursor),
         "meta": {
