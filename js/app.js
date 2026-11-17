@@ -108,8 +108,21 @@ const TIMELINE_DATA = [
 const HIDDEN_TICKERS = [];
 const TOP_TICKER_COUNT = 12;   /* 12 tiles = two full rows of 5 + 2 */
 
-/* Ranked by contracts traded. Symbols only: quantities stay private. */
-const TICKER_DATA = ['TSLA', 'NVDA', 'COIN', 'SPCX', 'PLTR', 'AMZN', 'META', 'MSFT', 'GOOGL', 'QQQ', 'AAPL', 'AMD'];
+/* Ranked by contracts traded, with share of all contracts (fallback; replaced from stats.json). */
+const TICKER_DATA = [
+  { sym: 'TSLA',  contracts: 3684, pct: 33.2 },
+  { sym: 'NVDA',  contracts: 1207, pct: 10.9 },
+  { sym: 'COIN',  contracts: 1171, pct: 10.6 },
+  { sym: 'SPCX',  contracts: 1162, pct: 10.5 },
+  { sym: 'PLTR',  contracts:  823, pct:  7.4 },
+  { sym: 'AMZN',  contracts:  571, pct:  5.1 },
+  { sym: 'META',  contracts:  523, pct:  4.7 },
+  { sym: 'MSFT',  contracts:  469, pct:  4.2 },
+  { sym: 'GOOGL', contracts:  430, pct:  3.9 },
+  { sym: 'QQQ',   contracts:  208, pct:  1.9 },
+  { sym: 'AAPL',  contracts:  196, pct:  1.8 },
+  { sym: 'AMD',   contracts:  117, pct:  1.1 },
+];
 
 const VIDEO_DATA = [
   { id: 'o-1VRq2GCmo', lang: 'Bengali',   title: 'Indian Stock Market Basics — Bengali' },
@@ -504,16 +517,20 @@ function renderTickers() {
   const list = document.getElementById('tickerList');
   if (!list) return;
 
-  list.innerHTML = TICKER_DATA.map((sym, i) => `<a
+  list.innerHTML = TICKER_DATA.map(({ sym, contracts, pct }) => {
+    const n = Number(contracts).toLocaleString();
+    const share = Number(pct).toFixed(1) + '%';
+    return `<a
       class="ticker-chip ticker-chip-link"
       href="https://finance.yahoo.com/quote/${sym}"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="${sym}, rank ${i + 1}, on Yahoo Finance"
+      aria-label="${sym}: ${n} contracts, ${share} of all contracts traded. Opens Yahoo Finance"
     >
       <span class="ticker-sym">${sym}</span>
-      <span class="ticker-contracts">#${i + 1}</span>
-    </a>`).join('');
+      <span class="ticker-contracts">${n} <span class="ticker-pct">· ${share}</span></span>
+    </a>`;
+  }).join('');
 }
 
 
@@ -1349,11 +1366,11 @@ function applyStats(s) {
     refreshedEl.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
   }
 
-  /* tickers: ranked symbols only, hidden symbols drop out */
-  if (Array.isArray(a.topUnderlyings) && a.topUnderlyings.length) {
+  /* tickers: contracts and share of all contracts; hidden symbols drop out */
+  if (Array.isArray(a.topUnderlyings) && a.topUnderlyings.length && typeof a.topUnderlyings[0] === 'object') {
     TICKER_DATA.length = 0;
-    a.topUnderlyings.filter(sym => !HIDDEN_TICKERS.includes(sym)).slice(0, TOP_TICKER_COUNT)
-      .forEach(sym => TICKER_DATA.push(sym));
+    a.topUnderlyings.filter(x => !HIDDEN_TICKERS.includes(x.sym)).slice(0, TOP_TICKER_COUNT)
+      .forEach(x => TICKER_DATA.push(x));
     renderTickers();
   }
 

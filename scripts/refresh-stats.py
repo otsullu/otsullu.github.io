@@ -145,8 +145,9 @@ def fetch_calendar(cursor):
 def fetch_activity(cursor):
     """Trading activity, published only as counts of days/symbols and percentages.
 
-    PRIVACY: never add dollar amounts, contract or transaction counts, account
-    counts or per-ticker quantities here. data/stats.json is public.
+    PRIVACY: never add dollar amounts, total contract or transaction counts or
+    account counts here. data/stats.json is public. The one exception, chosen
+    by the owner on 2026-11-16: per-ticker contract counts with their share.
     """
     cursor.execute("""
         SELECT COUNT(DISTINCT [SYM]),
@@ -158,17 +159,22 @@ def fetch_activity(cursor):
     underlyings, trading_days, cc, total = cursor.fetchone()
     cc_pct = round(cc * 100 / total) if total else 0
 
-    # Ranked symbols only (no quantities). Extra rows let the site hide tickers.
+    # Contracts per ticker and share of all contracts traded.
+    # Extra rows let the site hide tickers.
     cursor.execute(
-        "SELECT TOP 15 [SYM] FROM [trade].[vwOptionsTransaction] "
+        "SELECT TOP 15 [SYM], SUM(ABS([Quantity])) FROM [trade].[vwOptionsTransaction] "
         "GROUP BY [SYM] ORDER BY SUM(ABS([Quantity])) DESC"
     )
+    top = [
+        {"sym": sym, "contracts": int(qty), "pct": round(qty * 100 / total, 1) if total else 0}
+        for sym, qty in cursor.fetchall()
+    ]
     return {
         "underlyings":    int(underlyings),
         "tradingDays":    int(trading_days),
         "ccPct":          cc_pct,
         "cspPct":         100 - cc_pct if total else 0,
-        "topUnderlyings": [r[0] for r in cursor.fetchall()],
+        "topUnderlyings": top,
     }
 
 

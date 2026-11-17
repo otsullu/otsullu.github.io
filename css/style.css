@@ -1213,8 +1213,10 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   flex-direction: column;
   gap: 6px;
   padding: 16px 18px;
-  background: #fff;
+  background: var(--product-card-bg);
+  border: 1px solid var(--product-border);
   border-radius: 10px;
+  color: var(--product-fg);
 }
 
 .dte-phase--now { box-shadow: inset 0 0 0 1px var(--accent); }
@@ -1252,7 +1254,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 
 .dte-phase-bar {
   height: 6px;
-  background: rgba(0,0,0,0.06);
+  background: var(--product-border);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -1450,7 +1452,10 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
   color: var(--product-fg-dim);
   font-family: var(--font-mono);
   text-align: right;
+  white-space: nowrap;
 }
+
+.ticker-pct { color: var(--accent); }
 
 @media (max-width: 700px) {
   .ticker-list {

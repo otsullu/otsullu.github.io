@@ -5,33 +5,92 @@
     "ccPct": 80,
     "cspPct": 20,
     "topUnderlyings": [
-      "TSLA",
-      "NVDA",
-      "COIN",
-      "SPCX",
-      "PLTR",
-      "AMZN",
-      "META",
-      "MSFT",
-      "GOOGL",
-      "QQQ",
-      "AAPL",
-      "AMD",
-      "INTC",
-      "NFLX",
-      "GOOG"
+      {
+        "sym": "TSLA",
+        "contracts": 3684,
+        "pct": 33.2
+      },
+      {
+        "sym": "NVDA",
+        "contracts": 1207,
+        "pct": 10.9
+      },
+      {
+        "sym": "COIN",
+        "contracts": 1171,
+        "pct": 10.6
+      },
+      {
+        "sym": "SPCX",
+        "contracts": 1162,
+        "pct": 10.5
+      },
+      {
+        "sym": "PLTR",
+        "contracts": 823,
+        "pct": 7.4
+      },
+      {
+        "sym": "AMZN",
+        "contracts": 571,
+        "pct": 5.1
+      },
+      {
+        "sym": "META",
+        "contracts": 523,
+        "pct": 4.7
+      },
+      {
+        "sym": "MSFT",
+        "contracts": 469,
+        "pct": 4.2
+      },
+      {
+        "sym": "GOOGL",
+        "contracts": 430,
+        "pct": 3.9
+      },
+      {
+        "sym": "QQQ",
+        "contracts": 208,
+        "pct": 1.9
+      },
+      {
+        "sym": "AAPL",
+        "contracts": 196,
+        "pct": 1.8
+      },
+      {
+        "sym": "AMD",
+        "contracts": 117,
+        "pct": 1.1
+      },
+      {
+        "sym": "INTC",
+        "contracts": 108,
+        "pct": 1.0
+      },
+      {
+        "sym": "NFLX",
+        "contracts": 87,
+        "pct": 0.8
+      },
+      {
+        "sym": "GOOG",
+        "contracts": 73,
+        "pct": 0.7
+      }
     ]
   },
   "surveillance": {
     "symbolsMonitored": 16,
-    "rowsPerCycle": 21937,
+    "rowsPerCycle": 21936,
     "optionFields": 23,
     "stockFields": 22,
-    "dataPointsPerCycle": 504536,
+    "dataPointsPerCycle": 504514,
     "refreshMinutes": 15,
     "dataStreams": 3,
-    "cycleStart": "2026-11-16T13:14:51",
-    "cycleEnd": "2026-11-16T13:20:07"
+    "cycleDate": "2026-11-16"
   },
   "dtePhases": [
     {
@@ -361,7 +420,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T02:26:39Z",
+    "generatedAt": "2026-11-17T03:36:59Z",
     "source": "refresh-stats.py"
   }
 }
