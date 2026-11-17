@@ -60,9 +60,9 @@ def get_connection_string():
 # DTE phases shown on the site: (key, label, first month, last month or None = to date).
 # Boundaries are editorial: move them here when the strategy shifts again.
 DTE_PHASES = [
-    ("early", "Early: short DTE",  "2025-06", "2025-09"),
-    ("long",  "Long-DTE era",      "2025-10", "2026-08"),
-    ("now",   "Now: short DTE",    "2026-09", None),
+    ("early", "Short-dated",        "2025-06", "2025-09"),
+    ("long",  "Long-dated",         "2025-10", "2026-08"),
+    ("now",   "Short-dated again",  "2026-09", None),
 ]
 
 

@@ -1308,7 +1308,8 @@ const DTE_ERA_WHY = {
   long:  'Went long-dated: more capital tied up in slow decay.',
   now:   'Back to short-dated, where time decay is fastest.',
 };
-const DTE_ERA_NAME = { early: 'Early', long: 'Long-dated era', now: 'Now' };
+/* Name each period by what we did, not by when. */
+const DTE_ERA_NAME = { early: 'Short-dated', long: 'Long-dated', now: 'Short-dated again' };
 
 /* "How far out we sell": one bar per month, eras shaded behind. */
 function renderDteEras(phases) {
