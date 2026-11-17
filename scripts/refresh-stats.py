@@ -244,9 +244,9 @@ def fetch_surveillance(cursor):
 
 
 # DTE bands come from the MVP1 dashboard's own function, so the website and the
-# dashboard can never disagree. It scopes to a user via SESSION_CONTEXT.
+# dashboard use the same band math. It scopes to one user via SESSION_CONTEXT,
+# so it runs once per user and the per-band sums are added: SYSTEM-WIDE.
 MVP1_DASHBOARD_REPO = r"D:\Work\OTSUllu\MVP1\src\app\web\dashboard\repo.py"
-DTE_OWNER_USER_RECID = 4000   # the dashboard login (5 accounts) the DTE Map shows
 DTE_BAND_META = [  # key, name, range; mirrors BANDS in MVP1 static/js/dte.js
     ("fire",    "FIRE",         "<6d"),
     ("manage",  "MANAGE",       "6–19d"),
@@ -283,9 +283,23 @@ def fetch_dte_bands(conn):
     spec.loader.exec_module(repo)
 
     cur = conn.cursor()
-    cur.execute("EXEC sp_set_session_context @key = N'UserRecId', @value = ?", DTE_OWNER_USER_RECID)
-    raw = {b["key"]: b for b in repo.get_dte_bands(conn)["bands"]}
+    cur.execute("SELECT DISTINCT [User.RecId] FROM [core].[Account] WHERE [User.RecId] IS NOT NULL")
+    users = [r[0] for r in cur.fetchall()]
+    raw = {}
+    for user_id in users:
+        cur.execute("EXEC sp_set_session_context @key = N'UserRecId', @value = ?", user_id)
+        for b in repo.get_dte_bands(conn)["bands"]:
+            acc = raw.setdefault(b["key"], {"cptl": 0.0, "tpd_day": 0.0})
+            acc["cptl"]    += b.get("cptl", 0.0)
+            acc["tpd_day"] += b.get("tpd_day", 0.0)
     cur.execute("EXEC sp_set_session_context @key = N'UserRecId', @value = NULL")
+
+    # Cross-check: the per-user sums must cover every open short position.
+    cur.execute("SELECT COUNT(DISTINCT [AcNum]) FROM [rpt].[vwOpenOptionPosition] WHERE [IsShort] = 1 "
+                "AND [AcNum] NOT IN (SELECT [AcNum] FROM [core].[Account] WHERE [User.RecId] IS NOT NULL)")
+    orphan_accounts = cur.fetchone()[0]
+    if orphan_accounts:
+        print(f"WARNING: {orphan_accounts} account(s) with open shorts have no user; not in DTE bands.")
 
     tot_cptl = sum(max(0.0, raw.get(k, {}).get("cptl", 0.0)) for k, _, _ in DTE_BAND_META)
     tot_tpd  = sum(max(0.0, raw.get(k, {}).get("tpd_day", 0.0)) for k, _, _ in DTE_BAND_META)
