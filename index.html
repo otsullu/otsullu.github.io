@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261116h" />
+  <link rel="stylesheet" href="css/style.css?v=20261119" />
   <script>
   (function(){
     try {
@@ -368,7 +368,7 @@
   <div class="stats-bar" id="statsBar">
     <div class="stats-inner">
       <div class="stat-item reveal-up">
-        <span class="stat-value" id="statTradingDays">273</span>
+        <span class="stat-value" id="statTradingDays">276</span>
         <span class="stat-label">Days Traded</span>
       </div>
       <div class="stat-divider" aria-hidden="true"></div>
@@ -562,7 +562,7 @@
       <!-- Velocity Callout -->
       <div class="velocity-callout reveal-up">
         <p class="velocity-quote">"On a busy day the trade log runs to dozens of events. At that pace, a spreadsheet stops helping and starts getting in the way."</p>
-        <p class="velocity-body">Across <span class="vbTradingDays">273</span> days of live trading in <span id="vbUnderlyings">26</span> underlyings, OTS Ullu has recorded every option trade from open to close. In each monitoring cycle it refreshes about <span id="vbDataPoints">505,000</span> market data points (option chains, position quotes and stock data) and checks them for expiry risk, roll triggers and assignment exposure. Doing that by hand every <span class="vbRefresh">15</span> minutes isn't realistic.</p>
+        <p class="velocity-body">Across <span class="vbTradingDays">276</span> days of live trading in <span id="vbUnderlyings">26</span> underlyings, OTS Ullu has recorded every option trade from open to close. In each monitoring cycle it refreshes about <span id="vbDataPoints">467,000</span> market data points (option chains, position quotes and stock data) and checks them for expiry risk, roll triggers and assignment exposure. Doing that by hand every <span class="vbRefresh">15</span> minutes isn't realistic.</p>
         <p class="velocity-punch">That's why OTS Ullu exists.</p>
         <div class="theta-strip">
           <div class="theta-icon" aria-hidden="true">
@@ -578,7 +578,7 @@
           </div>
         </div>
         <div class="velocity-stats">
-          <div class="vel-stat"><span class="vel-num" id="velTradingDays">273</span><span class="vel-label">Days traded<br/>in operation</span></div>
+          <div class="vel-stat"><span class="vel-num" id="velTradingDays">276</span><span class="vel-label">Days traded<br/>in operation</span></div>
           <div class="vel-stat"><span class="vel-num" id="velSymbols">16</span><span class="vel-label">Symbols<br/>under watch</span></div>
           <div class="vel-stat"><span class="vel-num" id="velOptionFields">23</span><span class="vel-label">Data fields per<br/>option contract</span></div>
           <div class="vel-stat"><span class="vel-num">0</span><span class="vel-label">Spreadsheets<br/>still in use</span></div>
@@ -590,9 +590,9 @@
       <div class="ticker-shelf cal-shelf reveal-up" id="calShelf">
         <p class="ticker-shelf-label">Showing Up for the Market</p>
         <div class="cal-stats">
-          <div class="cal-stat"><span class="cal-num" id="calDays" data-target="509">509</span><span class="cal-label">Calendar<br/>days</span></div>
-          <div class="cal-stat"><span class="cal-num" id="calSessions" data-target="351">351</span><span class="cal-label">Market<br/>sessions</span></div>
-          <div class="cal-stat"><span class="cal-num cal-num-hot" id="calTraded" data-target="273">273</span><span class="cal-label">Days<br/>traded</span></div>
+          <div class="cal-stat"><span class="cal-num" id="calDays" data-target="512">512</span><span class="cal-label">Calendar<br/>days</span></div>
+          <div class="cal-stat"><span class="cal-num" id="calSessions" data-target="354">354</span><span class="cal-label">Market<br/>sessions</span></div>
+          <div class="cal-stat"><span class="cal-num cal-num-hot" id="calTraded" data-target="276">276</span><span class="cal-label">Days<br/>traded</span></div>
           <div class="cal-stat"><span class="cal-num cal-num-hot" id="calPct" data-target="78" data-suffix="%">78%</span><span class="cal-label">Of market<br/>sessions traded</span></div>
         </div>
         <div class="cal-grid-wrap" id="calGrid" role="img" aria-label="Trading calendar: 509 calendar days, 351 NYSE market sessions, 273 days traded."></div>
@@ -664,14 +664,14 @@
       <h2 class="section-heading reveal-up">The owl keeps watch.</h2>
       <p class="section-subtext reveal-up">While the monitoring loop runs, each cycle refreshes the option chain for every symbol with an open position, the live quote for every position and the underlying stock's data, then runs the roll and expiry checks. The next cycle starts 15 minutes after the last one finishes.</p>
       <div class="surveillance-grid reveal-up">
-        <div class="surv-stat"><span class="surv-num" id="survRowsPerCycle">21,937</span><span class="surv-label">Market rows refreshed<br/>per cycle</span></div>
-        <div class="surv-stat"><span class="surv-num" id="survDataPoints">505K</span><span class="surv-label">Data points refreshed<br/>per cycle</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survRowsPerCycle">20,299</span><span class="surv-label">Market rows refreshed<br/>per cycle</span></div>
+        <div class="surv-stat"><span class="surv-num" id="survDataPoints">467K</span><span class="surv-label">Data points refreshed<br/>per cycle</span></div>
         <div class="surv-stat"><span class="surv-num" id="survSymbols">16</span><span class="surv-label">Symbols with open<br/>positions under watch</span></div>
         <div class="surv-stat"><span class="surv-num" id="survFields">23 · 22</span><span class="surv-label">Data fields per option<br/>· per stock</span></div>
         <div class="surv-stat"><span class="surv-num" id="survRefresh">15 min</span><span class="surv-label">Pause between<br/>monitoring cycles</span></div>
         <div class="surv-stat"><span class="surv-num" id="survDataStreams">3</span><span class="surv-label">Data streams:<br/>Chain · Quote · Market</span></div>
       </div>
-      <p class="surv-scale-note reveal-up" id="survMeasured">Measured from the most recent monitoring cycle (Nov 16, 2026). Rows left over from symbols no longer held are not counted.</p>
+      <p class="surv-scale-note reveal-up" id="survMeasured">Measured from the most recent monitoring cycle (Nov 19, 2026). Rows left over from symbols no longer held are not counted.</p>
     </div>
   </section>
 
@@ -918,7 +918,7 @@
 
     <button class="footer-disclosures-btn" onclick="openRiskModal()">Disclosures &amp; Risk</button>
 
-    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 16, 2026, 8:40 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission. &nbsp;·&nbsp; <a href="privacy/" style="color:inherit">Privacy</a> &nbsp;·&nbsp; Last updated: November 19, 2026, 1:20 PM PST<span class="fb-site-stats" id="fbSiteStats" hidden> &nbsp;·&nbsp; <span class="fb-site-stats-n"></span></span></p>
   </div>
 </footer>
 
@@ -928,9 +928,9 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js?v=20260529';
   }
 </script>
-<script src="js/feedback-config.js?v=20261116h"></script>
-<script src="js/feedback.js?v=20261116h"></script>
-<script src="js/app.js?v=20261116h"></script>
+<script src="js/feedback-config.js?v=20261119"></script>
+<script src="js/feedback.js?v=20261119"></script>
+<script src="js/app.js?v=20261119"></script>
 <script>
 /* ── TAB SWITCHING ──────────────────────────────────────────────── */
 function switchTab(panelId) {

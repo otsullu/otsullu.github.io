@@ -1,44 +1,44 @@
 {
   "activity": {
     "underlyings": 26,
-    "tradingDays": 273,
+    "tradingDays": 276,
     "ccPct": 80,
     "cspPct": 20,
     "topUnderlyings": [
       {
         "sym": "TSLA",
-        "contracts": 3634,
-        "pct": 33.2
+        "contracts": 3638,
+        "pct": 33.0
       },
       {
         "sym": "NVDA",
-        "contracts": 1201,
+        "contracts": 1209,
         "pct": 11.0
       },
       {
         "sym": "COIN",
-        "contracts": 1163,
-        "pct": 10.6
+        "contracts": 1185,
+        "pct": 10.7
       },
       {
         "sym": "SPCX",
-        "contracts": 1127,
-        "pct": 10.3
+        "contracts": 1159,
+        "pct": 10.5
       },
       {
         "sym": "PLTR",
-        "contracts": 816,
+        "contracts": 824,
         "pct": 7.5
       },
       {
         "sym": "AMZN",
         "contracts": 567,
-        "pct": 5.2
+        "pct": 5.1
       },
       {
         "sym": "META",
         "contracts": 521,
-        "pct": 4.8
+        "pct": 4.7
       },
       {
         "sym": "MSFT",
@@ -72,7 +72,7 @@
       },
       {
         "sym": "NFLX",
-        "contracts": 85,
+        "contracts": 91,
         "pct": 0.8
       },
       {
@@ -84,91 +84,91 @@
   },
   "surveillance": {
     "symbolsMonitored": 16,
-    "rowsPerCycle": 21053,
+    "rowsPerCycle": 20299,
     "optionFields": 23,
     "stockFields": 22,
-    "dataPointsPerCycle": 484204,
+    "dataPointsPerCycle": 466861,
     "refreshMinutes": 15,
     "dataStreams": 3,
-    "cycleDate": "2026-11-16"
+    "cycleDate": "2026-11-19"
   },
   "dteBands": {
-    "asOf": "2026-11-16",
+    "asOf": "2026-11-19",
     "bands": [
       {
         "key": "fire",
         "name": "FIRE",
         "range": "<6d",
-        "capitalPct": 1.9,
-        "tpdPct": 9.4,
-        "yieldPct": 246.0
+        "capitalPct": 2.1,
+        "tpdPct": 2.4,
+        "yieldPct": 28.7
       },
       {
         "key": "manage",
         "name": "MANAGE",
         "range": "6\u201319d",
-        "capitalPct": 9.3,
-        "tpdPct": 21.8,
-        "yieldPct": 79.6
+        "capitalPct": 8.3,
+        "tpdPct": 20.9,
+        "yieldPct": 73.1
       },
       {
         "key": "harvest",
         "name": "HARVEST",
         "range": "20\u201340d",
-        "capitalPct": 12.4,
-        "tpdPct": 17.6,
-        "yieldPct": 42.6
+        "capitalPct": 12.2,
+        "tpdPct": 19.0,
+        "yieldPct": 40.7
       },
       {
         "key": "ramp",
         "name": "RAMP",
         "range": "41\u201390d",
-        "capitalPct": 1.6,
-        "tpdPct": 0.9,
-        "yieldPct": 16.2
+        "capitalPct": 1.9,
+        "tpdPct": 1.4,
+        "yieldPct": 18.3
       },
       {
         "key": "slow",
         "name": "SLOW",
         "range": "91\u2013180d",
-        "capitalPct": 18.4,
-        "tpdPct": 18.7,
-        "yieldPct": 28.7
+        "capitalPct": 19.5,
+        "tpdPct": 21.9,
+        "yieldPct": 27.9
       },
       {
         "key": "stale",
         "name": "STALE",
         "range": "181\u2013365d",
-        "capitalPct": 20.0,
-        "tpdPct": 14.0,
-        "yieldPct": 19.0
+        "capitalPct": 19.9,
+        "tpdPct": 15.4,
+        "yieldPct": 18.5
       },
       {
         "key": "leap1",
         "name": "LEAP 12\u201318mo",
         "range": "366\u2013547d",
-        "capitalPct": 19.1,
-        "tpdPct": 10.9,
-        "yieldPct": 15.3
+        "capitalPct": 19.3,
+        "tpdPct": 12.5,
+        "yieldPct": 15.2
       },
       {
         "key": "leap2",
         "name": "LEAP 18\u201324mo",
         "range": "548\u2013730d",
-        "capitalPct": 6.3,
-        "tpdPct": 2.9,
-        "yieldPct": 11.9
+        "capitalPct": 6.0,
+        "tpdPct": 2.5,
+        "yieldPct": 9.7
       },
       {
         "key": "leap3",
         "name": "LEAP >24mo",
         "range": ">730d",
-        "capitalPct": 11.0,
-        "tpdPct": 3.8,
-        "yieldPct": 8.9
+        "capitalPct": 10.8,
+        "tpdPct": 4.1,
+        "yieldPct": 8.7
       }
     ],
-    "totalYieldPct": 28.3
+    "totalYieldPct": 24.5
   },
   "dtePhases": [
     {
@@ -305,10 +305,10 @@
       "label": "Short-dated again",
       "from": "2026-09",
       "to": "2026-11",
-      "avgDte": 58,
-      "pctUpTo30": 72,
+      "avgDte": 56,
+      "pctUpTo30": 73,
       "pctOver90": 13,
-      "pctIdeal": 79,
+      "pctIdeal": 80,
       "months": [
         {
           "month": "2026-09",
@@ -326,20 +326,20 @@
         },
         {
           "month": "2026-11",
-          "avgDte": 73,
-          "pctIdeal": 79,
-          "pctRamp": 6,
-          "pctBeyond": 15
+          "avgDte": 66,
+          "pctIdeal": 81,
+          "pctRamp": 5,
+          "pctBeyond": 14
         }
       ]
     }
   ],
   "calendar": {
     "start": "2025-06-26",
-    "end": "2026-11-16",
-    "calendarDays": 509,
-    "marketSessions": 351,
-    "tradedDays": 273,
+    "end": "2026-11-19",
+    "calendarDays": 512,
+    "marketSessions": 354,
+    "tradedDays": 276,
     "holidays": [
       "2025-07-04",
       "2025-09-01",
@@ -627,11 +627,14 @@
       "2026-11-11",
       "2026-11-12",
       "2026-11-13",
-      "2026-11-16"
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19"
     ]
   },
   "meta": {
-    "generatedAt": "2026-11-17T04:38:51Z",
+    "generatedAt": "2026-11-19T21:20:10Z",
     "source": "refresh-stats.py"
   }
 }
