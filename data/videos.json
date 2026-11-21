@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "103",
-    "totalViews": "7738",
-    "videoCount": "150",
-    "updated": "2026-11-20T16:51:01.393246+00:00"
+    "totalViews": "7745",
+    "videoCount": "151",
+    "updated": "2026-11-21T06:29:26.237126+00:00"
   },
   "engagement": {
-    "totalViews": 7727,
+    "totalViews": 7738,
     "totalLikes": 248,
-    "totalComments": 99,
-    "engagementRate": 4.49,
+    "totalComments": 100,
+    "engagementRate": 4.5,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/G4diTw6K2lc/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/fPW9aT1qxNg/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -71,6 +71,18 @@
   ],
   "videos": [
     {
+      "id": "fPW9aT1qxNg",
+      "title": "⚡ 𝗦𝘁𝗼𝗽 𝗚𝘂𝗲𝘀𝘀𝗶𝗻𝗴 𝗬𝗼𝘂𝗿 𝗥𝗼𝗹𝗹𝘀: 𝗦𝘆𝘀𝘁𝗲𝗺𝗮𝘁𝗶𝗰 𝗢𝗽𝘁𝗶𝗼𝗻𝘀 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 & 𝗤𝘂𝗮𝗻𝘁 𝗕𝗮𝗰𝗸𝘁𝗲𝘀𝘁𝗶𝗻𝗴 📈",
+      "thumb": "https://i.ytimg.com/vi/fPW9aT1qxNg/maxresdefault.jpg",
+      "playlist": "indian-radar",
+      "lang": "English",
+      "views": "1",
+      "likes": "0",
+      "comments": "1",
+      "published": "2026-11-21",
+      "india": true
+    },
+    {
       "id": "4jQ_vM6RK80",
       "title": "Anthropic IPO Exposed: $17B Quarterly Revenue, Claude AI & The ANT S-1 Breakdown 🚀",
       "thumb": "https://i.ytimg.com/vi/4jQ_vM6RK80/maxresdefault.jpg",
@@ -88,7 +100,7 @@
       "thumb": "https://i.ytimg.com/vi/G4diTw6K2lc/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "31",
+      "views": "32",
       "likes": "1",
       "comments": "1",
       "published": "2026-11-09",
@@ -556,7 +568,7 @@
       "thumb": "https://i.ytimg.com/vi/WBIPxMn5L-E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "13",
+      "views": "18",
       "likes": "1",
       "comments": "0",
       "published": "2026-07-09",
@@ -628,7 +640,7 @@
       "thumb": "https://i.ytimg.com/vi/Op375WoRm4E/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "7",
+      "views": "8",
       "likes": "1",
       "comments": "0",
       "published": "2026-07-01",
@@ -712,7 +724,7 @@
       "thumb": "https://i.ytimg.com/vi/KlHx_TiiZHo/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "24",
+      "views": "25",
       "likes": "0",
       "comments": "1",
       "published": "2026-06-22",
@@ -868,7 +880,7 @@
       "thumb": "https://i.ytimg.com/vi/RP4sNdRE_lE/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "6",
+      "views": "7",
       "likes": "0",
       "comments": "0",
       "published": "2026-06-02",
@@ -904,7 +916,7 @@
       "thumb": "https://i.ytimg.com/vi/Jd5j0_WCiqM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "26",
+      "views": "27",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-31",
