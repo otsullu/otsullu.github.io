@@ -159,6 +159,12 @@ const FOUNDER_QUOTES = [
 
 const DISPATCH_DATA = [
   {
+    title: 'Systematic Roll Triggers',
+    excerpt: 'When does rolling a covered call or cash-secured put help, and when does it hurt? Using Colin Bennett\'s Trading Volatility: the small-sample noise in realized volatility, the four volatility regimes and the delta your screen doesn\'t show, skew theta and vanna, and the square-root-of-time calendar test, ending in a three-step roll protocol.',
+    series: 'Options Education · Rolling',
+    url: '/articles/systematic-roll-triggers/',
+  },
+  {
     title: 'I Just Need to Get Back to Even',
     excerpt: 'Mike had learned to distrust his research. What he had not learned was to stop keeping score. Fifteen thousand dollars was his normal size; twenty-eight thousand was the number that made his "Recovery" tab disappear. The trade worked, and that was the problem. A story about the break-even effect and mental accounting.',
     series: 'The Mind Against the Market · Part 5',

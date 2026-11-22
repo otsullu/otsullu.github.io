@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-palette="gold">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Systematic Roll Triggers: Structuring Option Rolls via Volatility Surfaces | OTS Ullu</title>
+  <meta name="description" content="How Colin Bennett&#x27;s volatility-surface mechanics (skew, volatility regimes, Total Delta, vanna and term structure) become practical checks before rolling a covered call or cash-secured put." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Systematic Roll Triggers: Structuring Option Rolls via Volatility Surfaces" />
+  <meta property="og:description" content="How Colin Bennett&#x27;s volatility-surface mechanics (skew, volatility regimes, Total Delta, vanna and term structure) become practical checks before rolling a covered call or cash-secured put." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otsullu.com/articles/systematic-roll-triggers/" />
+  <meta property="og:image" content="https://otsullu.com/assets/img/articles/systematic-roll-triggers/img-01-hero.jpg" />
+  <meta property="article:author" content="Sam Vishwas" />
+  <meta property="article:section" content="Options Education" />
+  <meta property="article:tag" content="Rolling Options, Covered Calls, Cash-Secured Puts, Volatility Surface, Skew, Term Structure, Colin Bennett" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Systematic Roll Triggers: Structuring Option Rolls via Volatility Surfaces" />
+  <meta name="twitter:description" content="How Colin Bennett&#x27;s volatility-surface mechanics (skew, volatility regimes, Total Delta, vanna and term structure) become practical checks before rolling a covered call or cash-secured put." />
+  <meta name="twitter:image" content="https://otsullu.com/assets/img/articles/systematic-roll-triggers/img-01-hero.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://otsullu.com/articles/systematic-roll-triggers/" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Systematic Roll Triggers: Structuring Option Rolls via Volatility Surfaces",
+    "description": "How Colin Bennett&#x27;s volatility-surface mechanics (skew, volatility regimes, Total Delta, vanna and term structure) become practical checks before rolling a covered call or cash-secured put.",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Vishwas",
+      "url": "https://www.linkedin.com/in/samvishwas/"
+    },
+    "datePublished": "2026-11-21",
+    "image": "https://otsullu.com/assets/img/articles/systematic-roll-triggers/img-01-hero.jpg",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OTS Ullu",
+      "url": "https://otsullu.com"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://otsullu.com"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://otsullu.com/articles/"},
+      {"@type": "ListItem", "position": 3, "name": "Systematic Roll Triggers: Structuring Option Rolls via Volatility Surfaces"}
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🦉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css?v=20261121b" />
+
+  <!-- Inline theme flash prevention -->
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('ots-theme');
+      var p = localStorage.getItem('ots-palette');
+      var valid = ['teal','gold','blue','indigo','forest','copper','burgundy','graphite','cyan','amber'];
+      var pref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', (t === 'dark' || t === 'light') ? t : pref);
+      var palette = (p && valid.indexOf(p) !== -1) ? p : valid[Math.floor(Math.random() * valid.length)];
+      document.documentElement.setAttribute('data-palette', palette);
+    } catch(e) {}
+  })();
+  </script>
+
+  <style>
+  /* ── ARTICLE-SPECIFIC STYLES ──────────────────────────────────────── */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .breadcrumb a:hover { opacity: 0.75; }
+  .breadcrumb-sep {
+    color: var(--fg-meta);
+    opacity: 0.5;
+  }
+
+  .article-header {
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .article-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .article-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--fg-secondary);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--fg-meta);
+  }
+  .article-meta-sep { opacity: 0.4; }
+  .article-meta strong { color: var(--fg-secondary); font-weight: 600; }
+
+  .article-body {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .article-body p {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-section-heading {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 56px 0 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .article-subheading {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    font-weight: 700;
+    color: var(--fg);
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--accent-tint-10);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .pull-quote p {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem) !important;
+    font-style: italic;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  .example-callout {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .example-callout .example-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .example-callout p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.5em !important;
+  }
+  .example-callout p:last-child { margin-bottom: 0 !important; }
+  .example-callout strong { color: var(--fg); }
+
+  .article-body ul {
+    margin: 0 0 1.4em 0;
+    padding-left: 1.6em;
+    list-style: disc;
+  }
+  .article-body ul li {
+    font-size: clamp(1rem, 2vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--fg);
+    margin-bottom: 0.8em;
+  }
+  .article-body ul li strong {
+    color: var(--fg);
+  }
+
+  /* ── DATA TABLE ── */
+  .article-table-wrap {
+    margin: 28px 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    table-layout: auto;
+  }
+  .article-table caption {
+    caption-side: top;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    padding: 14px 14px 4px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .article-table th,
+  .article-table td {
+    text-align: left;
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .article-table thead th {
+    color: var(--fg-secondary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .article-table tbody tr:last-child td { border-bottom: none; }
+  .article-table .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .article-img-wrap {
+    margin: 40px 0;
+  }
+  .article-img-wrap img {
+    width: 100%;
+    border-radius: var(--r-lg);
+    display: block;
+    box-shadow: var(--shadow-md);
+  }
+  .article-img-caption {
+    font-size: 0.8rem;
+    color: var(--fg-meta);
+    text-align: center;
+    margin: 10px 0 0 !important;
+    line-height: 1.5 !important;
+  }
+  .cas-hl { background: var(--accent-tint-10); font-weight: 600; }
+  .formula-label { margin-bottom: 0.4em !important; }
+  .formula-code {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 1.4em;
+  }
+  .article-references {
+    margin: 48px 0 40px;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .article-references h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .article-references ul { list-style: none; padding: 0; margin: 0; }
+  .ref-card {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-card:last-child { border-bottom: none; }
+  .ref-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 84px;
+  }
+  .ref-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin: 0;
+  }
+  .ref-body a { color: var(--accent); }
+
+  .author-card {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .author-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .author-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 14px;
+  }
+  .author-card p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: var(--fg-secondary) !important;
+    margin-bottom: 0.8em !important;
+  }
+  .author-card p:last-child { margin-bottom: 0 !important; }
+
+  .article-meta-section {
+    margin: 32px 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .article-meta-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-meta);
+    margin: 0 0 10px;
+  }
+  .article-meta-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    margin-bottom: 0.6em !important;
+  }
+
+  .pdf-download-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 48px 0 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .btn-pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .btn-pdf-download svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-pdf-download:hover { opacity: 0.85; }
+  .pdf-download-note { font-size: 0.78rem; color: var(--fg-meta); }
+
+  .disclaimer-box {
+    margin: 40px 0;
+    padding: 20px 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .disclaimer-box p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    color: var(--fg-meta) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  @media print {
+    .article-body { max-width: 100% !important; }
+    .article-table-wrap { overflow: visible !important; }
+    .article-table { font-size: 0.7rem !important; }
+    .article-table th, .article-table td { padding: 5px 8px !important; }
+    .article-table thead th { font-size: 0.6rem !important; }
+    .article-table-wrap, .article-table tr {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+    .article-img-wrap, .article-img-caption, .pull-quote, .example-callout, .author-card, .disclaimer-box {
+      break-inside: avoid !important; page-break-inside: avoid !important;
+    }
+  }
+
+  .article-body ol { margin: 0 0 1.4em 0; padding-left: 1.6em; list-style: decimal; }
+  .article-body ol li { font-size: clamp(1rem, 2vw, 1.08rem); line-height: 1.78; color: var(--fg); margin-bottom: 0.8em; }
+  .article-body li ul, .article-body li ol { margin: 0.5em 0 0; }
+  .example-callout ul, .example-callout ol { margin-bottom: 0.4em; }
+  .example-callout li { font-size: 0.95rem !important; line-height: 1.65 !important; color: var(--fg-secondary) !important; }
+  .li-cont { display: block; margin-top: 0.4em; }
+  .formula-display {
+    display: block; text-align: center; font-family: 'Lora', Georgia, serif; font-size: 1.05rem !important;
+    color: var(--fg) !important; margin: 0.6em 0 1em !important; padding: 10px 14px; overflow-x: auto;
+    background: var(--accent-tint-10); border-radius: var(--r-md);
+  }
+  .formula-display sub, .article-body sub { font-size: 0.72em; }
+  .table-source { font-size: 0.8rem !important; color: var(--fg-meta) !important; font-style: italic; margin-top: -16px !important; }
+  .chart-figure { overflow-x: auto; margin: 40px 0; padding: 16px 14px 12px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--r-lg); }
+  .chart { width: 100%; min-width: 560px; height: auto; display: block; font-family: 'Inter', system-ui, sans-serif; }
+  .chart .grid { stroke: var(--border); stroke-width: 1; }
+  .chart .tick { fill: var(--fg-meta); font-size: 12px; }
+  .chart .tick.cat { fill: var(--fg-secondary); font-weight: 600; }
+  .chart .axis-title, .chart .legend { fill: var(--fg-secondary); font-size: 12px; }
+  .chart .val { fill: var(--fg); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .chart .ref { stroke: var(--fg-meta); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .chart .ref.strong { stroke: var(--fg-secondary); stroke-width: 2; }
+  .chart .ref-label { fill: var(--fg-meta); font-size: 11.5px; }
+  .chart .series-accent { stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+  .chart .dot-accent { fill: var(--accent); stroke: var(--bg-elev); stroke-width: 2; }
+  .chart .bar-accent { fill: var(--accent); }
+  .chart .bar-neutral { fill: var(--fg-meta); opacity: 0.55; }
+  .chart .hit { fill: transparent; }
+  .chart .pt:hover .bar-accent, .chart .pt:hover .bar-neutral { opacity: 0.8; }
+  .chart .pt:hover .dot-accent { r: 6.5; }
+  @media print {
+    .chart { min-width: 0 !important; }
+    .chart-figure { overflow: visible !important; }
+    .chart-figure, .example-callout, .formula-display { break-inside: avoid !important; page-break-inside: avoid !important; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── GLOBAL NAV ─────────────────────────────────────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="OTS Ullu Home">
+      <span class="brand-wordmark">OTS<span class="brand-ullu"> Ullu</span></span>
+    </a>
+    <button class="config-trigger" id="configTrigger"
+            aria-label="Open preferences"
+            aria-expanded="false"
+            aria-controls="configPanel"
+            aria-haspopup="dialog">
+      <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="brand-mark" aria-hidden="true" />
+    </button>
+  </div>
+</header>
+
+<!-- ── CONFIG PANEL ───────────────────────────────────────────────── -->
+<div class="config-panel" id="configPanel" hidden role="dialog" aria-label="Display preferences">
+  <div class="config-header">
+    <span class="config-title">Preferences</span>
+    <button class="config-close" id="configClose" aria-label="Close preferences">&#x2715;</button>
+  </div>
+  <div class="config-body">
+    <div class="config-row">
+      <span class="config-label">Theme</span>
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Choose theme">
+        <button class="theme-btn" data-theme="light" aria-pressed="false">Light</button>
+        <button class="theme-btn" data-theme="dark"  aria-pressed="true">Dark</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <span class="config-label">Accent</span>
+      <div class="palette-grid" id="paletteGrid" role="group" aria-label="Choose accent colour"></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container" style="padding-top:48px; padding-bottom:80px;">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-row">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/#observatory">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/">Articles</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/articles/systematic-roll-triggers/" aria-current="page">Systematic Roll Triggers</a>
+      </nav>
+      <button type="button" class="pdf-share-btn article-share-btn"
+              data-share-url="https://otsullu.com/articles/systematic-roll-triggers/"
+              title="Copy a shareable link to this article"
+              aria-label="Copy a shareable link to this article">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span class="pdf-share-label">Copy link</span>
+      </button>
+    </div>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1 class="article-title">Systematic Roll Triggers</h1>
+      <p class="article-lede">Structuring option rolls via volatility surfaces</p>
+      <div class="article-meta">
+        <span><strong><a href="https://www.linkedin.com/in/samvishwas/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;">Sam Vishwas</a></strong></span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Options Education</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>Volatility Surfaces</span>
+        <span class="article-meta-sep" aria-hidden="true">·</span>
+        <span>November 21, 2026</span>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <article class="article-body">
+
+      <div class="article-img-wrap">
+        <img src="../../assets/img/articles/systematic-roll-triggers/img-01-hero.jpg" alt="Illustration: a trader at a desk at night facing three monitors; the center screen shows a glowing amber volatility surface, and a small white rocket model stands on the desk." />
+      </div>
+
+      <p>For retail income investors trading covered calls and cash-secured puts, the decision of when and how to roll is often driven by emotional reactions to price swings or by rigid calendar rules. When a stock approaches a short strike, traders scramble to roll without understanding how the contract they are buying back, and the new contract they are selling, are actually priced.</p>
+
+      <p>In <a href="https://www.trading-volatility.com/Trading-Volatility.pdf" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Trading Volatility</a>, <a href="https://uk.linkedin.com/in/colindavidbennett" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Colin Bennett</a> sets out how implied volatility surfaces behave across strikes (skew) and maturities (term structure). Institutional desks typically manage exposure through continuous delta hedging rather than rolling; in our view, Bennett's surface mechanics can still be adapted into useful checks for judging a roll. Section and figure numbers in this article refer to the free 2014 edition of the book (linked here and in the References). This article is a follow-up to <a href="/articles/when-to-roll-or-stop/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">When to Roll or Stop</a>.</p>
+
+      <div class="example-callout"><span class="example-label">Source Boundary</span><p>Bennett does not give retail roll triggers such as "roll at 21 DTE" or "roll when delta hits 30". In his book, option holders roll before expiry to reduce the time decay they pay (Section 1.3), and volatility ETNs/ETFs roll futures to keep constant-maturity exposure (Section 4.4). Turning surface mechanics into retail roll rules is <strong>Commentary (not from source)</strong>, and it is labeled that way throughout.</p></div>
+
+      <h2 class="article-section-heading">Baseline Assumptions: Orbital Dynamics (ORBD)</h2>
+
+      <p>Every example uses one baseline for the fictitious aerospace company <strong>Orbital Dynamics (ORBD)</strong>, first introduced in <a href="/articles/short-options-capital-at-stake/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">What&#x27;s Really at Stake When You Sell an Option</a>. Prices and Greeks are calculated with the Black-Scholes model at zero interest rate and zero dividend yield (r = 0, q = 0). All figures are illustrative.</p>
+
+      <ul><li><strong>Stock price:</strong> $100.00. <strong>Expiration:</strong> 1 month (T = 1/12 ≈ 0.0833 years).</li><li><strong>ATM 100 strike:</strong> implied volatility 35.0%. The 100 call and the 100 put are each worth $4.03.</li><li><strong>95 put (downside skew):</strong> implied volatility 37.0%, 2.0 points above ATM. Price $2.12, delta −0.297, vega 0.100 per 1-point volatility move.</li><li><strong>105 call (upside skew):</strong> implied volatility 33.0%, 2.0 points below ATM. Price $1.89, delta +0.321, vega 0.103 per 1-point volatility move.</li></ul>
+
+      <p>The skew is 2.0 volatility points across the 5% gap between the 100 and 95 strikes, or 0.4 points per 1% of strike. Treating that as a constant slope is an illustrative assumption for the examples below. Deltas are quoted for the option itself. A short position has the opposite sign: a short put's position delta is positive.</p>
+
+      <p><strong>Why Black-Scholes and not a binomial model?</strong> <em>Commentary (not from source):</em> US equity options are American-style and can be exercised early. With our zero-rate, zero-dividend baseline, early exercise is never worthwhile, so American and European prices are identical and Black-Scholes is exact. With real interest rates, an American put is worth slightly more: at a 4.5% rate, about 1–2 cents for the 95 put near the money and about 14 cents when it is deep in the money (at $85 with 30% volatility). Binomial models, which many brokers use, capture this. The practical point for sellers is early assignment: a short call can be assigned just before an ex-dividend date, and a deep in-the-money short put can be assigned early. None of this changes the surface mechanics in this article, which Bennett expresses in Black-Scholes implied-volatility terms.</p>
+
+      <h2 class="article-section-heading">1. Selling Premium and the Rolling Dilemma</h2>
+
+      <p>Option income strategies aim to harvest the variance risk premium: on average, implied volatility is 1–2 points above the volatility the stock later realizes (Section 1.4). That is an average, not a promise on any single trade.</p>
+
+      <p><strong>Call overwriting</strong> (the buy-write) means holding shares and selling out-of-the-money (OTM) calls against them. It caps upside at the strike plus the premium received, in exchange for income. That lowers the measured volatility of returns, but mainly by removing upside: the downside risk is essentially that of owning the stock (Section 1.4). Because implied volatility is usually overpriced, index call overwriting has on average outperformed; its weakest periods were low-volatility bull markets, where the premium was too small to make up for the upside given away (Section 1.4, Figure 9).</p>
+
+      <p><strong>Put underwriting</strong> (selling cash-secured OTM puts) is the mirror image. The investor sets a price at which they would be happy to buy the stock and earns premium while waiting. As Bennett puts it, put underwriting pays investors for work that otherwise might be wasted: the research behind the chosen purchase price is still rewarded if the stock never falls to the strike. With OTM strikes, it also benefits from selling skew (Section 1.2).</p>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 1: Core Option Strategies by Market and Volatility View</caption><thead><tr><th>Volatility View</th><th>Bearish Market View</th><th>Bullish Market View</th></tr></thead><tbody><tr><td><strong>Volatility High</strong></td><td>Short Call (Call Overwriting)</td><td>Short Put (Put Underwriting)</td></tr><tr><td><strong>Volatility Low</strong></td><td>Long Put (Outright Protection)</td><td>Long Call (Stock Replacement)</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Section 1.2, Figure 1)</p>
+
+      <h3 class="article-subheading">Time Decay and Why Options Are Rolled</h3>
+
+      <p>Time value does not decay evenly: the loss accelerates as an option gets shorter-dated (Sections 1.3 and 7.2; Appendix A.8). Bennett's own rolling example is from the option buyer's side. Because short-dated options lose time value fastest, holders often roll before expiry, for example buying a one-year option and rolling it after six months into a new one-year option (Section 1.3). For a seller the same decay works in their favor, which is consistent with Bennett's finding that overwriting worked better with one-month options than with three-month options (Section 1.4).</p>
+
+      <p>For an option seller, rolling means buying back the existing short option and selling a new one with a later expiration, and possibly a different strike. <em>Commentary (not from source):</em> done mechanically, a roll can mean buying back expensive volatility and selling cheaper volatility, as the cases in Section 5 show. Judging whether the surface makes a roll favorable starts with measuring volatility correctly.</p>
+
+      <h2 class="article-section-heading">2. Estimating Volatility: The Small-Sample Noise Trap</h2>
+
+      <p>Before deciding whether implied volatility is expensive enough to roll into, a trader needs a reliable measure of the stock's realized (historical) volatility. Bennett compares six estimators (Appendix A.2):</p>
+
+      <div class="article-img-wrap"><img src="../../assets/img/articles/systematic-roll-triggers/img-02-small-sample-noise.jpg" alt="Illustration: a magnifying glass over a short, jagged line beside a long, smooth line, on a navy grid." loading="lazy" /><p class="article-img-caption">A few days of prices can look like a volatility spike; a longer window shows the steadier picture.</p></div>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 2: Summary of Historical Volatility Estimators</caption><thead><tr><th>Estimator</th><th>Prices Used</th><th>Handles Drift?</th><th>Handles Overnight Jumps?</th><th>Efficiency (max)</th></tr></thead><tbody><tr><td><strong>Close-to-Close</strong></td><td>Close</td><td>No</td><td>No</td><td>1</td></tr><tr><td><strong>Parkinson</strong></td><td>High, Low</td><td>No</td><td>No</td><td>5.2</td></tr><tr><td><strong>Garman-Klass</strong></td><td>Open, High, Low, Close</td><td>No</td><td>No</td><td>7.4</td></tr><tr><td><strong>Rogers-Satchell</strong></td><td>Open, High, Low, Close</td><td>Yes</td><td>No</td><td>8</td></tr><tr><td><strong>Garman-Klass Yang-Zhang ext.</strong></td><td>Open, High, Low, Close</td><td>No</td><td>Yes</td><td>8</td></tr><tr><td><strong>Yang-Zhang</strong></td><td>Open, High, Low, Close</td><td>Yes</td><td>Yes</td><td>14</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Appendix A.2, Figure 142)</p>
+
+      <p>Close-to-close, the standard measure, ignores everything between one close and the next, including intraday highs and lows. Yang-Zhang is the only estimator that handles both drift and overnight jumps. The efficiency figures are theoretical maximums, though: Bennett notes that the highest efficiency comes with only two days of data, that real data usually shows a far smaller benefit, and that when overnight jumps are large compared with daily volatility, even Yang-Zhang converges to close-to-close (Appendix A.2). The original papers behind each estimator are listed in the References.</p>
+
+      <h3 class="article-subheading">The 1/(2N) Trap</h3>
+
+      <p>For close-to-close volatility, Bennett estimates the variance of the volatility estimate, as a fraction of the actual variance, as:</p>
+
+      <p class="formula-display">Relative Variance ≈ 1/(2N)</p>
+
+      <p>where N is the number of daily returns in the sample. He concludes that at least 5 samples are needed, and ideally 20 or more (Appendix A.2).</p>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 3: Close-to-Close Sampling Variance by Sample Size</caption><thead><tr><th>Sample Size (N Trading Days)</th><th>Relative Variance (1/(2N))</th><th>Approx. Error in the Volatility Reading, 1 Std. Dev. (1/√(2N))</th></tr></thead><tbody><tr><td><strong>N = 3 days</strong></td><td>16.7%</td><td>±41%</td></tr><tr><td><strong>N = 5 days</strong></td><td>10.0%</td><td>±32%</td></tr><tr><td><strong>N = 10 days</strong></td><td>5.0%</td><td>±22%</td></tr><tr><td><strong>N = 20 days</strong></td><td>2.5%</td><td>±16%</td></tr><tr><td><strong>N = 30 days</strong></td><td>1.7%</td><td>±13%</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Appendix A.2, Figure 143. The last column is our calculation: the error in a volatility estimate is roughly the square root of its relative variance.)</p>
+
+      <p>The relative variance is not the error in the volatility number itself. Its square root, roughly one standard deviation of the reading, is the more intuitive figure: about ±41% of the value for a 3-day reading and ±16% for a 20-day reading.</p>
+
+      <figure class="chart-figure" role="group" aria-label="Line chart: error in a close-to-close volatility reading falls from about 41% at 3 days to 32% at 5 days, 22% at 10 days, 16% at 20 days and 13% at 30 days. Dashed lines mark Bennett&#x27;s minimum of 5 samples and ideal of 20 or more."><svg class="chart" viewBox="0 0 680 300" role="img" aria-hidden="false"><title>Approximate error in a close-to-close volatility reading by sample size</title><line class="grid" x1="56" x2="660" y1="256.0" y2="256.0"/><text class="tick" x="48" y="260.0" text-anchor="end">0%</text><line class="grid" x1="56" x2="660" y1="210.8" y2="210.8"/><text class="tick" x="48" y="214.8" text-anchor="end">10%</text><line class="grid" x1="56" x2="660" y1="165.6" y2="165.6"/><text class="tick" x="48" y="169.6" text-anchor="end">20%</text><line class="grid" x1="56" x2="660" y1="120.4" y2="120.4"/><text class="tick" x="48" y="124.4" text-anchor="end">30%</text><line class="grid" x1="56" x2="660" y1="75.2" y2="75.2"/><text class="tick" x="48" y="79.2" text-anchor="end">40%</text><line class="grid" x1="56" x2="660" y1="30.0" y2="30.0"/><text class="tick" x="48" y="34.0" text-anchor="end">50%</text><text class="tick" x="56.0" y="274" text-anchor="middle">0</text><text class="tick" x="150.4" y="274" text-anchor="middle">5</text><text class="tick" x="244.8" y="274" text-anchor="middle">10</text><text class="tick" x="339.1" y="274" text-anchor="middle">15</text><text class="tick" x="433.5" y="274" text-anchor="middle">20</text><text class="tick" x="527.9" y="274" text-anchor="middle">25</text><text class="tick" x="622.2" y="274" text-anchor="middle">30</text><line class="ref" x1="150.4" x2="150.4" y1="30" y2="256"/><text class="ref-label" x="155.4" y="42" text-anchor="start">Bennett: at least 5</text><line class="ref" x1="433.5" x2="433.5" y1="30" y2="256"/><text class="ref-label" x="438.5" y="42" text-anchor="start">ideally 20 or more</text><polyline class="series-accent" fill="none" points="93.8,30.0 98.5,42.9 103.2,53.9 107.9,63.3 112.6,71.5 117.3,78.7 122.1,85.2 126.8,91.0 131.5,96.2 136.2,101.0 140.9,105.3 145.7,109.4 150.4,113.1 155.1,116.5 159.8,119.7 164.5,122.7 169.2,125.5 174.0,128.2 178.7,130.6 183.4,133.0 188.1,135.2 192.8,137.3 197.6,139.3 202.3,141.2 207.0,143.0 211.7,144.7 216.4,146.4 221.2,148.0 225.9,149.5 230.6,150.9 235.3,152.3 240.0,153.6 244.8,154.9 249.5,156.2 254.2,157.4 258.9,158.5 263.6,159.6 268.3,160.7 273.1,161.8 277.8,162.8 282.5,163.7 287.2,164.7 291.9,165.6 296.7,166.5 301.4,167.4 306.1,168.2 310.8,169.0 315.5,169.8 320.2,170.6 325.0,171.3 329.7,172.1 334.4,172.8 339.1,173.5 343.8,174.2 348.6,174.8 353.3,175.5 358.0,176.1 362.7,176.7 367.4,177.3 372.2,177.9 376.9,178.5 381.6,179.0 386.3,179.6 391.0,180.1 395.8,180.7 400.5,181.2 405.2,181.7 409.9,182.2 414.6,182.7 419.3,183.2 424.1,183.6 428.8,184.1 433.5,184.5 438.2,185.0 442.9,185.4 447.7,185.8 452.4,186.3 457.1,186.7 461.8,187.1 466.5,187.5 471.2,187.9 476.0,188.2 480.7,188.6 485.4,189.0 490.1,189.4 494.8,189.7 499.6,190.1 504.3,190.4 509.0,190.8 513.7,191.1 518.4,191.4 523.2,191.8 527.9,192.1 532.6,192.4 537.3,192.7 542.0,193.0 546.8,193.3 551.5,193.6 556.2,193.9 560.9,194.2 565.6,194.5 570.3,194.8 575.1,195.1 579.8,195.3 584.5,195.6 589.2,195.9 593.9,196.1 598.7,196.4 603.4,196.6 608.1,196.9 612.8,197.2 617.5,197.4 622.2,197.6"/><g class="pt"><title>3 days: about ±41% of the reading (relative variance 16.7%)</title><circle class="hit" cx="112.6" cy="71.5" r="12"/><circle class="dot-accent" cx="112.6" cy="71.5" r="4.5"/><text class="val" x="121.6" y="63.5">±41%</text></g><g class="pt"><title>5 days: about ±32% of the reading (relative variance 10.0%)</title><circle class="hit" cx="150.4" cy="113.1" r="12"/><circle class="dot-accent" cx="150.4" cy="113.1" r="4.5"/><text class="val" x="159.4" y="105.1">±32%</text></g><g class="pt"><title>10 days: about ±22% of the reading (relative variance 5.0%)</title><circle class="hit" cx="244.8" cy="154.9" r="12"/><circle class="dot-accent" cx="244.8" cy="154.9" r="4.5"/></g><g class="pt"><title>20 days: about ±16% of the reading (relative variance 2.5%)</title><circle class="hit" cx="433.5" cy="184.5" r="12"/><circle class="dot-accent" cx="433.5" cy="184.5" r="4.5"/><text class="val" x="442.5" y="176.5">±16%</text></g><g class="pt"><title>30 days: about ±13% of the reading (relative variance 1.7%)</title><circle class="hit" cx="622.2" cy="197.6" r="12"/><circle class="dot-accent" cx="622.2" cy="197.6" r="4.5"/></g><text class="axis-title" x="358" y="294" text-anchor="middle">Sample size, N (trading days)</text><text class="axis-title" transform="translate(14,143) rotate(-90)" text-anchor="middle">Error in the volatility reading</text></svg><figcaption class="article-img-caption">Figure 1. Approximate error in a close-to-close volatility reading, 1/√(2N). Three days leaves the reading uncertain by about ±41%; twenty days brings it to about ±16%.</figcaption></figure>
+
+      <div class="example-callout"><span class="example-label">ORBD Example</span><p>After a scrubbed launch test, ORBD falls for 3 sessions in a row. A trader measuring 3-day close-to-close volatility sees it jump from 25% to 55%. With N = 3, the relative variance is 16.7%, so one standard deviation of the 55% reading is roughly 41% of its value, about 22 points (roughly 33% to 77%). With only 3 data points, even that is a rough guide.</p><p><em>Commentary (not from source):</em> Rolling out on the strength of this 3-day spike reacts to noise, not to a confirmed change in volatility. A 20-day window narrows the close-to-close uncertainty to about ±16%. A range-based estimator such as Yang-Zhang can sharpen that further in quiet markets, but after a large overnight gap like a scrubbed launch its advantage largely disappears (Appendix A.2), so the longer window matters more than the choice of estimator.</p></div>
+
+      <h2 class="article-section-heading">3. The Four Volatility Regimes and What They Do to Delta</h2>
+
+      <p>When the stock moves, the implied volatility surface moves too. Bennett describes four idealized regimes (Section 7.5):</p>
+
+      <div class="article-img-wrap"><img src="../../assets/img/articles/systematic-roll-triggers/img-03-four-regimes.jpg" alt="Illustration: the same mountain lake in four conditions, from a calm sunrise to a still overcast day, a windy day and a lightning storm." loading="lazy" /><p class="article-img-caption">Four regimes as four kinds of weather: calm and trending (Sticky Delta), still (Sticky Strike), windy (Sticky Local Volatility) and a storm (Jumpy Volatility).</p></div>
+
+      <ol><li><strong>Sticky Delta (sticky moneyness):</strong> implied volatility stays constant for each level of moneyness (strike divided by spot). After a 10% fall, the old 90 strike is now at the money and carries the old at-the-money volatility, so every fixed strike re-marks lower as the market falls. That is a <em>positive</em> spot-volatility correlation, typical of calm, trending markets over longer horizons (Figures 121 and 125).</li><li><strong>Sticky Strike:</strong> each fixed strike keeps its implied volatility whatever the stock does, so the correlation is zero (Figure 126). Bennett notes that many trading systems assume a sticky-strike surface, so markets can look sticky strike over very short horizons, but he calls this largely an illusion, because traders re-mark the surface when asked for a firm price (Section 7.5).</li><li><strong>Sticky Local Volatility:</strong> local volatility, the instantaneous volatility at a given price and time, stays fixed (Appendix A.1). Implied volatility is negatively correlated with spot. Because local volatility skew is approximately twice Black-Scholes skew, a fixed strike's implied volatility moves by the skew and the moving ATM implied volatility moves by <strong>twice the skew</strong>. Skew is fairly priced only in this regime (Figure 127).</li><li><strong>Jumpy Volatility:</strong> in crashes and panicked selloffs over short horizons, implied volatility jumps by more than local volatility predicts, a very negative correlation (Figure 130).</li></ol>
+
+      <p>In plain terms: did the surface move the opposite way to the skew, not at all, the way the skew predicts, or by even more? Bennett measures this with <strong>Realised Skew</strong>, which compares how far the surface actually moved with the starting skew:</p>
+
+      <p class="formula-display">Realised Skew = Movement of Implied Volatility Surface / Skew</p>
+
+      <p>It is −1 for Sticky Delta, 0 for Sticky Strike, +1 for Sticky Local Volatility and above +1 for Jumpy Volatility (Section 7.5). These are theoretical benchmarks; measured from real, noisy market data, realised skew is an estimate.</p>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 4: Characteristics of Volatility Regimes</caption><thead><tr><th>Characteristic</th><th>Sticky Delta</th><th>Sticky Strike</th><th>Sticky Local Vol</th><th>Jumpy Vol</th></tr></thead><tbody><tr><td><strong>Sentiment</strong></td><td>Calm / trending</td><td>Normal</td><td>Normal</td><td>Panicked</td></tr><tr><td><strong>Time Horizon</strong></td><td>Long term</td><td>Medium term</td><td>Medium term</td><td>Short term</td></tr><tr><td><strong>Spot-Vol Correlation</strong></td><td>Positive</td><td>Zero</td><td>Negative</td><td>Very negative</td></tr><tr><td><strong>Realised Skew</strong></td><td>−1</td><td>0</td><td>+1 (fair skew)</td><td>Above +1</td></tr><tr><td><strong>Call Delta</strong></td><td>Highest (above Black-Scholes)</td><td>Equal to Black-Scholes</td><td>Below Black-Scholes</td><td>Lowest</td></tr><tr><td><strong>Put Delta (absolute size)</strong></td><td>Smallest (below Black-Scholes)</td><td>Equal to Black-Scholes</td><td>Above Black-Scholes</td><td>Largest</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Section 7.5, Figure 124. The Realised Skew row is from the Section 7.5 text.)</p>
+
+      <h3 class="article-subheading">Total Delta</h3>
+
+      <p>Delta measures how the option price changes with the stock price. In plain terms: when volatility rises as the stock falls, a put becomes more sensitive to the stock than its ordinary Black-Scholes delta suggests. The delta a trader actually experiences includes that effect. By the standard chain rule (standard option math, not a formula Bennett writes out):</p>
+
+      <p class="formula-display">Total Delta = Delta<sub>BS</sub> + ( Vega × dσ/dS )</p>
+
+      <p>where Vega is the dollar change per 1 percentage point of volatility, and dσ/dS is the change in implied volatility, in points, per $1 move in the stock.</p>
+
+      <p>Under Sticky Strike, dσ/dS = 0 and Total Delta equals the Black-Scholes delta. Under Sticky Local Vol and Jumpy Vol, implied volatility rises as the stock falls (dσ/dS &lt; 0), so an OTM put's delta becomes more negative than Black-Scholes shows. Under Sticky Delta the effect reverses and dampens the move. In a rally the same logic slows an OTM call's delta under Local or Jumpy Vol and speeds it up under Sticky Delta (Section 7.5, Figures 124 and 132).</p>
+
+      <div class="example-callout"><span class="example-label">ORBD Example: Total Delta After a 3% Drop</span><p>A trader is short the ORBD 1-month 95 put: $2.12, 37.0% implied volatility, delta −0.297. ORBD drops 3.0% from $100 to $97 (Δ S = −$3.00). At $97 the put is still out of the money. Its vega is about 0.108 per volatility point at 37–38% volatility, and 0.109 at 43%.</p><ul><li><strong>Sticky Strike:</strong> implied volatility stays at 37.0%. The put rises to $3.17 and its Black-Scholes delta becomes −0.402. Because dσ/dS = 0, Total Delta is also <strong>−0.402</strong>.</li><li><strong>Sticky Local Volatility:</strong> the fixed-strike 95 put volatility rises by the skew times the move:<span class="formula-display">Δσ = 0.4 pts per 1% × 3% = +1.2 points</span><span class="li-cont"><em>(The moving ATM volatility rises by twice the skew; a fixed strike moves by the skew; Section 7.5.)</em> At 38.2% the put is worth $3.30 and its Black-Scholes delta is −0.404. With dσ/dS = +1.2 pts / −$3.00 = −0.40 points per $1:</span><span class="formula-display">Total Delta = −0.404 + [0.108 × (−0.40)] = −0.404 − 0.043 = −0.447</span></li><li><strong>Jumpy Volatility:</strong> in a panicked selloff, implied volatility jumps 6.0 points, from 37.0% to 43.0%, over the same $3.00 drop. The put is worth $3.82 and its Black-Scholes delta is −0.409. Using the average rate over this drop, dσ/dS = +6.0 pts / −$3.00 = −2.0 points per $1:<span class="formula-display">Total Delta = −0.409 + [0.109 × (−2.0)] = −0.409 − 0.218 = −0.627</span><span class="li-cont">This assumes volatility keeps reacting at that rate, so it is an estimate of the total delta, not a precise measure.</span></li></ul><p><em>Commentary (not from source):</em> A screen showing the Black-Scholes delta at today's volatility has the put moving from about −0.30 to about −0.41. Under Jumpy Volatility its estimated total delta is about −0.63, so it behaves more like an in-the-money put (an at-the-money put here has a delta of about −0.48), and the short position loses more than the screen suggests.</p></div>
+
+      <figure class="chart-figure" role="group" aria-label="Grouped bar chart of absolute put delta. Sticky Strike: Black-Scholes 0.402, total 0.402. Sticky Local Vol: Black-Scholes 0.404, total 0.447. Jumpy Vol: Black-Scholes 0.409, total 0.627. A dashed line marks an at-the-money put at about 0.48."><svg class="chart" viewBox="0 0 680 320" role="img"><title>ORBD 95 put after a 3% drop: Black-Scholes delta versus estimated total delta by regime</title><line class="grid" x1="56" x2="660" y1="272.0" y2="272.0"/><text class="tick" x="48" y="276.0" text-anchor="end">0.0</text><line class="grid" x1="56" x2="660" y1="239.4" y2="239.4"/><text class="tick" x="48" y="243.4" text-anchor="end">0.1</text><line class="grid" x1="56" x2="660" y1="206.9" y2="206.9"/><text class="tick" x="48" y="210.9" text-anchor="end">0.2</text><line class="grid" x1="56" x2="660" y1="174.3" y2="174.3"/><text class="tick" x="48" y="178.3" text-anchor="end">0.3</text><line class="grid" x1="56" x2="660" y1="141.7" y2="141.7"/><text class="tick" x="48" y="145.7" text-anchor="end">0.4</text><line class="grid" x1="56" x2="660" y1="109.1" y2="109.1"/><text class="tick" x="48" y="113.1" text-anchor="end">0.5</text><line class="grid" x1="56" x2="660" y1="76.6" y2="76.6"/><text class="tick" x="48" y="80.6" text-anchor="end">0.6</text><line class="grid" x1="56" x2="660" y1="44.0" y2="44.0"/><text class="tick" x="48" y="48.0" text-anchor="end">0.7</text><line class="ref" x1="56" x2="660" y1="115.7" y2="115.7"/><text class="ref-label" x="62" y="109.7" text-anchor="start">at-the-money put ≈ 0.48</text><g class="pt"><title>Sticky Strike (37.0% IV): Black-Scholes delta (screen) −0.402</title><rect class="hit" x="105.7" y="44.0" width="54" height="228.0"/><path class="bar-neutral" d="M109.7,272.0 V145.1 Q109.7,141.1 113.7,141.1 H151.7 Q155.7,141.1 155.7,145.1 V272.0 Z"/><text class="val" x="132.7" y="135.1" text-anchor="middle">−0.402</text></g><g class="pt"><title>Sticky Strike (37.0% IV): Estimated total delta −0.402</title><rect class="hit" x="153.7" y="44.0" width="54" height="228.0"/><path class="bar-accent" d="M157.7,272.0 V145.1 Q157.7,141.1 161.7,141.1 H199.7 Q203.7,141.1 203.7,145.1 V272.0 Z"/><text class="val" x="180.7" y="135.1" text-anchor="middle">−0.402</text></g><text class="tick cat" x="156.7" y="290" text-anchor="middle">Sticky Strike</text><text class="tick" x="156.7" y="305" text-anchor="middle">37.0% implied vol</text><g class="pt"><title>Sticky Local Vol (38.2% IV): Black-Scholes delta (screen) −0.404</title><rect class="hit" x="307.0" y="44.0" width="54" height="228.0"/><path class="bar-neutral" d="M311.0,272.0 V144.4 Q311.0,140.4 315.0,140.4 H353.0 Q357.0,140.4 357.0,144.4 V272.0 Z"/><text class="val" x="334.0" y="134.4" text-anchor="middle">−0.404</text></g><g class="pt"><title>Sticky Local Vol (38.2% IV): Estimated total delta −0.447</title><rect class="hit" x="355.0" y="44.0" width="54" height="228.0"/><path class="bar-accent" d="M359.0,272.0 V130.4 Q359.0,126.4 363.0,126.4 H401.0 Q405.0,126.4 405.0,130.4 V272.0 Z"/><text class="val" x="382.0" y="120.4" text-anchor="middle">−0.447</text></g><text class="tick cat" x="358.0" y="290" text-anchor="middle">Sticky Local Vol</text><text class="tick" x="358.0" y="305" text-anchor="middle">38.2% implied vol</text><g class="pt"><title>Jumpy Vol (43.0% IV): Black-Scholes delta (screen) −0.409</title><rect class="hit" x="508.3" y="44.0" width="54" height="228.0"/><path class="bar-neutral" d="M512.3,272.0 V142.8 Q512.3,138.8 516.3,138.8 H554.3 Q558.3,138.8 558.3,142.8 V272.0 Z"/><text class="val" x="535.3" y="132.8" text-anchor="middle">−0.409</text></g><g class="pt"><title>Jumpy Vol (43.0% IV): Estimated total delta −0.627</title><rect class="hit" x="556.3" y="44.0" width="54" height="228.0"/><path class="bar-accent" d="M560.3,272.0 V71.8 Q560.3,67.8 564.3,67.8 H602.3 Q606.3,67.8 606.3,71.8 V272.0 Z"/><text class="val" x="583.3" y="61.8" text-anchor="middle">−0.627</text></g><text class="tick cat" x="559.3" y="290" text-anchor="middle">Jumpy Vol</text><text class="tick" x="559.3" y="305" text-anchor="middle">43.0% implied vol</text><rect class="bar-neutral" x="56" y="10" width="12" height="12" rx="3"/><text class="legend" x="74" y="20">Black-Scholes delta (what the screen shows)</text><rect class="bar-accent" x="356" y="10" width="12" height="12" rx="3"/><text class="legend" x="374" y="20">Estimated total delta</text><text class="axis-title" transform="translate(14,158) rotate(-90)" text-anchor="middle">Put delta (absolute size)</text></svg><figcaption class="article-img-caption">Figure 2. The ORBD 95 put after a 3% drop to $97. The screen's Black-Scholes delta barely moves across regimes; the estimated total delta reaches about −0.63 under Jumpy Volatility, past an at-the-money put.</figcaption></figure>
+
+      <h2 class="article-section-heading">4. Skew Theta and Vanna: The Hidden Carrying Cost and Greek Drift</h2>
+
+      <h3 class="article-subheading">Skew Theta</h3>
+
+      <p>Theta is the rent paid for holding gamma (Section 2.1, Appendix A.8). On a flat volatility surface, the ratio of theta to dollar gamma would be the same at every strike (Figure 135). Real equity skew slopes downward, so OTM puts trade at higher implied volatility and pay more time decay per unit of gamma. Bennett splits the theta per unit of dollar gamma into two parts, and calls the extra decay <strong>skew theta</strong> (Section 7.5, Figures 134, 137 and 138):</p>
+
+      <p class="formula-display">Total Theta = Gamma Theta + Skew Theta (each per unit of dollar gamma)</p>
+
+      <p>A <strong>long skew</strong> risk reversal (long OTM put, short OTM call) pays skew theta every day the market stands still, because the put it owns carries higher implied volatility than the call it sold (Figure 122). The reverse, a short skew risk reversal (short OTM put, long OTM call), collects it.</p>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 5: P&amp;L for a Long Skew Position (Long OTM Put, Short OTM Call) Across Regimes</caption><thead><tr><th>Volatility Regime</th><th>Surface Re-Mark P&amp;L</th><th>Skew Theta Carry</th><th>Net Position Outcome</th></tr></thead><tbody><tr><td><strong>Sticky Delta</strong></td><td>Negative</td><td>Negative</td><td>Loss</td></tr><tr><td><strong>Sticky Strike</strong></td><td>Zero</td><td>Negative</td><td>Loss</td></tr><tr><td><strong>Sticky Local Vol</strong></td><td>Positive</td><td>Negative</td><td>Breakeven (Fair Skew)</td></tr><tr><td><strong>Jumpy Volatility</strong></td><td>Substantially Positive</td><td>Negative</td><td>Profitable</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Section 7.5, Figures 122 and 129)</p>
+
+      <p>Reversed, the table describes a short skew risk reversal: it profits under Sticky Delta and Sticky Strike, breaks even under Sticky Local Volatility and loses under Jumpy Volatility (Section 7.5). These results are for the two-legged risk reversal. They do not transfer directly to a standalone cash-secured put, which has its own directional, volatility, gamma and skew exposures; even under Sticky Strike, a fall through the strike can produce a large loss. What does carry over is the direction of the skew effect: Bennett notes that OTM put underwriting benefits from selling skew (Section 1.2).</p>
+
+      <h3 class="article-subheading">Vanna</h3>
+
+      <p><strong>Vanna</strong> measures how vega changes as the stock moves, which is the same as how delta changes as volatility moves:</p>
+
+      <p class="formula-display">Vanna = ∂Vega/∂Spot = ∂Delta/∂Vol</p>
+
+      <p>Vanna is largest for options around <strong>15 delta</strong>, and close to zero at the money, where vega is already at its peak (Section 7.4, Figures 113 and 115). It is <strong>positive when spot is below the strike</strong> (vega rises as spot climbs toward the strike) and <strong>negative when spot is above the strike</strong> (vega rises as spot falls toward the strike) (Figure 115). These signs are for the option itself; a short position has the opposite sign.</p>
+
+      <p><strong>Cash-secured puts (spot falling toward the strike).</strong> With ORBD at $100, the 95 put sits in the negative-vanna zone (so the short put position has positive vanna). As the stock falls toward $95, vega grows toward its at-the-money peak (from 0.100 at $100 to 0.108 at $97). Under Local or Jumpy Vol, implied volatility rises at the same time. The seller takes a <strong>double penalty</strong>: directional losses as the stock falls, plus volatility losses as a larger vega meets rising implied volatility.</p>
+
+      <p><strong>The delta-vol qualifier.</strong> For an OTM option, higher volatility pushes delta toward 50% (a more negative delta for an OTM put). For an in-the-money option, higher volatility pulls delta back toward 50%, reducing the delta of deep in-the-money options. This is the mechanism behind the 2008 hedging divergence in Section 6 below (Section 3.5).</p>
+
+      <p><strong>Covered calls (spot rallying toward the strike).</strong> With ORBD at $100, the 105 call sits in the positive-vanna zone (so the short call position has negative vanna), and its vega grows as the stock rises toward $105. If the surface behaves like Sticky Local Vol, implied volatility falls as the stock rallies, which slows the call's delta expansion; under Sticky Strike there is no such effect. <em>Commentary (not from source):</em> for the covered call seller, that acts as a partial buffer.</p>
+
+      <h2 class="article-section-heading">5. Term Structure, Power Vega and the 0.5 Calendar Rule</h2>
+
+      <p>Rolling out in time means closing a near-dated option and opening a far-dated one, so the term structure affects whether that exchange is fair.</p>
+
+      <div class="article-img-wrap"><img src="../../assets/img/articles/systematic-roll-triggers/img-04-term-structure.jpg" alt="Illustration: a row of hourglasses from small to large; sand pours fast in the small ones and slowly in the large ones." loading="lazy" /><p class="article-img-caption">Short expiries react fastest: near-dated volatility moves most, far-dated least, roughly in line with the square root of time.</p></div>
+
+      <p>Term structures are usually upward sloping in calm markets (far-dated implied volatility above near-dated, sometimes called contango), reflecting risk aversion and supply-demand imbalances for long maturities (Section 7.1); Section 3.1 explains why implied volatility tends to exceed realized volatility. In panics the term structure inverts as near-dated implied volatility spikes (Section 7.1).</p>
+
+      <p>The Black-Scholes vega (shown with zero dividend yield, per 1.00 of volatility) contains a √T term, so far-dated options carry much more vega (Appendix A.8):</p>
+
+      <p class="formula-display">Vega = S √T N'(d<sub>1</sub>)</p>
+
+      <p>Near-dated implied volatility, however, moves much more. To compare volatility exposure across maturities, desks divide vega by the square root of time, a normalization called <strong>Power Vega</strong> (Section 7.3, Appendix A.8):</p>
+
+      <p class="formula-display">Power Vega = Vega/√T</p>
+
+      <h3 class="article-subheading">The Square-Root-of-Time Rule</h3>
+
+      <p>Bennett shows that implied volatility moves across maturities scale approximately as T<sup>-p</sup> with p ≈ 0.5 (Section 7.2):</p>
+
+      <p class="formula-display">Δσ(T) = Δσ(1 Year) / T<sup>p</sup> with p ≈ 0.5</p>
+
+      <p>So, as a rule of thumb, a 3-month option's implied volatility moves about <strong>twice as much</strong> as a 1-year option's, because √(1.0 / 0.25) = 2.0, and a 4-year option's moves about half as much (Figure 105). The ratio of two observed moves tells you p: Δσ1/Δσ2 = (T2/T1)<sup>p</sup>. With T<sub>2</sub> / T<sub>1</sub> = 4, p = 0.5 gives a ratio of 2.0.</p>
+
+      <h3 class="article-subheading">Bennett's Calendar Rules</h3>
+
+      <p>Bennett defines a <strong>long calendar</strong> as short the near-dated option and long the far-dated option, and a <strong>short calendar</strong> as the reverse (Section 7.3). His rules for each kind of surface move:</p>
+
+      <div class="article-table-wrap"><table class="article-table"><caption>Table 6: Calendar Trading Rules Across Surface Shifts</caption><thead><tr><th>Surface Shift</th><th>Power Metric (p)</th><th>Market Mispricing Diagnosis</th><th>Bennett's Favored Position</th></tr></thead><tbody><tr><td><strong>Rising Surface</strong></td><td>p &lt; 0.5 (Flat shift)</td><td>Near-dated vol under-reacted</td><td>Short Calendar (Long near, Short far)</td></tr><tr><td><strong>Rising Surface</strong></td><td>p &gt; 0.5 (Steep shift)</td><td>Near-dated vol over-reacted</td><td>Long Calendar (Short near, Long far)</td></tr><tr><td><strong>Falling Surface</strong></td><td>p &lt; 0.5 (Flat drop)</td><td>Near-dated vol has not fallen enough</td><td>Long Calendar (Short near, Long far)</td></tr><tr><td><strong>Falling Surface</strong></td><td>p &gt; 0.5 (Steep drop)</td><td>Near-dated vol collapsed too far</td><td>Short Calendar (Long near, Short far)</td></tr></tbody></table></div>
+
+      <p class="table-source">(Source: Bennett, Section 7.3)</p>
+
+      <p>The method assumes the calendar was fairly priced before the move; otherwise the move may simply be a return to normal (Section 7.3).</p>
+
+      <div class="example-callout"><span class="example-label">Commentary (not from source)</span><p>Buying back a short near-dated option and selling a far-dated one at the same strike is, economically, a <strong>short calendar</strong>. A roll that also changes the strike adds a vertical spread on top, with its own delta and skew exposure. So the calendar rules are one input to a roll decision, not the whole decision: they say nothing about the gamma and assignment risk that often prompt a roll. On the term-structure view alone, rolling out is supported when Bennett favors a short calendar (a rising surface with p &lt; 0.5, or a falling surface with p &gt; 0.5) and works against you when he favors a long calendar.</p></div>
+
+      <p><strong>Case A: rising surface, p &gt; 0.5.</strong> A trader is short the 1-month ORBD 95 put (T<sub>1</sub> = 0.0833). Both the 1-month and 4-month (T<sub>2</sub> = 0.3333) volatilities start at 35.0%, and we assume the calendar was fairly priced. After a market shock, 1-month volatility jumps 12.0 points to 47.0% while 4-month rises only 4.0 points to 39.0%. The ratio is 12.0 / 4.0 = 3.0, but the square-root rule predicts √(T<sub>2</sub> / T<sub>1</sub>) = √4 = 2.0. The surface moved with p &gt; 0.5: near-dated volatility over-reacted, and Bennett favors a long calendar (Section 7.3). <em>Commentary (not from source):</em> rolling out is the opposite trade. It buys back an inflated front-month option and sells an under-reacting back-month one, so on term structure alone rolling out is relatively unattractive here. The alternatives are to hold, to close, or to adjust strikes within the same cycle; which is right depends on the short put's gamma and assignment risk, which the calendar rule does not address.</p>
+
+      <p><strong>Case B: falling surface, p &lt; 0.5.</strong> Both volatilities start at 35.0%, again assuming the calendar was fairly priced. As markets calm, 1-month volatility falls 4.0 points to 31.0% and 4-month falls 3.0 points to 32.0%. The ratio is 4.0 / 3.0 = 1.33, below 2.0, so p &lt; 0.5: near-dated volatility has not fallen enough relative to the 2.0x benchmark (even though it fell more points than the 4-month), and Bennett again favors a long calendar (Section 7.3). <em>Commentary (not from source):</em> rolling out takes the opposite side, so on term structure it is <strong>disadvantaged</strong>.</p>
+
+      <figure class="chart-figure" role="group" aria-label="Bar chart: Case A ratio 3.0, Case B ratio 1.33, against a dashed benchmark line at 2.0, the square root of 4."><svg class="chart" viewBox="0 0 680 290" role="img"><title>Calendar test: observed ratio of volatility moves versus the square-root-of-time benchmark</title><line class="grid" x1="56" x2="660" y1="242.0" y2="242.0"/><text class="tick" x="48" y="246.0" text-anchor="end">0</text><line class="grid" x1="56" x2="660" y1="211.7" y2="211.7"/><text class="tick" x="48" y="215.7" text-anchor="end">0.5</text><line class="grid" x1="56" x2="660" y1="181.4" y2="181.4"/><text class="tick" x="48" y="185.4" text-anchor="end">1</text><line class="grid" x1="56" x2="660" y1="151.1" y2="151.1"/><text class="tick" x="48" y="155.1" text-anchor="end">1.5</text><line class="grid" x1="56" x2="660" y1="120.9" y2="120.9"/><text class="tick" x="48" y="124.9" text-anchor="end">2</text><line class="grid" x1="56" x2="660" y1="90.6" y2="90.6"/><text class="tick" x="48" y="94.6" text-anchor="end">2.5</text><line class="grid" x1="56" x2="660" y1="60.3" y2="60.3"/><text class="tick" x="48" y="64.3" text-anchor="end">3</text><line class="grid" x1="56" x2="660" y1="30.0" y2="30.0"/><text class="tick" x="48" y="34.0" text-anchor="end">3.5</text><g class="pt"><title>Case A: rising surface: ratio of volatility moves 3.00 (p > 0.5)</title><rect class="hit" x="156.0" y="30" width="102" height="212"/><path class="bar-accent" d="M162.0,242.0 V64.3 Q162.0,60.3 166.0,60.3 H248.0 Q252.0,60.3 252.0,64.3 V242.0 Z"/><text class="val" x="207.0" y="52.3" text-anchor="middle">3.00 (p > 0.5)</text></g><text class="tick cat" x="207.0" y="260" text-anchor="middle">Case A: rising surface</text><text class="tick" x="207.0" y="275" text-anchor="middle">1-month +12 pts, 4-month +4 pts</text><g class="pt"><title>Case B: falling surface: ratio of volatility moves 1.33 (p < 0.5)</title><rect class="hit" x="458.0" y="30" width="102" height="212"/><path class="bar-accent" d="M464.0,242.0 V165.2 Q464.0,161.2 468.0,161.2 H550.0 Q554.0,161.2 554.0,165.2 V242.0 Z"/><text class="val" x="509.0" y="153.2" text-anchor="middle">1.33 (p < 0.5)</text></g><text class="tick cat" x="509.0" y="260" text-anchor="middle">Case B: falling surface</text><text class="tick" x="509.0" y="275" text-anchor="middle">1-month −4 pts, 4-month −3 pts</text><line class="ref strong" x1="56" x2="660" y1="120.9" y2="120.9"/><text class="ref-label" x="656" y="114.9" text-anchor="end">square-root-of-time benchmark: √4 = 2.0 (p = 0.5)</text><text class="axis-title" transform="translate(14,136) rotate(-90)" text-anchor="middle">Ratio of 1-month to 4-month move</text></svg><figcaption class="article-img-caption">Figure 3. The calendar test. Case A's ratio of 3.0 is above the 2.0 benchmark (near-dated volatility over-reacted); Case B's 1.33 is below it (near-dated volatility has not fallen enough). In both cases Bennett favors a long calendar, the opposite of rolling out.</figcaption></figure>
+
+      <h2 class="article-section-heading">6. Managing Greeks with Expected Volatility, Not Implied Volatility</h2>
+
+      <p>Black-Scholes assumes volatility is known and constant and that hedging is continuous. In reality volatility is unknown and hedging is discrete, which causes substantial hedging and risk-management errors (Section 3.5).</p>
+
+      <p>Bennett's example (Section 3.5, Figure 59): in April 2008 a trader bought an at-the-money Euro Stoxx 50 (SX5E) December 2008 straddle at 22% implied volatility. Over its life, which included the Lehman Brothers bankruptcy, realized volatility was 42%, 20 points higher. But the crash left the call far out of the money and the put deep in the money.</p>
+
+      <ul><li><strong>Delta from implied volatility</strong>, the standard practice, gave a straddle delta close to −100%, so the trader bought close to 100% of the underlying per straddle to hedge. As the market fell further after Lehman, that long stock hedge lost money.</li><li><strong>Delta from the higher actual volatility</strong> showed more time value remaining and a less extreme delta (Bennett's illustration is −80%), so the trader would have bought 20% less stock.</li></ul>
+
+      <p><strong>Hedging with the volatility actually realized outperformed hedging with implied volatility</strong>, and the two deltas at times differed by 24 percentage points (60% vs. 84%) (Section 3.5, Figure 59). That comparison uses hindsight: nobody knew in April 2008 that volatility would reach 42%. Bennett draws the practical lesson that investors should use expected volatility, not implied volatility, to calculate Greeks: if implied volatility looks 5 points too cheap, delta should be calculated from a volatility 5 points above it (Section 3.5). <em>Commentary (not from source):</em> the method only helps if the forecast is right. The screen's Greeks remain the market's own numbers; a forecast-based delta is a second view for hedging and risk, not a replacement.</p>
+
+      <div class="example-callout"><span class="example-label">ORBD Extension: Commentary (not from source)</span><p>After a sector-wide selloff, ORBD falls to $95 and 1-month implied volatility spikes to 60%. Two things follow.</p><ul><li><strong>Price.</strong> A panic roll buys back the front-month put at that 60%. The new, later put is also sold at high volatility, but when the front month has spiked most (as in Case A), the roll buys the richest volatility and sells less rich volatility.</li><li><strong>Greeks.</strong> If the trader expects realized volatility nearer 30%, Greeks calculated at 30% can differ from the screen's, and how much depends on moneyness. At $95 the put is at the money and the gap is small: −0.465 at 60% vs. −0.483 at 30%, about 0.02 apart. Had ORBD fallen to $85, leaving the put deep in the money, the gap would be about 0.18: −0.711 at 60% vs. −0.893 at 30%. Here the screen <em>understates</em> how stock-like the put has become, so assignment risk is higher than the screen suggests. In Bennett's 2008 example the error ran the other way: implied volatility was too low, so the implied-vol delta <em>overstated</em> it. Same mechanism, opposite direction.</li></ul></div>
+
+      <h2 class="article-section-heading">7. A Surface-Grounded Roll Protocol</h2>
+
+      <div class="example-callout"><span class="example-label">Commentary (not from source)</span><p>The protocol below is our synthesis of Bennett's principles into practical roll checks.</p></div>
+
+      <ol><li><strong>Check the volatility estimate.</strong><ul><li>Never act on a 3- to 5-day close-to-close volatility move: below 5 days, Bennett's relative variance is above 10%, and the reading itself can be off by roughly ±30–40% (Appendix A.2; the ± figure is our calculation).</li><li>Use at least 20 days (N ≥ 20, roughly ±16% on close-to-close). Range-based estimators such as Yang-Zhang help in quiet markets, but not after big overnight gaps. Check that implied volatility is above your realized estimate before selling new premium; that is a screen, not a guarantee.</li></ul></li><li><strong>Diagnose the regime.</strong><ul><li>Use Realised Skew to estimate whether the surface is behaving like Sticky Strike (0), Sticky Local Vol (+1) or Jumpy Vol (above +1).</li><li>Compute Total Delta (Delta<sub>BS</sub> + Vega × dσ/dS). In Jumpy Volatility a put's estimated total delta can be far more negative than the screen shows, and rolling out means buying back near-dated options at peak volatility. <strong>Rule:</strong> avoid calendar rolls during jumpy spikes; wait for the surface to settle back toward local volatility.</li></ul></li><li><strong>Check the term structure.</strong><ul><li>Before rolling out (a short calendar, if the strike stays the same), compare the volatility moves at the two maturities with the p = 0.5 square-root-of-time rule.</li><li>If front-month volatility has jumped with p &gt; 0.5, Bennett's rules favor a long calendar and rolling out takes the other side. <strong>Rule:</strong> consider deferring the roll until the spike subsides, closing, or adjusting strikes within the same expiration cycle (which avoids the term-structure effect, though not skew or gamma risk). If the moves instead favor a short calendar (rising with p &lt; 0.5, falling with p &gt; 0.5), the term structure supports rolling out.</li></ul></li></ol>
+
+      <p><em>Commentary (not from source):</em> None of this replaces judgment about direction and assignment risk. It adds a volatility check to the roll decision, one that most retail sellers skip.</p>
+
+      <section class="article-references" aria-labelledby="refs-h"><h2 id="refs-h">References</h2><ul><li class="ref-card"><span class="ref-year">2014</span><p class="ref-body">Colin Bennett, <a href="https://www.trading-volatility.com/Trading-Volatility.pdf" target="_blank" rel="noopener"><em>Trading Volatility</em></a>, free edition. Section and figure numbers in this article refer to this edition. <a href="https://uk.linkedin.com/in/colindavidbennett" target="_blank" rel="noopener">Colin Bennett on LinkedIn</a>.</p></li><li class="ref-card"><span class="ref-year">1980</span><p class="ref-body">Parkinson, "The Extreme Value Method for Estimating the Variance of the Rate of Return", <em>Journal of Business</em>. <a href="https://doi.org/10.1086/296071" target="_blank" rel="noopener">Original paper</a> (journal site; may require access).</p></li><li class="ref-card"><span class="ref-year">1980</span><p class="ref-body">Garman and Klass, "On the Estimation of Security Price Volatilities from Historical Data", <em>Journal of Business</em>. <a href="https://doi.org/10.1086/296072" target="_blank" rel="noopener">Original paper</a> (journal site; may require access).</p></li><li class="ref-card"><span class="ref-year">1991</span><p class="ref-body">Rogers and Satchell, "Estimating Variance from High, Low and Closing Prices", <em>Annals of Applied Probability</em>. <a href="https://doi.org/10.1214/aoap/1177005835" target="_blank" rel="noopener">Original paper</a>.</p></li><li class="ref-card"><span class="ref-year">2000</span><p class="ref-body">Yang and Zhang, "Drift-Independent Volatility Estimation Based on High, Low, Open, and Close Prices", <em>Journal of Business</em>. <a href="https://doi.org/10.1086/209650" target="_blank" rel="noopener">Original paper</a> (journal site; may require access).</p></li><li class="ref-card"><span class="ref-year">OTS Ullu</span><p class="ref-body"><a href="/articles/when-to-roll-or-stop/">When to Roll or Stop</a></p></li><li class="ref-card"><span class="ref-year">OTS Ullu</span><p class="ref-body"><a href="/articles/short-options-capital-at-stake/">What's Really at Stake When You Sell an Option</a></p></li></ul></section>
+
+      <!-- PDF download -->
+      <div class="pdf-download-wrap">
+        <a href="../../pdfs/systematic-roll-triggers-ots-ullu.pdf"
+           class="btn-pdf-download"
+           download
+           aria-label="Download PDF version of this article">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF Version
+        </a>
+        <span class="pdf-download-note">Free · No sign-up required</span>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer-box">
+        <p>Educational content, not investment advice. Orbital Dynamics (ORBD) is a fictitious company, and all ORBD prices, volatilities and Greeks are illustrative, calculated with the Black-Scholes model at zero interest rate and zero dividend yield. Section and figure numbers refer to Colin Bennett's <em>Trading Volatility</em> (2014). Retail roll rules in this article are the author's commentary, labeled as such, not rules from the book. Short options can produce losses larger than the premium received. Traders should understand the product and the margin and assignment rules at their broker before use.</p>
+      </div>
+
+      <!-- Author card -->
+      <div class="author-card">
+        <p class="author-card-label">About the Author</p>
+        <p class="author-card-name"><a href="https://www.linkedin.com/in/samvishwas/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Sam Vishwas</a></p>
+        <p>Sam Vishwas is the founder of OTS Ullu, a FinTech platform built to help individual investors apply the systematic discipline of an institutional desk — without inheriting the constraints built for someone else's problems. With over a decade of experience in technology and investing, Sam writes to bridge the gap between institutional-grade systems thinking and practical, real-world wealth building.</p>
+        <p>He believes the greatest edge any investor can have is not better information; it is better reasoning about the rules that actually govern their positions.</p>
+      </div>
+
+      <div class="article-meta-section">
+        <h3>Credits</h3>
+        <p>Article illustrations were created using Grok Imagine (xAI). Figures 1–3 were created by the author for this article from the article's own worked numbers.</p>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="article-meta-section">
+        <h3>Legal Disclaimer</h3>
+        <p>This article is for educational and informational purposes only and does not constitute financial, investment, legal, or tax advice. The views expressed are those of the author and do not necessarily reflect the views of OTS Ullu or its affiliates.</p>
+        <p>Investing in securities involves risk, including the possible loss of principal. Past performance is not indicative of future results. Readers should consult with a qualified financial advisor before making any investment decisions. OTS Ullu and the author are not responsible for any losses or damage resulting from the use of the information in this article.</p>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top-row">
+      <div class="footer-brand">
+        <img src="../../assets/img/ots-ullu-mascot.jpeg" alt="" class="footer-mark" aria-hidden="true" />
+        <span class="footer-wordmark">OTS <span class="brand-ullu">Ullu</span></span>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="footerYear"></span> OTS Ullu. All rights reserved. Content may not be reproduced without written permission.</p>
+  </div>
+</footer>
+
+<script src="../../js/feedback-config.js?v=20261121b"></script>
+<script src="../../js/feedback.js?v=20261121b"></script>
+<script src="../../js/app.js?v=20261121b"></script>
+</body>
+</html>
