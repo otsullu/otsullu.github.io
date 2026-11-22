@@ -67,7 +67,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/style.css?v=20261121b" />
+  <link rel="stylesheet" href="../../css/style.css?v=20261121" />
 
   <!-- Inline theme flash prevention -->
   <script>
@@ -438,6 +438,65 @@
     }
   }
 
+  .article-video-thumb-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .article-video-thumb-link {
+    position: relative;
+    width: 55%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: block;
+    text-decoration: none;
+  }
+  .article-video-thumb-link img {
+    width: 100%;
+    display: block;
+  }
+  .article-video-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 180ms;
+  }
+  .article-video-thumb-link:hover .article-video-thumb-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%);
+  }
+  .article-video-play-btn {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #111;
+    transition: transform 180ms;
+    flex-shrink: 0;
+  }
+  .article-video-play-btn svg { width: 26px; height: 26px; margin-left: 4px; }
+  .article-video-thumb-link:hover .article-video-play-btn { transform: scale(1.08); }
+  .article-video-thumb-label {
+    position: absolute;
+    bottom: 14px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  @media (max-width: 520px) {
+    .article-video-thumb-link { width: 100%; }
+  }
+
   .article-body ol { margin: 0 0 1.4em 0; padding-left: 1.6em; list-style: decimal; }
   .article-body ol li { font-size: clamp(1rem, 2vw, 1.08rem); line-height: 1.78; color: var(--fg); margin-bottom: 0.8em; }
   .article-body li ul, .article-body li ol { margin: 0.5em 0 0; }
@@ -763,6 +822,20 @@
         <span class="pdf-download-note">Free · No sign-up required</span>
       </div>
 
+      <!-- Video thumbnail -->
+      <div class="article-video-thumb-wrap">
+        <a href="https://youtu.be/X-ma15VFsSk" target="_blank" rel="noopener noreferrer"
+           class="article-video-thumb-link" aria-label="Watch on YouTube">
+          <img src="https://img.youtube.com/vi/X-ma15VFsSk/maxresdefault.jpg" alt="Watch: When to Roll Covered Calls and Cash-Secured Puts: 3 Volatility Checks" loading="lazy" />
+          <div class="article-video-thumb-overlay">
+            <div class="article-video-play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="article-video-thumb-label">Watch on YouTube</span>
+          </div>
+        </a>
+      </div>
+
       <!-- Disclaimer -->
       <div class="disclaimer-box">
         <p>Educational content, not investment advice. Orbital Dynamics (ORBD) is a fictitious company, and all ORBD prices, volatilities and Greeks are illustrative, calculated with the Black-Scholes model at zero interest rate and zero dividend yield. Section and figure numbers refer to Colin Bennett's <em>Trading Volatility</em> (2014). Retail roll rules in this article are the author's commentary, labeled as such, not rules from the book. Short options can produce losses larger than the premium received. Traders should understand the product and the margin and assignment rules at their broker before use.</p>
@@ -805,8 +878,8 @@
   </div>
 </footer>
 
-<script src="../../js/feedback-config.js?v=20261121b"></script>
-<script src="../../js/feedback.js?v=20261121b"></script>
-<script src="../../js/app.js?v=20261121b"></script>
+<script src="../../js/feedback-config.js?v=20261121"></script>
+<script src="../../js/feedback.js?v=20261121"></script>
+<script src="../../js/app.js?v=20261121"></script>
 </body>
 </html>

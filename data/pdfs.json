@@ -2,6 +2,15 @@
   "baseUrl": "pdfs/",
   "pdfs": [
     {
+      "id": "systematic-roll-triggers-deck",
+      "file": "when-to-roll-covered-calls-cash-secured-puts-ots-ullu-slide-deck.pdf",
+      "title": "Systematic Roll Triggers: When to Roll Covered Calls & Cash-Secured Puts",
+      "description": "A visual slide deck companion to the article Systematic Roll Triggers, built on Colin Bennett's Trading Volatility (2014) and worked through a fictitious company, Orbital Dynamics (ORBD). Covers the small-sample noise trap (Bennett's 1/(2N) relative variance: a 3-day volatility reading carries roughly ±41% error versus about ±16% at 20 days), the four volatility regimes from sticky delta to jumpy volatility, Total Delta versus the screen's Black-Scholes delta for a 95 put after a 3% drop (-0.402, -0.447, and an estimated -0.627 under jumpy volatility), skew theta and the long-skew risk-reversal P&L table, the vanna double penalty for cash-secured puts, power vega and the square-root-of-time calendar test (a 3.0 move ratio against the 2.0 benchmark), the 2008 SX5E straddle lesson on expected versus implied volatility with its hindsight caveat, and a three-step roll protocol labeled as commentary. Educational only, not investment advice.",
+      "tags": ["options", "covered calls", "cash-secured puts", "rolling options", "implied volatility", "volatility surface", "colin bennett"],
+      "date": "2026-11-22",
+      "featured": true
+    },
+    {
       "id": "surviving-the-break-even-trap",
       "file": "break-even-effect-trading-psychology-loss-aversion.pdf",
       "title": "Surviving the Break-Even Trap",
