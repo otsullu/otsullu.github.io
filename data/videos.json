@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "103",
-    "totalViews": "7762",
-    "videoCount": "150",
-    "updated": "2026-11-22T16:05:08.817196+00:00"
+    "totalViews": "7770",
+    "videoCount": "152",
+    "updated": "2026-11-23T06:49:53.402474+00:00"
   },
   "engagement": {
-    "totalViews": 7745,
-    "totalLikes": 248,
-    "totalComments": 99,
-    "engagementRate": 4.48,
+    "totalViews": 7756,
+    "totalLikes": 249,
+    "totalComments": 100,
+    "engagementRate": 4.5,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -50,7 +50,7 @@
       "ytId": "PLZEDE8n1EZ0T5DVUGEnpxe0GXXcQapTlP",
       "color": "#22c55e",
       "desc": "Covered Calls, Cash-Secured Puts, rolls, theta decay — income strategies for the disciplined investor.",
-      "thumb": "https://i.ytimg.com/vi/G4diTw6K2lc/maxresdefault.jpg"
+      "thumb": "https://i.ytimg.com/vi/X-ma15VFsSk/maxresdefault.jpg"
     },
     {
       "id": "indian-radar",
@@ -70,6 +70,30 @@
     }
   ],
   "videos": [
+    {
+      "id": "1iTWepPudBE",
+      "title": "When to Roll Covered Calls & Cash-Secured Puts: Volatility Checks Before You Roll 🎧",
+      "thumb": "https://i.ytimg.com/vi/1iTWepPudBE/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "3",
+      "likes": "0",
+      "comments": "0",
+      "published": "2026-11-22",
+      "india": true
+    },
+    {
+      "id": "X-ma15VFsSk",
+      "title": "When to Roll Covered Calls & Cash-Secured Puts: 3 Volatility Checks 📉",
+      "thumb": "https://i.ytimg.com/vi/X-ma15VFsSk/maxresdefault.jpg",
+      "playlist": "options-academy",
+      "lang": "English",
+      "views": "6",
+      "likes": "1",
+      "comments": "1",
+      "published": "2026-11-22",
+      "india": true
+    },
     {
       "id": "4jQ_vM6RK80",
       "title": "Anthropic IPO Exposed: $17B Quarterly Revenue, Claude AI & The ANT S-1 Breakdown 🚀",
@@ -904,7 +928,7 @@
       "thumb": "https://i.ytimg.com/vi/Jd5j0_WCiqM/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "27",
+      "views": "28",
       "likes": "1",
       "comments": "0",
       "published": "2026-05-31",
@@ -1840,7 +1864,7 @@
       "thumb": "https://i.ytimg.com/vi/TGpbCKqJ6qg/maxresdefault.jpg",
       "playlist": "wealth-academy",
       "lang": "English",
-      "views": "24",
+      "views": "25",
       "likes": "0",
       "comments": "0",
       "published": "2026-04-09",
