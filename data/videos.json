@@ -6,15 +6,15 @@
     "url": "https://www.youtube.com/@otsullu",
     "tagline": "AI-System-Driven Options Income For the Disciplined Investor",
     "subscribers": "103",
-    "totalViews": "7806",
+    "totalViews": "7818",
     "videoCount": "152",
-    "updated": "2026-11-26T07:42:21.817798+00:00"
+    "updated": "2026-11-26T18:16:03.708371+00:00"
   },
   "engagement": {
-    "totalViews": 7752,
-    "totalLikes": 247,
+    "totalViews": 7800,
+    "totalLikes": 249,
     "totalComments": 100,
-    "engagementRate": 4.48,
+    "engagementRate": 4.47,
     "topVideoId": "YAU4Jplof3A",
     "topVideoTitle": "🚨 अदृश्य चोर: भारत में 𝗜𝗻𝗳𝗹𝗮𝘁𝗶𝗼𝗻 (महंगाई) का असली सच 💸",
     "topVideoViews": 424
@@ -148,7 +148,7 @@
       "thumb": "https://i.ytimg.com/vi/W6TMxW4qAmw/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "63",
+      "views": "65",
       "likes": "1",
       "comments": "1",
       "published": "2026-10-30",
@@ -1636,7 +1636,7 @@
       "thumb": "https://i.ytimg.com/vi/LGok3HuxhK8/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "51",
+      "views": "52",
       "likes": "2",
       "comments": "0",
       "published": "2026-04-26",
@@ -1660,7 +1660,7 @@
       "thumb": "https://i.ytimg.com/vi/LQjZ1bDrIfU/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "18",
+      "views": "19",
       "likes": "3",
       "comments": "0",
       "published": "2026-04-24",
@@ -1672,7 +1672,7 @@
       "thumb": "https://i.ytimg.com/vi/2nNyUeKuuXw/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "15",
+      "views": "16",
       "likes": "3",
       "comments": "1",
       "published": "2026-04-23",
@@ -1868,6 +1868,18 @@
       "likes": "0",
       "comments": "0",
       "published": "2026-04-09",
+      "india": false
+    },
+    {
+      "id": "1QMRglIYn-E",
+      "title": "Patching the Market: How Merchants Engineered the Modern Options",
+      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
+      "playlist": "wealth-academy",
+      "lang": "English",
+      "views": "43",
+      "likes": "2",
+      "comments": "0",
+      "published": "2026-04-08",
       "india": false
     }
   ]
