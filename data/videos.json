@@ -8,11 +8,11 @@
     "subscribers": "103",
     "totalViews": "7806",
     "videoCount": "152",
-    "updated": "2026-11-25T18:32:46.071020+00:00"
+    "updated": "2026-11-26T07:42:21.817798+00:00"
   },
   "engagement": {
-    "totalViews": 7788,
-    "totalLikes": 249,
+    "totalViews": 7752,
+    "totalLikes": 247,
     "totalComments": 100,
     "engagementRate": 4.48,
     "topVideoId": "YAU4Jplof3A",
@@ -76,7 +76,7 @@
       "thumb": "https://i.ytimg.com/vi/1iTWepPudBE/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "7",
+      "views": "8",
       "likes": "0",
       "comments": "0",
       "published": "2026-11-22",
@@ -88,7 +88,7 @@
       "thumb": "https://i.ytimg.com/vi/X-ma15VFsSk/maxresdefault.jpg",
       "playlist": "options-academy",
       "lang": "English",
-      "views": "19",
+      "views": "24",
       "likes": "1",
       "comments": "1",
       "published": "2026-11-22",
@@ -328,7 +328,7 @@
       "thumb": "https://i.ytimg.com/vi/6L_6bWe5mso/maxresdefault.jpg",
       "playlist": "indian-radar",
       "lang": "English",
-      "views": "296",
+      "views": "297",
       "likes": "3",
       "comments": "1",
       "published": "2026-09-16",
@@ -1868,18 +1868,6 @@
       "likes": "0",
       "comments": "0",
       "published": "2026-04-09",
-      "india": false
-    },
-    {
-      "id": "1QMRglIYn-E",
-      "title": "Patching the Market: How Merchants Engineered the Modern Options",
-      "thumb": "https://i.ytimg.com/vi/1QMRglIYn-E/maxresdefault.jpg",
-      "playlist": "wealth-academy",
-      "lang": "English",
-      "views": "43",
-      "likes": "2",
-      "comments": "0",
-      "published": "2026-04-08",
       "india": false
     }
   ]
